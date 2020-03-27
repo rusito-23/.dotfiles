@@ -1,11 +1,11 @@
 
 """ Setup Dein
 
-set runtimepath+=~/.neovim.dotfiles/dein/repos/github.com/Shougo/dein.vim
+set runtimepath+=~/.dotfiles/nvim/dein/repos/github.com/Shougo/dein.vim
 
-if dein#load_state('~/.neovim.dotfiles/dein')
-  call dein#begin('~/.neovim.dotfiles/dein')
-  call dein#add('~/.neovim.dotfiles/dein/repos/github.com/Shougo/dein.vim')
+if dein#load_state('~/.dotfiles/nvim/dein')
+  call dein#begin('~/.dotfiles/nvim/dein')
+  call dein#add('~/.dotfiles/nvim/dein/repos/github.com/Shougo/dein.vim')
 
   " navigation
   call dein#add('preservim/nerdtree')
