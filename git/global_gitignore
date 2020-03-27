@@ -1,0 +1,46 @@
+# Temporary files #
+###################
+*.swp
+*.swo
+*~
+*.orig
+
+# Packages #
+############
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+
+# OS generated files #
+######################
+.DS_Store*
+ehthumbs.db
+Icon?
+Thumbs.db
+*.lock
+
+# IDE generated files #
+#######################
+.vscode
+.iml
+*.sublime-workspace
+WorkspaceSettings.xcsettings
+
+# Depency Manager Generated #
+#############################
+
+# Swift
+Carthage
+Pods
+
+# Node 
+node_modules
+
+# Python 
+venv
+

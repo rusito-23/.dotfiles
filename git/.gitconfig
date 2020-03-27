@@ -1,0 +1,91 @@
+# -- GENERAL -- #
+
+[user]
+  name = ********************
+  email = *****************************
+  username = *********
+
+[core]
+  editor = vim
+  whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
+  excludesfile = ~/.dotfiles/git/global_gitignore
+  hookspath = ~/.dotfiles/git/hooks
+
+[commit]
+  template = ~/.dotfiles/git/global_commit_template
+
+# -- MERGE -- #
+
+[merge]
+  tool = IntelliJ
+[mergetool "IntelliJ"]
+  cmd = /Applications/IntelliJCE.app/Contents/MacOS/idea merge\
+                        $(cd $(dirname "$LOCAL") && pwd)/$(basename "$LOCAL")\
+                        $(cd $(dirname "$REMOTE") && pwd)/$(basename "$REMOTE")\
+                        $(cd $(dirname "$BASE") && pwd)/$(basename "$BASE")\
+                        $(cd $(dirname "$MERGED") && pwd)/$(basename "$MERGED")\
+                        > /dev/null 2>&1
+  trustExitCode = true
+
+# -- DIFF -- #
+
+[diff]
+  tool = IntelliJ
+[difftool "IntelliJ"]
+  cmd = /Applications/IntelliJCE.app/Contents/MacOS/idea diff\
+                        $(cd $(dirname "$LOCAL") && pwd)/$(basename "$LOCAL")\
+                        $(cd $(dirname "$REMOTE") && pwd)/$(basename "$REMOTE")\
+                        > /dev/null 2>&1
+[difftool]
+  prompt = false
+
+# -- EXTRA -- #
+
+[rerere]
+  enabled = 1
+  autoupdate = 1
+
+[push]
+  default = matching
+
+[color]
+  ui = auto
+
+[color "branch"]
+  current = yellow bold
+  local = green bold
+  remote = cyan bold
+
+[color "diff"]
+  meta = yellow bold
+  frag = magenta bold
+  old = red bold
+  new = green bold
+  whitespace = red reverse
+
+[color "status"]
+  added = green bold
+  changed = yellow bold
+  untracked = red bold
+
+[github]
+  user = rusito-23
+  token = token
+
+[gitflow "prefix"]
+  feature = feature/
+  release = release/
+  hotfix = hotfix/
+  support = support/
+  sandbox = sandbox/
+  versiontag = v
+
+[sequence]
+  editor = interactive-rebase-tool
+
+[difftool "sourcetree"]
+  cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+  path = [mergetool "sourcetree"]
+  cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh\
+                   \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+  trustExitCode = true

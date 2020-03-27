@@ -1,0 +1,39 @@
+#!/bin/sh
+
+# Colors
+b='\033[1;30m'            # Black
+r='\033[1;31m'            # Red
+g='\033[1;32m'            # Green
+y='\033[1;33m'            # Yellow
+bl='\033[1;34m'           # Blue
+p='\033[1;35m'            # Purple
+c='\033[1;36m'            # Cyan
+w='\033[1;37m'            # White
+o='\033[0m'               # Text Reset
+
+WARNING="\t${y}WARNING  😧  ${o}"
+ERROR="\t${p}ERROR  💩  ${o}"
+GOOD="\t${g}GOOD  🤟  ${o}"
+
+echo "${c}PRE-COMMIT HOOK  🚀${o}"
+
+# Swiftlint
+# swiftlint --strict &> /dev/null || echo "${WARNING} Swiftlint errors found!"
+
+# TODO Search
+TODO="${bl}TODO's${o}"
+if (git-diff-index -p -M --cached HEAD -- | grep '^+' | grep --color=auto TODO) then
+  echo "${WARNING}Solve your ${TODO} and try again."
+  exit 1
+fi
+echo "${GOOD}No ${TODO} in sight."
+
+# FIXME Search
+FIXME="${bl}FIXME's${o}"
+if (git-diff-index -p -M --cached HEAD -- | grep '^+' | grep --color=auto FIXME) then
+  echo "${ERROR}Solve your ${FIXME} and try again."
+  exit 1
+fi
+echo "${GOOD}No ${FIXME} in sight."
+
+exit 0
