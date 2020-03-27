@@ -1,5 +1,5 @@
 
-# Dotfiles :nerdface:
+# Dotfiles :nerd_face:
 
 My Dotfiles, every section has it's own README with install instructions:
 
