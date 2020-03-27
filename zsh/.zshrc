@@ -15,11 +15,11 @@ ZSH_TMUX_AUTOSTART=true
 ZSH_TMUX_AUTOCONNECT=false
 # -- LIST --
 plugins=(
-	sudo
-	git
-	zsh-autosuggestions
-	vi-mode
-	zsh-syntax-highlighting
+    sudo
+    git
+    zsh-autosuggestions
+    vi-mode
+    zsh-syntax-highlighting
     virtualenv
     tmux
 )
