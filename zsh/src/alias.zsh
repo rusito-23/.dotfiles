@@ -17,6 +17,8 @@ alias grdl='./gradlew'
 
 # ALIAS TMUX
 alias tmuxx='tmux source-file ~/.tmux.conf'
+alias unsetmux='OLD_TMUX=$TMUX;TMUX=""'
+alias resetmux='TMUX=$OLD_TMUX'
 
 # ----------- #
 # PROGRAMMING #
