@@ -1,7 +1,7 @@
 # CHEATSHEET
 
 
-## vim
+## vim
 
 | SHORTCUT | ACTION |
 | --- | --- |
@@ -9,7 +9,7 @@
 | C-t | Toggle Tagbar |
 
 
-## tmux
+## tmux
 
 | SHORTCUT | ACTION |
 | --- | --- |
@@ -26,7 +26,7 @@
 | **prefix**-% | Rename session |
 | **prefix**-: | Send command |
 
-## commons
+## commons
 
 | SHORTCUT | ACTION |
 | --- | --- |
