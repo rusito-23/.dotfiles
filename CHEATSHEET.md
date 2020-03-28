@@ -1,25 +1,35 @@
 # CHEATSHEET
 
+
 ## vim
 
 | SHORTCUT | ACTION |
 | --- | --- |
 | C-n | Toggle NERDTree |
 | C-t | Toggle Tagbar |
-| S-j | Vertical Pane |
-| S-k | Horizontal Pane |
-| C-<h-j-k-l> | Switch Pane |
 
 
 ## tmux
 
 | SHORTCUT | ACTION |
 | --- | --- |
-| C-B + % | Vertical Pane |
-| C-B + " | Horizontal Pane |
-| C-B + D | Safe dettach |
+| **prefix**-D | Safe dettach |
 | unsetmux | unset $TMUX |
 | resetmux | reset $TMUX |
-| ta <sn> | Attach session |
-| tkss <sn> | Kill session |
+| ta * | Attach session |
+| tkss * | Kill session |
+| M-c | Create new window |
+| M-n | Move to next window |
+| M-p | Move to previous window |
+| C-a | Send prefix to nested session |
+| **prefix**-R | Reload config |
+| **prefix**-% | Rename session |
+| **prefix**-: | Send command |
 
+## commons
+
+| SHORTCUT | ACTION |
+| --- | --- |
+| M-. | Create Vertical Pane |
+| M-, | Create Horizontal Pane |
+| M-vim-keys | Switch Pane |

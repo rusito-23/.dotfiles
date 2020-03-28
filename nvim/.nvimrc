@@ -1,5 +1,5 @@
 
-""" Setup Dein
+""" dein init
 
 set runtimepath+=~/.dotfiles/nvim/dein/repos/github.com/Shougo/dein.vim
 
@@ -10,6 +10,7 @@ if dein#load_state('~/.dotfiles/nvim/dein')
   " navigation
   call dein#add('preservim/nerdtree')
   call dein#add('majutsushi/tagbar')
+  call dein#add('christoomey/vim-tmux-navigator')
   " code completion
   call dein#add('Shougo/deoplete.nvim')
   call dein#add('zchee/deoplete-jedi')
@@ -23,29 +24,29 @@ if dein#load_state('~/.dotfiles/nvim/dein')
   call dein#add('sbdchd/neoformat')
   " code checker
   call dein#add('neomake/neomake')
-  " colorschemes
+  " color schemes
   call dein#add('joshdick/onedark.vim')
   
   call dein#end()
   call dein#save_state()
 endif
 
-""" Custom Config
+""" custom
 """""""""""""""""
 
-" native
-set relativenumber
+" turn hybrid line numbers on
+:set number relativenumber
+:set nu rnu
+" smart tab with spaces
 set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
+" <esc> clears visual selection
 nnoremap <esc> :noh<return><esc>
-
-" pane navigation
-nnoremap <C-J> <C-W><C-J>
-nnoremap <C-K> <C-W><C-K>
-nnoremap <C-L> <C-W><C-L>
-nnoremap <C-H> <C-W><C-H>
-
-nnoremap <S-J> :vsp<return><esc>
-nnoremap <S-K> :sp<return><esc>
+" enable mouse
+set mouse=a
+" use system clipboard
+set clipboard+=unnamedplus
+" spell check
+set spell
 
 " NERDTree
 autocmd StdinReadPre * let s:std_in=1
@@ -77,3 +78,16 @@ call neomake#configure#automake('nrwi', 500)
 
 " onedark
 colorscheme onedark
+" set dark green visual selection
+highlight Visual cterm=bold ctermbg=0x13492a ctermfg=NONE
+
+" vim-tmux-navigator config
+let g:tmux_navigator_no_mappings = 1
+nnoremap <silent> <M-h> :TmuxNavigateLeft<cr>
+nnoremap <silent> <M-j> :TmuxNavigateDown<cr>
+nnoremap <silent> <M-k> :TmuxNavigateUp<cr>
+nnoremap <silent> <M-l> :TmuxNavigateRight<cr>
+" pane creation using SHIFT-./,
+nnoremap <M-.> :vsp<return><esc>
+nnoremap <M-,> :sp<return><esc>
+
