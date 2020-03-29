@@ -23,8 +23,10 @@
 | M-p | Move to previous window |
 | C-a | Send prefix to nested session |
 | **prefix**-R | Reload config |
-| **prefix**-% | Rename session |
+| **prefix**-$ | Rename session |
 | **prefix**-: | Send command |
+| **prefix**-% | Create vertical pane |
+| **prefix**-" | Create horizontal pane |
 
 ## commons
 

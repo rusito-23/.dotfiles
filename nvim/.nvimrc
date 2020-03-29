@@ -73,7 +73,7 @@ let g:neoformat_basic_format_retab = 1
 let g:neoformat_basic_format_trim = 1
 
 " neomake
-let g:neomake_python_enabled_makers = ['pylint']
+" let g:neomake_python_enabled_makers = ['pylint']
 call neomake#configure#automake('nrwi', 500)
 
 " onedark
