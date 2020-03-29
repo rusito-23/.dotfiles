@@ -7,3 +7,5 @@ My Dotfiles, every section has it's own README with install instructions:
 - [neovim](nvim/README.md)
 - [tmux](tmux/README.md)
 - [zsh](zsh/README.md)
+
+Check the [cheatsheet](CHEATSHEET.md) too.

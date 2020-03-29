@@ -1,7 +1,7 @@
 # CHEATSHEET
 
 
-## vim
+## vim
 
 | SHORTCUT | ACTION |
 | --- | --- |
@@ -9,7 +9,7 @@
 | C-t | Toggle Tagbar |
 
 
-## tmux
+## tmux
 
 | SHORTCUT | ACTION |
 | --- | --- |
@@ -28,7 +28,7 @@
 | **prefix**-% | Create vertical pane |
 | **prefix**-" | Create horizontal pane |
 
-## commons
+## commons
 
 | SHORTCUT | ACTION |
 | --- | --- |
