@@ -5,6 +5,7 @@ alias vew='virtualenvwrapper'
 alias mkve='mkvirtualenv'
 alias rmve='rmvirtualenv'
 alias lve='lsvirtualenv'
+alias py='ipython'
 
 # jupyter aliases
 

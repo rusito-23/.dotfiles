@@ -9,7 +9,7 @@ alias migrate='python manage.py migrate'
 alias makemigrations='python manage.py makemigrations'
 alias djshell='python manage.py shell -i ipython'
 
-# ALIAS SUDOERR
+# ALIAS SUDOER
 alias sudoer='export ITERM_PROFILE=rusito23-zshrc ;sudo -s /bin/zsh'
 
 # ALIAS GRADLEW
@@ -20,21 +20,10 @@ alias tmuxx='tmux source-file ~/.tmux.conf'
 alias unsetmux='OLD_TMUX=$TMUX;TMUX=""'
 alias resetmux='TMUX=$OLD_TMUX'
 
-# ----------- #
-# PROGRAMMING #
-# ----------- #
-alias markdown='~/Markdown_1.0.1/Markdown.pl'
-alias omnet='~/omnetpp-5.2.1/bin/omnetpp'
-alias py='ipython'              # py : ipython shell
-alias subl='sublime_text'       # subl : sublime text
-alias sdb='./opt/android-sdk/platform-tools/adb'
-alias emacs="emacs -nw"
-alias fromscratch="FromScratch --portable ~/Library/Mobile\ Documents/com\~apple\~CloudDocs/fromscratch &"
-alias glogg="open -a glogg"
-
 # ----- #
 # UTILS #
 # ----- #
+setopt noautoremoveslash
 alias ls='ls -GFh'
 alias l='ls'
 alias la='ls -a'
@@ -48,16 +37,15 @@ alias .4='cd ../../../../'
 alias .5='cd ../../../../../'
 alias .6='cd ../../../../../../'
 alias edit='atom'
-alias f='open -a Finder ./'         # f: open in Finder
+alias f='open -a Finder ./'
 alias ~='cd ~'
-alias wich='type -all'              # which: find executables
+alias wich='type -all'
 alias path='echo -e ${PATH//:\\n}'
-alias src='source ~/.zshrc'         # Load shell config
+alias src='source ~/.zshrc'
 
 # ------- #
 # EDITION #
 # ------- #
-alias vimedit='vim ~/.vim_runtime/my_configs.vim'
 alias mdedit='open -a MacDown'
 alias pcat='pygmentize -f terminal256 -O style=monokai -g'
 alias vi='nvim'
@@ -69,11 +57,6 @@ alias vim='nvim'
 dotpng() {
     dot -Tpng -Gsize=9,15\! -Gdpi=100 $1.gv -o $1.png && imgcat $1.png 
 }
-
-# ------- #
-#   ML    #
-# ------- #
-alias jupyn='jupyter notebook'
 
 # ----------- #
 # FS HANDLING #
@@ -143,32 +126,10 @@ ii() {
     echo
 }
 
-# -------------------- #
-#     XCODE COMMANDS   #
-# -------------------- #
-
-excalibur() {
-    cd /excalibur-ios
-    
-    xcodebuild \
-        -UseModernBuildSystem=NO \
-        -workspace /excalibur-ios/excalibur.xcworkspace \
-        -scheme  Royal-Dev \
-        -sdk iphonesimulator \
-        -destination 'platform=iOS Simulator,name=iPhone 6,OS=12.1' \
-        "$@" | xcpretty --test --color
-}
+# ------- #
+#  XCODE  #
+# ------- #
 
 cleanDerivedData() {
     rm -rf $HOME/Library/Developer/Xcode/DerivedData
 }
-
-
-# -------------------- #
-#     XCODE COMMANDS   #
-# -------------------- #
-
-tomcatShutDown() {
-    cd $tomcatHome/bin && ./shutdown.sh
-}
-
