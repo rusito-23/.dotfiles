@@ -5,12 +5,10 @@ source $HOME/.dotfiles/zsh/src/dirs.zsh
 # AUX FILES
 source $ASSETS_DIR/colors.zsh
 
-# SECTIONS :
-
 # : ALIAS
 source $SOURCES_DIR/alias.zsh
 
-# : INIT
+# : INIT MESSAGE
 source $SOURCES_DIR/init.zsh
 
 # : Shell integration
@@ -27,27 +25,19 @@ if [ -f $SOURCES_DIR/custom.zsh ]; then
 fi
 
 # : VIRTUALENVWRAPPER (OPTIONAL)
-if [ -f $SOURCES_DIR/python.zsh ]; then
-    source $SOURCES_DIR/python.zsh
-fi
+source $SOURCES_DIR/python.zsh
 
 # : FASD INITIALIZATION
-if [ -f $SOURCES_DIR/fasd.zsh ]; then
-    source $SOURCES_DIR/fasd.zsh
-fi
+source $SOURCES_DIR/fasd.zsh
 
 # : GCLOUD INITIALIZATION
-if [ -f $SOURCES_DIR/gcloud.zsh ]; then
-    source $SOURCES_DIR/gcloud.zsh
-fi
+source $SOURCES_DIR/gcloud.zsh
 
 # : GIT
 source $SOURCES_DIR/git.zsh
 
 # : GOLANG INITIALIZATION
-if [ -f $SOURCES_DIR/go.zsh ]; then
-    source $SOURCES_DIR/go.zsh
-fi
+source $SOURCES_DIR/go.zsh
 
-
-
+# : AUTOSUGGESTIONS CONFIG
+source $SOURCES_DIR/autosuggestions.zsh
