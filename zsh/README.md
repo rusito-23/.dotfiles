@@ -20,3 +20,8 @@ Run the install command.
 ```bash
 sh ~/.dotfiles/zsh/install.sh
 ```
+
+## Ignored
+
+All files listed in `src/ignored` are ignored in the repo.
+It's used to source files with sensible info.

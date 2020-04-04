@@ -2,7 +2,5 @@
 # OS FILES
 /.DS_Store
 
-# RELATIVE DATA
-/src/environment_vars.zsh
-/src/custom.zsh
-/src/paths.zsh
+# IGNORED SOURCES
+/src/ignored
