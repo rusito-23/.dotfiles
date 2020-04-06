@@ -47,6 +47,8 @@ set mouse=a
 set clipboard+=unnamedplus
 " spell check
 set spell
+" exec macro q with space
+nnoremap <Space> @q
 
 " NERDTree
 autocmd StdinReadPre * let s:std_in=1

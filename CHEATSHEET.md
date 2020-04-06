@@ -7,6 +7,8 @@
 | --- | --- |
 | C-n | Toggle NERDTree |
 | C-t | Toggle Tagbar |
+| q | Record macro |
+| SPACE | Play macro named **q** |
 
 
 ## tmux

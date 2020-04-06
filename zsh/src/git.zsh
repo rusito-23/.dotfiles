@@ -67,11 +67,17 @@ gpb() {
 
 # params: $1 -> commitername, $2 -> sandboxname
 gcosand() {
-    git checkout -b "sandbox/igor/$1" 
+    git checkout -b "sandbox/$1/$2" 
 }
 
 gcofeat() {
-    git checkout -b "feature/$1"
+    branch=$@
+    git checkout -b "feature/${branch// /_}"
+}
+
+gcofix() {
+    branch=$@
+    echo "bugfix/${branch// /_}"
 }
 
 # SEARCH FOR TODO'S IN YOUR CHANGES:
