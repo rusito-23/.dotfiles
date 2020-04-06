@@ -101,13 +101,9 @@ alias qfind="find . -name "                 # qfind:    Look quickly for a file
 ff () { /usr/bin/find . -name "$@" ; }      # ff:       Find file in current dir
 ffs () { /usr/bin/find . -name "$@"'*' ; }  # ffs:      Find file in current dir with given string
 ffe () { /usr/bin/find . -name '*'"$@" ; }  # ffe:      Find file in current dir that ends with given string
-# rgrep() { grep -rInH "$@" . }               # rgrep:    Recursive search of text in current dir
-rgrep() {                                 # rgrepnd:  rgrep excluding dir!
-    grep -rInH --exclude-dir=$2 "$1" .
-} 
-alias egrep="egrep --color=auto --exclude-dir={.bzr,CVS,.git,.hg,.svn}"
-alias grephist="pcat ~/.zsh_history |grep "
-
+unalias grep
+rgrep() { grep --color=auto -rInH --exclude-dir=$2 "$1" *; } 
+fgrep() { grep --color=auto -rInHo --exclude-dir=$2 "$1" *; }
 spotlight () { mdfind "kMDItemDisplayName == '$@'wc"; }    # spotlight : search with spotlight
 
 # ------- #
