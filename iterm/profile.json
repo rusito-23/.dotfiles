@@ -18,6 +18,7 @@
     "Red Component" : 0.90196078431372551,
     "Blue Component" : 0.86274509803921573
   },
+  "Use Custom Window Title" : false,
   "Right Option Key Sends" : 0,
   "Show Status Bar" : true,
   "Character Encoding" : 4,
@@ -190,15 +191,15 @@
             "path" : "path",
             "maxwidth" : 1.7976931348623157e+308,
             "base: priority" : 5,
-            "base: compression resistance" : 1,
-            "minwidth" : 0,
             "shared text color" : {
               "Red Component" : 0.63,
               "Color Space" : "sRGB",
               "Blue Component" : 0.90000000000000002,
               "Alpha Component" : 1,
               "Green Component" : 0.80999999999999994
-            }
+            },
+            "base: compression resistance" : 1,
+            "minwidth" : 0
           },
           "layout advanced configuration dictionary value" : {
             "font" : ".AppleSystemUIFont 12",
@@ -220,6 +221,7 @@
             "maxwidth" : 1.7976931348623157e+308,
             "iTermStatusBarGitComponentPollingIntervalKey" : 2,
             "base: priority" : 5,
+            "minwidth" : 0,
             "shared text color" : {
               "Red Component" : 0.63,
               "Color Space" : "sRGB",
@@ -227,8 +229,7 @@
               "Alpha Component" : 1,
               "Green Component" : 0.63
             },
-            "base: compression resistance" : 1,
-            "minwidth" : 0
+            "base: compression resistance" : 1
           },
           "layout advanced configuration dictionary value" : {
             "font" : ".AppleSystemUIFont 12",
@@ -314,8 +315,10 @@
     "Blue Component" : 0.86274509803921573
   },
   "Use Cursor Guide" : true,
+  "Custom Window Title" : "hey",
   "Unlimited Scrollback" : false,
   "Custom Command" : "Yes",
+  "Title Components" : 1,
   "Keyboard Map" : {
     "0xf700-0x260000" : {
       "Action" : 10,
@@ -580,7 +583,7 @@
   "Horizontal Spacing" : 1,
   "Option Key Sends" : 2,
   "Blink Allowed" : true,
-  "Custom Icon Path" : "\/Users\/igor\/Pictures\/profile.png",
+  "Custom Icon Path" : "\/Users\/igor\/.dotfiles\/\/iterm\/icon.png",
   "Ansi 15 Color" : {
     "Green Component" : 1,
     "Red Component" : 1,
@@ -609,10 +612,10 @@
   "Columns" : 80,
   "Visual Bell" : true,
   "Custom Directory" : "No",
+  "ASCII Ligatures" : true,
   "Ansi 5 Color" : {
     "Green Component" : 0.81568627450980391,
     "Red Component" : 0.81568627450980391,
     "Blue Component" : 1
-  },
-  "ASCII Ligatures" : true
+  }
 }

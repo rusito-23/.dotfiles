@@ -103,7 +103,7 @@ ffs () { /usr/bin/find . -name "$@"'*' ; }  # ffs:      Find file in current dir
 ffe () { /usr/bin/find . -name '*'"$@" ; }  # ffe:      Find file in current dir that ends with given string
 unalias grep
 rgrep() { grep --color=auto -rInH --exclude-dir=$2 "$1" *; } 
-fgrep() { grep --color=auto -rInHo --exclude-dir=$2 "$1" *; }
+fgrep() { grep --color=auto -rInHol --exclude-dir=$2 "$1" *; }
 spotlight () { mdfind "kMDItemDisplayName == '$@'wc"; }    # spotlight : search with spotlight
 
 # ------- #
