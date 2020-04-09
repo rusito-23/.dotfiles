@@ -7,6 +7,7 @@ source $ASSETS_DIR/colors.zsh
 # -------------------- #
 
 # USE: gcmrplauthor <author> <commit-hash>
+
 gcmrplauthor() {
     echo "${BGreen}Replacing autor with: $1 on commit: $2"
 
@@ -32,7 +33,8 @@ gcmrplauthor() {
 
 
 # AUTO-COMPLETE THE GIT URL! 
-# USE : github <repo> <destination>
+# USE : github/bitbucket <repo> <destination>
+
 github() {
     git clone https://github.com/$1.git $2
 }
@@ -42,6 +44,7 @@ bitbucket() {
 }
 
 # Fetch and checkout branch in a single command
+
 gfco() {
     echo "\nFetching and checking: $@"
     git fetch origin $@
@@ -49,10 +52,12 @@ gfco() {
 }
 
 # Diff and mergetools
+
 alias gdt='git difftool'
 alias gmt='git mergetool'
 
 # Git parent branch:
+
 gpb() {
     git show-branch -a 2> /dev/null \
         | grep '\*' \
@@ -77,7 +82,7 @@ gcofeat() {
 
 gcofix() {
     branch=$@
-    echo "bugfix/${branch// /_}"
+    git checkout -b "bugfix/${branch// /_}"
 }
 
 # SEARCH FOR TODO'S IN YOUR CHANGES:
@@ -101,3 +106,7 @@ _gitignoreio () {
 }
 
 compdef _gitignoreio gi
+
+# don't git push force, git push force with lease!
+
+alias ggpf='ggp --force-with-lease'

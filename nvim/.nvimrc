@@ -26,6 +26,8 @@ if dein#load_state('~/.dotfiles/nvim/dein')
   call dein#add('neomake/neomake')
   " color schemes
   call dein#add('joshdick/onedark.vim')
+  call dein#add('gilgigilgil/anderson.vim')
+  call dein#add('wadackel/vim-dogrun')
   
   call dein#end()
   call dein#save_state()
@@ -34,9 +36,13 @@ endif
 """ custom
 """""""""""""""""
 
+" use , as leader
+let mapleader = ","
+let g:mapleader = ","
+
 " turn hybrid line numbers on
-:set number relativenumber
-:set nu rnu
+set number relativenumber
+set nu rnu
 " smart tab with spaces
 set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
 " <esc> clears visual selection
@@ -46,9 +52,25 @@ set mouse=a
 " use system clipboard
 set clipboard+=unnamedplus
 " spell check
-set spell
+" set spell
 " exec macro q with space
 nnoremap <Space> @q
+
+" remove with x-d-D
+nnoremap x "_x
+nnoremap d "_d
+vnoremap d "_d
+nnoremap D "_D
+" cut with <leader> x-d-D
+nnoremap <leader>x ""x
+vnoremap <leader>x ""x
+nnoremap <leader>d ""d
+vnoremap <leader>d ""d
+nnoremap <leader>D ""D
+vnoremap <leader>D ""D
+nnoremap <leader>dd ""dd
+vnoremap p ""p
+nnoremap p ""p
 
 " NERDTree
 autocmd StdinReadPre * let s:std_in=1
@@ -79,9 +101,7 @@ let g:neoformat_basic_format_trim = 1
 " call neomake#configure#automake('nrwi', 500)
 
 " onedark
-colorscheme onedark
-" set dark green visual selection
-highlight Visual cterm=bold ctermbg=0x13492a ctermfg=NONE
+colorscheme dogrun
 
 " vim-tmux-navigator config
 let g:tmux_navigator_no_mappings = 1
