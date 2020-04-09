@@ -1,5 +1,13 @@
 # CHEATSHEET
 
+## iTerm mappings
+
+| KEYS | MAPPING | But why? |
+| --- | --- | --- |
+| CMD+L | ^L | clear |
+| CMD+D | ^D | exit |
+| CMD+B | ^B | tmux prefix |
+| CMD+A | ^A | nested tmux prefix |
 
 ## vim
 
