@@ -1,0 +1,15 @@
+#!/bin/sh
+
+ORIG_MSG_FILE="$1"  # Grab the current template
+TEMP=`mktemp /tmp/git-msg-XXXXX` # Create a temp file
+trap "rm -f $TEMP" exit # Remove temp file on exit
+
+branchPath=$(git symbolic-ref -q HEAD) 
+branchName=${branchPath##*/}
+ticket=$(echo $branchName | grep -o "\w*[?:UCAPM|ACMACOS]-\w*[0-9]")
+
+# print all to temp file
+(printf "\n$ticket: \n\n# BRANCH NAME: $branchName"; cat "$ORIG_MSG_FILE") > "$TEMP"  
+
+# Move temp file to commit message
+cat "$TEMP" > "$ORIG_MSG_FILE" 

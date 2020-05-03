@@ -76,13 +76,17 @@ gcosand() {
 }
 
 gcofeat() {
-    branch=$@
-    git checkout -b "feature/${branch// /_}"
+    branch=${@/\//_} # remove /
+    branch=${branch/\\n/_} # remove \n
+    branch=${branch// /_} # replace spaces with _
+    git checkout -b "feature/${branch}"
 }
 
 gcofix() {
-    branch=$@
-    git checkout -b "bugfix/${branch// /_}"
+    branch=${@/\//_} # remove /
+    branch=${branch/\\n/_} # remove \n
+    branch=${branch// /_} # replace spaces with _
+    git checkout -b "bugfix/${branch}"
 }
 
 # SEARCH FOR TODO'S IN YOUR CHANGES:

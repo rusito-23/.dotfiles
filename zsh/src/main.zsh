@@ -32,6 +32,9 @@ source $SOURCES_DIR/go.zsh
 # : AUTOSUGGESTIONS CONFIG
 source $SOURCES_DIR/autosuggestions.zsh
 
+# : TMUX UTILS
+source $SOURCES_DIR/tmux.zsh
+
 # : IGNORED
 for s in $SOURCES_DIR/ignored/*; do source $s; done
 
