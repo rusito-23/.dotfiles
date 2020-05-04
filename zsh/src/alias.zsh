@@ -42,7 +42,6 @@ alias src='source ~/.zshrc'
 # EDITION #
 # ------- #
 alias mdedit='open -a MacDown'
-alias pcat='pygmentize -f terminal256 -O style=monokai -g'
 alias vi='nvim'
 alias vim='nvim'
 alias nvim_rmswap='rm ~/.local/share/nvim/swap/*.swp'
