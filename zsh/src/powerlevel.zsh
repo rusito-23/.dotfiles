@@ -25,7 +25,7 @@ if [ $(id -u) = "0" ]; then
     POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(user vi_mode dir_writable dir vcs)
 else
     # REGULAR EVERYDAY NORMAL USER PROMPT 
-    POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(vi_mode dir_writable dir vcs)
+    POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(vi_mode host dir_writable dir vcs)
 fi
 POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(virtualenv command_execution_time background_jobs status)
 

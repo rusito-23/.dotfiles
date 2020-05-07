@@ -15,5 +15,3 @@ for s in $SOURCES_DIR/sources/*; do source $s; done
 
 # : IGNORED
 for s in $SOURCES_DIR/ignored/*; do source $s; done
-
-
