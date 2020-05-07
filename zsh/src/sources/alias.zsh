@@ -18,6 +18,7 @@ alias grdl='./gradlew'
 # ----- #
 # UTILS #
 # ----- #
+
 setopt noautoremoveslash
 alias ls='ls -GFh'
 alias l='ls'
@@ -37,6 +38,7 @@ alias ~='cd ~'
 alias wich='type -all'
 alias path='echo -e ${PATH//:\\n}'
 alias src='source ~/.zshrc'
+alias colors='for i in {0..255}; do printf "\x1b[38;5;${i}mcolor%-5i\x1b[0m" $i ; if ! (( ($i + 1 ) % 8 )); then echo ; fi ; done'
 
 # ------- #
 # EDITION #
@@ -49,13 +51,15 @@ alias nvim_rmswap='rm ~/.local/share/nvim/swap/*.swp'
 # ------- #
 #   DOT   #
 # ------- #
+
 dotpng() {
-    dot -Tpng -Gsize=9,15\! -Gdpi=100 $1.gv -o $1.png && imgcat $1.png 
+    dot -Tpng -Gsize=9,15\! -Gdpi=100 $1.gv -o $1.png
 }
 
 # ----------- #
 # FS HANDLING #
 # ----------- #
+
 mcd () { mkdir -p "$1" && cd "$1"; }        # mcd:          Create a dir and cd inside
 trash () { command mv "$@" ~/.Trash ; }     # trash:        moves dir to trash
 cdl () { cd "$1" && ls; }                   # cdl:          cd into dir and ls
@@ -81,17 +85,10 @@ extract () {
      fi
 }
 
-extract-all() {
-    # Extract all files in folder
-
-    for X in *; do
-        extract $X
-    done
-}
-
 # ------- #
 # SEARCH  #
 # ------- #
+
 alias qfind="find . -name "                 # qfind:    Look quickly for a file
 ff () { /usr/bin/find . -name "$@" ; }      # ff:       Find file in current dir
 ffs () { /usr/bin/find . -name "$@"'*' ; }  # ffs:      Find file in current dir with given string
@@ -105,6 +102,7 @@ spotlight () { mdfind "kMDItemDisplayName == '$@'wc"; }    # spotlight : search 
 # ------- #
 # NETWORK #
 # ------- #
+
 alias myip='ifconfig |grep inet'
 ii() {
     echo -e "\nYou are logged on ${RED}$HOST"
