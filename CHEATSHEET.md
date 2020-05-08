@@ -47,3 +47,16 @@
 | M-. | Create Vertical Pane |
 | M-, | Create Horizontal Pane |
 | M-vim-keys | Switch Pane |
+
+
+## SSH Cheatsheets
+
+### Install package (no root)
+
+$PATH must include `$HOME/.local/bin`
+
+```
+apt-get download package
+dpkg -x package.deb folder
+mv folder/usr/bin ~/.local/bin
+```
