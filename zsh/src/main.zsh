@@ -16,7 +16,4 @@ source $SOURCES_DIR/init.zsh
 for s in $SOURCES_DIR/ignored/*; do source $s; done
 
 # : SOURCES
-for s in $SOURCES_DIR/sources/*; do
-    echo $s;
-    source $s;
-done
+for s in $SOURCES_DIR/sources/*; do source $s; done
