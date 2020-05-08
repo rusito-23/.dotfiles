@@ -5,6 +5,9 @@ alias vew='virtualenvwrapper'
 alias mkve='mkvirtualenv'
 alias rmve='rmvirtualenv'
 alias lve='lsvirtualenv'
+
+# ipython
+
 alias py='ipython'
 
 # jupyter aliases
@@ -17,4 +20,3 @@ if command -v pyenv 1>/dev/null 2>&1; then
     eval "$(pyenv init -)"
     pyenv virtualenvwrapper
 fi
-

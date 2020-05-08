@@ -1,23 +1,12 @@
 #!/bin/zsh
 
 # ----------------------------------------------------------------------------
-# ALIAS & FUNCTIONS
+# ALIAS
 # ----------------------------------------------------------------------------
 
-# ALIAS DJANGO
-alias migrate='python manage.py migrate'
-alias makemigrations='python manage.py makemigrations'
-alias djshell='python manage.py shell -i ipython'
-
-# ALIAS SUDOER
-alias sudoer='export ITERM_PROFILE=rusito23-zshrc ;sudo -s /bin/zsh'
-
-# ALIAS GRADLEW
-alias grdl='./gradlew'
-
-# ----- #
-# UTILS #
-# ----- #
+# ------- #
+#   MISC  #
+# ------- #
 
 setopt noautoremoveslash
 alias ls='ls -GFh'
@@ -28,37 +17,22 @@ alias ldir='ls -d'
 alias cd..='cd ../'
 alias ..='cd ../'
 alias ...='cd ../../'
-alias .3='cd ../../../'
-alias .4='cd ../../../../'
-alias .5='cd ../../../../../'
-alias .6='cd ../../../../../../'
-alias edit='atom'
-alias f='open -a Finder ./'
-alias ~='cd ~'
-alias wich='type -all'
-alias path='echo -e ${PATH//:\\n}'
 alias src='source ~/.zshrc'
-alias colors_map='for i in {0..255}; do printf "\x1b[38;5;${i}mcolor%-5i\x1b[0m" $i ; if ! (( ($i + 1 ) % 8 )); then echo ; fi ; done'
+alias sudoer='export ITERM_PROFILE=rusito23-zshrc ;sudo -s /bin/zsh'
 
 # ------- #
 # EDITION #
 # ------- #
+
 alias mdedit='open -a MacDown'
 alias vi='nvim'
 alias vim='nvim'
 alias nvim_rmswap='rm ~/.local/share/nvim/swap/*.swp'
+alias cat='bat'
 
-# ------- #
-#   DOT   #
-# ------- #
-
-dotpng() {
-    dot -Tpng -Gsize=9,15\! -Gdpi=100 $1.gv -o $1.png
-}
-
-# ----------- #
-# FS HANDLING #
-# ----------- #
+# ------------- #
+# FILE HANDLING #
+# ------------- #
 
 mcd () { mkdir -p "$1" && cd "$1"; }        # mcd:          Create a dir and cd inside
 trash () { command mv "$@" ~/.Trash ; }     # trash:        moves dir to trash
@@ -91,10 +65,10 @@ extract () {
 
 alias qfind="find . -name "                 # qfind:    Look quickly for a file
 ff () { /usr/bin/find . -name "$@" ; }      # ff:       Find file in current dir
-ffs () { /usr/bin/find . -name "$@"'*' ; }  # ffs:      Find file in current dir with given string
+ffs () { /usr/bin/find . -name "$@"'*' ; }  # ffs:      Find file in current dir that starts with given string
 ffe () { /usr/bin/find . -name '*'"$@" ; }  # ffe:      Find file in current dir that ends with given string
-unalias grep
-unalias fgrep
+((${+aliases[rgrep]})) && unalias rgrep
+((${+aliases[fgrep]})) && unalias fgrep
 rgrep () { grep --color=auto -rInH --exclude-dir=$2 "$1" *; } 
 fgrep () { grep --color=auto -rInHol --exclude-dir=$2 "$1" *; }
 spotlight () { mdfind "kMDItemDisplayName == '$@'wc"; }    # spotlight : search with spotlight
@@ -114,12 +88,4 @@ ii() {
     echo -e "\n${RED}Public facing IP Address :$NC " ;myip
     #echo -e "\n${RED}DNS Configuration:$NC " ; scutil --dns
     echo
-}
-
-# ------- #
-#  XCODE  #
-# ------- #
-
-cleanDerivedData() {
-    rm -rf $HOME/Library/Developer/Xcode/DerivedData
 }

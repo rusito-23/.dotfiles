@@ -30,17 +30,14 @@ Thumbs.db
 .iml
 *.sublime-workspace
 WorkspaceSettings.xcsettings
+xcuserdata
 
 # Depency Manager Generated #
 #############################
-
-# Swift
+## xcode ##
 Carthage
 Pods
-
-# Node 
+## node ##
 node_modules
-
-# Python 
+## python ##
 venv
-
