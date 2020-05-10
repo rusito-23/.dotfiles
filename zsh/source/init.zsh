@@ -1,5 +1,5 @@
 #!/bin/zsh
-source $HOME/.dotfiles/zsh/src/dirs.zsh
+source $HOME/.dotfiles/zsh/source/dirs.zsh
 
 # ----------------------------------------------------------------------------
 # EXECUTE ON STARTUP 

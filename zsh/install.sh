@@ -1,5 +1,5 @@
 #!/bin/sh
-source $HOME/.dotfiles/zsh/src/dirs.zsh
+source $HOME/.dotfiles/zsh/source/dirs.zsh
 source $ASSETS_DIR/colors.zsh
 
 confirmWarning()

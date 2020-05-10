@@ -28,9 +28,16 @@ if dein#load_state('~/.dotfiles/nvim/dein')
   call dein#add('joshdick/onedark.vim')
   call dein#add('gilgigilgil/anderson.vim')
   call dein#add('wadackel/vim-dogrun')
+  " git diff & merge
+  call dein#add('tpope/vim-fugitive')
   
   call dein#end()
   call dein#save_state()
+endif
+
+" Install not installed plugins on startup.
+if dein#check_install()
+  call dein#install()
 endif
 
 """ custom

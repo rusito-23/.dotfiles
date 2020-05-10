@@ -23,5 +23,5 @@ sh ~/.dotfiles/zsh/install.sh
 
 ## Ignored
 
-All files listed in `src/ignored` are ignored in the repo.
+All files listed in `source/ignored` are ignored in the repo.
 It's used to source files with sensible info.

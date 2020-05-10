@@ -1,9 +1,9 @@
 # -- GENERAL -- #
 
 [user]
-  name = ********************
-  email = *****************************
-  username = *********
+  name = Igor Andruskiewitsch 
+  email = i.andruskiewitsch23@gmail.com 
+  username = rusito-23
 
 [core]
   editor = nvim
@@ -17,25 +17,16 @@
 # -- MERGE -- #
 
 [merge]
-  tool = IntelliJ
-[mergetool "IntelliJ"]
-  cmd = /Applications/IntelliJCE.app/Contents/MacOS/idea merge\
-                        $(cd $(dirname "$LOCAL") && pwd)/$(basename "$LOCAL")\
-                        $(cd $(dirname "$REMOTE") && pwd)/$(basename "$REMOTE")\
-                        $(cd $(dirname "$BASE") && pwd)/$(basename "$BASE")\
-                        $(cd $(dirname "$MERGED") && pwd)/$(basename "$MERGED")\
-                        > /dev/null 2>&1
-  trustExitCode = true
+  tool = nvim 
+[mergetool "nvim"]
+  cmd = nvim -f -c \"Gvdiffsplit!\" \"$MERGED\"
 
 # -- DIFF -- #
-
+#
 [diff]
-  tool = IntelliJ
-[difftool "IntelliJ"]
-  cmd = /Applications/IntelliJCE.app/Contents/MacOS/idea diff\
-                        $(cd $(dirname "$LOCAL") && pwd)/$(basename "$LOCAL")\
-                        $(cd $(dirname "$REMOTE") && pwd)/$(basename "$REMOTE")\
-                        > /dev/null 2>&1
+  tool = nvim 
+[difftool "nvim"]
+  cmd = nvim -f -c \"Gvdiffsplit!\" \"$MERGED\"
 [difftool]
   prompt = false
 
