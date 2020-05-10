@@ -27,6 +27,6 @@ plugins=(
 # ----------- #
 # ZSH SOURCES #
 # ----------- #
-source $HOME/.dotfiles/zsh/src/powerlevel.zsh
+source $HOME/.dotfiles/zsh/source/powerlevel.zsh
 source $ZSH/oh-my-zsh.sh
-source $HOME/.dotfiles/zsh/src/main.zsh
+source $HOME/.dotfiles/zsh/source/main.zsh
