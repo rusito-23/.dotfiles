@@ -1,14 +1,27 @@
 #!/bin/sh
 source $HOME/.dotfiles/zsh/source/dirs.zsh
-# LOAD AUX FILES
 source $ASSETS_DIR/colors.zsh
-# SHELL INTEGRATION
+
+
+# ------------------- #
+#   WELCOME MESSAGE   #
+# ------------------- #
+if [[ -o login ]]; then
+    echo "ПРИВЕТ СУКА БЛЯТЬ"
+fi
+
+
+# ------------------- #
+#   SHELL INTEGRATION #
+# ------------------- #
 if [ -f ~/.iterm2_shell_integration.zsh ]; then
     source ~/.iterm2_shell_integration.zsh
 fi
-# : INIT
-source $SOURCES_DIR/init.zsh
-# : IGNORED
+
+
+# ---------- #
+#   IGNORED  #
+# ---------- #
 for s in $SOURCES_DIR/ignored/*; do source $s; done
 
 # ------- #
@@ -17,7 +30,11 @@ for s in $SOURCES_DIR/ignored/*; do source $s; done
 
 alias src='source ~/.zshrc'
 alias sudoer='export ITERM_PROFILE=rusito23-zshrc ;sudo -s /bin/zsh'
-## ADD LOCAL PATH! ##
+
+# -------- #
+#   PATHS  #
+# -------- #
+
 export PATH=$HOME/.local/bin:$PATH
 
 # ------------ #
@@ -43,6 +60,7 @@ alias vi='nvim'
 alias vim='nvim'
 alias nvim_rmswap='rm ~/.local/share/nvim/swap/*.swp'
 alias cat='bat'
+alias diff='nvim -d '
 
 # ------- #
 # SEARCH  #
@@ -51,8 +69,8 @@ alias cat='bat'
 alias qfind="find . -name "                 # qfind:    Look quickly for a file
 ((${+aliases[rgrep]})) && unalias rgrep
 ((${+aliases[fgrep]})) && unalias fgrep
-rgrep () { grep --color=auto -rInH --exclude-dir=$2 "$1" *; }
-fgrep () { grep --color=auto -rInHol --exclude-dir=$2 "$1" *; }
+rgrep () { grep --color=auto -rInH --exclude-dir=$2 "$1" * ;}
+fgrep () { grep --color=auto -rInHol --exclude-dir=$2 "$1" * ;}
 
 # ------- #
 # NETWORK #
@@ -65,11 +83,13 @@ alias myip='ifconfig |grep inet'
 # ---------------- #
 
 # cycle through auto suggestions with up/down
+
 if [[ "${terminfo[kcuu1]}" != "" ]]; then
     autoload -U up-line-or-beginning-search
     zle -N up-line-or-beginning-search
     bindkey "${terminfo[kcuu1]}" up-line-or-beginning-search
 fi
+
 if [[ "${terminfo[kcud1]}" != "" ]]; then
     autoload -U down-line-or-beginning-search
     zle -N down-line-or-beginning-search
@@ -88,54 +108,34 @@ autoload -U compinit && compinit
 # GIT PLUGIN EXTENSION #
 # -------------------- #
 
-# AUTO-COMPLETE THE GIT URL!
-# USE : github/bitbucket <repo> <destination>
-github() {
-    git clone https://github.com/$1.git $2
-}
-bitbucket() {
-    git clone https://bitbucket.org/$1.git $2
-}
+github() { git clone https://github.com/$1.git $2 ;}
+bitbucket() { git clone https://bitbucket.org/$1.git $2 ;}
 
-# Fetch and checkout branch in a single command
-gfco() {
-    echo "\nFetching and checking: $@"
-    git fetch origin $@
-    git checkout $@
-}
+# fetch and checkout branch in a single command
+gfco() { git fetch origin $@ ; git checkout $@ ;}
 
-# Diff and mergetools
+# diff and mergetools
 alias gdt='git difftool'
 alias gmt='git mergetool'
 
 # don't git push force, git push force with lease!
 alias ggpf='ggp --force-with-lease'
 
-# CHECKOUT SANDBOX & FEATURE
-# params: $1 -> commitername, $2 -> sandboxname
-gcosand() {
-    git checkout -b "sandbox/$1/$2"
-}
+# CHECKOUT SANDBOX - FEATURE - FIX
+gcosand() { git checkout -b "sandbox/$1/$2" ;}
 gcofeat() {
     branch=${@/\//_} # remove /
-    branch=${branch/\\n/_} # remove \n
     branch=${branch// /_} # replace spaces with _
     git checkout -b "feature/${branch}"
 }
 gcofix() {
     branch=${@/\//_} # remove /
-    branch=${branch/\\n/_} # remove \n
     branch=${branch// /_} # replace spaces with _
     git checkout -b "bugfix/${branch}"
 }
 
-# SEARCH FOR TODO'S IN YOUR CHANGES:
-gstodo() {
-    gd | egrep "TODO|todo"
-    gd --cached | egrep "TODO|todo"
-}
-
 # gitignore.io
+
 function gi() { curl -sL https://www.gitignore.io/api/$@ ;}
 _gitignoreio_get_command_list() {
   curl -sL https://www.gitignore.io/api/list | tr "," "\n"
@@ -167,11 +167,14 @@ alias vew='virtualenvwrapper'
 alias mkve='mkvirtualenv'
 alias rmve='rmvirtualenv'
 alias lve='lsvirtualenv'
+
 # ipython
 alias py='ipython'
+
 # jupyter aliases
 alias jn='jupyter notebook'
 alias jl='jupyter lab'
+
 # pyenv init
 if command -v pyenv 1>/dev/null 2>&1; then
     eval "$(pyenv init -)"
