@@ -190,3 +190,10 @@ alias tmuxx='tmux source-file ~/.tmux.conf'
 # set unset tmux for nested sessions
 alias unsetmux='OLD_TMUX=$TMUX;TMUX=""'
 alias resetmux='TMUX=$OLD_TMUX'
+
+# ---------------- #
+#      FZF         #
+# ---------------- #
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+alias fr='fzf-tmux -r 60'
+alias fl='fzf-tmux -l 60'

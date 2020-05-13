@@ -19,4 +19,4 @@
 ### Misc
 - [pkg-config]()
 - [htop]()
-
+- [fzf](https://github.com/junegunn/fzf)

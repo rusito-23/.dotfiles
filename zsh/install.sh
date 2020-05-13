@@ -125,7 +125,7 @@ install()
   echo "${Purple}Installing Oh-my-zsh:${Color_Off}"
   wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | zsh
   mv $HOME/.zshrc $HOME/.zshrc_viejo
-  cp $ROOT_DIR/.zshrc $HOME/.zshrc # loading personal configuration!
+  echo "source $ROOT_DIR/.zshrc" > $HOME/.zshrc # loading personal configuration! 
 
   # install extra plugins and themes
   echo "${Purple}Installing and configuring extra plugins and themes:${Color_Off}"

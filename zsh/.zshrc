@@ -15,18 +15,20 @@ ZSH_TMUX_AUTOSTART=true
 ZSH_TMUX_AUTOCONNECT=false
 # -- LIST --
 plugins=(
-    sudo
-    git
-    zsh-autosuggestions
-    vi-mode
-    zsh-syntax-highlighting
-    virtualenv
-    tmux
+	sudo
+	git
+	zsh-autosuggestions
+	vi-mode
+	zsh-syntax-highlighting
+        virtualenv
+        tmux
+        tmux-cssh
 )
 
 # ----------- #
 # ZSH SOURCES #
 # ----------- #
-source $HOME/.dotfiles/zsh/src/powerlevel.zsh
+source $HOME/.dotfiles/zsh/source/powerlevel.zsh
 source $ZSH/oh-my-zsh.sh
-source $HOME/.dotfiles/zsh/src/main.zsh
+source $HOME/.dotfiles/zsh/source/main.zsh
+

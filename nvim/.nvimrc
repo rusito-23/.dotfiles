@@ -120,3 +120,9 @@ nnoremap <silent> <M-l> :TmuxNavigateRight<cr>
 nnoremap <M-.> :vsp<return><esc>
 nnoremap <M-,> :sp<return><esc>
 
+" quick exit window
+nnoremap <leader>q :q<CR>
+" quick exit all windows
+nnoremap <leader>a :qa!<CR>
+" quick save
+nnoremap <leader>s :w<CR>

@@ -1,8 +1,5 @@
 # zsh dotfiles :alien:
 
-## Introduction :blue_book:
-This are my personal zsh dotfiles, which bring together several tools and external libraries to join them in a single configuration folder.
-
 ## Sources
 
 - from [Nathaniel Landau](https://natelandau.com/my-mac-osx-bash_profile/)
