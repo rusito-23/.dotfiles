@@ -35,11 +35,6 @@ if dein#load_state('~/.dotfiles/nvim/dein')
   call dein#save_state()
 endif
 
-" Install not installed plugins on startup.
-if dein#check_install()
-  call dein#install()
-endif
-
 """ custom
 """""""""""""""""
 
@@ -89,7 +84,7 @@ nmap <C-t> :TagbarToggle<CR>
 
 " deoplete
 let g:deoplete#enable_at_startup = 1
-let g:python3_host_prog = '/Users/igor/.pyenv/shims/python'
+let g:python3_host_prog = $HOME.'/.pyenv/shims/python'
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 
 " airline

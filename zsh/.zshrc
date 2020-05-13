@@ -31,4 +31,3 @@ plugins=(
 source $HOME/.dotfiles/zsh/source/powerlevel.zsh
 source $ZSH/oh-my-zsh.sh
 source $HOME/.dotfiles/zsh/source/main.zsh
-
