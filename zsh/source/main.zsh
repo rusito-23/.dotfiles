@@ -192,8 +192,17 @@ alias unsetmux='OLD_TMUX=$TMUX;TMUX=""'
 alias resetmux='TMUX=$OLD_TMUX'
 
 # ---------------- #
-#      FZF         #
+#        FZF       #
 # ---------------- #
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+export FZF_DEFAULT_OPTS='--height 50% --border --exact --inline-info'
+# ---------------- #
+#    FZF + TMUX    #
+# ---------------- #
 alias fr='fzf-tmux -r 60'
 alias fl='fzf-tmux -l 60'
+# ---------------- #
+#    FZF + GIT     #
+# ---------------- #
+alias gbf='gco $(gb | fr)'
+alias gcf='glo | fr'

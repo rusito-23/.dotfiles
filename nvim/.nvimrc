@@ -11,6 +11,7 @@ if dein#load_state('~/.dotfiles/nvim/dein')
   call dein#add('preservim/nerdtree')
   call dein#add('majutsushi/tagbar')
   call dein#add('christoomey/vim-tmux-navigator')
+  call dein#add('kien/ctrlp.vim')
   " code completion
   call dein#add('Shougo/deoplete.nvim')
   call dein#add('zchee/deoplete-jedi')
@@ -35,8 +36,8 @@ if dein#load_state('~/.dotfiles/nvim/dein')
   call dein#save_state()
 endif
 
-""" custom
-"""""""""""""""""
+""""""""""""""""""""""""""""""
+" custom
 
 " use , as leader
 let mapleader = ","
@@ -53,11 +54,10 @@ nnoremap <esc> :noh<return><esc>
 set mouse=a
 " use system clipboard
 set clipboard+=unnamedplus
-" spell check
-" set spell
 " exec macro q with space
 nnoremap <Space> @q
 
+""""""""""""""""""""""""""""""
 " remove with x-d-D
 nnoremap x "_x
 nnoremap d "_d
@@ -74,37 +74,45 @@ nnoremap <leader>dd ""dd
 vnoremap p ""p
 nnoremap p ""p
 
+""""""""""""""""""""""""""""""
 " NERDTree
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 map <C-n> :NERDTreeToggle<CR>
 
+""""""""""""""""""""""""""""""
 " tabgar
 nmap <C-t> :TagbarToggle<CR>
 
+""""""""""""""""""""""""""""""
 " deoplete
 let g:deoplete#enable_at_startup = 1
 let g:python3_host_prog = $HOME.'/.pyenv/shims/python'
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 
+""""""""""""""""""""""""""""""
 " airline
 let g:airline_theme='dark_minimal'
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#show_close_button = 0
 
+""""""""""""""""""""""""""""""
 " neoformat 
 let g:neoformat_basic_format_align = 1
 let g:neoformat_basic_format_retab = 1
 let g:neoformat_basic_format_trim = 1
 
+""""""""""""""""""""""""""""""
 " neomake
 " let g:neomake_python_enabled_makers = ['pylint']
 " call neomake#configure#automake('nrwi', 500)
 
-" onedark
+""""""""""""""""""""""""""""""
+" colorscheme
 colorscheme dogrun
 
+""""""""""""""""""""""""""""""
 " vim-tmux-navigator config
 let g:tmux_navigator_no_mappings = 1
 nnoremap <silent> <M-h> :TmuxNavigateLeft<cr>
@@ -121,3 +129,6 @@ nnoremap <leader>q :q<CR>
 nnoremap <leader>a :qa!<CR>
 " quick save
 nnoremap <leader>s :w<CR>
+
+" CtrlP
+let g:ctrlp_show_hidden = 1
