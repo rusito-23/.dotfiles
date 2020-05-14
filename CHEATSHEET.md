@@ -17,9 +17,9 @@
 | C-t | Toggle Tagbar |
 | q | Record macro |
 | SPACE | Play macro named **q** |
-| <leader>q | :q |
-| <leader>a | :qa! |
-| <leader>s | :w |
+| \<leader\>q | :q |
+| \<leader\>a | :qa! |
+| \<leader\>s | :w |
 
 ### :warning: WARNING:
 `x-d-D-dd` commands **delete** the selected text - to **cut** use `<leader>-x-d-D-dd` (leader is ',')
@@ -52,11 +52,11 @@
 | M-vim-keys | Switch Pane |
 
 
-## SSH Cheatsheets
+## SSH Cheatsheets
 
-### Install package (no root)
+### Install package (no root)
 
-$PATH must include `$HOME/.local/bin`
+**$PATH** must include `$HOME/.local/bin`
 
 ```
 apt-get download package
