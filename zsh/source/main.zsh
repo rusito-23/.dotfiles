@@ -63,16 +63,6 @@ alias cat='bat'
 alias diff='nvim -d '
 
 # ------- #
-# SEARCH  #
-# ------- #
-
-alias qfind="find . -name "                 # qfind:    Look quickly for a file
-((${+aliases[rgrep]})) && unalias rgrep
-((${+aliases[fgrep]})) && unalias fgrep
-rgrep () { grep --color=auto -rInH --exclude-dir=$2 "$1" * ;}
-fgrep () { grep --color=auto -rInHol --exclude-dir=$2 "$1" * ;}
-
-# ------- #
 # NETWORK #
 # ------- #
 
@@ -194,15 +184,17 @@ alias resetmux='TMUX=$OLD_TMUX'
 # ---------------- #
 #        FZF       #
 # ---------------- #
+
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+export RIPGREP_CONFIG_PATH="$HOME/.dotfiles/zsh/.ripgreprc"
 export FZF_DEFAULT_OPTS='--height 50% --border --exact --inline-info'
-# ---------------- #
+
 #    FZF + TMUX    #
-# ---------------- #
+
 alias fr='fzf-tmux -r 60'
 alias fl='fzf-tmux -l 60'
-# ---------------- #
+
 #    FZF + GIT     #
-# ---------------- #
+
 alias gbf='gco $(gb | fr)'
 alias gcf='glo | fr'

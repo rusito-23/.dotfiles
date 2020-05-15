@@ -130,5 +130,15 @@ nnoremap <leader>a :qa!<CR>
 " quick save
 nnoremap <leader>s :w<CR>
 
+""""""""""""""""""""""""""""""
 " CtrlP
 let g:ctrlp_show_hidden = 1
+" allways open in new tab
+let g:ctrlp_prompt_mappings = {
+    \ 'AcceptSelection("e")': ['<2-LeftMouse>'],
+    \ 'AcceptSelection("t")': ['<cr>'],
+    \ }
+
+""""""""""""""""""""""""""""""
+" vim-fugitive
+:set diffopt+=vertical
