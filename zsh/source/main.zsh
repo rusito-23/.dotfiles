@@ -109,7 +109,15 @@ alias gdt='git difftool'
 alias gmt='git mergetool'
 
 # don't git push force, git push force with lease!
-alias ggpf='ggp --force-with-lease'
+ggpf () {
+    if [[ "$#" != 0 ]] && [[ "$#" != 1 ]]
+    then
+        git push --force-with-lease origin "${*}"
+    else
+        [[ "$#" == 0 ]] && local b="$(git_current_branch)"
+        git push --force-with-lease origin "${b:=$1}"
+    fi
+}
 
 # CHECKOUT SANDBOX - FEATURE - FIX
 gcosand() { git checkout -b "sandbox/$1/$2" ;}

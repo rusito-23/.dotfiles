@@ -142,3 +142,10 @@ let g:ctrlp_prompt_mappings = {
 """"""""""""""""""""""""""""""
 " vim-fugitive
 :set diffopt+=vertical
+
+
+""""""""""""""""""""""""""""""
+" jedi-vim config
+
+" don't override <leader>s as save
+let g:jedi#goto_stubs_command = ""

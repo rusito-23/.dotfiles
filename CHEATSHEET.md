@@ -2,12 +2,13 @@
 
 ## iTerm mappings
 
-| KEYS | MAPPING | But why? |
-| --- | --- | --- |
-| CMD+L | ^L | clear |
-| CMD+D | ^D | exit |
-| CMD+B | ^B | tmux prefix |
-| CMD+A | ^A | nested tmux prefix |
+| KEYS | MAPPING | HEX | But why? |
+| --- | --- | --- | --- |
+| CMD+L | ^L | 0x0C | clear |
+| CMD+D | ^D | 0x04 | exit |
+| CMD+B | ^B | 0x02 | tmux prefix |
+| CMD+A | ^A | 0x01 | nested tmux prefix |
+| CMD+P | ^P | 0x10 | CtrlP vim plugin |
 
 ## vim
 
