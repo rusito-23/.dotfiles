@@ -9,6 +9,11 @@
 | CMD+B | ^B | 0x02 | tmux prefix |
 | CMD+A | ^A | 0x01 | nested tmux prefix |
 | CMD+P | ^P | 0x10 | CtrlP vim plugin |
+| CMD+G | ^G | 0x07 | fzf + git plugin prefix |
+| CMD+O | ^O | 0x0F | fzf + git plugin branches |
+| CMD+H | ^H | 0x08 | fzf + git plugin hashes |
+| CMD+F | ^F | 0x06 | fzf + git plugin files |
+| CMD+T | ^T | 0x14 | fzf + git plugin tags |
 
 ## vim
 
