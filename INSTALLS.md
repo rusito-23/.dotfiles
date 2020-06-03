@@ -1,4 +1,6 @@
-# Installs
+
+# Helpful Installs
+
 ## Stuff to install with brew:
 
 ### Files
@@ -7,6 +9,7 @@
 - [bat](https://github.com/sharkdp/bat)
 - [vifm](https://vifm.info)
 - [ripgrep](https://github.com/BurntSushi/ripgrep)
+- [fd](https://github.com/sharkdp/fd)
 
 ### Media
 
