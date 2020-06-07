@@ -9,7 +9,9 @@ every section has it's own README:
 - [zsh](zsh/README.md)
 
 
+Also contains a [install.sh](quick setup script) (does not include iterm setup):
+
 Other:
 
 - [CHEATSHEET](CHEATSHEET.md)
-- [INSTALLS](zsh/INSTALLS.md)
+- [INSTALLS](INSTALLS.md)
