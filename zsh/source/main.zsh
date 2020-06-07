@@ -194,7 +194,7 @@ alias resetmux='TMUX=$OLD_TMUX'
 # ---------------- #
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-export RIPGREP_CONFIG_PATH="$HOME/.dotfiles/zsh/.ripgreprc"
+export RIPGREP_CONFIG_PATH="$HOME/.dotfiles/extras/.ripgreprc"
 export FZF_DEFAULT_OPTS='--height 50% --border --exact --inline-info'
 
 #    FZF + TMUX    #
