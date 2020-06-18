@@ -2,6 +2,7 @@
 """ dein init
 
 set runtimepath+=~/.dotfiles/nvim/dein/repos/github.com/Shougo/dein.vim
+set rtp+=/usr/local/opt/fzf
 
 if dein#load_state('~/.dotfiles/nvim/dein')
   call dein#begin('~/.dotfiles/nvim/dein')
@@ -12,23 +13,31 @@ if dein#load_state('~/.dotfiles/nvim/dein')
   call dein#add('majutsushi/tagbar')
   call dein#add('christoomey/vim-tmux-navigator')
   call dein#add('kien/ctrlp.vim')
+  call dein#add('junegunn/fzf', { 'build': './install --all', 'merged': 0 }) 
+  call dein#add('junegunn/fzf.vim', { 'depends': 'fzf' })
+
   " code completion
   call dein#add('Shougo/deoplete.nvim')
   call dein#add('zchee/deoplete-jedi')
   call dein#add('davidhalter/jedi-vim')
+
   " vim-airline
   call dein#add('vim-airline/vim-airline')
   call dein#add('vim-airline/vim-airline-themes')
+
   " code style
   call dein#add('jiangmiao/auto-pairs')
   call dein#add('scrooloose/nerdcommenter')
   call dein#add('sbdchd/neoformat')
+
   " code checker
   call dein#add('neomake/neomake')
+
   " color schemes
   call dein#add('joshdick/onedark.vim')
   call dein#add('gilgigilgil/anderson.vim')
   call dein#add('wadackel/vim-dogrun')
+
   " git diff & merge
   call dein#add('tpope/vim-fugitive')
   
@@ -46,16 +55,24 @@ let g:mapleader = ","
 " turn hybrid line numbers on
 set number relativenumber
 set nu rnu
+
 " smart tab with spaces
 set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
-" <esc> clears visual selection
+
+" clear visual selection
 nnoremap <esc> :noh<return><esc>
+
 " enable mouse
 set mouse=a
+
 " use system clipboard
 set clipboard+=unnamedplus
+
 " exec macro q with space
 nnoremap <Space> @q
+
+" when scrolling, keep cursor 3 lines away from screen border
+set scrolloff=3
 
 """"""""""""""""""""""""""""""
 " remove with x-d-D
@@ -63,16 +80,29 @@ nnoremap x "_x
 nnoremap d "_d
 vnoremap d "_d
 nnoremap D "_D
+
 " cut with <leader> x-d-D
 nnoremap <leader>x ""x
 vnoremap <leader>x ""x
+
 nnoremap <leader>d ""d
 vnoremap <leader>d ""d
+
 nnoremap <leader>D ""D
 vnoremap <leader>D ""D
+
 nnoremap <leader>dd ""dd
+
+" paste from "" register
 vnoremap p ""p
 nnoremap p ""p
+
+" don't drop the macro exeq
+xnoremap @ :<C-u>call ExecuteMacroOverVisualRange()<CR>
+function! ExecuteMacroOverVisualRange()
+  echo "@".getcmdline()
+  execute ":'<,'>normal @".nr2char(getchar())
+endfunction
 
 """"""""""""""""""""""""""""""
 " NERDTree
@@ -133,6 +163,7 @@ nnoremap <leader>s :w<CR>
 """"""""""""""""""""""""""""""
 " CtrlP
 let g:ctrlp_show_hidden = 1
+
 " allways open in new tab
 let g:ctrlp_prompt_mappings = {
     \ 'AcceptSelection("e")': ['<2-LeftMouse>'],
@@ -143,9 +174,26 @@ let g:ctrlp_prompt_mappings = {
 " vim-fugitive
 :set diffopt+=vertical
 
-
 """"""""""""""""""""""""""""""
 " jedi-vim config
 
 " don't override <leader>s as save
 let g:jedi#goto_stubs_command = ""
+
+""""""""""""""""""""""""""""""
+" fzf
+" https://github.com/fisadev/fisa-vim-config
+
+" file finder mapping
+nmap <leader>e :Files<CR>
+" general code finder in current file mapping
+nmap <leader>f :BLines<CR>
+" the same, but with the word under the cursor pre filled
+nmap <leader>wf :execute ":BLines " . expand('<cword>')<CR>
+" general code finder in all files mapping
+nmap <leader>F :Lines<CR>
+" the same, but with the word under the cursor pre filled
+nmap <leader>wF :execute ":Lines " . expand('<cword>')<CR>
+" commands finder mapping
+nmap <leader>c :Commands<CR>
+
