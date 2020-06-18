@@ -7,7 +7,7 @@
 - [zsh](zsh/README.md)
 - extras (contains extra dotfiles for specific app configurations)
 
-Also contains a [install.sh](quick setup script) (does not include iterm setup):
+Also contains a [quick setup script](install.sh) (does not include iterm setup):
 
 Other:
 
