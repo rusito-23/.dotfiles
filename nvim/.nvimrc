@@ -10,6 +10,7 @@ if dein#load_state('~/.dotfiles/nvim/dein')
 
   " navigation
   call dein#add('preservim/nerdtree')
+  call dein#add('ryanoasis/vim-devicons')
   call dein#add('majutsushi/tagbar')
   call dein#add('christoomey/vim-tmux-navigator')
   call dein#add('kien/ctrlp.vim')
