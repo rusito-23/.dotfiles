@@ -69,6 +69,9 @@ set mouse=a
 " when scrolling, keep cursor 3 lines away from screen border
 set scrolloff=3
 
+" show wrapping at col 80
+set colorcolumn=80  
+
 """"""""""""""""""""""""""""""
 " clipboard
  
