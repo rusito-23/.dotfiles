@@ -66,17 +66,16 @@ nnoremap <esc> :noh<return><esc>
 " enable mouse
 set mouse=a
 
-" use system clipboard
-set clipboard+=unnamedplus
-
-" exec macro q with space
-nnoremap <Space> @q
-
 " when scrolling, keep cursor 3 lines away from screen border
 set scrolloff=3
 
 """"""""""""""""""""""""""""""
-" remove with x-d-D
+" clipboard
+ 
+" use system clipboard
+set clipboard+=unnamedplus
+
+" remove with x-d-dd-D
 nnoremap x "_x
 nnoremap d "_d
 vnoremap d "_d
@@ -85,18 +84,21 @@ nnoremap D "_D
 " cut with <leader> x-d-D
 nnoremap <leader>x ""x
 vnoremap <leader>x ""x
-
 nnoremap <leader>d ""d
 vnoremap <leader>d ""d
-
 nnoremap <leader>D ""D
 vnoremap <leader>D ""D
-
 nnoremap <leader>dd ""dd
 
 " paste from "" register
 vnoremap p ""p
 nnoremap p ""p
+
+""""""""""""""""""""""""""""""
+" macros
+
+" exec macro q with space
+nnoremap <Space> @q
 
 " don't drop the macro exeq
 xnoremap @ :<C-u>call ExecuteMacroOverVisualRange()<CR>
@@ -104,6 +106,25 @@ function! ExecuteMacroOverVisualRange()
   echo "@".getcmdline()
   execute ":'<,'>normal @".nr2char(getchar())
 endfunction
+
+""""""""""""""""""""""""""""""
+" windows
+ 
+"" quick exit window
+nnoremap <leader>q :q<CR>
+" quick exit all windows
+nnoremap <leader>a :qa!<CR>
+" quick save
+nnoremap <leader>s :w<CR>
+
+""""""""""""""""""""""""""""""
+" buffers
+
+" list buffers
+nnoremap <leader>b :ls<CR>
+
+" delete current buffer
+nnoremap <leader>bd :bd<CR>
 
 """"""""""""""""""""""""""""""
 " NERDTree
@@ -154,22 +175,9 @@ nnoremap <silent> <M-l> :TmuxNavigateRight<cr>
 nnoremap <M-.> :vsp<return><esc>
 nnoremap <M-,> :sp<return><esc>
 
-" quick exit window
-nnoremap <leader>q :q<CR>
-" quick exit all windows
-nnoremap <leader>a :qa!<CR>
-" quick save
-nnoremap <leader>s :w<CR>
-
 """"""""""""""""""""""""""""""
 " CtrlP
 let g:ctrlp_show_hidden = 1
-
-" allways open in new tab
-let g:ctrlp_prompt_mappings = {
-    \ 'AcceptSelection("e")': ['<2-LeftMouse>'],
-    \ 'AcceptSelection("t")': ['<cr>'],
-    \ }
 
 """"""""""""""""""""""""""""""
 " vim-fugitive
