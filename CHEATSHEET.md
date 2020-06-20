@@ -21,12 +21,19 @@
 | --- | --- |
 | C-n | Toggle NERDTree |
 | C-t | Toggle Tagbar |
+| C-p | Ctrl P |
 | q | Record macro |
 | SPACE | Play macro named **q** |
 | \<leader\>q | :q |
 | \<leader\>a | :qa! |
 | \<leader\>s | :w |
 | \<leader\>cc | comment |
+| \<leader\>e | fzf files |
+| \<leader\>f | fzf code in file |
+| \<leader\>F | fzf code in all files |
+| \<leader\>c | fzf vim commands |
+| \<leader\>b | list buffers |
+| \<leader\>bd | remove current buffer |
 
 ### :warning: WARNING:
 `x-d-D-dd` commands **delete** the selected text - to **cut** use `<leader>-x-d-D-dd` (leader is ',')

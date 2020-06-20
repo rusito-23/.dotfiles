@@ -131,9 +131,19 @@ nnoremap <leader>b :ls<CR>
 nnoremap <leader>bd :bd<CR>
 
 """"""""""""""""""""""""""""""
+" colorscheme
+colorscheme dogrun
+
+" quick cheatsheet
+
+command! Cheat :vsp ~/.dotfiles/CHEATSHEET.md
+ 
+"""""""""""""""""""""""""""""""
 " NERDTree
+" open nerdtree when opening vim without file
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+
 map <C-n> :NERDTreeToggle<CR>
 
 """"""""""""""""""""""""""""""
@@ -165,17 +175,13 @@ let g:neoformat_basic_format_trim = 1
 " call neomake#configure#automake('nrwi', 500)
 
 """"""""""""""""""""""""""""""
-" colorscheme
-colorscheme dogrun
-
-""""""""""""""""""""""""""""""
 " vim-tmux-navigator config
 let g:tmux_navigator_no_mappings = 1
 nnoremap <silent> <M-h> :TmuxNavigateLeft<cr>
 nnoremap <silent> <M-j> :TmuxNavigateDown<cr>
 nnoremap <silent> <M-k> :TmuxNavigateUp<cr>
 nnoremap <silent> <M-l> :TmuxNavigateRight<cr>
-" pane creation using SHIFT-./,
+" pane creation using Opt-./,
 nnoremap <M-.> :vsp<return><esc>
 nnoremap <M-,> :sp<return><esc>
 
@@ -201,12 +207,7 @@ let g:jedi#goto_stubs_command = ""
 nmap <leader>e :Files<CR>
 " general code finder in current file mapping
 nmap <leader>f :BLines<CR>
-" the same, but with the word under the cursor pre filled
-nmap <leader>wf :execute ":BLines " . expand('<cword>')<CR>
 " general code finder in all files mapping
 nmap <leader>F :Lines<CR>
-" the same, but with the word under the cursor pre filled
-nmap <leader>wF :execute ":Lines " . expand('<cword>')<CR>
 " commands finder mapping
 nmap <leader>c :Commands<CR>
-
