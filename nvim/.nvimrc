@@ -21,6 +21,7 @@ if dein#load_state('~/.dotfiles/nvim/dein')
   call dein#add('Shougo/deoplete.nvim')
   call dein#add('zchee/deoplete-jedi')
   call dein#add('davidhalter/jedi-vim')
+  call dein#add('dart-lang/dart-vim-plugin')
 
   " vim-airline
   call dein#add('vim-airline/vim-airline')
