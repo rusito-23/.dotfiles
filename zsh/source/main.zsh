@@ -104,6 +104,10 @@ bitbucket() { git clone https://bitbucket.org/$1.git $2 ;}
 # fetch and checkout branch in a single command
 gfco() { git fetch origin $@ ; git checkout $@ ;}
 
+# get current branch name
+unalias gcb
+alias gcb='git_current_branch'
+
 # diff and mergetools
 alias gdt='git difftool'
 alias gmt='git mergetool'

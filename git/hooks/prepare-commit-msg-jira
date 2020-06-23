@@ -9,7 +9,7 @@ branchName=${branchPath##*/}
 ticket=$(echo $branchName | grep -o "\w*[?:UCAPM|ACMACOS]-\w*[0-9]")
 
 # print all to temp file
-(printf "\n$ticket: \n\n# BRANCH NAME: $branchName"; cat "$ORIG_MSG_FILE") > "$TEMP"  
+(printf "\n$ticket: \n\n# BRANCH NAME: $branchName \n"; cat "$ORIG_MSG_FILE") > "$TEMP"  
 
 # Move temp file to commit message
 cat "$TEMP" > "$ORIG_MSG_FILE" 
