@@ -154,7 +154,7 @@ compdef _gitignoreio gi
 # ---------------- #
 
 # GO VERSION MANAGER
-(( ${+aliases[foo]} )) && unalias g
+(( ${+aliases[g]} )) && unalias g
 export GOPATH="$HOME/go";
 export GOROOT="$HOME/.go";
 export PATH="$GOPATH/bin:$PATH";
