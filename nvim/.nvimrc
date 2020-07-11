@@ -172,8 +172,8 @@ let g:neoformat_basic_format_trim = 1
 
 """"""""""""""""""""""""""""""
 " neomake
-" let g:neomake_python_enabled_makers = ['pylint']
-" call neomake#configure#automake('nrwi', 500)
+let g:neomake_python_enabled_makers = ['pycodestyle']
+call neomake#configure#automake('nrwi', 500)
 
 """"""""""""""""""""""""""""""
 " vim-tmux-navigator config
