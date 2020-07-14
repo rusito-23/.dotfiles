@@ -194,11 +194,15 @@ alias unsetmux='OLD_TMUX=$TMUX;TMUX=""'
 alias resetmux='TMUX=$OLD_TMUX'
 
 # ---------------- #
+#     RIPGREP      #
+# ---------------- #
+export RIPGREP_CONFIG_PATH="$HOME/.dotfiles/extras/.ripgreprc"
+
+# ---------------- #
 #        FZF       #
 # ---------------- #
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-export RIPGREP_CONFIG_PATH="$HOME/.dotfiles/extras/.ripgreprc"
 export FZF_DEFAULT_OPTS='-i --height 50% --border --inline-info '
 #export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'--preview-window "right:60%" '
 #export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'--preview "if file {} | grep -i text; then '

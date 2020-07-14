@@ -3,11 +3,15 @@
 --max-columns=150
 --max-columns-preview
 
-# Add my 'web' type.
+# iOS type
 --type-add
-web:*.{html,css,js}*
+ios:*.{swift,h,m,mm}*
 
-# Using glob patterns to include/exclude files or folders
+# ds type
+--type-add
+ds:*.{py,yaml}*
+
+# global exclude git folder
 --glob=!git/*
 
 # Because who cares about case!?
