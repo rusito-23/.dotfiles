@@ -74,6 +74,9 @@ set scrolloff=3
 " show wrapping at col 80
 set colorcolumn=80  
 
+" highlight current line
+set cursorline
+
 """"""""""""""""""""""""""""""
 " clipboard
  
