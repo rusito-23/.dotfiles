@@ -14,8 +14,10 @@ if dein#load_state('~/.dotfiles/nvim/dein')
   call dein#add('majutsushi/tagbar')
   call dein#add('christoomey/vim-tmux-navigator')
   call dein#add('kien/ctrlp.vim')
+  call dein#add('kshenoy/vim-signature')
   call dein#add('junegunn/fzf', { 'build': './install --all', 'merged': 0 }) 
   call dein#add('junegunn/fzf.vim', { 'depends': 'fzf' })
+  call dein#add('junegunn/vim-peekaboo')
 
   " code completion
   call dein#add('Shougo/deoplete.nvim')
@@ -82,25 +84,6 @@ set cursorline
  
 " use system clipboard
 set clipboard+=unnamedplus
-
-" remove with x-d-dd-D
-nnoremap x "_x
-nnoremap d "_d
-vnoremap d "_d
-nnoremap D "_D
-
-" cut with <leader> x-d-D
-nnoremap <leader>x ""x
-vnoremap <leader>x ""x
-nnoremap <leader>d ""d
-vnoremap <leader>d ""d
-nnoremap <leader>D ""D
-vnoremap <leader>D ""D
-nnoremap <leader>dd ""dd
-
-" paste from "" register
-vnoremap p ""p
-nnoremap p ""p
 
 """"""""""""""""""""""""""""""
 " macros

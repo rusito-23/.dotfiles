@@ -34,8 +34,6 @@
 | \<leader\>b | list buffers |
 | \<leader\>bd | remove current buffer |
 
-### :warning: WARNING:
-`x-d-D-dd` commands **delete** the selected text - to **cut** use `<leader>-x-d-D-dd` (leader is ',')
 
 ## tmux
 
