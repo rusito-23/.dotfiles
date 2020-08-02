@@ -83,6 +83,7 @@ alias sudoer='export ITERM_PROFILE=rusito23-zshrc ;sudo -s /bin/zsh'
 # -------- #
 
 export PATH=$HOME/.local/bin:$PATH
+export PATH=$HOME/bin:$PATH
 
 # ------------ #
 #  NAVIGATION  #
@@ -338,3 +339,4 @@ bind-git-helper() {
 
 bind-git-helper f o t r h
 unset -f bind-git-helper
+
