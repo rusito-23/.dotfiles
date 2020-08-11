@@ -115,8 +115,8 @@ nnoremap <leader>s :w<CR>
 " list buffers
 nnoremap <leader>b :ls<CR>
 
-" delete current buffer
-nnoremap <leader>bd :bd<CR>
+" delete all buffers except current one
+nnoremap <leader>ca :w <bar> %bd <bar> e# <bar> bd# <CR><CR>
 
 """"""""""""""""""""""""""""""
 " colorscheme
@@ -192,10 +192,29 @@ let g:jedi#goto_stubs_command = ""
 " https://github.com/fisadev/fisa-vim-config
 
 " file finder mapping
-nmap <leader>e :Files<CR>
+nnoremap <leader>e :Files<CR>
+
 " general code finder in current file mapping
-nmap <leader>f :BLines<CR>
+nnoremap <leader>f :BLines<CR>
+
+" general code finder in current file mapping with preview
+" https://github.com/junegunn/fzf.vim/issues/374
+command! -bang -nargs=* BLinesWithPreview
+    \ call fzf#vim#grep(
+    \   'rg --with-filename --column --line-number --color=always --smart-case . '.fnameescape(expand('%')), 1,
+    \   fzf#vim#with_preview({'options': '--delimiter : --nth 4.. --no-sort'}, 'right:50%', '?'), 1)
+nnoremap <leader>pf :BLinesWithPreview<CR>
+
 " general code finder in all files mapping
-nmap <leader>F :Lines<CR>
+nnoremap <leader>F :Lines<CR>
+
+" general code finder in all files mapping with preview
+" https://github.com/junegunn/fzf.vim/issues/374
+command! -bang -nargs=* LinesWithPreview
+    \ call fzf#vim#grep(
+    \   'rg --with-filename --column --line-number --color=always --smart-case . ', 1,
+    \   fzf#vim#with_preview({'options': '--delimiter : --nth 4.. --no-sort'}, 'right:50%', '?'), 1)
+nnoremap <leader>pF :LinesWithPreview<CR>
+
 " commands finder mapping
-nmap <leader>c :Commands<CR>
+nnoremap <leader>c :Commands<CR>
