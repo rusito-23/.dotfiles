@@ -29,10 +29,14 @@
 | \<leader\>cc | comment |
 | \<leader\>e | fzf files |
 | \<leader\>f | fzf code in file |
+| \<leader\>pf | fzf code in file with preview |
 | \<leader\>F | fzf code in all files |
+| \<leader\>pF | fzf code in all files with preview |
 | \<leader\>c | fzf vim commands |
 | \<leader\>b | list buffers |
 | \<leader\>bd | remove current buffer |
+| C-o | Navigate backward |
+| C-i | Navigate forward |
 
 
 ## tmux

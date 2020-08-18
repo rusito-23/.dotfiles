@@ -1,4 +1,8 @@
 
+""" setup python
+
+let g:python3_host_prog = $HOME.'/.virtualenvs/neovim/bin/python'
+
 """ dein init
 
 set runtimepath+=~/.dotfiles/nvim/dein/repos/github.com/Shougo/dein.vim
@@ -18,6 +22,7 @@ if dein#load_state('~/.dotfiles/nvim/dein')
   call dein#add('junegunn/fzf', { 'build': './install --all', 'merged': 0 }) 
   call dein#add('junegunn/fzf.vim', { 'depends': 'fzf' })
   call dein#add('junegunn/vim-peekaboo')
+  call dein#add('severin-lemaignan/vim-minimap')
 
   " code completion
   call dein#add('Shougo/deoplete.nvim')
@@ -141,7 +146,6 @@ nmap <C-t> :TagbarToggle<CR>
 """"""""""""""""""""""""""""""
 " deoplete
 let g:deoplete#enable_at_startup = 1
-let g:python3_host_prog = $HOME.'/.pyenv/shims/python'
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 
 """"""""""""""""""""""""""""""
@@ -177,15 +181,18 @@ nnoremap <M-,> :sp<return><esc>
 " CtrlP
 let g:ctrlp_show_hidden = 1
 
+
 """"""""""""""""""""""""""""""
 " vim-fugitive
 :set diffopt+=vertical
+
 
 """"""""""""""""""""""""""""""
 " jedi-vim config
 
 " don't override <leader>s as save
 let g:jedi#goto_stubs_command = ""
+
 
 """"""""""""""""""""""""""""""
 " fzf
@@ -218,3 +225,14 @@ nnoremap <leader>pF :LinesWithPreview<CR>
 
 " commands finder mapping
 nnoremap <leader>c :Commands<CR>
+
+
+""""""""""""""""""""""""""""""
+" kite
+let g:kite_tab_complete=1
+set completeopt+=menuone   " show the popup menu even when there is only 1 match
+set completeopt+=noinsert  " don't insert any text until user chooses a match
+set completeopt-=longest   " don't insert the longest common text
+set completeopt+=preview
+autocmd CompleteDone * if !pumvisible() | pclose | endif
+set belloff+=ctrlg  " if vim beeps during completion
