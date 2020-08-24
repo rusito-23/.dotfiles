@@ -105,16 +105,6 @@ function! ExecuteMacroOverVisualRange()
 endfunction
 
 """"""""""""""""""""""""""""""
-" windows
- 
-"" quick exit window
-nnoremap <leader>q :q<CR>
-" quick exit all windows
-nnoremap <leader>a :qa!<CR>
-" quick save
-nnoremap <leader>s :w<CR>
-
-""""""""""""""""""""""""""""""
 " buffers
 
 " list buffers

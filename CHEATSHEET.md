@@ -23,9 +23,6 @@
 | C-p | Ctrl P |
 | q | Record macro |
 | SPACE | Play macro named **q** |
-| \<leader\>q | :q |
-| \<leader\>a | :qa! |
-| \<leader\>s | :w |
 | \<leader\>cc | comment |
 | \<leader\>e | fzf files |
 | \<leader\>f | fzf code in file |
