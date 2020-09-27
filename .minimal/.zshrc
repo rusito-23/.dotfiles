@@ -98,6 +98,10 @@ alias grb='git rebase'
 alias gss='git status -s'
 alias gst='git status'
 
+function git_current_branch() {
+    git rev-parse --abbrev-ref HEAD
+}
+
 function ggl() {
 if [[ "$#" != 0 ]] && [[ "$#" != 1 ]]; then
     git pull origin "${*}"
