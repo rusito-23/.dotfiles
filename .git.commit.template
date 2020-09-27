@@ -1,21 +1,7 @@
 
-# --- ALTERNATE TEMPLATES ---:
-# TICKET - REASON 
-# [SUBJECT] - REASON -
-# [TICKET][SUBJECT] - REASON -
-# [TICKET][SUBJECT] - PROBLEM -  SOLUTION - NOTE -
-
 # --- EMOJIS ---:
 # 😊 :blush: 😏 :smirk: 😭 :sob: 😱 :scream: 😖 :confounded:
 # ⭐️ :star: ❗️ :exclamation: ❓ :question: 💥 :collision:
 # 👽 :alien: 😍 :heart_eyes: 💩 :shit: 🔥 :fire: 💣 :bomb:
 # 💌 :love_letter: 👀 :eyes: :trollface: :trollface: 💦 :sweat_drops:
 # 🍺 :beer: 🍻 :beers: 🍹 :tropical_drink: 🍷 :wine_glass:
-
-# --- INFO ---:
-# TICKET: Ticket number
-# SUBJECT: < FIX - HOTFIX - FEATURE >
-# PROBLEM: Problem, Reason for Commit
-# SOLUTION: Solution or List of Changes
-# NOTE: Special instructions, testing steps, rake, etc
-
