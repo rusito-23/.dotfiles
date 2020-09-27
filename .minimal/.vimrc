@@ -56,10 +56,10 @@ nnoremap <leader>ca :w <bar> %bd <bar> e# <bar> bd# <CR><CR>
 """"""""""""""""""""""""""""""
 " statusline
 
-hi Green        ctermfg=Green   ctermbg=black    term=bold cterm=bold
-hi Cyan         ctermfg=Cyan    ctermbg=black    term=none cterm=none
-hi Grey         ctermfg=Grey    ctermbg=black    term=none cterm=none
-hi Magenta      ctermfg=Magenta ctermbg=black    term=none cterm=none
+hi Green        ctermfg=Green   ctermbg=none    term=bold cterm=bold
+hi Cyan         ctermfg=Cyan    ctermbg=none    term=none cterm=none
+hi Grey         ctermfg=Grey    ctermbg=none    term=none cterm=none
+hi Magenta      ctermfg=Magenta ctermbg=none    term=none cterm=none
 
 set laststatus=2
 set statusline=
@@ -83,8 +83,8 @@ set noshowmode
 """"""""""""""""""""""""""""""
 " tabline
 
-hi TabLineFill  ctermfg=none    ctermbg=black   term=none cterm=none
-hi TabLine      ctermfg=grey    ctermbg=black   term=none cterm=none
+hi TabLineFill  ctermfg=none    ctermbg=none   term=none cterm=none
+hi TabLine      ctermfg=grey    ctermbg=none   term=none cterm=none
 hi TabLineSel   ctermfg=white   ctermbg=none    term=bold cterm=bold
 
 fun! TabLabel(n)
