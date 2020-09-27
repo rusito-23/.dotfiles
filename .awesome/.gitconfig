@@ -1,0 +1,52 @@
+[include]
+    path = ~/.dotfiles/.gitconfig.user
+
+[core]
+    editor = nvim
+    whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
+    excludesfile = ~/.dotfiles/.gitignore.global
+    hookspath = ~/.dotfiles/.hooks
+
+[commit]
+    template = ~/.dotfiles/.git.commit.template
+
+[alias]
+    assume-changed = update-index --no-assume-unchanged
+    assume-unchanged = update-index --assume-unchanged
+
+[merge]
+    tool = nvim 
+[mergetool "nvim"]
+    cmd = nvim -f -c \"Gvdiffsplit!\" \"$MERGED\"
+
+[diff]
+    tool = nvim 
+
+[difftool "nvim"]
+    cmd = nvim -f -c \"Gvdiffsplit!\" \"$MERGED\"
+
+[difftool]
+    prompt = false
+
+[push]
+    default = matching
+
+[color]
+    ui = auto
+
+[color "branch"]
+    current = yellow bold
+    local = green bold
+    remote = cyan bold
+
+[color "diff"]
+    meta = yellow bold
+    frag = magenta bold
+    old = red bold
+    new = green bold
+    whitespace = red reverse
+
+[color "status"]
+    added = green bold
+    changed = yellow bold
+    untracked = red bold

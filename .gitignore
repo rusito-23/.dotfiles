@@ -1,0 +1,12 @@
+
+# common
+
+DS_Store/
+.ignored
+.gitconfig.user
+
+# awesome
+
+.awesome/.dein/
+
+# minimal 

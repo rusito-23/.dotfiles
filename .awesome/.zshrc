@@ -36,7 +36,7 @@ plugins=(
 # LOAD POWERLEVEL CONFIG #
 # ---------------------- #
 
-source $HOME/.dotfiles/zsh/.powerlevelrc
+source $HOME/.dotfiles/.awesome/.powerlevelrc
 
 # -------------- #
 # LOAD OH MY ZSH #
@@ -69,7 +69,7 @@ fi
 #   IGNORED  #
 # ---------- #
 
-for s in $HOME/.dotfiles/zsh/.ignored/*; do source $s; done
+for s in $HOME/.dotfiles/.ignored/*; do source $s; done
 
 # ------- #
 #   MISC  #
@@ -243,7 +243,7 @@ alias resetmux='TMUX=$OLD_TMUX'
 # ---------------- #
 #     RIPGREP      #
 # ---------------- #
-export RIPGREP_CONFIG_PATH="$HOME/.dotfiles/extras/.ripgreprc"
+export RIPGREP_CONFIG_PATH="$HOME/.dotfiles/.awesome/.ripgreprc"
 
 # ---------------- #
 #        FZF       #

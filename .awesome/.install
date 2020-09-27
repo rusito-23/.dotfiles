@@ -1,0 +1,115 @@
+#/bin/sh
+
+# color definitions
+
+black='\033[0;30m'
+red='\033[0;31m'
+green='\033[0;32m'
+yellow='\033[0;33m'
+blue='\033[0;34m'
+purple='\033[0;35m'
+cyan='\033[0;36m'
+white='\033[0;37m'
+
+# log utils
+
+function log_info() {
+    echo "${cyan}$@${white}"
+}
+
+function log_error() {
+    echo "${red}ERROR: $@${white}"
+}
+
+function log_warning() {
+    echo "${yellow}WARNING: $@${white}"
+}
+
+function log_debug() {
+    echo "${yellow}$@${white}"
+}
+
+function log_success() {
+    echo "${green}$@${white}"
+}
+
+# move utils
+
+function safe_ln() {
+    mv $2 $2.old
+    ln -s $1 $2
+}
+
+#       NVIM      #
+# --------------- #
+
+# install dein
+log_info "NVIM: Install dein"
+
+curl https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh > dein_installer.sh
+sh ./dein_installer.sh ~/.dotfiles/.awesome/.dein
+rm dein_installer.sh
+
+# install python dependencies
+# todo: create/look for the proper pyenv
+log_info "NVIM: Install python dependencies"
+pip install -r ~/.dotfiles/.awesome/.requirements.txt
+
+# setup rc file
+log_info "NVIM: Setup rc file"
+safe_ln ~/.dotfiles/.awesome/.vimrc ~/.config/nvim/init.vim
+
+# finish
+log_success "NVIM: Setup success"
+log_info "Remember to run dein#install() when running vim"
+
+#       TMUX      #
+# --------------- #
+
+safe_ln ~/.dotfiles/.awesome/.tmux.conf ~/.tmux.conf
+log_success "TMUX: Setup success"
+
+#       GIT       #
+# --------------- #
+
+safe_ln ~/.dotfiles/.awesome/.gitconfig ~/.gitconfig
+
+#       ZSH       #
+# --------------- #
+
+# install dependencies
+log_info "ZSH: Install dependencies"
+brew update
+brew install \
+    wget \
+    fasd \
+    peco \
+    tig \
+    bat \
+    vifm \
+    ripgrep \
+    fzf \
+    imagemagick \
+    htop \
+    ffmpeg \
+    giffsicle \
+
+# install oh my zsh
+log_info "ZSH: Install Oh-my-zsh"
+wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | zsh
+safe_ln ~/.dotfiles/.awesome/.zshrc ~/.zshrc
+
+
+# install extra oh my zsh plugins
+log_info "ZSH: Oh-my-zsh plugins"
+git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $OH_MY_ZSH_DIR/plugins/zsh-syntax-highlighting
+git clone https://github.com/zsh-users/zsh-autosuggestions/ $OH_MY_ZSH_DIR/plugins/zsh-autosuggestions
+git clone https://github.com/bhilburn/powerlevel9k.git $OH_MY_ZSH_DIR/custom/themes/powerlevel9k
+git clone https://github.com/esc/conda-zsh-completion ${OH_MY_ZSH_DIR}/plugins/conda-zsh-completion
+
+# set zsh as default shell
+log_info "ZSH: Setup as default shell"
+chsh -s $(which zsh)
+
+# finish
+log_success "ZSH: Setup success"

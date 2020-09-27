@@ -1,0 +1,66 @@
+#/bin/sh
+
+# color definitions
+
+black='\033[0;30m'
+red='\033[0;31m'
+green='\033[0;32m'
+yellow='\033[0;33m'
+blue='\033[0;34m'
+purple='\033[0;35m'
+cyan='\033[0;36m'
+white='\033[0;37m'
+
+# log utils
+
+function log_info() {
+    echo "${cyan}$@${white}"
+}
+
+function log_error() {
+    echo "${red}ERROR: $@${white}"
+}
+
+function log_warning() {
+    echo "${yellow}WARNING: $@${white}"
+}
+
+function log_debug() {
+    echo "${yellow}$@${white}"
+}
+
+function log_success() {
+    echo "${green}$@${white}"
+}
+
+# move utils
+
+function safe_ln() {
+    mv $2 $2.old
+    ln -s $1 $2
+}
+
+#     VIM     #
+# ----------- #
+
+# setup rc file
+log_info "[VIM]: setup rc file"
+safe_ln ~/.dotfiles/.minimal/.vimrc ~/.vimrc
+
+#     TMUX     #
+# ------------ #
+
+log_info "[TMUX]: setup rc file"
+safe_ln ~/.dotfiles/.minimal/.tmux.conf ~/.tmux.conf
+
+#     GIT     #
+# ----------- #
+
+log_info "[GIT]: setup config file"
+safe_ln ~/.dotfiles/.minimal/.gitconfig ~/.gitconfig
+
+#     ZSH     #
+# ----------- #
+
+log_info "[ZSH]: setup rc file"
+safe_ln ~/.dotfiles/.minimal/.zshrc ~/.zshrc

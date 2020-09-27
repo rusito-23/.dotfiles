@@ -5,12 +5,12 @@ let g:python3_host_prog = $HOME.'/.virtualenvs/neovim/bin/python'
 
 """ dein init
 
-set runtimepath+=~/.dotfiles/nvim/dein/repos/github.com/Shougo/dein.vim
+set runtimepath+=~/.dotfiles/.awesome/.dein/repos/github.com/Shougo/dein.vim
 set rtp+=/usr/local/opt/fzf
 
-if dein#load_state('~/.dotfiles/nvim/dein')
-  call dein#begin('~/.dotfiles/nvim/dein')
-  call dein#add('~/.dotfiles/nvim/dein/repos/github.com/Shougo/dein.vim')
+if dein#load_state('~/.dotfiles/.awesome/.dein')
+  call dein#begin('~/.dotfiles/.awesome/.dein')
+  call dein#add('~/.dotfiles/.awesome/.dein/repos/github.com/Shougo/dein.vim')
 
   " navigation
   call dein#add('preservim/nerdtree')
@@ -29,6 +29,7 @@ if dein#load_state('~/.dotfiles/nvim/dein')
   call dein#add('zchee/deoplete-jedi')
   call dein#add('davidhalter/jedi-vim')
   call dein#add('dart-lang/dart-vim-plugin')
+  call dein#add('keith/swift.vim')
 
   " vim-airline
   call dein#add('vim-airline/vim-airline')
@@ -117,10 +118,6 @@ nnoremap <leader>ca :w <bar> %bd <bar> e# <bar> bd# <CR><CR>
 " colorscheme
 colorscheme dogrun
 
-" quick cheatsheet
-
-command! Cheat :vsp ~/.dotfiles/CHEATSHEET.md
- 
 """""""""""""""""""""""""""""""
 " NERDTree
 " open nerdtree when opening vim without file
