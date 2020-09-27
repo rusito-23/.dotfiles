@@ -17,18 +17,6 @@ function log_info() {
     echo "${cyan}$@${white}"
 }
 
-function log_error() {
-    echo "${red}ERROR: $@${white}"
-}
-
-function log_warning() {
-    echo "${yellow}WARNING: $@${white}"
-}
-
-function log_debug() {
-    echo "${yellow}$@${white}"
-}
-
 function log_success() {
     echo "${green}$@${white}"
 }
