@@ -1,5 +1,5 @@
 [include]
-    path = ~/.dotfiles/.gitconfig.user
+    path = ~/.dotfiles/.gitconfig.ignored
 
 [core]
     editor = nvim
