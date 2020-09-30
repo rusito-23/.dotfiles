@@ -40,7 +40,8 @@ rm dein_installer.sh
 
 # setup rc file
 log_info "NVIM: Setup rc file"
-safe_ln ~/.dotfiles/.awesome/.vimrc ~/.config/nvim/init.vim
+mkdir -p ~/.config/nvim
+echo "source ~/.dotfiles/.awesome/.vimrc"  > ~/.config/nvim/init.vim
 
 # finish
 log_success "NVIM: Setup success"
@@ -76,8 +77,7 @@ brew install \
     fzf \
     imagemagick \
     htop \
-    ffmpeg \
-    giffsicle \
+    ffmpeg
 
 # install oh my zsh
 log_info "ZSH: Install Oh-my-zsh"
@@ -90,7 +90,6 @@ log_info "ZSH: Oh-my-zsh plugins"
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $OH_MY_ZSH_DIR/plugins/zsh-syntax-highlighting
 git clone https://github.com/zsh-users/zsh-autosuggestions/ $OH_MY_ZSH_DIR/plugins/zsh-autosuggestions
 git clone https://github.com/bhilburn/powerlevel9k.git $OH_MY_ZSH_DIR/custom/themes/powerlevel9k
-git clone https://github.com/esc/conda-zsh-completion ${OH_MY_ZSH_DIR}/plugins/conda-zsh-completion
 
 # set zsh as default shell
 log_info "ZSH: Setup as default shell"

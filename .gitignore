@@ -1,12 +1,4 @@
-
-# common
-
 DS_Store/
 .ignored
-.common/.gitconfig.ignored
-
-# awesome
-
-.awesome/.dein/
-
-# minimal 
+.gitconfig.ignored
+.dein/
