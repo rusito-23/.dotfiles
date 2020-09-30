@@ -5,6 +5,34 @@ export TERM="xterm-256color"
 export ZSH=$HOME/.oh-my-zsh
 ZSH_DISABLE_COMPFIX="true"
 
+# PLUGINS CONFIG #
+# -------------- #
+
+ZSH_THEME="powerlevel9k/powerlevel9k"
+ZSH_TMUX_AUTOSTART=true
+ZSH_TMUX_AUTOCONNECT=false
+
+plugins=(
+    sudo
+    git
+    zsh-autosuggestions
+    vi-mode
+    zsh-syntax-highlighting
+    virtualenv
+    tmux
+    tmux-cssh
+)
+
+# POWERLEVEL CONFIG #
+# ----------------- #
+
+source $HOME/.dotfiles/.powerlevelrc
+
+# OH MY ZSH #
+# --------- #
+
+source $ZSH/oh-my-zsh.sh
+
 #  WELCOME MESSAGE  #
 #  ---------------  #
 
@@ -156,34 +184,6 @@ bind-git-helper f o t r h
 unset -f bind-git-helper
 
 
-# ZSH PLUGINS CONFIG #
-# ------------------ #
-
-ZSH_THEME="powerlevel9k/powerlevel9k"
-ZSH_TMUX_AUTOSTART=true
-ZSH_TMUX_AUTOCONNECT=false
-
-plugins=(
-    sudo
-    git
-    zsh-autosuggestions
-    vi-mode
-    zsh-syntax-highlighting
-    virtualenv
-    tmux
-    tmux-cssh
-)
-
-# POWERLEVEL CONFIG #
-# ----------------- #
-
-source $HOME/.dotfiles/.powerlevelrc
-
-# OH MY ZSH #
-# --------- #
-
-source $ZSH/oh-my-zsh.sh
-
 #  SUDOER ALIAS  #
 # -------------- #
 
@@ -250,13 +250,14 @@ ggpf () {
     fi
 }
 
-# CHECKOUT SANDBOX - FEATURE - FIX
-gcosand() { git checkout -b "sandbox/$1/$2" ;}
+# CHECKOUT FEATURE - FIX
+
 gcofeat() {
     branch=${@/\//_} # remove /
     branch=${branch// /_} # replace spaces with _
     git checkout -b "feature/${branch}"
 }
+
 gcofix() {
     branch=${@/\//_} # remove /
     branch=${branch// /_} # replace spaces with _
@@ -274,7 +275,6 @@ _gitignoreio () {
   compadd -S '' `_gitignoreio_get_command_list`
 }
 compdef _gitignoreio gi
-
 
 #        GO        #
 # ---------------- #
