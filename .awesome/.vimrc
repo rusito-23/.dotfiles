@@ -1,10 +1,11 @@
+""""""""""""""""""""""""""""""
+" load common config
+source ~/.dotfiles/.common/.vimrc
 
-""" setup python
+""""""""""""""""""""""""""""""
+" awesome config
 
 let g:python3_host_prog = $HOME.'/.virtualenvs/neovim/bin/python'
-
-""" dein init
-
 set runtimepath+=~/.dotfiles/.awesome/.dein/repos/github.com/Shougo/dein.vim
 set rtp+=/usr/local/opt/fzf
 
@@ -57,66 +58,24 @@ if dein#load_state('~/.dotfiles/.awesome/.dein')
   call dein#save_state()
 endif
 
+
 """"""""""""""""""""""""""""""
 " custom
-
-" use , as leader
-let mapleader = ","
-let g:mapleader = ","
-
-" turn hybrid line numbers on
-set number relativenumber
-set nu rnu
-
-" smart tab with spaces
-set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
-
-" clear visual selection
-nnoremap <esc> :noh<return><esc>
-
-" enable mouse
-set mouse=a
-
-" when scrolling, keep cursor 3 lines away from screen border
-set scrolloff=3
-
-" show wrapping at col 80
-set colorcolumn=80  
 
 " highlight current line
 set cursorline
 
-""""""""""""""""""""""""""""""
-" clipboard
- 
 " use system clipboard
 set clipboard+=unnamedplus
 
-""""""""""""""""""""""""""""""
-" macros
+" clear selection 
+nnoremap <esc> :noh<return><esc>
 
-" exec macro q with space
-nnoremap <Space> @q
-
-" don't drop the macro exeq
-xnoremap @ :<C-u>call ExecuteMacroOverVisualRange()<CR>
-function! ExecuteMacroOverVisualRange()
-  echo "@".getcmdline()
-  execute ":'<,'>normal @".nr2char(getchar())
-endfunction
-
-""""""""""""""""""""""""""""""
-" buffers
-
-" list buffers
-nnoremap <leader>b :ls<CR>
-
-" delete all buffers except current one
-nnoremap <leader>ca :w <bar> %bd <bar> e# <bar> bd# <CR><CR>
 
 """"""""""""""""""""""""""""""
 " colorscheme
 colorscheme dogrun
+
 
 """""""""""""""""""""""""""""""
 " NERDTree
@@ -126,14 +85,17 @@ autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 
 map <C-n> :NERDTreeToggle<CR>
 
+
 """"""""""""""""""""""""""""""
 " tabgar
 nmap <C-t> :TagbarToggle<CR>
+
 
 """"""""""""""""""""""""""""""
 " deoplete
 let g:deoplete#enable_at_startup = 1
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+
 
 """"""""""""""""""""""""""""""
 " airline
@@ -142,16 +104,19 @@ let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#show_close_button = 0
 
+
 """"""""""""""""""""""""""""""
 " neoformat 
 let g:neoformat_basic_format_align = 1
 let g:neoformat_basic_format_retab = 1
 let g:neoformat_basic_format_trim = 1
 
+
 """"""""""""""""""""""""""""""
 " neomake
 let g:neomake_python_enabled_makers = ['pycodestyle']
 call neomake#configure#automake('nrwi', 500)
+
 
 """"""""""""""""""""""""""""""
 " vim-tmux-navigator config
@@ -164,6 +129,7 @@ nnoremap <silent> <M-l> :TmuxNavigateRight<cr>
 nnoremap <M-.> :vsp<return><esc>
 nnoremap <M-,> :sp<return><esc>
 
+
 """"""""""""""""""""""""""""""
 " CtrlP
 let g:ctrlp_show_hidden = 1
@@ -172,13 +138,6 @@ let g:ctrlp_show_hidden = 1
 """"""""""""""""""""""""""""""
 " vim-fugitive
 :set diffopt+=vertical
-
-
-""""""""""""""""""""""""""""""
-" jedi-vim config
-
-" don't override <leader>s as save
-let g:jedi#goto_stubs_command = ""
 
 
 """"""""""""""""""""""""""""""

@@ -3,7 +3,7 @@
 
 DS_Store/
 .ignored
-.gitconfig.ignored
+.common/.gitconfig.ignored
 
 # awesome
 

@@ -1,12 +1,11 @@
-#  ZSH INIT  #
-#  --------  #
-
-ZSH_DISABLE_COMPFIX="true"
-
 #  TMUX INIT  #
 #  ---------  #
 
 if [ "$TMUX" = "" ]; then tmux; fi
+
+# LOAD COMMON #
+# ----------- #
+source ~/.dotfiles/.common/.zshrc
 
 #  COMPLETION  #
 #  ----------  #
@@ -51,25 +50,6 @@ PROMPT='%B%F{240}%1~ %F{cyan}%b${vcs_info_msg_0_}%f%b %# '
 # right prompt
 # $(green √ if sucess red ? if error)
 RPROMPT='%(?.%F{green}√.%F{red}?%?)%f'
-
-#  QUICK SOURCE  #
-#  ------------  #
-
-alias src='source ~/.zshrc'
-
-#  NAVIGATION  #
-#  ----------  #
-
-setopt noautoremoveslash
-alias ls='ls -GFh'
-alias l='ls'
-alias la='ls -a'
-alias ll='ls -FGLAhp'
-alias ldir='ls -d'
-alias cd..='cd ../'
-alias ..='cd ../'
-alias ...='cd ../../'
-
 
 #  EDITION  #
 #  -------  #
@@ -122,14 +102,5 @@ fi
 }
 compdef _git ggp=git-checkout
 
-#  IGNORED  #
-#  -------  #
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh"
 
-for s in $HOME/.dotfiles/.ignored/*; do source $s; done
-
-#  WELCOME MESSAGE  #
-#  ---------------  #
-
-if [[ -o login ]]; then
-    echo "ПРИВЕТ СУКА БЛЯТЬ"
-fi

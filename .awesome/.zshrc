@@ -1,105 +1,46 @@
+# LOAD COMMON #
 # ----------- #
+source ~/.dotfiles/.common/.zshrc
+
 # ZSH CONFIGS #
 # ----------- #
 
 export TERM="xterm-256color"
-ZSH_DISABLE_COMPFIX="true"
 export ZSH=$HOME/.oh-my-zsh
 
-# ------------------ #
 # ZSH PLUGINS CONFIG #
 # ------------------ #
 
-# -- THEME --
-
 ZSH_THEME="powerlevel9k/powerlevel9k"
-
-# -- TMUX CONF --
-
 ZSH_TMUX_AUTOSTART=true
 ZSH_TMUX_AUTOCONNECT=false
 
-# -- PLUGINS --
-
 plugins=(
-	sudo
-	git
-	zsh-autosuggestions
-	vi-mode
-	zsh-syntax-highlighting
-        virtualenv
-        tmux
-        tmux-cssh
+    sudo
+    git
+    zsh-autosuggestions
+    vi-mode
+    zsh-syntax-highlighting
+    virtualenv
+    tmux
+    tmux-cssh
 )
 
-# ---------------------- #
-# LOAD POWERLEVEL CONFIG #
-# ---------------------- #
+# POWERLEVEL CONFIG #
+# ----------------- #
 
 source $HOME/.dotfiles/.awesome/.powerlevelrc
 
-# -------------- #
-# LOAD OH MY ZSH #
-# -------------- #
+# OH MY ZSH #
+# --------- #
 
 source $ZSH/oh-my-zsh.sh
 
+#  SUDOER ALIAS  #
 # -------------- #
-# CUSTOM CONFIG  #
-# -------------- #
 
-# ------------------- #
-#   WELCOME MESSAGE   #
-# ------------------- #
-
-if [[ -o login ]]; then
-    echo "ПРИВЕТ СУКА БЛЯТЬ"
-fi
-
-# ------------------- #
-#  SHELL INTEGRATION  #
-# ------------------- #
-
-if [ -f ~/.iterm2_shell_integration.zsh ]; then
-    source ~/.iterm2_shell_integration.zsh
-fi
-
-
-# ---------- #
-#   IGNORED  #
-# ---------- #
-
-for s in $HOME/.dotfiles/.ignored/*; do source $s; done
-
-# ------- #
-#   MISC  #
-# ------- #
-
-alias src='source ~/.zshrc'
 alias sudoer='export ITERM_PROFILE=rusito23-zshrc ;sudo -s /bin/zsh'
 
-# -------- #
-#   PATHS  #
-# -------- #
-
-export PATH=$HOME/.local/bin:$PATH
-export PATH=$HOME/bin:$PATH
-
-# ------------ #
-#  NAVIGATION  #
-# ------------ #
-
-setopt noautoremoveslash
-alias ls='ls -GFh'
-alias l='ls'
-alias la='ls -a'
-alias ll='ls -FGLAhp'
-alias ldir='ls -d'
-alias cd..='cd ../'
-alias ..='cd ../'
-alias ...='cd ../../'
-
-# ------- #
 # EDITION #
 # ------- #
 
@@ -110,13 +51,11 @@ alias nvim_rmswap='rm ~/.local/share/nvim/swap/*.swp'
 alias cat='bat'
 alias diff='nvim -d '
 
-# ------- #
 # NETWORK #
 # ------- #
 
 alias myip='ifconfig |grep inet'
 
-# ---------------- #
 # AUTOSUGGESTIONS  #
 # ---------------- #
 
@@ -135,14 +74,12 @@ if [[ "${terminfo[kcud1]}" != "" ]]; then
 fi
 
 
-# ---------------- #
 #       FASD       #
 # ---------------- #
 
 eval "$(fasd --init auto)"
 autoload -U compinit && compinit
 
-# -------------------- #
 # GIT PLUGIN EXTENSION #
 # -------------------- #
 
@@ -197,7 +134,6 @@ _gitignoreio () {
 compdef _gitignoreio gi
 
 
-# ---------------- #
 #        GO        #
 # ---------------- #
 
@@ -208,7 +144,6 @@ export GOROOT="$HOME/.go";
 export PATH="$GOPATH/bin:$PATH";
 
 
-# ---------------- #
 #      PYTHON      #
 # ---------------- #
 
@@ -231,32 +166,17 @@ if command -v pyenv 1>/dev/null 2>&1; then
     pyenv virtualenvwrapper
 fi
 
-# ---------------- #
-#      TMUX        #
-# ---------------- #
-
-alias tmuxx='tmux source-file ~/.tmux.conf'
-# set unset tmux for nested sessions
-alias unsetmux='OLD_TMUX=$TMUX;TMUX=""'
-alias resetmux='TMUX=$OLD_TMUX'
-
-# ---------------- #
 #     RIPGREP      #
 # ---------------- #
 export RIPGREP_CONFIG_PATH="$HOME/.dotfiles/.awesome/.ripgreprc"
 
-# ---------------- #
 #        FZF       #
 # ---------------- #
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export FZF_DEFAULT_OPTS='-i --height 50% --border --inline-info '
-#export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'--preview-window "right:60%" '
-#export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'--preview "if file {} | grep -i text; then '
-#export FZF_DEFAULT_OPTS=$FZF_DEFAULT_OPTS'      bat --color=always --style=header,grid --line-range :300 {}; fi" '
 
 #    FZF + TMUX    #
-
 alias fr='fzf-tmux -r 60'
 alias fl='fzf-tmux -l 60'
 
@@ -317,7 +237,6 @@ fzf_gr() {
   cut -d$'\t' -f1
 }
 
-# --------------------
 # GIT FZF KEY BINDINGS
 # --------------------
 

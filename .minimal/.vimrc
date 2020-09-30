@@ -1,38 +1,16 @@
 """"""""""""""""""""""""""""""
-" misc
+" load common config
+source ~/.dotfiles/.common/.vimrc
 
-" leader
-let mapleader = ","
-let g:mapleader = ","
+""""""""""""""""""""""""""""""
+" minimal config
 
-" numbers
-set number relativenumber
-set nu rnu
-
-" tabs 
-set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
-
-" indent 
-filetype on
-filetype plugin on
-filetype indent on
-set autoindent
-
-" clear 
+" clear selection 
 nnoremap <leader><space> :noh<return><esc>
-
-" mouse 
-set mouse=a
-
-" scroll offset 
-set scrolloff=3
 
 " fuzzy find 
 set wildmenu
 set path+=**
-
-" syntax 
-syntax on
 
 " colorscheme
 colorscheme desert
@@ -41,17 +19,6 @@ colorscheme desert
 let &t_EI = "\033[1 q"  " normal cursor (block)
 let &t_SI = "\033[6 q"  " insert cursor (vertical bar)
 let &t_SR = "\033[4 q"  " replace cursor (underscore)
-
-""""""""""""""""""""""""""""""
-" macros
-
-" exec macro q with space
-nnoremap <Space> @q
-
-""""""""""""""""""""""""""""""
-" clear all buffers
-
-nnoremap <leader>ca :w <bar> %bd <bar> e# <bar> bd# <CR><CR>
 
 """"""""""""""""""""""""""""""
 " statusline
@@ -77,8 +44,6 @@ set statusline +=%#Magenta#                             " position color
 set statusline +=\ [%l/%L]                              " line
 set statusline +=\ [%c]                                 " col
 
-" remove default mode indicator
-set noshowmode
 
 """"""""""""""""""""""""""""""
 " tabline
@@ -299,10 +264,12 @@ xnoremap S' <right>:s!\%V\(.*\)\%V!'\1'!g<CR>
 """"""""""""""""""""""""""""""
 " panes
 
-" separator 
+" pane separator 
 set fillchars = ""
 hi VertSplit ctermbg=black ctermfg=black
 
+" quick switch
+nnoremap <leader>w <C-w>
 
 """"""""""""""""""""""""""""""
 " git tools 
