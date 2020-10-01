@@ -16,7 +16,6 @@ plugins=(
     sudo
     git
     zsh-autosuggestions
-    vi-mode
     zsh-syntax-highlighting
     virtualenv
     tmux
