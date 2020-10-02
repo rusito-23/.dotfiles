@@ -6,7 +6,7 @@
     "Red Component" : 0.90196078431372551,
     "Blue Component" : 0.86274509803921573
   },
-  "Rows" : 25,
+  "Rows" : 40,
   "Ansi 11 Color" : {
     "Green Component" : 1,
     "Red Component" : 1,
@@ -198,8 +198,8 @@
               "Alpha Component" : 1,
               "Green Component" : 0.80999999999999994
             },
-            "base: compression resistance" : 1,
-            "minwidth" : 0
+            "minwidth" : 0,
+            "base: compression resistance" : 1
           },
           "layout advanced configuration dictionary value" : {
             "font" : ".AppleSystemUIFont 12",
@@ -221,7 +221,7 @@
             "maxwidth" : 1.7976931348623157e+308,
             "iTermStatusBarGitComponentPollingIntervalKey" : 2,
             "base: priority" : 5,
-            "minwidth" : 0,
+            "base: compression resistance" : 1,
             "shared text color" : {
               "Red Component" : 0.63,
               "Color Space" : "sRGB",
@@ -229,7 +229,7 @@
               "Alpha Component" : 1,
               "Green Component" : 0.63
             },
-            "base: compression resistance" : 1
+            "minwidth" : 0
           },
           "layout advanced configuration dictionary value" : {
             "font" : ".AppleSystemUIFont 12",
@@ -314,15 +314,19 @@
     "Red Component" : 0.90196078431372551,
     "Blue Component" : 0.86274509803921573
   },
-  "Use Cursor Guide" : true,
+  "Use Cursor Guide" : false,
   "Custom Window Title" : "hey",
   "Unlimited Scrollback" : false,
   "Custom Command" : "Yes",
   "Title Components" : 1,
   "Keyboard Map" : {
-    "0xf700-0x260000" : {
-      "Action" : 10,
-      "Text" : "[1;6A"
+    "0x6f-0x100000" : {
+      "Action" : 11,
+      "Text" : "0x0F"
+    },
+    "0x67-0x100000" : {
+      "Action" : 11,
+      "Text" : "0x07"
     },
     "0x37-0x40000" : {
       "Action" : 11,
@@ -332,17 +336,21 @@
       "Action" : 11,
       "Text" : "0x00"
     },
+    "0xf700-0x260000" : {
+      "Action" : 10,
+      "Text" : "[1;6A"
+    },
     "0xf709-0x20000" : {
       "Action" : 10,
       "Text" : "[17;2~"
     },
+    "0x66-0x100000" : {
+      "Action" : 11,
+      "Text" : "0x06"
+    },
     "0xf70c-0x20000" : {
       "Action" : 10,
       "Text" : "[20;2~"
-    },
-    "0xf729-0x20000" : {
-      "Action" : 10,
-      "Text" : "[1;2H"
     },
     "0xf72b-0x40000" : {
       "Action" : 10,
@@ -360,9 +368,17 @@
       "Action" : 10,
       "Text" : "[1;2A"
     },
+    "0xf729-0x20000" : {
+      "Action" : 10,
+      "Text" : "[1;2H"
+    },
     "0xf701-0x280000" : {
       "Action" : 11,
       "Text" : "0x1b 0x1b 0x5b 0x42"
+    },
+    "0x70-0x100000" : {
+      "Action" : 11,
+      "Text" : "0x10"
     },
     "0x6c-0x100000" : {
       "Action" : 11,
@@ -429,8 +445,8 @@
       "Text" : "[1;2D"
     },
     "0xf703-0x280000" : {
-      "Action" : 11,
-      "Text" : "0x1b 0x1b 0x5b 0x43"
+      "Action" : 10,
+      "Text" : "f"
     },
     "0xf700-0x240000" : {
       "Action" : 10,
@@ -465,8 +481,8 @@
       "Text" : "[1;6B"
     },
     "0xf702-0x280000" : {
-      "Action" : 11,
-      "Text" : "0x1b 0x1b 0x5b 0x44"
+      "Action" : 10,
+      "Text" : "b"
     },
     "0xf72b-0x20000" : {
       "Action" : 10,
@@ -480,6 +496,10 @@
       "Action" : 10,
       "Text" : "[15;2~"
     },
+    "0x74-0x100000" : {
+      "Action" : 11,
+      "Text" : "0x14"
+    },
     "0xf701-0x220000" : {
       "Action" : 10,
       "Text" : "[1;2B"
@@ -487,6 +507,10 @@
     "0xf70b-0x20000" : {
       "Action" : 10,
       "Text" : "[19;2~"
+    },
+    "0x68-0x100000" : {
+      "Action" : 11,
+      "Text" : "0x08"
     },
     "0xf702-0x240000" : {
       "Action" : 10,
@@ -583,7 +607,7 @@
   "Horizontal Spacing" : 1,
   "Option Key Sends" : 2,
   "Blink Allowed" : true,
-  "Custom Icon Path" : "\/Users\/igor\/.dotfiles\/\/iterm\/icon.png",
+  "Custom Icon Path" : "\/Users\/igor\/.dotfiles\/.iterm\/icon.png",
   "Ansi 15 Color" : {
     "Green Component" : 1,
     "Red Component" : 1,
@@ -609,7 +633,7 @@
     "Red Component" : 1,
     "Blue Component" : 1
   },
-  "Columns" : 80,
+  "Columns" : 120,
   "Visual Bell" : true,
   "Custom Directory" : "No",
   "ASCII Ligatures" : true,
