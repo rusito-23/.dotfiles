@@ -263,6 +263,9 @@ gcofix() {
     git checkout -b "bugfix/${branch}"
 }
 
+# remove upstream push alias (it's f* dangerous)
+unalias gpu
+
 # gitignore.io
 
 function gi() { curl -sL https://www.gitignore.io/api/$@ ;}
