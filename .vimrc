@@ -93,11 +93,13 @@ set scrolloff=3
 " syntax 
 syntax on
 
-" show wrapping at col 80
-" set colorcolumn=80  
+" show wrapping for filetypes
+autocmd FileType gitcommit exec 'set colorcolumn=50'
+autocmd FileType python exec 'set colorcolumn=80'
 
 " remove default mode indicator
 set noshowmode
+
 
 """"""""""""""""""""""""""""""
 " exec macro q with space
