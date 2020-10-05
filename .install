@@ -77,7 +77,8 @@ brew install \
     fzf \
     imagemagick \
     htop \
-    ffmpeg
+    ffmpeg \
+    gifsicle
 
 # install oh my zsh
 log_info "ZSH: Install Oh-my-zsh"

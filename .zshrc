@@ -250,21 +250,31 @@ ggpf () {
 }
 
 # CHECKOUT FEATURE - FIX
+#  usage: gcofeat ticket_number description
 
 gcofeat() {
-    branch=${@/\//_} # remove /
+    branch=${2/\//_} # remove / from the description
     branch=${branch// /_} # replace spaces with _
-    git checkout -b "feature/${branch}"
+    git checkout -b "$1/feature/${branch}"
 }
 
 gcofix() {
-    branch=${@/\//_} # remove /
+    branch=${2/\//_} # remove / from the description
     branch=${branch// /_} # replace spaces with _
-    git checkout -b "bugfix/${branch}"
+    git checkout -b "$1/bugfix/${branch}"
 }
 
 # remove upstream push alias (it's f* dangerous)
 unalias gpu
+glu () {
+    if [[ "$#" != 0 ]] && [[ "$#" != 1 ]]
+    then
+        git pull upstream "${*}"
+    else
+        [[ "$#" == 0 ]] && local b="$(git_current_branch)"
+        git pull upstream "${b:=$1}"
+    fi
+}
 
 # gitignore.io
 
