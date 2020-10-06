@@ -1,7 +1,7 @@
 """"""""""""""""""""""""""""""
 " dein config
 
-let g:python3_host_prog = $NVIM_PYTHON_HOST_PROG
+let g:python3_host_prog="~/.virtualenvs/nvim/bin/python"
 set runtimepath+=~/.dotfiles/.dein/repos/github.com/Shougo/dein.vim
 set rtp+=/usr/local/opt/fzf
 

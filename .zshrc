@@ -301,6 +301,11 @@ export PATH="$GOPATH/bin:$PATH";
 #      PYTHON      #
 # ---------------- #
 
+# Setup virtualenv home
+export VIRTUALENVWRAPPER_PYTHON=$HOME/.pyenv/shims/python
+export WORKON_HOME=$HOME/.virtualenvs
+export PYENV_VIRTUALENVWRAPPER_PREFER_PYVENV="true"
+
 # virtualenvwrapper aliases
 alias vew='virtualenvwrapper'
 alias mkve='mkvirtualenv'
@@ -319,5 +324,3 @@ if command -v pyenv 1>/dev/null 2>&1; then
     eval "$(pyenv init -)"
     pyenv virtualenvwrapper
 fi
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
