@@ -34,31 +34,32 @@ function safe_ln() {
 # install dein
 log_info "NVIM: Install dein"
 
-curl https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh > dein_installer.sh
-sh ./dein_installer.sh ~/.dotfiles/.awesome/.dein
+curl https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh > dein_installer.sh 2> /dev/null
+sh ./dein_installer.sh ~/.dotfiles/.dein > /dev/null
 rm dein_installer.sh
 
 # setup rc file
 log_info "NVIM: Setup rc file"
 mkdir -p ~/.config/nvim
-echo "source ~/.dotfiles/.awesome/.vimrc"  > ~/.config/nvim/init.vim
+mv ~/.config/nvim/init.vim ~/.config/nvim/init.vim.old &> /dev/null
+echo "source ~/.dotfiles/.vimrc"  > ~/.config/nvim/init.vim
 
 # finish
 log_success "NVIM: Setup success"
 log_info "Remember to run dein#install() when running vim \
-    , install python dependencies in ~/.dotfiles/.awesome/.requirements.txt \
-    and set the correct pyenv on top of ~/.dotfiles/.vimrc"
+, install python dependencies in ~/.dotfiles/.awesome/.requirements.txt \
+and set the correct pyenv on top of ~/.dotfiles/.vimrc"
 
 #       TMUX      #
 # --------------- #
 
-safe_ln ~/.dotfiles/.awesome/.tmux.conf ~/.tmux.conf
+safe_ln ~/.dotfiles/.tmux.conf ~/.tmux.conf
 log_success "TMUX: Setup success"
 
 #       GIT       #
 # --------------- #
 
-safe_ln ~/.dotfiles/.awesome/.gitconfig ~/.gitconfig
+safe_ln ~/.dotfiles/.gitconfig ~/.gitconfig
 
 #       ZSH       #
 # --------------- #
@@ -83,11 +84,12 @@ brew install \
 # install oh my zsh
 log_info "ZSH: Install Oh-my-zsh"
 wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | zsh
-safe_ln ~/.dotfiles/.awesome/.zshrc ~/.zshrc
+safe_ln ~/.dotfiles/.zshrc ~/.zshrc
 
 
 # install extra oh my zsh plugins
 log_info "ZSH: Oh-my-zsh plugins"
+OH_MY_ZSH_DIR=$HOME/.oh-my-zsh
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $OH_MY_ZSH_DIR/plugins/zsh-syntax-highlighting
 git clone https://github.com/zsh-users/zsh-autosuggestions/ $OH_MY_ZSH_DIR/plugins/zsh-autosuggestions
 git clone https://github.com/bhilburn/powerlevel9k.git $OH_MY_ZSH_DIR/custom/themes/powerlevel9k
