@@ -115,7 +115,7 @@ endfunction
 """"""""""""""""""""""""""""""
 " clear all buffers
 
-nnoremap <leader>ca :w <bar> %bd <bar> e# <bar> bd# <CR><CR>
+nnoremap <leader>cab :w <bar> %bd <bar> e# <bar> bd# <CR><CR>
 
 """"""""""""""""""""""""""""""
 " colorscheme
