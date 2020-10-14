@@ -126,7 +126,7 @@ fzf_gf() {
 # BRANCHES #
 fzf_go() {
   is_in_git_repo || return
-  git branch -a --color=always | grep -v '/HEAD\s' | sort |
+  git branch --color=always | grep -v '/HEAD\s' | sort |
   fzf --ansi --multi --tac --preview-window right:50% \
     --preview 'git log --oneline --graph --date=short --color=always --pretty="format:%C(auto)%cd %h%d %s" $(sed s/^..// <<< {} | cut -d" " -f1) | head -'$LINES |
   sed 's/^..//' | cut -d' ' -f1 |
