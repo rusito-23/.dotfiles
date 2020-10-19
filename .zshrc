@@ -197,6 +197,7 @@ alias vim='nvim'
 alias nvim_rmswap='rm ~/.local/share/nvim/swap/*.swp'
 alias cat='bat'
 alias diff='nvim -d '
+alias imcat='shellpic --shell24'
 
 # NETWORK #
 # ------- #
