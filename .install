@@ -61,7 +61,7 @@ log_success "TMUX: Setup success"
 
 mkdir -p ~/.config/vifm
 mkdir -p ~/.config/vifm/colors
-echo "source ~/.dotfiles/.vifmrc"  > ~/.config/vifm/vifmrc
+echo "source ~/.dotfiles/.vifmrc.vim"  > ~/.config/vifm/vifmrc
 cp ~/..dotfiles/.zenburn.vifm ~/.config/vifm/colors/zenburn.vifm
 log_success "VIFM: Setup success"
 
