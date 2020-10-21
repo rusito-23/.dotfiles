@@ -1,14 +1,24 @@
 #!/bin/sh
 
-ORIG_MSG_FILE="$1"                      # Grab the current template
-TEMP=`mktemp /tmp/git-msg-XXXXX`        # Create a temp file
-trap "rm -f $TEMP" exit                 # Remove temp file on exit
+# parameters
+COMMIT_MSG_FILE=$1
+COMMIT_SOURCE=$1
 
-branchName=$(git symbolic-ref -q HEAD) 
-ticket_name=$(echo $branchName | grep -e '[A-Z]\+-[0-9]\+' -o)
+# don't prepare merge commits
+if [ "${COMMIT_SOURCE}" = merge ]; then
+    exit 0
+fi
 
-# Put ticket name into temp file
-(printf "\n$ticket_name:\n"; cat "$ORIG_MSG_FILE") > "$TEMP"  
+# temp message file
+TEMP_MSG_FILE=`mktemp /tmp/git-msg-XXXXX`        # create a temp file
+trap "rm -f $TEMP_MSG_FILE" exit                 # remove temp file on exit
+
+# search for the JIRA ticket in the branch name
+branch_name=$(git symbolic-ref -q HEAD)
+ticket_name=$(echo $branch_name | grep -e '[A-Z]\+-[0-9]\+' -o)
+
+# put ticket id into temp file
+(printf "\n$ticket_name: \n"; cat $COMMIT_MSG_FILE) > $TEMP_MSG_FILE
 
 # Move temp file to commit message
-cat "$TEMP" > "$ORIG_MSG_FILE" 
+cat $TEMP_MSG_FILE > $COMMIT_MSG_FILE

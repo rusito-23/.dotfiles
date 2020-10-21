@@ -56,6 +56,15 @@ and set the correct pyenv on top of ~/.dotfiles/.vimrc"
 safe_ln ~/.dotfiles/.tmux.conf ~/.tmux.conf
 log_success "TMUX: Setup success"
 
+#       VIFM      #
+# --------------- #
+
+mkdir -p ~/.config/vifm
+mkdir -p ~/.config/vifm/colors
+echo "source ~/.dotfiles/.vifmrc"  > ~/.config/vifm/vifmrc
+cp ~/..dotfiles/.zenburn.vifm ~/.config/vifm/colors/zenburn.vifm
+log_success "VIFM: Setup success"
+
 #       GIT       #
 # --------------- #
 
@@ -79,7 +88,9 @@ brew install \
     imagemagick \
     htop \
     ffmpeg \
-    gifsicle
+    gifsicle \
+    vifm \
+    w3m
 
 # install oh my zsh
 log_info "ZSH: Install Oh-my-zsh"
