@@ -29,8 +29,36 @@ set incsearch
 " cool color scheme
 colorscheme zenburn
 
-" cool status line
-set statusline="TODO"
+" ------------------------------------------------------------------------------
+" cool statusline
+
+" colors
+highlight User1      ctermbg=232          ctermfg=186        cterm=none
+highlight User2      ctermbg=236          ctermfg=232        cterm=none
+highlight User3      ctermbg=236          ctermfg=white      cterm=none
+highlight User4      ctermbg=238          ctermfg=236        cterm=none
+highlight User5      ctermbg=238          ctermfg=108        cterm=none
+highlight User6      ctermbg=239          ctermfg=189        cterm=none
+
+" segments
+let $CUR_FILE_SZ="%1* %E %2*"          " current file
+let $CUR_FILE="%3* %t %4*"             " current file size
+let $CUR_FILE_LN="%5* %T %4*"          " current file link
+let $SEPARATOR="%="                     " middle separator
+let $MOD_DATE="%5* %d "                " current file size
+let $PERMS="%4*%3* %A "                " perms
+let $USER="%2*%1* %u @ %g"             " user @ group
+
+" statusline
+execute 'set' 'statusline="'
+    \ . $CUR_FILE_SZ
+    \ . $CUR_FILE
+    \ . $CUR_FILE_LN
+    \ . $SEPARATOR
+    \ . $MOD_DATE
+    \ . $PERMS
+    \ . $USER 
+    \ .'"'
 
 " ------------------------------------------------------------------------------
 " Marks
@@ -45,7 +73,7 @@ command! zip zip -r %f.zip %f
 command! run !! ./%f
 command! make !!make %a
 command! mkcd :mkdir %a | cd %a
-command! reload :source ~/.config/vifm/vifmrc
+command! src :source ~/.config/vifm/vifmrc
 
 " ------------------------------------------------------------------------------
 " Previews and Viewers
