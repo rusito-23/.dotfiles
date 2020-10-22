@@ -64,11 +64,12 @@ execute 'set' 'statusline="'
 " Marks
 
 mark h ~/
+mark r ~/repos
 
 " ------------------------------------------------------------------------------
 " Commands
 
-command! diff diff %f %F
+command! diff nvim -d %f %F
 command! zip zip -r %f.zip %f
 command! run !! ./%f
 command! make !!make %a
@@ -78,80 +79,62 @@ command! src :source ~/.config/vifm/vifmrc
 " ------------------------------------------------------------------------------
 " Previews and Viewers
 
-" Pdf
+" pdf
 filetype *.pdf
-        \ {Open in Preview}
-        \ open -a Preview.app,
+        \ open,
 fileviewer *.pdf pdftotext -nopgbrk %c -
 
-" PostScript
-filetype *.ps,*.eps open -a Preview.app
-
-" Audio
+" audio
 filetype *.wav,*.mp3,*.flac,*.m4a,*.wma,*.ape,*.ac3,*.og[agx],*.spx,*.opus
-        \ {Open in iTunes}
-        \ open -a iTunes.app,
-        \ {Open in QuickTime Player}
-        \ open -a QuickTime\ Player.app,
+        \ open,
 fileviewer *.mp3 mp3info
 fileviewer *.flac soxi
 
-" Video
+" video
 filetype *.avi,*.mp4,*.wmv,*.dat,*.3gp,*.ogv,*.mkv,*.mpg,*.mpeg,*.vob,
         \*.fl[icv],*.m2v,*.mov,*.webm,*.ts,*.mts,*.m4v,*.r[am],*.qt,*.divx,
         \*.as[fx]
-        \ {Open in QuickTime Player}
-        \ open -a QuickTime\ Player.app,
+        \ open,
 fileviewer *.avi,*.mp4,*.wmv,*.dat,*.3gp,*.ogv,*.mkv,*.mpg,*.mpeg,*.vob,
         \*.fl[icv],*.m2v,*.mov,*.webm,*.ts,*.mts,*.m4v,*.r[am],*.qt,*.divx,
         \*.as[fx]
         \ ffprobe -pretty %c 2>&1
 
-" Web
-filetype *.html,*.htm
-        \ {Open in vim}
-        \ vim,
-fileviewer *.html,*.htm w3m -dump -T text/html
-
-" Object
+" object
 filetype *.o nm %f | less
 
-" Man page
+" man page
 filetype *.[1-8] man ./%c
 fileviewer *.[1-8] man ./%c | col -b
 
-" Image
+" image
 filetype *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm,
-        \ open -a Preview.app,
+        \ open,
 fileviewer *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm,
         \ identify %c
 
-" MD5
+" md5
 filetype *.md5
-        \ {Check MD5 hash sum}
         \ md5sum -c %f %S,
 
-" SHA1
+" sha1
 filetype *.sha1
-        \ {Check SHA1 hash sum}
         \ sha1sum -c %f %S,
 
-" SHA256
+" sha256
 filetype *.sha256
-        \ {Check SHA256 hash sum}
         \ sha256sum -c %f %S,
 
-" SHA512
+" sha512
 filetype *.sha512
-        \ {Check SHA512 hash sum}
         \ sha512sum -c %f %S,
 
 " syntax highlighting in preview
 fileviewer *[^/]
         \ env -uCOLORTERM bat --color always --wrap never --pager never %c -p
 
-" open every other file with default
-filetype * open
+" default command
+filetype *[^/] nvim
 
 " ------------------------------------------------------------------------------
 " Sessions persistence
@@ -162,13 +145,7 @@ set vifminfo=dhistory,savedirs,chistory,state,tui,shistory,
 " ------------------------------------------------------------------------------
 " Mappings
 
-" start shell in current directory
-nnoremap s :shell<cr>
-
-" display sorting dialog
-nnoremap S :sort<cr>
-
-" toggle visibility of preview window
+" toggle preview visibility
 nnoremap w :view<cr>
 vnoremap w :view<cr>gv
 
@@ -178,13 +155,18 @@ nnoremap yd :!printf %d | pbcopy<cr>
 " yank current file path into the clipboard
 nnoremap yf :!printf %c:p | pbcopy<cr>
 
-" mappings for faster renaming
-nnoremap I cw<c-a>
-nnoremap cc cw<c-u>
-nnoremap A cw
-
-" toggle wrap setting on ,w key
-nnoremap ,w :set wrap!<cr>
-
 " preview current image
 nnoremap ,p :!!shellpic --shell24 %c<cr>
+
+" new tmux window in cur dir
+nnoremap ,n :!tmux new-window -c %d<cr>
+
+" new tmux win and open in nvim
+nnoremap ,o :!tmux new-window -c %d "nvim %c"<cr>
+
+""""""""""""""""""""""""""""""
+" fzf integration
+" https://wiki.vifm.info/index.php/How_to_integrate_fzf_for_fuzzy_finding
+
+command! FZFgoto :set noquickview | :execute 'goto' fnameescape(term('fzf --no-height 2>/dev/tty'))
+nnoremap ,e :FZFgoto<cr>
