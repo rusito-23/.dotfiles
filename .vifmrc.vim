@@ -123,8 +123,8 @@ fileviewer *.[1-8] man ./%c | col -b
 " Image
 filetype *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm,
         \ open -a Preview.app,
-fileviewer *.png
-        \ env -uCOLORTERM shellpic %c
+fileviewer *.bmp,*.jpg,*.jpeg,*.png,*.gif,*.xpm,
+        \ identify %c
 
 " MD5
 filetype *.md5
@@ -185,3 +185,6 @@ nnoremap A cw
 
 " toggle wrap setting on ,w key
 nnoremap ,w :set wrap!<cr>
+
+" preview current image
+nnoremap ,p :!!shellpic --shell24 %c<cr>
