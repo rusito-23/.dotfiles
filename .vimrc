@@ -93,9 +93,10 @@ set scrolloff=3
 " syntax 
 syntax on
 
-" show wrapping for filetypes
+" column wrapping
 autocmd FileType gitcommit exec 'set colorcolumn=50'
 autocmd FileType python exec 'set colorcolumn=80'
+autocmd FileType swift exec 'set colorcolumn=120'
 
 " remove default mode indicator
 set noshowmode
