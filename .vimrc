@@ -27,6 +27,7 @@ if dein#load_state('~/.dotfiles/.dein')
   call dein#add('davidhalter/jedi-vim')
   call dein#add('dart-lang/dart-vim-plugin')
   call dein#add('keith/swift.vim')
+  call dein#add('ncm2/float-preview.nvim')
 
   " vim-airline
   call dein#add('vim-airline/vim-airline')
@@ -58,14 +59,23 @@ endif
 """"""""""""""""""""""""""""""
 " custom
 
+" prevent :W typo
+command! W :w
+
+" nav by display lines
+nnoremap j gj
+nnoremap k gk
+
 " highlight current line
 set cursorline
 
 " use system clipboard
 set clipboard+=unnamedplus
 
-" clear selection 
-nnoremap <esc> :noh<return><esc>
+" improved search
+set hlsearch incsearch
+set ignorecase smartcase
+nnoremap <cr> :noh<cr>
 
 " leader
 let mapleader = ","
@@ -100,6 +110,11 @@ autocmd FileType swift exec 'set colorcolumn=120'
 
 " remove default mode indicator
 set noshowmode
+
+" show special characters
+set list
+set showbreak=↪\
+set listchars=tab:→\ ,space:·,nbsp:␣,trail:•,eol:↲,precedes:«,extends:»
 
 
 """"""""""""""""""""""""""""""
@@ -228,3 +243,8 @@ set completeopt-=longest   " don't insert the longest common text
 set completeopt+=preview
 autocmd CompleteDone * if !pumvisible() | pclose | endif
 set belloff+=ctrlg  " if vim beeps during completion
+
+
+""""""""""""""""""""""""""""""
+" float-preview
+set completeopt-=preview   " prevent nvim from showing docs in vsplit
