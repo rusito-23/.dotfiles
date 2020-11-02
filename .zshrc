@@ -22,6 +22,13 @@ plugins=(
     tmux-cssh
 )
 
+#      ENV VARS     #
+# ----------------- #
+
+export VISUAL=nvim
+export EDITOR=nvim
+export PAGER=less
+
 # POWERLEVEL CONFIG #
 # ----------------- #
 
@@ -82,6 +89,7 @@ alias resetmux='TMUX=$OLD_TMUX'
 
 export PATH=$HOME/.local/bin:$PATH
 export PATH=$HOME/bin:$PATH
+export PATH=$HOME/.dotfiles/.bin:$PATH
 
 #       FASD       #
 # ---------------- #

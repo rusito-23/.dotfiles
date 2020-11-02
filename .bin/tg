@@ -1,0 +1,126 @@
+#!/usr/bin/python3
+
+import argparse
+import urllib
+import urllib.parse
+import urllib.request
+import subprocess
+import json
+
+
+def find_generic_password(label):
+    """ Find pass in macOS keychain """
+    return subprocess.check_output([
+        'security',
+        'find-generic-password',
+        '-l',
+        label,
+        '-w'
+    ], encoding='utf-8').rstrip()
+
+
+def get_credentials():
+    """ Find (token, chat_id) from Keychain """
+    return (
+        find_generic_password('TG_TOKEN'),
+        find_generic_password('TG_CHAT_ID')
+    )
+
+
+def send(message, credentials):
+    """ Send message using the Telegram Bot  """
+    token, chat_id = credentials
+
+    url = f'https://api.telegram.org/bot{token}/sendMessage'
+    params = urllib.parse.urlencode({
+        'chat_id': chat_id,
+        'text': message,
+        'parse_mode': 'html'
+    })
+
+    try:
+        req = urllib.request.Request(f'{url}?{params}')
+        urllib.request.urlopen(req)
+        print('Your notification was sent successfully!')
+    except urllib.error.URLError as e:
+        print(f'The notification failed with {e}!')
+        exit(1)
+
+
+def send_message(title, subtitle, content, credentials):
+    send(
+        f"<b>{title}</b>\n<i>{subtitle}</i>\n{content}",
+        credentials
+    )
+
+
+def wait_for_internet(credentials):
+    res = 1
+    while res != 0:
+        process = subprocess.Popen(
+            'ping -c 1 google.com',
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            shell=True
+        )
+        process.wait()
+        res = process.returncode
+
+    send_message(
+        'Internet is back up!',
+        'Now get back to work.',
+        '',
+        credentials
+    )
+
+
+if __name__ == '__main__':
+    parser = argparse.ArgumentParser(
+        description='Helpful notification utils using Telegram Bot'
+    )
+    subparsers = parser.add_subparsers(dest='subcommand')
+
+    # send message subcommand
+    send_parser = subparsers.add_parser(
+        'send',
+        help='Simply send a little message'
+    )
+    send_parser.add_argument(
+        '-title',
+        default='',
+        help='Message title'
+    )
+    send_parser.add_argument(
+        '-subtitle',
+        default='',
+        help='Message content'
+    )
+    send_parser.add_argument(
+        '-content',
+        default='',
+        help='Message content'
+    )
+
+    # ping subcommand
+    ping_parser = subparsers.add_parser(
+        'ping',
+        help='Send a message when internet is back up.'
+    )
+
+    # parse args
+    args = parser.parse_args()
+
+    # get the credentials
+    credentials = get_credentials()
+
+    # check the subcommand
+    if args.subcommand == 'send':
+        send_message(
+            args.title,
+            args.subtitle,
+            args.content,
+            credentials
+        )
+
+    elif args.subcommand == 'ping':
+        wait_for_internet(credentials)
