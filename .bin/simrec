@@ -1,0 +1,72 @@
+#!/usr/bin/python3
+
+import argparse
+import subprocess
+import signal
+import sys
+
+
+XCRUN = '/usr/bin/xcrun'
+FFMPEG = '/usr/local/bin/ffmpeg'
+OPTIM = '/usr/local/bin/convert'
+RM = 'rm'
+
+
+if __name__ == '__main__':
+    # parse arguments
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--device', default='booted')
+    parser.add_argument('--xscale', default='320')
+    parser.add_argument('output', help='output file name')
+    args = parser.parse_args()
+
+    if '.' in args.output:
+        sys.exit('''
+Please don\'t use `.` in your output file name.
+I'll add the extensions for you :)
+''')
+
+    # record the simulator
+    try:
+        record = subprocess.Popen([
+            XCRUN,
+            'simctl',
+            'io',
+            args.device,
+            'recordVideo',
+            '--code=h264',
+            f'{args.output}.mov'
+        ])
+        record.wait()
+    except KeyboardInterrupt:
+        # end recording
+        record.send_signal(signal.SIGINT)
+
+        # convert to gif
+        convert = subprocess.Popen([
+            FFMPEG,
+            '-i',
+            f'{args.output}.mov',
+            '-pix_fmt',
+            'rgb24',
+            '-vf',
+            f'scale={args.xscale}:-1',
+            '-r',
+            '10',
+            f'{args.output}.gif'
+        ])
+        convert.wait()
+
+        # optimize
+        optim = subprocess.Popen([
+            OPTIM,
+            '-layers',
+            'Optimize',
+            f'{args.output}.gif',
+            f'{args.output}.gif'
+        ])
+        optim.wait()
+
+        # remove video
+        rm = subprocess.Popen([RM, f'{args.output}.mov'])
+        rm.wait()
