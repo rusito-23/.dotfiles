@@ -4,6 +4,7 @@ import argparse
 import subprocess
 import signal
 import sys
+import json
 
 
 XCRUN = '/usr/bin/xcrun'
@@ -16,6 +17,7 @@ if __name__ == '__main__':
     # parse arguments
     parser = argparse.ArgumentParser()
     parser.add_argument('--device', default='booted')
+    parser.add_argument('--model', default=None)
     parser.add_argument('--xscale', default='320')
     parser.add_argument('output', help='output file name')
     args = parser.parse_args()
@@ -26,13 +28,40 @@ Please don\'t use `.` in your output file name.
 I'll add the extensions for you :)
 ''')
 
+    # device
+    device = args.device
+    if args.model is not None:
+        # if a model name was specified, look for it
+
+        # get all devices
+        devices = json.loads(subprocess.check_output([
+            XCRUN,
+            'simctl',
+            'list',
+            'devices',
+            '-j'
+        ]))['devices']
+
+        # filter iOS devices and flatten array
+        devices = [v for k, v in devices.items() if 'iOS' in k]
+        devices = [d for v in devices for d in v]
+
+        # find first booted with name
+        for d in devices:
+            if d['state'] == 'Booted' and args.model == d['name']:
+                device = d['udid']
+                break
+
+        if device == args.device:
+            print(f'Model {args.model} not found, using {args.device}')
+
     # record the simulator
     try:
         record = subprocess.Popen([
             XCRUN,
             'simctl',
             'io',
-            args.device,
+            device,
             'recordVideo',
             '--code=h264',
             f'{args.output}.mov'
