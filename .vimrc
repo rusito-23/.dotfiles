@@ -39,6 +39,7 @@ if dein#load_state('~/.dotfiles/.dein')
   call dein#add('sbdchd/neoformat')
   call dein#add('tpope/vim-surround')
   call dein#add('MTDL9/vim-log-highlighting')
+  call dein#add('tpope/vim-abolish')
 
   " code checker
   call dein#add('neomake/neomake')
