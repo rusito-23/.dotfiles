@@ -8,7 +8,7 @@ ZSH_DISABLE_COMPFIX="true"
 # PLUGINS CONFIG #
 # -------------- #
 
-ZSH_THEME="powerlevel9k/powerlevel9k"
+ZSH_THEME="spaceship-prompt/spaceship"
 ZSH_TMUX_AUTOSTART=true
 ZSH_TMUX_AUTOCONNECT=false
 
@@ -38,6 +38,14 @@ source $HOME/.dotfiles/.powerlevelrc
 # --------- #
 
 source $ZSH/oh-my-zsh.sh
+
+#    PURE   #
+# --------- #
+
+# uncomment to setup `pure` prompt
+#fpath+=$HOME/.pure
+#autoload -U promptinit; promptinit
+#prompt pure
 
 #  WELCOME MESSAGE  #
 #  ---------------  #

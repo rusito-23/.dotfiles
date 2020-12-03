@@ -101,9 +101,15 @@ safe_ln ~/.dotfiles/.zshrc ~/.zshrc
 # install extra oh my zsh plugins
 log_info "ZSH: Oh-my-zsh plugins"
 OH_MY_ZSH_DIR=$HOME/.oh-my-zsh
+
+# plugins
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $OH_MY_ZSH_DIR/plugins/zsh-syntax-highlighting
 git clone https://github.com/zsh-users/zsh-autosuggestions/ $OH_MY_ZSH_DIR/plugins/zsh-autosuggestions
+
+# themes
 git clone https://github.com/bhilburn/powerlevel9k.git $OH_MY_ZSH_DIR/custom/themes/powerlevel9k
+git clone https://github.com/sindresorhus/pure.git $HOME/.pure
+git clone https://github.com/denysdovhan/spaceship-prompt.git "$OH_MY_ZSH_DIR/themes/spaceship-prompt" --depth=1
 
 # set zsh as default shell
 log_info "ZSH: Setup as default shell"
