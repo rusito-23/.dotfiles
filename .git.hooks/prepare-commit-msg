@@ -17,8 +17,12 @@ trap "rm -f $TEMP_MSG_FILE" exit                 # remove temp file on exit
 branch_name=$(git symbolic-ref -q HEAD)
 ticket_name=$(echo $branch_name | grep -e '[A-Z]\+-[0-9]\+' -o)
 
-# put ticket id into temp file
-(printf "\n$ticket_name: \n"; cat $COMMIT_MSG_FILE) > $TEMP_MSG_FILE
+# create temp file
+if [[ ! -z "$var" ]]; then
+    (printf "\n$ticket_name: \n"; cat $COMMIT_MSG_FILE) > $TEMP_MSG_FILE
+else
+    (printf "\n\n"; cat $COMMIT_MSG_FILE) > $TEMP_MSG_FILE
+fi
 
 # Move temp file to commit message
 cat $TEMP_MSG_FILE > $COMMIT_MSG_FILE
