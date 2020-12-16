@@ -31,6 +31,7 @@ Thumbs.db
 *.sublime-workspace
 WorkspaceSettings.xcsettings
 xcuserdata
+*.xcbkptlist
 
 # Depency Manager Generated #
 #############################

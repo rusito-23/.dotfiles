@@ -8,7 +8,7 @@ ZSH_DISABLE_COMPFIX="true"
 # PLUGINS CONFIG #
 # -------------- #
 
-ZSH_THEME="spaceship-prompt/spaceship"
+ZSH_THEME="powerlevel9k/powerlevel9k"
 ZSH_TMUX_AUTOSTART=true
 ZSH_TMUX_AUTOCONNECT=false
 
