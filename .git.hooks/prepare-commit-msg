@@ -18,8 +18,8 @@ branch_name=$(git symbolic-ref -q HEAD)
 ticket_name=$(echo $branch_name | grep -e '[A-Z]\+-[0-9]\+' -o)
 
 # create temp file
-if [[ ! -z "$var" ]]; then
-    (printf "\n$ticket_name: \n"; cat $COMMIT_MSG_FILE) > $TEMP_MSG_FILE
+if [[ ! -z "$ticket_name" ]]; then
+    (printf "\n\n- TICKET: $ticket_name\n"; cat $COMMIT_MSG_FILE) > $TEMP_MSG_FILE
 else
     (printf "\n\n"; cat $COMMIT_MSG_FILE) > $TEMP_MSG_FILE
 fi
