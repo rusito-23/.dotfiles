@@ -218,7 +218,20 @@ alias imcat='shellpic --shell24'
 # NETWORK #
 # ------- #
 
-alias myip='ifconfig |grep inet'
+# IP Lookup
+# Parameter:
+# - opendns: public ip via opendns server (default)
+# - google: public ip via google dns server
+# - local for local ip
+myip() {
+    if [[ "$1" == "local" ]]; then
+        ifconfig | grep inet
+    elif [[ "$1" == "google" ]]; then
+        dig TXT +short o-o.myaddr.l.google.com @ns1.google.com
+    elif [[ "$1" == "opendns" ]] || [[ "$1" == "" ]]; then
+        dig +short myip.opendns.com @resolver1.opendns.com
+    fi
+}
 
 # AUTOSUGGESTIONS  #
 # ---------------- #
