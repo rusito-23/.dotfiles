@@ -225,10 +225,13 @@ alias imcat='shellpic --shell24'
 # - local for local ip
 myip() {
     if [[ "$1" == "local" ]]; then
+        echo "-- Local IP Lookup --"
         ifconfig | grep inet
     elif [[ "$1" == "google" ]]; then
+        echo "-- Public IP Lookup via Google DNS server --"
         dig TXT +short o-o.myaddr.l.google.com @ns1.google.com
     elif [[ "$1" == "opendns" ]] || [[ "$1" == "" ]]; then
+        echo "-- Public IP Lookup via OpenDNS server --"
         dig +short myip.opendns.com @resolver1.opendns.com
     fi
 }
