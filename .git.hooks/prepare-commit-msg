@@ -9,6 +9,11 @@ if [ "${COMMIT_SOURCE}" = merge ]; then
     exit 0
 fi
 
+# don't prepare inline commit messges
+if ps -o args= $PPID | grep -q '\-m' ; then
+    exit 0
+fi
+
 # temp message file
 TEMP_MSG_FILE=`mktemp /tmp/git-msg-XXXXX`        # create a temp file
 trap "rm -f $TEMP_MSG_FILE" exit                 # remove temp file on exit
