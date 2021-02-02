@@ -142,7 +142,7 @@ fzf_gf() {
 # BRANCHES #
 fzf_go() {
   is_in_git_repo || return
-  git branch --color=always | grep -v '/HEAD\s' | sort |
+  git branch -a --color=always | grep -v '/HEAD\s' | sort |
   fzf --ansi --multi --tac --preview-window right:50% \
     --preview 'git log --oneline --graph --date=short --color=always --pretty="format:%C(auto)%cd %h%d %s" $(sed s/^..// <<< {} | cut -d" " -f1) | head -'$LINES |
   sed 's/^..//' | cut -d' ' -f1 |
@@ -260,8 +260,15 @@ fi
 github() { git clone https://github.com/$1.git $2 ;}
 bitbucket() { git clone https://bitbucket.org/$1.git $2 ;}
 
-# fetch and checkout branch in a single command
-gfco() { git fetch origin $@ ; git checkout $@ ;}
+# add remote, fetch and checkout branch in a single command
+# Parameters:
+#   - remote
+#   - branch name
+gaco() {
+    git remote set-branches --add $@
+    git fetch $@
+    git checkout $2
+}
 
 # get current branch name
 unalias gcb
