@@ -24,7 +24,7 @@ ticket_name=$(echo $branch_name | grep -e '[A-Z]\+-[0-9]\+' -o)
 
 # create temp file
 if [[ ! -z "$ticket_name" ]]; then
-    (printf "\n\nTicket: $ticket_name\n"; cat $COMMIT_MSG_FILE) > $TEMP_MSG_FILE
+    (printf "\n\n* Ticket: $ticket_name\n"; cat $COMMIT_MSG_FILE) > $TEMP_MSG_FILE
 else
     (printf "\n"; cat $COMMIT_MSG_FILE) > $TEMP_MSG_FILE
 fi
