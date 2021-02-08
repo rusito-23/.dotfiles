@@ -90,7 +90,8 @@ brew install \
     ffmpeg \
     gifsicle \
     vifm \
-    w3m
+    w3m \
+    trash
 
 # install oh my zsh
 log_info "ZSH: Install Oh-my-zsh"
