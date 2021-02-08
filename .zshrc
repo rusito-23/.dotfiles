@@ -25,9 +25,16 @@ plugins=(
 #      ENV VARS     #
 # ----------------- #
 
+# editor
 export VISUAL=nvim
 export EDITOR=nvim
+
+# pager
 export PAGER=less
+
+# pager cfg
+# exit less if the file can be displayed on screen
+export LESS=-FRX
 
 # POWERLEVEL CONFIG #
 # ----------------- #
