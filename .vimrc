@@ -90,6 +90,9 @@ set nu rnu
 set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
 autocmd FileType json exec 'set tabstop=8 softtabstop=0 expandtab shiftwidth=2 smarttab'
 
+" special tabs
+autocmd FileType yaml exec 'set shiftwidth=2'
+
 " indent 
 filetype on
 filetype plugin on

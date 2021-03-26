@@ -22,7 +22,6 @@
 ehthumbs.db
 Icon?
 Thumbs.db
-*.lock
 
 # IDE generated files #
 #######################
