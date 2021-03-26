@@ -272,6 +272,11 @@ bitbucket() { git clone https://bitbucket.org/$1.git $2 ;}
 #   - remote
 #   - branch name
 gaco() {
+    if [ $# -ne 2 ]; then
+        echo "Usage: gaco remote branch"
+        return 1
+    fi
+
     git remote set-branches --add $@
     git fetch $@
     git checkout $2
