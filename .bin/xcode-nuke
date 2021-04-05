@@ -1,0 +1,17 @@
+#!/bin/sh
+
+# Get Xcode Path
+XCODE_PATH=${1:-$HOME/Library/Developer/Xcode}
+CACHE_PATH=${2:-$HOME/Library/Caches}
+
+# Quit Xcode
+osascript -e 'tell app "Xcode" to quit'
+
+# Remove derived data
+rm -rf $XCODE_PATH/DerivedData/*
+
+# Remove Carthage caches
+rm -rf $CACHE_PATH/{org.carthage.CarthageKit,carthage}
+
+# Open either Xcode workspace or project
+xed .
