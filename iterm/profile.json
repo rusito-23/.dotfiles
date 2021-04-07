@@ -607,7 +607,7 @@
   "Horizontal Spacing" : 1,
   "Option Key Sends" : 2,
   "Blink Allowed" : true,
-  "Custom Icon Path" : "\/Users\/igor\/.dotfiles\/.iterm\/icon.png",
+  "Custom Icon Path" : "\/Users\/igor\/.dotfiles\/iterm\/icon.png",
   "Ansi 15 Color" : {
     "Green Component" : 1,
     "Red Component" : 1,

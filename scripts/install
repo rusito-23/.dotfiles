@@ -13,13 +13,9 @@ white='\033[0;37m'
 
 # log utils
 
-function log_info() {
-    echo "${cyan}$@${white}"
-}
+function log_info() { echo "${cyan}$@${white}"; }
 
-function log_success() {
-    echo "${green}$@${white}"
-}
+function log_success() { echo "${green}$@${white}"; }
 
 # move utils
 
@@ -28,93 +24,83 @@ function safe_ln() {
     ln -s $1 $2
 }
 
+#       BREW      #
+# --------------- #
+
+# install dependencies
+log_info ">>> BREW: Install dependencies <<<"
+brew update
+while read p; do
+  brew install "$p"
+done <~/.dotfiles/requirements/brew-requirements.txt
+
 #       NVIM      #
 # --------------- #
 
 # install dein
-log_info "NVIM: Install dein"
+log_info "... NVIM: Install dein ..."
 
 curl https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh > dein_installer.sh 2> /dev/null
-sh ./dein_installer.sh ~/.dotfiles/.dein > /dev/null
+sh ./dein_installer.sh ~/.dotfiles/dein > /dev/null
 rm dein_installer.sh
 
 # setup rc file
-log_info "NVIM: Setup rc file"
+log_info "... NVIM: Setup rc file ..."
 mkdir -p ~/.config/nvim
 mv ~/.config/nvim/init.vim ~/.config/nvim/init.vim.old &> /dev/null
-echo "source ~/.dotfiles/.vimrc"  > ~/.config/nvim/init.vim
+echo "source ~/.dotfiles/vimrc"  > ~/.config/nvim/init.vim
 
 # finish
-log_success "NVIM: Setup success"
-log_info "Remember to run dein#install() when running vim \
-, install python dependencies in ~/.dotfiles/.awesome/.requirements.txt \
-and set the correct pyenv on top of ~/.dotfiles/.vimrc"
+log_success ">>> NVIM: Setup success <<<"
+log_info "Remember to run dein#install() when running vim for the first time"
 
 #       TMUX      #
 # --------------- #
 
-safe_ln ~/.dotfiles/.tmux.conf ~/.tmux.conf
-log_success "TMUX: Setup success"
+safe_ln ~/.dotfiles/tmux.conf ~/.tmux.conf
+log_success ">>> TMUX: Setup success <<<"
 
 #       VIFM      #
 # --------------- #
 
 mkdir -p ~/.config/vifm
 mkdir -p ~/.config/vifm/colors
-echo "source ~/.dotfiles/.vifmrc.vim"  > ~/.config/vifm/vifmrc
-cp ~/..dotfiles/.zenburn.vifm ~/.config/vifm/colors/zenburn.vifm
-log_success "VIFM: Setup success"
+echo "source ~/.dotfiles/vifmrc.vim"  > ~/.config/vifm/vifmrc
+cp ~/..dotfiles/zenburn.vifm ~/.config/vifm/colors/zenburn.vifm
+log_success ">>> VIFM: Setup success <<<"
 
 #       GIT       #
 # --------------- #
 
-safe_ln ~/.dotfiles/.gitconfig ~/.gitconfig
+safe_ln ~/.dotfiles/git-template/gitconfig.global ~/.gitconfig
 
 #       ZSH       #
 # --------------- #
 
-# install dependencies
-log_info "ZSH: Install dependencies"
-brew update
-brew install \
-    wget \
-    fasd \
-    peco \
-    tig \
-    bat \
-    vifm \
-    ripgrep \
-    fzf \
-    imagemagick \
-    htop \
-    ffmpeg \
-    gifsicle \
-    vifm \
-    w3m \
-    trash
-
 # install oh my zsh
-log_info "ZSH: Install Oh-my-zsh"
+log_info "... ZSH: Install Oh-my-zsh ..."
 wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | zsh
-safe_ln ~/.dotfiles/.zshrc ~/.zshrc
+safe_ln ~/.dotfiles/zshrc ~/.zshrc
 
 
 # install extra oh my zsh plugins
-log_info "ZSH: Oh-my-zsh plugins"
 OH_MY_ZSH_DIR=$HOME/.oh-my-zsh
 
 # plugins
+log_info "... ZSH: Install Oh-my-zsh plugins ..."
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $OH_MY_ZSH_DIR/plugins/zsh-syntax-highlighting
 git clone https://github.com/zsh-users/zsh-autosuggestions/ $OH_MY_ZSH_DIR/plugins/zsh-autosuggestions
 
 # themes
+log_info "... ZSH: Install Oh-my-zsh themes ..."
 git clone https://github.com/bhilburn/powerlevel9k.git $OH_MY_ZSH_DIR/custom/themes/powerlevel9k
 git clone https://github.com/sindresorhus/pure.git $HOME/.pure
 git clone https://github.com/denysdovhan/spaceship-prompt.git "$OH_MY_ZSH_DIR/themes/spaceship-prompt" --depth=1
 
 # set zsh as default shell
-log_info "ZSH: Setup as default shell"
+log_info "... ZSH: Setup default shell ..."
 chsh -s $(which zsh)
 
 # finish
-log_success "ZSH: Setup success"
+log_success ">>> ZSH: Setup success <<<"
+

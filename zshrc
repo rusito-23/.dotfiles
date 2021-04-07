@@ -39,7 +39,7 @@ export LESS=-FRX
 # POWERLEVEL CONFIG #
 # ----------------- #
 
-source $HOME/.dotfiles/.powerlevelrc
+source $HOME/.dotfiles/powerlevelrc
 
 # OH MY ZSH #
 # --------- #
@@ -71,7 +71,7 @@ fi
 #   IGNORED  #
 # ---------- #
 
-for s in $HOME/.dotfiles/.ignored/*; do source $s; done
+for s in $HOME/.dotfiles/ignored/*; do source $s; done
 
 #  QUICK SOURCE  #
 #  ------------  #
@@ -104,7 +104,7 @@ alias resetmux='TMUX=$OLD_TMUX'
 
 export PATH=$HOME/.local/bin:$PATH
 export PATH=$HOME/bin:$PATH
-export PATH=$HOME/.dotfiles/.bin:$PATH
+export PATH=$HOME/.dotfiles/bin:$PATH
 
 #       FASD       #
 # ---------------- #
@@ -114,7 +114,7 @@ autoload -U compinit && compinit -U
 
 #     RIPGREP      #
 # ---------------- #
-export RIPGREP_CONFIG_PATH="$HOME/.dotfiles/.ripgreprc"
+export RIPGREP_CONFIG_PATH="$HOME/.dotfiles/ripgreprc"
 
 #        FZF       #
 # ---------------- #

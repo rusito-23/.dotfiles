@@ -2,12 +2,12 @@
 " dein config
 
 let g:python3_host_prog="~/.virtualenvs/nvim/bin/python"
-set runtimepath+=~/.dotfiles/.dein/repos/github.com/Shougo/dein.vim
+set runtimepath+=~/.dotfiles/dein/repos/github.com/Shougo/dein.vim
 set rtp+=/usr/local/opt/fzf
 
-if dein#load_state('~/.dotfiles/.dein')
-  call dein#begin('~/.dotfiles/.dein')
-  call dein#add('~/.dotfiles/.dein/repos/github.com/Shougo/dein.vim')
+if dein#load_state('~/.dotfiles/dein')
+  call dein#begin('~/.dotfiles/dein')
+  call dein#add('~/.dotfiles/dein/repos/github.com/Shougo/dein.vim')
 
   " navigation
   call dein#add('preservim/nerdtree')

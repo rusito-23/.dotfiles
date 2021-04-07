@@ -1,4 +1,4 @@
 DS_Store/
-.ignored
-.gitconfig.ignored
-.dein/
+ignored
+git-template/gitconfig.ignored
+dein/
