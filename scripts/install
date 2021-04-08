@@ -11,7 +11,7 @@ purple='\033[0;35m'
 cyan='\033[0;36m'
 white='\033[0;37m'
 
-# log utils
+# log utils
 
 function log_info() { echo "${cyan}$@${white}"; }
 
@@ -27,7 +27,7 @@ function safe_ln() {
 #       BREW      #
 # --------------- #
 
-# install dependencies
+# install dependencies
 log_info ">>> BREW: Install dependencies <<<"
 brew update
 while read p; do
@@ -92,10 +92,8 @@ git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $OH_MY_ZSH_DI
 git clone https://github.com/zsh-users/zsh-autosuggestions/ $OH_MY_ZSH_DIR/plugins/zsh-autosuggestions
 
 # themes
-log_info "... ZSH: Install Oh-my-zsh themes ..."
-git clone https://github.com/bhilburn/powerlevel9k.git $OH_MY_ZSH_DIR/custom/themes/powerlevel9k
-git clone https://github.com/sindresorhus/pure.git $HOME/.pure
-git clone https://github.com/denysdovhan/spaceship-prompt.git "$OH_MY_ZSH_DIR/themes/spaceship-prompt" --depth=1
+log_info "... ZSH: Install Oh-my-zsh PowerLevel10K ..."
+git clone --depth=1 https://github.com/romkatv/powerlevel10k.git $OH_MY_ZSH_DIR/custom/themes/powerlevel10k
 
 # set zsh as default shell
 log_info "... ZSH: Setup default shell ..."

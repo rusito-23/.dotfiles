@@ -5,10 +5,10 @@ export TERM="xterm-256color"
 export ZSH=$HOME/.oh-my-zsh
 ZSH_DISABLE_COMPFIX="true"
 
-# PLUGINS CONFIG #
-# -------------- #
+# PLUGINS & THEME CONFIG #
+# ---------------------- #
 
-ZSH_THEME="powerlevel9k/powerlevel9k"
+ZSH_THEME="powerlevel10k/powerlevel10k"
 ZSH_TMUX_AUTOSTART=true
 ZSH_TMUX_AUTOCONNECT=false
 
