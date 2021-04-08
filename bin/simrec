@@ -1,4 +1,20 @@
 #!/usr/bin/python3
+"""
+SimRec
+
+A util script to record the simulator and automatically convert to `gif`
+Requirements: python3 - xcrun - ffmpeg - convert
+Usage:
+    call ./bin/simrec and it will start recording the simulator,
+    when you are ready, press Ctrl + C and this will automatically start the
+    gif conversion using ffmpeg and covert to optimize gif storage.
+Parameters:
+    --device: the simulator device UUID (`booted` by default)
+    --model: the optional model name (e.g. `iPhone 12`), the script will
+             search automatically for the booted device with the given model
+    --xscale: the resize scale (`320` by default)
+    output: The output file name, required.
+"""
 
 import argparse
 import subprocess
