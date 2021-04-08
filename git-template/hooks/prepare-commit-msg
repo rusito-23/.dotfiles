@@ -1,38 +1,40 @@
 #!/bin/sh
 
-# parameters
+# Prepare commit message hook:
+#
+# This git hook will parse the Jira tickets that you have in your 
+# branch name and will add them in the body of your commit message
+# using the following format:
+# `* Tickets: IOS-23, IOS-46, IOS-92`
+
+# Parameters
 COMMIT_MSG_FILE=$1
-COMMIT_SOURCE=$1
+COMMIT_SOURCE=$2
 
-# don't prepare merge commits
-if [ "${COMMIT_SOURCE}" = merge ]; then
-    exit 0
-fi
+# Don't prepare:
+# - merge commits
+# - inline commit messages
+# - ammend commits
+if \
+    [ "${COMMIT_SOURCE}" = merge ] || \
+    ps -ocommand= -p $PPID | grep -e '-m' || \
+    ps -ocommand= -p $PPID | grep -e '--amend' \
+;then exit 0; fi
 
-# don't prepare inline commit messges
-if ps -o args= $PPID | grep -q '\-m' ; then
-    exit 0
-fi
+# Create temp file & set trap to remove on exit
+TEMP_MSG_FILE=`mktemp /tmp/git-msg-XXXXX`
+trap "rm -f $TEMP_MSG_FILE" exit
 
-# don't prepare ammend commit messages
-if ps -ocommand= -p $PPID | grep -e '--amend' ; then
-    exit 0
-fi
-
-# temp message file
-TEMP_MSG_FILE=`mktemp /tmp/git-msg-XXXXX`        # create a temp file
-trap "rm -f $TEMP_MSG_FILE" exit                 # remove temp file on exit
-
-# search for the JIRA ticket in the branch name
+# Search for the Jira tickets in the branch name
+# and save them into `ticket_names`, separated with commas if necessary
 branch_name=$(git symbolic-ref -q HEAD)
 ticket_names=$(echo $branch_name | grep -e '[A-Z]\+-[0-9]\+' -o | sed '$!N;s/\n/, /')
 
-# create temp file
-if [[ ! -z "$ticket_names" ]]; then
-    (printf "\n\n* Tickets: $ticket_names\n"; cat $COMMIT_MSG_FILE) > $TEMP_MSG_FILE
-else
-    (printf "\n"; cat $COMMIT_MSG_FILE) > $TEMP_MSG_FILE
-fi
+# Early exit if we have no tickets
+if [[ -z "$ticket_names" ]]; then exit 0; fi
 
-# Move temp file to commit message
+# Dump ticket names & commit message into the temp file
+(printf "\n\n* Tickets: $ticket_names\n"; cat $COMMIT_MSG_FILE) > $TEMP_MSG_FILE
+
+# Dump temp file contents into the commit message
 cat $TEMP_MSG_FILE > $COMMIT_MSG_FILE
