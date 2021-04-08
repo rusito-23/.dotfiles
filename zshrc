@@ -15,8 +15,8 @@ ZSH_TMUX_AUTOCONNECT=false
 plugins=(
     sudo
     git
+    fast-syntax-highlighting
     zsh-autosuggestions
-    zsh-syntax-highlighting
     virtualenv
     tmux
     tmux-cssh
@@ -46,13 +46,10 @@ source $HOME/.dotfiles/powerlevelrc
 
 source $ZSH/oh-my-zsh.sh
 
-#    PURE   #
-# --------- #
+# AUTOSUGGESTIONS CONFIG #
+# ---------------------- #
 
-# uncomment to setup `pure` prompt
-#fpath+=$HOME/.pure
-#autoload -U promptinit; promptinit
-#prompt pure
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=23'
 
 #  WELCOME MESSAGE  #
 #  ---------------  #
@@ -62,14 +59,14 @@ if [[ -o login ]]; then
 fi
 
 #  SHELL INTEGRATION  #
-# ------------------- #
+# ------------------- #
 
 if [ -f ~/.iterm2_shell_integration.zsh ]; then
     source ~/.iterm2_shell_integration.zsh
 fi
 
 #   IGNORED  #
-# ---------- #
+# ---------- #
 
 for s in $HOME/.dotfiles/ignored/*; do source $s; done
 
@@ -95,6 +92,7 @@ alias ...='cd ../../'
 # ---------------- #
 
 alias tmuxx='tmux source-file ~/.tmux.conf'
+
 # set unset tmux for nested sessions
 alias unsetmux='OLD_TMUX=$TMUX;TMUX=""'
 alias resetmux='TMUX=$OLD_TMUX'
@@ -212,7 +210,7 @@ unset -f bind-git-helper
 alias sudoer='export ITERM_PROFILE=rusito23-zshrc ;sudo -s /bin/zsh'
 
 # EDITION #
-# ------- #
+# ------- #
 
 alias mdedit='open -a MacDown'
 alias vi='nvim'
@@ -223,7 +221,7 @@ alias diff='nvim -d '
 alias imcat='shellpic --shell24'
 
 # NETWORK #
-# ------- #
+# ------- #
 
 # IP Lookup
 # Parameter:
@@ -244,9 +242,9 @@ myip() {
 }
 
 # AUTOSUGGESTIONS  #
-# ---------------- #
+# ---------------- #
 
-# cycle through auto suggestions with up/down
+# cycle through auto suggestions with up/down
 
 if [[ "${terminfo[kcuu1]}" != "" ]]; then
     autoload -U up-line-or-beginning-search
@@ -262,7 +260,7 @@ fi
 
 
 # GIT PLUGIN EXTENSION #
-# -------------------- #
+# -------------------- #
 
 github() { git clone https://github.com/$1.git $2 ;}
 bitbucket() { git clone https://bitbucket.org/$1.git $2 ;}
@@ -282,7 +280,7 @@ gaco() {
     git checkout $2
 }
 
-# get current branch name
+# get current branch name
 unalias gcb
 alias gcb='git_current_branch'
 
@@ -290,7 +288,7 @@ alias gcb='git_current_branch'
 alias gdt='git difftool'
 alias gmt='git mergetool'
 
-# don't git push force, git push force with lease!
+# don't git push force, git push force with lease!
 ggpf () {
     if [[ "$#" != 0 ]] && [[ "$#" != 1 ]]
     then
@@ -317,6 +315,7 @@ gcofix() {
 }
 
 # remove upstream push alias (it's f* dangerous)
+# create a function that pulls from upstream instead
 unalias gpu
 glu () {
     if [[ "$#" != 0 ]] && [[ "$#" != 1 ]]
@@ -341,9 +340,9 @@ _gitignoreio () {
 compdef _gitignoreio gi
 
 #        GO        #
-# ---------------- #
+# ---------------- #
 
-# GO VERSION MANAGER
+# GO VERSION MANAGER
 (( ${+aliases[g]} )) && unalias g
 export GOPATH="$HOME/go";
 export GOROOT="$HOME/.go";
@@ -351,7 +350,7 @@ export PATH="$GOPATH/bin:$PATH";
 
 
 #      PYTHON      #
-# ---------------- #
+# ---------------- #
 
 # Setup virtualenv home
 export VIRTUALENVWRAPPER_PYTHON=$HOME/.pyenv/shims/python
@@ -377,5 +376,5 @@ if command -v pyenv 1>/dev/null 2>&1; then
     pyenv virtualenvwrapper
 fi
 
-# FUCK!
+# FUCK!
 eval $(thefuck --alias)

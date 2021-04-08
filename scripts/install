@@ -1,7 +1,6 @@
 #/bin/sh
 
-# color definitions
-
+# Color definitions
 black='\033[0;30m'
 red='\033[0;31m'
 green='\033[0;32m'
@@ -11,13 +10,11 @@ purple='\033[0;35m'
 cyan='\033[0;36m'
 white='\033[0;37m'
 
-# log utils
-
+# Log utils
 function log_info() { echo "${cyan}$@${white}"; }
-
 function log_success() { echo "${green}$@${white}"; }
 
-# move utils
+# Move utils
 
 function safe_ln() {
     mv $2 $2.old
@@ -27,7 +24,7 @@ function safe_ln() {
 #       BREW      #
 # --------------- #
 
-# install dependencies
+# Install dependencies
 log_info ">>> BREW: Install dependencies <<<"
 brew update
 while read p; do
@@ -37,68 +34,77 @@ done <~/.dotfiles/requirements/brew-requirements.txt
 #       NVIM      #
 # --------------- #
 
-# install dein
+# Install `dein`
 log_info "... NVIM: Install dein ..."
 
 curl https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh > dein_installer.sh 2> /dev/null
 sh ./dein_installer.sh ~/.dotfiles/dein > /dev/null
 rm dein_installer.sh
 
-# setup rc file
+# Setup ini file
 log_info "... NVIM: Setup rc file ..."
 mkdir -p ~/.config/nvim
 mv ~/.config/nvim/init.vim ~/.config/nvim/init.vim.old &> /dev/null
 echo "source ~/.dotfiles/vimrc"  > ~/.config/nvim/init.vim
 
-# finish
+# Prompt success
 log_success ">>> NVIM: Setup success <<<"
 log_info "Remember to run dein#install() when running vim for the first time"
 
 #       TMUX      #
 # --------------- #
 
+# Link config file
 safe_ln ~/.dotfiles/tmux.conf ~/.tmux.conf
 log_success ">>> TMUX: Setup success <<<"
 
 #       VIFM      #
 # --------------- #
 
+# Create dirs
 mkdir -p ~/.config/vifm
 mkdir -p ~/.config/vifm/colors
+
+# Setup config file
 echo "source ~/.dotfiles/vifmrc.vim"  > ~/.config/vifm/vifmrc
 cp ~/..dotfiles/zenburn.vifm ~/.config/vifm/colors/zenburn.vifm
+
+# Success prompt
 log_success ">>> VIFM: Setup success <<<"
 
 #       GIT       #
 # --------------- #
 
+# Link config file
 safe_ln ~/.dotfiles/git-template/gitconfig.global ~/.gitconfig
 
 #       ZSH       #
 # --------------- #
 
-# install oh my zsh
+# Install Oh My Zsh
 log_info "... ZSH: Install Oh-my-zsh ..."
 wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | zsh
 safe_ln ~/.dotfiles/zshrc ~/.zshrc
 
 
-# install extra oh my zsh plugins
+# Define helpful variables
 OH_MY_ZSH_DIR=$HOME/.oh-my-zsh
+PLUGIN_DIR=$OH_MY_ZSH_DIR/plugins
+GH_URL=https://github.com
 
-# plugins
+# Install extra plugins
 log_info "... ZSH: Install Oh-my-zsh plugins ..."
-git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $OH_MY_ZSH_DIR/plugins/zsh-syntax-highlighting
-git clone https://github.com/zsh-users/zsh-autosuggestions/ $OH_MY_ZSH_DIR/plugins/zsh-autosuggestions
+git clone --depth=1 $GH_URL/zsh-users/zsh-autosuggestions/ $PLUGIN_DIR/zsh-autosuggestions
+git clone --depth=1 $GH_URL/zdharma/fast-syntax-highlighting.git $PLUGIN_DIR/fast-syntax-highlighting
 
-# themes
+# Install PowerLevel10K
 log_info "... ZSH: Install Oh-my-zsh PowerLevel10K ..."
-git clone --depth=1 https://github.com/romkatv/powerlevel10k.git $OH_MY_ZSH_DIR/custom/themes/powerlevel10k
+git clone --depth=1 $GH_URL/romkatv/powerlevel10k.git $OH_MY_ZSH_DIR/custom/themes/powerlevel10k
 
-# set zsh as default shell
+# Set Zsh as default shell
 log_info "... ZSH: Setup default shell ..."
 chsh -s $(which zsh)
 
-# finish
+# Success prompt!
 log_success ">>> ZSH: Setup success <<<"
 
