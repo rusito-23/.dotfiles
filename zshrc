@@ -20,6 +20,8 @@ plugins=(
     virtualenv
     tmux
     tmux-cssh
+    docker
+    docker-compose
 )
 
 #      ENV VARS     #
