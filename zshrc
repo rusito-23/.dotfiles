@@ -23,6 +23,7 @@ plugins=(
     tmux-cssh
     docker
     docker-compose
+    calc
 )
 
 # Set editor & pager
@@ -317,6 +318,3 @@ fi
 
 # FUCK!
 eval $(thefuck --alias)
-
-# Eval ssh-agent if needed
-[ -z "$SSH_AUTH_SOCK" ] && eval "$(ssh-agent -s)"

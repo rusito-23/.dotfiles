@@ -10,12 +10,17 @@ purple='\033[0;35m'
 cyan='\033[0;36m'
 white='\033[0;37m'
 
+# Define helpful variables
+OH_MY_ZSH_DIR=$HOME/.oh-my-zsh
+PLUGIN_DIR=$OH_MY_ZSH_DIR/plugins
+THEMES_DIR=$OH_MY_ZSH_DIR/themes
+GH_URL=https://github.com
+
 # Log utils
 function log_info() { echo "${cyan}$@${white}"; }
 function log_success() { echo "${green}$@${white}"; }
 
-# Move utils
-
+# Function to safely link files
 function safe_ln() {
     mv $2 $2.old
     ln -s $1 $2
@@ -35,14 +40,17 @@ done <~/.dotfiles/requirements/brew-requirements.txt
 # --------------- #
 
 # Install `dein`
-log_info "... NVIM: Install dein ..."
+log_info ">>> NVIM: Install dein <<<"
 
-curl https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh > dein_installer.sh 2> /dev/null
+curl https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh \
+    > dein_installer.sh \
+    2> /dev/null
+
 sh ./dein_installer.sh ~/.dotfiles/dein > /dev/null
 rm dein_installer.sh
 
 # Setup ini file
-log_info "... NVIM: Setup rc file ..."
+log_info ">>> NVIM: Setup rc file <<<"
 mkdir -p ~/.config/nvim
 mv ~/.config/nvim/init.vim ~/.config/nvim/init.vim.old &> /dev/null
 echo "source ~/.dotfiles/vimrc"  > ~/.config/nvim/init.vim
@@ -82,27 +90,26 @@ safe_ln ~/.dotfiles/git-template/gitconfig.global ~/.gitconfig
 # --------------- #
 
 # Install Oh My Zsh
-log_info "... ZSH: Install Oh-my-zsh ..."
-wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | zsh
+log_info ">>> ZSH: Install Oh-my-zsh <<<"
+wget $GH_URL/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | zsh
 safe_ln ~/.dotfiles/zshrc ~/.zshrc
 
-
-# Define helpful variables
-OH_MY_ZSH_DIR=$HOME/.oh-my-zsh
-PLUGIN_DIR=$OH_MY_ZSH_DIR/plugins
-GH_URL=https://github.com
-
 # Install extra plugins
-log_info "... ZSH: Install Oh-my-zsh plugins ..."
-git clone --depth=1 $GH_URL/zsh-users/zsh-autosuggestions/ $PLUGIN_DIR/zsh-autosuggestions
-git clone --depth=1 $GH_URL/zdharma/fast-syntax-highlighting.git $PLUGIN_DIR/fast-syntax-highlighting
+log_info ">>> ZSH: Install Oh-my-zsh plugins <<<"
+while read plugin; do
+  gh_path=$(echo $plugin | cut -d ' ' -f 1)
+  dst_path=$(echo $plugin | cut -d ' ' -f 2)
+  git clone --depth=1 $GH_URL/$gh_path $THEMES_DIR/$dst_path
+done <~/.dotfiles/requirements/zsh-plugins.txt
 
 # Install PowerLevel10K
-log_info "... ZSH: Install Oh-my-zsh PowerLevel10K ..."
-git clone --depth=1 $GH_URL/romkatv/powerlevel10k.git $OH_MY_ZSH_DIR/custom/themes/powerlevel10k
+log_info ">>> ZSH: Install Oh-my-zsh PowerLevel10K <<<"
+git clone --depth=1 \
+    $GH_URL/romkatv/powerlevel10k.git \
+    $THEMES_DIR/powerlevel10k
 
 # Set Zsh as default shell
-log_info "... ZSH: Setup default shell ..."
+log_info ">>> ZSH: Setup default shell <<<"
 chsh -s $(which zsh)
 
 # Success prompt!
