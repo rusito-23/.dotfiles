@@ -1,17 +1,18 @@
-# ZSH CONFIGS #
-# ----------- #
 
+# Zsh configuration
 export TERM="xterm-256color"
 export ZSH=$HOME/.oh-my-zsh
 ZSH_DISABLE_COMPFIX="true"
 
-# PLUGINS & THEME CONFIG #
-# ---------------------- #
+# Setup extra paths
+export PATH=$HOME/.local/bin:$PATH
+export PATH=$HOME/bin:$PATH
+export PATH=$HOME/.dotfiles/bin:$PATH
 
+# Set zsh theme
 ZSH_THEME="powerlevel10k/powerlevel10k"
-ZSH_TMUX_AUTOSTART=true
-ZSH_TMUX_AUTOCONNECT=false
 
+# Setup plugins
 plugins=(
     sudo
     git
@@ -24,62 +25,37 @@ plugins=(
     docker-compose
 )
 
-#      ENV VARS     #
-# ----------------- #
-
-# editor
+# Set editor & pager
 export VISUAL=nvim
 export EDITOR=nvim
-
-# pager
 export PAGER=less
-
-# pager cfg
-# exit less if the file can be displayed on screen
 export LESS=-FRX
 
-# POWERLEVEL CONFIG #
-# ----------------- #
-
+# Load powerlevel configuration
 source $HOME/.dotfiles/powerlevelrc
 
-# OH MY ZSH #
-# --------- #
-
+# Load oh my zsh
 source $ZSH/oh-my-zsh.sh
 
-# AUTOSUGGESTIONS CONFIG #
-# ---------------------- #
-
+# Custom plugins configuration
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=23'
+ZSH_TMUX_AUTOSTART=true
+ZSH_TMUX_AUTOCONNECT=false
 
-#  WELCOME MESSAGE  #
-#  ---------------  #
 
-if [[ -o login ]]; then
-    echo "ПРИВЕТ СУКА БЛЯТЬ"
-fi
+# Show welcome message
+[[ -o login ]] && echo "ПРИВЕТ СУКА БЛЯТЬ"
 
-#  SHELL INTEGRATION  #
-# ------------------- #
+# Load shell integration
+[ -f ~/.iterm2_shell_integration.zsh ] && source ~/.iterm2_shell_integration.zsh
 
-if [ -f ~/.iterm2_shell_integration.zsh ]; then
-    source ~/.iterm2_shell_integration.zsh
-fi
-
-#   IGNORED  #
-# ---------- #
-
+# Load ignored files
 for s in $HOME/.dotfiles/ignored/*; do source $s; done
 
-#  QUICK SOURCE  #
-#  ------------  #
-
+# Quick-reload alias
 alias src='source ~/.zshrc'
 
-#  NAVIGATION  #
-#  ----------  #
-
+# Setup navigation aliases
 setopt noautoremoveslash
 alias ls='ls -GFh'
 alias l='ls'
@@ -90,54 +66,36 @@ alias cd..='cd ../'
 alias ..='cd ../'
 alias ...='cd ../../'
 
-#      TMUX        #
-# ---------------- #
-
+# Setup tmux aliases
 alias tmuxx='tmux source-file ~/.tmux.conf'
-
-# set unset tmux for nested sessions
 alias unsetmux='OLD_TMUX=$TMUX;TMUX=""'
 alias resetmux='TMUX=$OLD_TMUX'
 
-#   PATHS  #
-# -------- #
-
-export PATH=$HOME/.local/bin:$PATH
-export PATH=$HOME/bin:$PATH
-export PATH=$HOME/.dotfiles/bin:$PATH
-
-#       FASD       #
-# ---------------- #
-
+# Init `fasd`
 eval "$(fasd --init auto)"
 autoload -U compinit && compinit -U
 
-#     RIPGREP      #
-# ---------------- #
+# Setup `rg` config file
 export RIPGREP_CONFIG_PATH="$HOME/.dotfiles/ripgreprc"
 
-#        FZF       #
-# ---------------- #
-
+# Setup `fzf`
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export FZF_DEFAULT_OPTS='-i --height 50% --border --inline-info '
 
-#    FZF + TMUX    #
+# `fzf` + `tmux` aliases
 alias fr='fzf-tmux -r 60'
 alias fl='fzf-tmux -l 60'
 
-# ---------------- #
-# GIT + FZF PLUGIN #
+# Setup `git` + `fzf` plugin
 # Taken and modified from:
 # https://junegunn.kr/2016/07/fzf-git
 # https://gist.github.com/junegunn/8b572b8d4b5eddd8b85e5f4d40f17236
-# ---------------- #
 
 is_in_git_repo() {
   git rev-parse HEAD > /dev/null 2>&1
 }
 
-# FILES #
+# Search repo files
 fzf_gf() {
   is_in_git_repo || return
   git -c color.status=always status --short |
@@ -146,7 +104,7 @@ fzf_gf() {
   cut -c4- | sed 's/.* -> //'
 }
 
-# BRANCHES #
+# Search branches
 fzf_go() {
   is_in_git_repo || return
   git branch -a --color=always | grep -v '/HEAD\s' | sort |
@@ -156,7 +114,7 @@ fzf_go() {
   sed 's#^remotes/##'
 }
 
-# TAGS #
+# Search tags
 fzf_gt() {
   is_in_git_repo || return
   git tag --sort -version:refname |
@@ -164,7 +122,7 @@ fzf_gt() {
     --preview 'git show --color=always {} | head -'$LINES
 }
 
-# COMMIT HASHES #
+# Search commit hashes
 fzf_gh() {
   is_in_git_repo || return
   git log --date=short --format="%C(green)%C(bold)%cd %C(auto)%h%d %s (%an)" --graph --color=always |
@@ -174,7 +132,7 @@ fzf_gh() {
   grep -o "[a-f0-9]\{7,\}"
 }
 
-# REMOTES #
+# Search remotes
 fzf_gr() {
   is_in_git_repo || return
   git remote -v | awk '{print $1 "\t" $2}' | uniq |
@@ -183,8 +141,7 @@ fzf_gr() {
   cut -d$'\t' -f1
 }
 
-# GIT FZF KEY BINDINGS
-# --------------------
+# Setup `git` + `fzf` key bindings
 
 join-lines() {
   local item
@@ -206,14 +163,10 @@ bind-git-helper f o t r h
 unset -f bind-git-helper
 
 
-#  SUDOER ALIAS  #
-# -------------- #
-
+# Sudoer alias
 alias sudoer='export ITERM_PROFILE=rusito23-zshrc ;sudo -s /bin/zsh'
 
-# EDITION #
-# ------- #
-
+# Edition aliases
 alias mdedit='open -a MacDown'
 alias vi='nvim'
 alias vim='nvim'
@@ -221,9 +174,6 @@ alias nvim_rmswap='rm ~/.local/share/nvim/swap/*.swp'
 alias cat='bat'
 alias diff='nvim -d '
 alias imcat='shellpic --shell24'
-
-# NETWORK #
-# ------- #
 
 # IP Lookup
 # Parameter:
@@ -243,10 +193,7 @@ myip() {
     fi
 }
 
-# AUTOSUGGESTIONS  #
-# ---------------- #
-
-# cycle through auto suggestions with up/down
+# Cycle through auto suggestions with up/down
 
 if [[ "${terminfo[kcuu1]}" != "" ]]; then
     autoload -U up-line-or-beginning-search
@@ -261,8 +208,7 @@ if [[ "${terminfo[kcud1]}" != "" ]]; then
 fi
 
 
-# GIT PLUGIN EXTENSION #
-# -------------------- #
+# `git` plugin custom extensions
 
 github() { git clone https://github.com/$1.git $2 ;}
 bitbucket() { git clone https://bitbucket.org/$1.git $2 ;}
@@ -282,15 +228,15 @@ gaco() {
     git checkout $2
 }
 
-# get current branch name
+# Current branch name alias
 unalias gcb
 alias gcb='git_current_branch'
 
-# diff and mergetools
+# Diff and merge tools aliases
 alias gdt='git difftool'
 alias gmt='git mergetool'
 
-# don't git push force, git push force with lease!
+# Use lease when force-pushing
 ggpf () {
     if [[ "$#" != 0 ]] && [[ "$#" != 1 ]]
     then
@@ -301,23 +247,22 @@ ggpf () {
     fi
 }
 
-# CHECKOUT FEATURE - FIX
-#  usage: gcofeat ticket_number description
-
+# Checkout a feature branch
 gcofeat() {
-    branch=${2/\//_} # remove / from the description
+    branch=${2/\//_} # remove / from the description
     branch=${branch// /_} # replace spaces with _
     git checkout -b "$1/feature/${branch}"
 }
 
+# Checkout a bugfix branch
 gcofix() {
-    branch=${2/\//_} # remove / from the description
+    branch=${2/\//_} # remove / from the description
     branch=${branch// /_} # replace spaces with _
     git checkout -b "$1/bugfix/${branch}"
 }
 
-# remove upstream push alias (it's f* dangerous)
-# create a function that pulls from upstream instead
+# Remove upstream push alias (it's f* dangerous)
+# and create a function that pulls from upstream instead
 unalias gpu
 glu () {
     if [[ "$#" != 0 ]] && [[ "$#" != 1 ]]
@@ -329,8 +274,7 @@ glu () {
     fi
 }
 
-# gitignore.io
-
+# Setup `gitignore.io`
 function gi() { curl -sL https://www.gitignore.io/api/$@ ;}
 _gitignoreio_get_command_list() {
   curl -sL https://www.gitignore.io/api/list | tr "," "\n"
@@ -341,31 +285,24 @@ _gitignoreio () {
 }
 compdef _gitignoreio gi
 
-#        GO        #
-# ---------------- #
-
-# GO VERSION MANAGER
+# Go Version Manager configuration
 (( ${+aliases[g]} )) && unalias g
 export GOPATH="$HOME/go";
 export GOROOT="$HOME/.go";
 export PATH="$GOPATH/bin:$PATH";
-
-
-#      PYTHON      #
-# ---------------- #
 
 # Setup virtualenv home
 export VIRTUALENVWRAPPER_PYTHON=$HOME/.pyenv/shims/python
 export WORKON_HOME=$HOME/.virtualenvs
 export PYENV_VIRTUALENVWRAPPER_PREFER_PYVENV="true"
 
-# virtualenvwrapper aliases
+# `virtualenvwrapper` aliases
 alias vew='virtualenvwrapper'
 alias mkve='mkvirtualenv'
 alias rmve='rmvirtualenv'
 alias lve='lsvirtualenv'
 
-# ipython
+# ipython alias
 alias py='ipython'
 
 # jupyter aliases
@@ -380,3 +317,6 @@ fi
 
 # FUCK!
 eval $(thefuck --alias)
+
+# Eval ssh-agent if needed
+[ -z "$SSH_AUTH_SOCK" ] && eval "$(ssh-agent -s)"
