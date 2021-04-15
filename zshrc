@@ -44,7 +44,6 @@ ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=23'
 ZSH_TMUX_AUTOSTART=true
 ZSH_TMUX_AUTOCONNECT=false
 
-
 # Show welcome message
 [[ -o login ]] && echo "ПРИВЕТ СУКА БЛЯТЬ"
 
