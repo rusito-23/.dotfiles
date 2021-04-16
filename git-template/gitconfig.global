@@ -6,6 +6,7 @@
     excludesfile = ~/.dotfiles/git-template/gitignore.global
 
 [init]
+    defaultBranch = main
     templateDir = ~/.dotfiles/git-template
 
 [commit]

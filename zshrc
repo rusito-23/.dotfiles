@@ -8,6 +8,7 @@ ZSH_DISABLE_COMPFIX="true"
 export PATH=$HOME/.local/bin:$PATH
 export PATH=$HOME/bin:$PATH
 export PATH=$HOME/.dotfiles/bin:$PATH
+export PATH=/usr/local/bin:$PATH
 
 # Set zsh theme
 ZSH_THEME="powerlevel10k/powerlevel10k"

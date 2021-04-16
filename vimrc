@@ -92,6 +92,7 @@ autocmd FileType json exec 'set tabstop=8 softtabstop=0 expandtab shiftwidth=2 s
 
 " special tabs
 autocmd FileType yaml exec 'set shiftwidth=2'
+autocmd FileType toml exec 'set shiftwidth=2'
 
 " indent 
 filetype on
