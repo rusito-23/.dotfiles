@@ -13,6 +13,10 @@ export PATH=/usr/local/bin:$PATH
 # Set zsh theme
 ZSH_THEME="powerlevel10k/powerlevel10k"
 
+# Pre plugin configuration
+ZSH_TMUX_AUTOSTART=true
+ZSH_TMUX_AUTOCONNECT=false
+
 # Setup plugins
 plugins=(
     sudo
@@ -41,8 +45,6 @@ source $ZSH/oh-my-zsh.sh
 
 # Custom plugins configuration
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=23'
-ZSH_TMUX_AUTOSTART=true
-ZSH_TMUX_AUTOCONNECT=false
 
 # Show welcome message
 [[ -o login ]] && echo "ПРИВЕТ СУКА БЛЯТЬ"

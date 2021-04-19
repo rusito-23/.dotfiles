@@ -67,6 +67,9 @@ command! W :w
 nnoremap j gj
 nnoremap k gk
 
+" save shortcut
+nnoremap <leader>s :update<CR>
+
 " highlight current line
 set cursorline
 
