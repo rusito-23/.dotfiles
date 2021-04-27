@@ -320,3 +320,13 @@ fi
 
 # FUCK!
 eval $(thefuck --alias)
+
+# Docker Helpers
+
+# Purge the entire docker stuff
+function docker_purge() {
+    docker rm -f $(docker ps -aq)
+    docker rmi -f $(docker images -aq)
+    docker volume rm $(docker volume ls -q)
+    docker system prune
+}
