@@ -169,7 +169,7 @@ unset -f bind-git-helper
 # Sudoer alias
 alias sudoer='export ITERM_PROFILE=rusito23-zshrc ;sudo -s /bin/zsh'
 
-# Edition aliases
+# Edition & QuickLook aliases
 alias mdedit='open -a MacDown'
 alias vi='nvim'
 alias vim='nvim'
@@ -177,6 +177,7 @@ alias nvim_rmswap='rm ~/.local/share/nvim/swap/*.swp'
 alias cat='bat'
 alias diff='nvim -d '
 alias imcat='shellpic --shell24'
+alias ql='qlmanage -p 2> /dev/null'
 
 # IP Lookup
 # Parameter:
