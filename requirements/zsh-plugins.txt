@@ -1,3 +1,3 @@
 zsh-users/zsh-autosuggestions.git zsh-autosuggestions
 zdharma/fast-syntax-highlighting.git fast-syntax-highlighting
-calc/calc.plugin.zsh.git calc
+arzzen/calc.plugin.zsh.git calc
