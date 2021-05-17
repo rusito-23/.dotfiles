@@ -12,8 +12,8 @@ white='\033[0;37m'
 
 # Define helpful variables
 OH_MY_ZSH_DIR=$HOME/.oh-my-zsh
-PLUGIN_DIR=$OH_MY_ZSH_DIR/plugins
-THEMES_DIR=$OH_MY_ZSH_DIR/themes
+PLUGIN_DIR=$OH_MY_ZSH_DIR/custom/plugins
+THEMES_DIR=$OH_MY_ZSH_DIR/custom/themes
 GH_URL=https://github.com
 
 # Log utils

@@ -13,10 +13,6 @@ export PATH=/usr/local/bin:$PATH
 # Set zsh theme
 ZSH_THEME="powerlevel10k/powerlevel10k"
 
-# Pre plugin configuration
-ZSH_TMUX_AUTOSTART=true
-ZSH_TMUX_AUTOCONNECT=false
-
 # Setup plugins
 plugins=(
     sudo
@@ -39,6 +35,10 @@ export LESS=-FRX
 
 # Load powerlevel configuration
 source $HOME/.dotfiles/powerlevelrc
+
+# Zsh Plugin configuration
+ZSH_TMUX_AUTOSTART=true
+ZSH_TMUX_AUTOCONNECT=false
 
 # Load oh my zsh
 source $ZSH/oh-my-zsh.sh
