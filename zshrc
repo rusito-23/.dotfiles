@@ -217,7 +217,7 @@ fi
 github() { git clone https://github.com/$1.git $2 ;}
 bitbucket() { git clone https://bitbucket.org/$1.git $2 ;}
 
-# add remote, fetch and checkout branch in a single command
+# Add remote, fetch and checkout branch in a single command
 # Parameters:
 #   - remote
 #   - branch name
@@ -251,14 +251,14 @@ ggpf () {
     fi
 }
 
-# Checkout a feature branch
+# Create a feature branch
 gcofeat() {
     branch=${2/\//_} # remove / from the description
     branch=${branch// /_} # replace spaces with _
     git checkout -b "$1/feature/${branch}"
 }
 
-# Checkout a bugfix branch
+# Create a bugfix branch
 gcofix() {
     branch=${2/\//_} # remove / from the description
     branch=${branch// /_} # replace spaces with _
@@ -288,6 +288,13 @@ _gitignoreio () {
   compadd -S '' `_gitignoreio_get_command_list`
 }
 compdef _gitignoreio gi
+
+# Checkout a GH PR
+# Assuming that `upstream` contains the original repo remote
+function gcopr() {
+    git fetch upstream pull/$1/head:pr-$1 && \
+    git checkout pr-$1
+}
 
 # Go Version Manager configuration
 (( ${+aliases[g]} )) && unalias g
