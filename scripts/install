@@ -99,7 +99,7 @@ log_info ">>> ZSH: Install Oh-my-zsh plugins <<<"
 while read plugin; do
   gh_path=$(echo $plugin | cut -d ' ' -f 1)
   dst_path=$(echo $plugin | cut -d ' ' -f 2)
-  git clone --depth=1 $GH_URL/$gh_path $THEMES_DIR/$dst_path
+  git clone --depth=1 $GH_URL/$gh_path $PLUGIN_DIR/$dst_path
 done <~/.dotfiles/requirements/zsh-plugins.txt
 
 # Install PowerLevel10K
