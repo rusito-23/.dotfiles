@@ -1,4 +1,16 @@
 #/bin/sh
+# Dotfiles Install Script
+# Parameters:
+# - none: installs everything
+# - brew: installs some brew dependencies
+# - nvim: setup `dein` and ini file
+# - tmux: setup tmuxrc file
+# - vifm: setup vifmrc file
+# - git: setup git default config
+# - ohmyzsh: install oh-my-zsh
+# - plugins: install oh my zsh req plugins
+# - powerlevel: install powerlevel 10k theme
+# - zsh: setup zsh as default shell
 
 # Color definitions
 black='\033[0;30m'
@@ -26,92 +38,115 @@ function safe_ln() {
     ln -s $1 $2
 }
 
+#   CHECK PARAMS  #
+# --------------- #
+[ $# -eq 0 ] && log_info ">>> No arguments supplied: Performing full instalation <<<"
+
 #       BREW      #
 # --------------- #
 
 # Install dependencies
-log_info ">>> BREW: Install dependencies <<<"
-brew update
-while read p; do
-  brew install "$p"
-done <~/.dotfiles/requirements/brew-requirements.txt
+if [[ "$*" == *BREW* ]] || [[ $# -eq 0 ]]; then
+    log_info ">>> BREW: Install dependencies <<<"
+    brew update
+    while read p; do
+      brew install "$p"
+    done <~/.dotfiles/requirements/brew-requirements.txt
+fi
 
 #       NVIM      #
 # --------------- #
 
-# Install `dein`
-log_info ">>> NVIM: Install dein <<<"
+if [[ "$*" == *NVIM* ]] || [[ $# -eq 0 ]]; then
 
-curl https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh \
-    > dein_installer.sh \
-    2> /dev/null
+    # Install `dein`
+    log_info ">>> NVIM: Install dein <<<"
+    curl https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh \
+        > dein_installer.sh \
+        2> /dev/null
+    sh ./dein_installer.sh ~/.dotfiles/dein > /dev/null
+    rm dein_installer.sh
 
-sh ./dein_installer.sh ~/.dotfiles/dein > /dev/null
-rm dein_installer.sh
+    # Setup ini file
+    log_info ">>> NVIM: Setup rc file <<<"
+    mkdir -p ~/.config/nvim
+    mv ~/.config/nvim/init.vim ~/.config/nvim/init.vim.old &> /dev/null
+    echo "source ~/.dotfiles/vimrc"  > ~/.config/nvim/init.vim
 
-# Setup ini file
-log_info ">>> NVIM: Setup rc file <<<"
-mkdir -p ~/.config/nvim
-mv ~/.config/nvim/init.vim ~/.config/nvim/init.vim.old &> /dev/null
-echo "source ~/.dotfiles/vimrc"  > ~/.config/nvim/init.vim
-
-# Prompt success
-log_success ">>> NVIM: Setup success <<<"
-log_info "Remember to run dein#install() when running vim for the first time"
+    # Prompt success
+    log_success ">>> NVIM: Setup success <<<"
+    log_info "Remember to run dein#install() when running vim for the first time"
+fi
 
 #       TMUX      #
 # --------------- #
 
-# Link config file
-safe_ln ~/.dotfiles/tmux.conf ~/.tmux.conf
-log_success ">>> TMUX: Setup success <<<"
+if [[ "$*" == *TMUX* ]] || [[ $# -eq 0 ]]; then
+    # Link config file
+    safe_ln ~/.dotfiles/tmux.conf ~/.tmux.conf
+    log_success ">>> TMUX: Setup success <<<"
+fi
 
 #       VIFM      #
 # --------------- #
 
-# Create dirs
-mkdir -p ~/.config/vifm
-mkdir -p ~/.config/vifm/colors
+if [[ "$*" == *VIFM* ]] || [[ $# -eq 0 ]]; then
 
-# Setup config file
-echo "source ~/.dotfiles/vifmrc.vim"  > ~/.config/vifm/vifmrc
-cp ~/..dotfiles/zenburn.vifm ~/.config/vifm/colors/zenburn.vifm
+    # Create dirs
+    mkdir -p ~/.config/vifm
+    mkdir -p ~/.config/vifm/colors
 
-# Success prompt
-log_success ">>> VIFM: Setup success <<<"
+    # Setup config file
+    echo "source ~/.dotfiles/vifmrc.vim"  > ~/.config/vifm/vifmrc
+    cp ~/..dotfiles/zenburn.vifm ~/.config/vifm/colors/zenburn.vifm
+
+    # Success prompt
+    log_success ">>> VIFM: Setup success <<<"
+fi
 
 #       GIT       #
 # --------------- #
 
-# Link config file
-safe_ln ~/.dotfiles/git-template/gitconfig.global ~/.gitconfig
+
+if [[ "$*" == *GIT* ]] || [[ $# -eq 0 ]]; then
+    # Link config file
+    safe_ln ~/.dotfiles/git-template/gitconfig.global ~/.gitconfig
+fi
 
 #       ZSH       #
 # --------------- #
 
-# Install Oh My Zsh
-log_info ">>> ZSH: Install Oh-my-zsh <<<"
-wget $GH_URL/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | zsh
-safe_ln ~/.dotfiles/zshrc ~/.zshrc
 
-# Install extra plugins
-log_info ">>> ZSH: Install Oh-my-zsh plugins <<<"
-while read plugin; do
-  gh_path=$(echo $plugin | cut -d ' ' -f 1)
-  dst_path=$(echo $plugin | cut -d ' ' -f 2)
-  git clone --depth=1 $GH_URL/$gh_path $PLUGIN_DIR/$dst_path
-done <~/.dotfiles/requirements/zsh-plugins.txt
+if [[ "$*" == *OHMYZSH* ]] || [[ $# -eq 0 ]]; then
+    # Install Oh My Zsh
+    log_info ">>> ZSH: Install Oh-my-zsh <<<"
+    wget $GH_URL/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | zsh
+    safe_ln ~/.dotfiles/zshrc ~/.zshrc
+fi
 
-# Install PowerLevel10K
-log_info ">>> ZSH: Install Oh-my-zsh PowerLevel10K <<<"
-git clone --depth=1 \
-    $GH_URL/romkatv/powerlevel10k.git \
-    $THEMES_DIR/powerlevel10k
+if [[ "$*" == *PLUGINS* ]] || [[ $# -eq 0 ]]; then
+    # Install extra plugins
+    log_info ">>> ZSH: Install Oh-my-zsh plugins <<<"
+    while read plugin; do
+      gh_path=$(echo $plugin | cut -d ' ' -f 1)
+      dst_path=$(echo $plugin | cut -d ' ' -f 2)
+      git clone --depth=1 $GH_URL/$gh_path $PLUGIN_DIR/$dst_path
+    done <~/.dotfiles/requirements/zsh-plugins.txt
+fi
 
-# Set Zsh as default shell
-log_info ">>> ZSH: Setup default shell <<<"
-chsh -s $(which zsh)
+if [[ "$*" == *POWERLEVEL* ]] || [[ $# -eq 0 ]]; then
+    # Install PowerLevel10K
+    log_info ">>> ZSH: Install Oh-my-zsh PowerLevel10K <<<"
+    git clone --depth=1 \
+        $GH_URL/romkatv/powerlevel10k.git \
+        $THEMES_DIR/powerlevel10k
+fi
+
+if [[ "$*" == *ZSH* ]] || [[ $# -eq 0 ]]; then
+    # Set Zsh as default shell
+    log_info ">>> ZSH: Setup default shell <<<"
+    chsh -s $(which zsh)
+fi
 
 # Success prompt!
 log_success ">>> ZSH: Setup success <<<"
-
