@@ -2,15 +2,15 @@
 # Dotfiles Install Script
 # Parameters:
 # - none: installs everything
-# - brew: installs some brew dependencies
-# - nvim: setup `dein` and ini file
-# - tmux: setup tmuxrc file
-# - vifm: setup vifmrc file
-# - git: setup git default config
-# - ohmyzsh: install oh-my-zsh
-# - plugins: install oh my zsh req plugins
-# - powerlevel: install powerlevel 10k theme
-# - zsh: setup zsh as default shell
+# - BREW: installs some brew dependencies
+# - NVIM: setup `dein` and ini file
+# - TMUX: setup tmuxrc file
+# - VIFM: setup vifmrc file
+# - GIT: setup git default config
+# - OHMYZSH: install oh-my-zsh
+# - PLUGINS: install oh my zsh req plugins
+# - POWERLEVEL: install powerlevel 10k theme
+# - ZSH: setup zsh as default shell
 
 # Color definitions
 black='\033[0;30m'

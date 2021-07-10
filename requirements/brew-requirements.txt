@@ -15,3 +15,4 @@ w3m
 trash
 pyenv
 pyenv-virtualenv
+thefuck
