@@ -1,0 +1,185 @@
+# Espansorc
+# General `espanso` config & utils
+#
+# Taken and modified from: https://github.com/Lissy93/espanso-config
+# Licensed under MIT X11, © Alicia Sykes 2021: https://aliciasykes.com
+
+name: espansorc
+package_author: 
+- Igor Andruskiewitsch <iandruskiewitsch23@gmail.com>
+- Alicia Sykes <alicia@omg.lol>
+parent: default
+matches:
+
+# Outputs public IP address
+- trigger: ":ip"
+  replace: "{{output}}"
+  vars:
+    - name: output
+      type: shell
+      params:
+        cmd: "curl 'https://api.ipify.org'"
+
+# Auto close brackets, quotes and formatting modifiers, and put cursor in center
+- trigger: ':('
+  replace: '($|$)'
+- trigger: ':['
+  replace: '[$|$]'
+- trigger: ':{'
+  replace: '{$|$}'
+- trigger: ':<'
+  replace: '<$|$>'
+- trigger: ':`'
+  replace: '`$|$`'
+- trigger: ":\'"
+  replace: "\'$|$\'"
+- trigger: ':"'
+  replace: '"$|$"'
+- trigger: ':_'
+  replace: '_$|$_'
+- trigger: ':*'
+  replace: '*$|$*'
+- trigger: ':-'
+  replace: '-$|$-'
+
+# Inserts a markdown code block
+- trigger: :md-code
+  replace: "```\n$|$\n```"
+
+# Inserts markdown collapsable section
+- trigger: :md-details
+  replace: "\n<details>\n\t<summary>$|$</summary>\n\t<p></p>\n</details>"
+
+# Outputs markdown link, with clipboard contents as the URL
+- trigger: ":md-link"
+  replace: "[$|$]({{clipboard}})"
+  vars:
+  - name: "clipboard"
+    type: "clipboard"
+
+# Outputs todays date (dd/mm/yy)
+- trigger: :date
+  replace: "{{date}}"
+  vars:
+  - name: date
+    type: date
+    params:
+      format: "%d/%m/%y"
+
+# Outputs the current time (24hr)
+- trigger: :time
+  replace: "{{time}}"
+  vars:
+  - name: time
+    type: date
+    params:
+      format: "%H:%M"
+
+# Outputs the month and year (e.g. January 2020)
+- trigger: :month
+  replace: "{{date}}"
+  vars:
+  - name: date
+    type: date
+    params:
+      format: "%B %Y"
+
+# Easily inputs ASCII emojis from a dropdown
+- trigger: :lenny
+  form: "{{smileys}}"
+  form_fields:
+    smileys:
+      type: choice
+      values:
+      - '¯\\_(ツ)_/¯'
+      - '(╯°□°）╯︵ ┻━┻'
+      - '( ͡ಠ ʖ̯ ͡ಠ)'
+      - '☉ ‿ ⚆'
+      - 'ʕ•ᴥ•ʔ'
+      - '⋆｡˚ ☁︎ ˚｡⋆｡˚☽˚｡⋆'
+      - '◤◢◣◥◤◢◣◥'
+      - '(づᵔ◡ᵔ)づ'
+      - '|ᵔ‿ᵔ|'
+      - '⤜(*﹏*)⤏'
+      - 'ツ'
+
+# Personal email notes
+- trigger: :kr
+  replace: "Kind Regards,\nIgor\n"
+
+# Fetches a funny commit message from whatthecommit.com
+- trigger: :wtc
+  replace: "{{output}}"
+  vars:
+  - name: output
+    type: shell
+    params: {cmd: "curl -s whatthecommit.com/index.txt"}
+
+# Quick search, formulates the URL params for searching a given website
+- triggers: [:s-ddg, :search-duckduckgo]
+  replace: 'https://duckduckgo.com/?q='
+- triggers: [:s-wiki, :search-wikipedia]
+  replace: 'https://en.wikipedia.org/w/?search='
+- triggers: [:s-gh, :search-github]
+  replace: 'https://github.com/search?q='
+- triggers: [:s-so, :search-stackoverflow]
+  replace: 'https://stackoverflow.com/search?q='
+- triggers: [:s-dh, :search-dockerhub]
+  replace: 'https://hub.docker.com/search?q='
+- triggers: [:s-wa, :search-wolframalpha]
+  replace: 'https://www.wolframalpha.com/input/?i='
+- triggers: [:s-red, :search-reddit]
+  replace: 'https://www.reddit.com/search/?q='
+- triggers: [:s-bbc, :search-bbc]
+  replace: 'https://www.bbc.co.uk/search?q='
+- triggers: [:s-vt, :search-virustotal]
+  replace: 'https://www.virustotal.com/gui/search/'
+- triggers: [:s-amz, :search-amazon]
+  replace: 'https://amazon.co.uk/s?k='
+- triggers: [:s-yt, :search-youtube]
+  replace: 'https://youtube.com/results?q='
+- triggers: [:s-maps, :search-maps]
+  replace: 'https://www.google.com/maps/search/'
+- triggers: [:s-goo, :search-google]
+  replace: 'https://google.com/search?q='
+
+# Similar to above, but it uses the clipboard for the search query
+- trigger: ":sc-ddg"
+  replace: "https://duckduckgo.com/?q={{clipboard}}"
+  vars: [{ name: "clipboard", type: "clipboard"}]
+- trigger: ":sc-wiki"
+  replace: "https://en.wikipedia.org/w/?search='{{clipboard}}"
+  vars: [{ name: "clipboard", type: "clipboard"}]
+- trigger: ":sc-gh"
+  replace: "https://github.com/search?q={{clipboard}}"
+  vars: [{ name: "clipboard", type: "clipboard"}]
+- trigger: ":sc-so"
+  replace: "https://stackoverflow.com/search?q={{clipboard}}"
+  vars: [{ name: "clipboard", type: "clipboard"}]
+- trigger: ":sc-dh"
+  replace: "https://hub.docker.com/search?q={{clipboard}}"
+  vars: [{ name: "clipboard", type: "clipboard"}]
+- trigger: ":sc-wa"
+  replace: "https://www.wolframalpha.com/input/?i={{clipboard}}"
+  vars: [{ name: "clipboard", type: "clipboard"}]
+- trigger: ":sc-red"
+  replace: "https://www.reddit.com/search/?q={{clipboard}}"
+  vars: [{ name: "clipboard", type: "clipboard"}]
+- trigger: ":sc-bbc"
+  replace: "https://www.bbc.co.uk/search?q={{clipboard}}"
+  vars: [{ name: "clipboard", type: "clipboard"}]
+- trigger: ":sc-vt"
+  replace: "https://www.virustotal.com/gui/search/{{clipboard}}"
+  vars: [{ name: "clipboard", type: "clipboard"}]
+- trigger: ":sc-amz"
+  replace: "https://amazon.co.uk/s?k={{clipboard}}"
+  vars: [{ name: "clipboard", type: "clipboard"}]
+- trigger: ":sc-yt"
+  replace: "https://youtube.com/results?q={{clipboard}}"
+  vars: [{ name: "clipboard", type: "clipboard"}]
+- trigger: ":sc-maps"
+  replace: "https://www.google.com/maps/search/{{clipboard}}"
+  vars: [{ name: "clipboard", type: "clipboard"}]
+- trigger: ":sc-goo"
+  replace: "https://google.com/search?q={{clipboard}}"
+  vars: [{ name: "clipboard", type: "clipboard"}]
