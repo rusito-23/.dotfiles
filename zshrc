@@ -301,6 +301,7 @@ function gcopr() {
 export GOPATH="$HOME/go";
 export GOROOT="$HOME/.go";
 export PATH="$GOPATH/bin:$PATH";
+[[ -s "$HOME/.gvm/scripts/gvm" ]] && source "$HOME/.gvm/scripts/gvm"
 
 # Setup virtualenv home
 export VIRTUALENVWRAPPER_PYTHON=$HOME/.pyenv/shims/python
@@ -341,3 +342,4 @@ function docker_purge() {
     docker volume rm $(docker volume ls -q)
     docker system prune
 }
+
