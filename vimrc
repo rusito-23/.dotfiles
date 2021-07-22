@@ -63,7 +63,7 @@ endif
 " prevent :W typo
 command! W :w
 
-" nav by display lines
+" navigate by display lines
 nnoremap j gj
 nnoremap k gk
 
@@ -125,12 +125,21 @@ set list
 set showbreak=↪\
 set listchars=tab:→\ ,space:·,nbsp:␣,trail:•,eol:↲,precedes:«,extends:»
 
+" configure spell check
+set spell spelllang=en_us
+set spellfile=~/.dotfiles/spellcheck.utf-8.add
+hi clear SpellBad
+hi clear SpellCap
+hi clear SpellLocal
+hi SpellBad cterm=underline ctermfg=red
+hi SpellCap cterm=underline ctermfg=yellow
+hi SpellLocal cterm=underline ctermfg=yellow
 
 """"""""""""""""""""""""""""""
-" exec macro q with space
+" exec macro Q with space
 nnoremap <Space> @q
 
-" don't drop the macro exeq
+" don't drop the macro exec
 xnoremap @ :<C-u>call ExecuteMacroOverVisualRange()<CR>
 function! ExecuteMacroOverVisualRange()
   echo "@".getcmdline()
@@ -143,12 +152,12 @@ endfunction
 nnoremap <leader>cab :w <bar> %bd <bar> e# <bar> bd# <CR><CR>
 
 """"""""""""""""""""""""""""""
-" colorscheme
+" color scheme
 colorscheme dogrun
 
 
 """""""""""""""""""""""""""""""
-" NERDTree
+" NERD Tree
 " open nerdtree when opening vim without file
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
@@ -201,7 +210,7 @@ nnoremap <M-,> :sp<return><esc>
 
 
 """"""""""""""""""""""""""""""
-" CtrlP
+" Ctr P
 let g:ctrlp_show_hidden = 1
 
 
@@ -246,14 +255,14 @@ nnoremap <leader>c :Commands<CR>
 """"""""""""""""""""""""""""""
 " kite
 let g:kite_tab_complete=1
-set completeopt+=menuone   " show the popup menu even when there is only 1 match
+set completeopt+=menuone   " show the pop up menu even when there is only 1 match
 set completeopt+=noinsert  " don't insert any text until user chooses a match
 set completeopt-=longest   " don't insert the longest common text
 set completeopt+=preview
 autocmd CompleteDone * if !pumvisible() | pclose | endif
-set belloff+=ctrlg  " if vim beeps during completion
+set belloff+=ctrlg  " if Vim beeps during completion
 
 
 """"""""""""""""""""""""""""""
 " float-preview
-set completeopt-=preview   " prevent nvim from showing docs in vsplit
+set completeopt-=preview   " prevent nvim from showing docs in V split
