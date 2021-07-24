@@ -89,13 +89,16 @@ let g:mapleader = ","
 set number relativenumber
 set nu rnu
 
-" tabs 
+" use 4 spaces for tabs as default
 set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
-autocmd FileType json exec 'set tabstop=8 softtabstop=0 expandtab shiftwidth=2 smarttab'
 
-" special tabs
+" go files should not use spaces
+autocmd FileType go exec 'set noexpandtab shiftwidth=8'
+
+" json, yaml and toml files should use 2 spaces
 autocmd FileType yaml exec 'set shiftwidth=2'
 autocmd FileType toml exec 'set shiftwidth=2'
+autocmd FileType json exec 'set shiftwidth=2'
 
 " indent 
 filetype on
