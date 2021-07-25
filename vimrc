@@ -16,7 +16,7 @@ if dein#load_state('~/.dotfiles/dein')
   call dein#add('christoomey/vim-tmux-navigator')
   call dein#add('kien/ctrlp.vim')
   call dein#add('kshenoy/vim-signature')
-  call dein#add('junegunn/fzf', { 'build': './install --all', 'merged': 0 }) 
+  call dein#add('junegunn/fzf', { 'build': './install --all', 'merged': 0 })
   call dein#add('junegunn/fzf.vim', { 'depends': 'fzf' })
   call dein#add('junegunn/vim-peekaboo')
   call dein#add('severin-lemaignan/vim-minimap')
@@ -51,7 +51,7 @@ if dein#load_state('~/.dotfiles/dein')
 
   " git diff & merge
   call dein#add('tpope/vim-fugitive')
-  
+
   call dein#end()
   call dein#save_state()
 endif
@@ -100,19 +100,19 @@ autocmd FileType yaml exec 'set shiftwidth=2'
 autocmd FileType toml exec 'set shiftwidth=2'
 autocmd FileType json exec 'set shiftwidth=2'
 
-" indent 
+" indent
 filetype on
 filetype plugin on
 filetype indent on
 set autoindent
 
-" enable mouse 
+" enable mouse
 set mouse=a
 
-" scroll offset 
+" scroll offset
 set scrolloff=3
 
-" syntax 
+" syntax
 syntax on
 
 " column wrapping
@@ -137,6 +137,15 @@ hi clear SpellLocal
 hi SpellBad cterm=underline ctermfg=red
 hi SpellCap cterm=underline ctermfg=yellow
 hi SpellLocal cterm=underline ctermfg=yellow
+
+" remove trailing whitespace on file saved
+function! RemoveTrailingWhitespaces()
+    let l:saved_position = winsaveview()
+    keeppatterns %s/\s\+$//e
+    call winrestview(l:saved_position)
+endfunction
+
+autocmd BufWritePre * call RemoveTrailingWhitespaces()
 
 """"""""""""""""""""""""""""""
 " exec macro Q with space
@@ -188,7 +197,7 @@ let g:airline#extensions#tabline#show_close_button = 0
 
 
 """"""""""""""""""""""""""""""
-" neoformat 
+" neoformat
 let g:neoformat_basic_format_align = 1
 let g:neoformat_basic_format_retab = 1
 let g:neoformat_basic_format_trim = 1
