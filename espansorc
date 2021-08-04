@@ -5,7 +5,7 @@
 # Licensed under MIT X11, © Alicia Sykes 2021: https://aliciasykes.com
 
 name: espansorc
-package_author: 
+package_author:
 - Igor Andruskiewitsch <iandruskiewitsch23@gmail.com>
 - Alicia Sykes <alicia@omg.lol>
 parent: default
@@ -49,6 +49,10 @@ matches:
 # Inserts markdown collapsable section
 - trigger: :md-details
   replace: "\n<details>\n\t<summary>$|$</summary>\n\t<p></p>\n</details>"
+
+# Inserts markdown summary section
+- trigger: :md-summary
+  replace: "<summary>$|$</summary>"
 
 # Outputs markdown link, with clipboard contents as the URL
 - trigger: ":md-link"
