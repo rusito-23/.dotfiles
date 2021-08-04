@@ -1,12 +1,13 @@
 #/bin/sh
 # Dotfiles Install Script
 # Parameters:
-# - none: installs everything
-# - BREW: installs some brew dependencies
-# - NVIM: setup `dein` and ini file
-# - TMUX: setup tmuxrc file
-# - VIFM: setup vifmrc file
-# - GIT: setup git default config
+# - none: install everything
+# - BREW: install some brew dependencies
+# - NVIM: set up `dein` and ini file
+# - TMUX: set up tmuxrc file
+# - VIFM: set up vifmrc file
+# - GIT: set up git default config
+# - HTOP: set up default htop file
 # - OHMYZSH: install oh-my-zsh
 # - PLUGINS: install oh my zsh req plugins
 # - POWERLEVEL: install powerlevel 10k theme
@@ -34,13 +35,13 @@ function log_success() { echo "${green}$@${white}"; }
 
 # Function to safely link files
 function safe_ln() {
-    mv $2 $2.old
+    mv $2 $2.bak.$(date +%s)"
     ln -s $1 $2
 }
 
 #   CHECK PARAMS  #
 # --------------- #
-[ $# -eq 0 ] && log_info ">>> No arguments supplied: Performing full instalation <<<"
+[[ $# -eq 0 ]] && log_info ">>> No arguments supplied: Performing full instalation <<<"
 
 #       BREW      #
 # --------------- #
@@ -111,6 +112,19 @@ fi
 if [[ "$*" == *GIT* ]] || [[ $# -eq 0 ]]; then
     # Link config file
     safe_ln ~/.dotfiles/git-template/gitconfig.global ~/.gitconfig
+    log_success ">>> GIT: Setup success <<<"
+fi
+
+#       HTOP      #
+# --------------- #
+
+if [[ "$*" == *HTOP* ]] || [[ $# -eq 0 ]]; then
+    # Create config dir
+    mkdir -p ~/.config/htop
+
+    # Link config file
+    safe_ln ~/.dotfiles/htoprc ~/.config/htop/htoprc
+    log_success ">>> HTOP: Setup success <<<"
 fi
 
 #       ZSH       #

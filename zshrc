@@ -178,6 +178,7 @@ alias cat='bat'
 alias diff='nvim -d '
 alias imcat='shellpic --shell24'
 alias ql='qlmanage -p 2> /dev/null'
+alias xargs='xargs -I%'
 
 # IP Lookup
 # Parameter:

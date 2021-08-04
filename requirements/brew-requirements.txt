@@ -16,3 +16,4 @@ trash
 pyenv
 pyenv-virtualenv
 thefuck
+fd
