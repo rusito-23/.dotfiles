@@ -12,6 +12,7 @@
 # - PLUGINS: install oh my zsh req plugins
 # - POWERLEVEL: install powerlevel 10k theme
 # - AMETHYST: install & set up amethyst tiling window manager
+# - ALACRITTY: install & set up the alacritty terminal emulator
 # - ZSH: setup zsh as default shell
 
 # Color definitions
@@ -163,6 +164,14 @@ if [[ "$*" == *AMETHYST* ]] || [[ $# -eq 0 ]]; then
     # Setup config file
     safe_ln ~/.dotfiles/amethyst.json ~/.amethyst
     log_success ">>> AMETHYST: Setup success <<<"
+fi
+
+if [[ "$*" == *ALACRITTY* ]] || [[ $# -eq 0 ]]; then
+    # Install alacritty
+    brew install alacritty
+    # Setup rc
+    safe_ln ~/.dotfiles/alacritty.yml ~/.alacritty.yml
+    log_success ">>> ALACRITTY: Setup success <<<"
 fi
 
 if [[ "$*" == *ZSH* ]] || [[ $# -eq 0 ]]; then

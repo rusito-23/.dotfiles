@@ -1,0 +1,65 @@
+# -- General configuration
+live_config_reload: true
+alt_send_esc: false
+
+# -- Environment configuration
+env:
+  TERM: xterm-256color
+  startup_mode: Windowed
+
+# -- Font configuration
+font:
+  size: 16.0
+  normal:
+    family: "Hack Nerd Font"
+  bold:
+    family: "Hack Nerd Font"
+    style: Bold
+  italic:
+    family: "Hack Nerd Font"
+    style: Italic
+
+# -- Mouse configuration
+mouse:
+  hide_when_typing: true
+  hints:
+    launcher: open
+
+# -- Selection configuration
+selection:
+  semantic_escape_chars: ",│`|:\"' ()[]{}<>"
+  save_to_clipboard: true
+
+# -- Cursor configuration
+cursor:
+  style: Block
+  unfocused_hollow: true
+
+# -- Custom Key bindings
+key_bindings:
+  - { key: N,         mods: Command,   action: SpawnNewInstance   }
+  - { key: Q,         mods: Command,   action: Quit               }
+  - { key: L,         mods: Command,   chars: "\x0C"              }
+  - { key: A,         mods: Command,   chars: "\x01"              }
+  - { key: B,         mods: Command,   chars: "\x02"              }
+  - { key: D,         mods: Command,   chars: "\x04"              }
+  - { key: F,         mods: Command,   chars: "\x06"              }
+  - { key: G,         mods: Command,   chars: "\x07"              }
+  - { key: H,         mods: Command,   chars: "\x08"              }
+  - { key: O,         mods: Command,   chars: "\x0F"              }
+  - { key: P,         mods: Command,   chars: "\x10"              }
+  - { key: R,         mods: Command,   chars: "\x12"              }
+  - { key: T,         mods: Command,   chars: "\x14"              }
+  - { key: Period,    mods: Alt,       chars: "\x1b."             }
+  - { key: Comma,     mods: Alt,       chars: "\x1b,"             }
+  - { key: L,         mods: Alt,       chars: "\x1bl"             }
+  - { key: K,         mods: Alt,       chars: "\x1bk"             }
+  - { key: J,         mods: Alt,       chars: "\x1bj"             }
+  - { key: H,         mods: Alt,       chars: "\x1bh"             }
+  - { key: C,         mods: Alt,       chars: "\x1bc"             }
+  - { key: N,         mods: Alt,       chars: "\x1bn"             }
+
+# -- Color config
+colors:
+  primary:
+    background: '0x414141'

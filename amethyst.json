@@ -2,5 +2,12 @@
   "floating": [
     "com.apple.systempreferences",
     "com.apple.Preview"
-  ]
+  ],
+  "screen-padding-top": 10,
+  "screen-padding-bottom": 10,
+  "screen-padding-left": 5,
+  "screen-padding-right": 5,
+  "window-margin-size": 10,
+  "window-resize-step": 1,
+  "window-margins": true
 }
