@@ -2,6 +2,13 @@
 live_config_reload: true
 alt_send_esc: false
 
+# -- Window configuration
+window:
+  decorations: buttonless
+  padding:
+    x: 5
+    y: 5
+
 # -- Environment configuration
 env:
   TERM: xterm-256color
@@ -37,27 +44,31 @@ cursor:
 
 # -- Custom Key bindings
 key_bindings:
-  - { key: N,         mods: Command,   action: SpawnNewInstance   }
-  - { key: Q,         mods: Command,   action: Quit               }
-  - { key: L,         mods: Command,   chars: "\x0C"              }
-  - { key: A,         mods: Command,   chars: "\x01"              }
-  - { key: B,         mods: Command,   chars: "\x02"              }
-  - { key: D,         mods: Command,   chars: "\x04"              }
-  - { key: F,         mods: Command,   chars: "\x06"              }
-  - { key: G,         mods: Command,   chars: "\x07"              }
-  - { key: H,         mods: Command,   chars: "\x08"              }
-  - { key: O,         mods: Command,   chars: "\x0F"              }
-  - { key: P,         mods: Command,   chars: "\x10"              }
-  - { key: R,         mods: Command,   chars: "\x12"              }
-  - { key: T,         mods: Command,   chars: "\x14"              }
-  - { key: Period,    mods: Alt,       chars: "\x1b."             }
-  - { key: Comma,     mods: Alt,       chars: "\x1b,"             }
-  - { key: L,         mods: Alt,       chars: "\x1bl"             }
-  - { key: K,         mods: Alt,       chars: "\x1bk"             }
-  - { key: J,         mods: Alt,       chars: "\x1bj"             }
-  - { key: H,         mods: Alt,       chars: "\x1bh"             }
-  - { key: C,         mods: Alt,       chars: "\x1bc"             }
-  - { key: N,         mods: Alt,       chars: "\x1bn"             }
+  - { key: N,         mods: Command,   action: SpawnNewInstance             }
+  - { key: Q,         mods: Command,   action: Quit                         }
+  - { key: L,         mods: Command,   chars: "\x0C"                        }
+  - { key: A,         mods: Command,   chars: "\x01"                        }
+  - { key: B,         mods: Command,   chars: "\x02"                        }
+  - { key: D,         mods: Command,   chars: "\x04"                        }
+  - { key: F,         mods: Command,   chars: "\x06"                        }
+  - { key: G,         mods: Command,   chars: "\x07"                        }
+  - { key: H,         mods: Command,   chars: "\x08"                        }
+  - { key: O,         mods: Command,   chars: "\x0F"                        }
+  - { key: P,         mods: Command,   chars: "\x10"                        }
+  - { key: R,         mods: Command,   chars: "\x12"                        }
+  - { key: T,         mods: Command,   chars: "\x14"                        }
+  - { key: Period,    mods: Alt,       chars: "\x1b."                       }
+  - { key: Comma,     mods: Alt,       chars: "\x1b,"                       }
+  - { key: L,         mods: Alt,       chars: "\x1bl"                       }
+  - { key: K,         mods: Alt,       chars: "\x1bk"                       }
+  - { key: J,         mods: Alt,       chars: "\x1bj"                       }
+  - { key: H,         mods: Alt,       chars: "\x1bh"                       }
+  - { key: C,         mods: Alt,       chars: "\x1bc"                       }
+  - { key: N,         mods: Alt,       chars: "\x1bn"                       }
+  - { key: Left,      mods: Alt,       chars: "\x1bb"                       }
+  - { key: Right,     mods: Alt,       chars: "\x1bf"                       }
+  - { key: Up,        mods: Alt,       chars: "\x1b[A"                      }
+  - { key: Down,      mods: Alt,       chars: "\x1b[B"                      }
 
 # -- Color config
 colors:
