@@ -44,7 +44,7 @@ ZSH_TMUX_AUTOCONNECT=false
 source $ZSH/oh-my-zsh.sh
 
 # Custom plugins configuration
-ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=23'
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=8'
 
 # Show welcome message
 [[ -o login ]] && echo "ПРИВЕТ СУКА БЛЯТЬ"

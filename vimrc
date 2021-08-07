@@ -278,3 +278,8 @@ set belloff+=ctrlg  " if Vim beeps during completion
 """"""""""""""""""""""""""""""
 " float-preview
 set completeopt-=preview   " prevent nvim from showing docs in V split
+
+""""""""""""""""""""""""""""""
+" templates
+command PyScript r ~/.dotfiles/templates/pyscript.py
+command ShScript r ~/.dotfiles/templates/shscript.sh
