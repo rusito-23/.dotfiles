@@ -177,7 +177,7 @@ alias nvim_rmswap='rm ~/.local/share/nvim/swap/*.swp'
 alias cat='bat'
 alias diff='nvim -d '
 alias imcat='shellpic --shell24'
-alias ql='qlmanage -p 2> /dev/null'
+alias ql='qlmanage -p > /dev/null 2> /dev/null'
 alias xargs='xargs -I%'
 
 # IP Lookup
@@ -214,9 +214,6 @@ fi
 
 
 # `git` plugin custom extensions
-
-github() { git clone https://github.com/$1.git $2 ;}
-bitbucket() { git clone https://bitbucket.org/$1.git $2 ;}
 
 # Add remote, fetch and checkout branch in a single command
 # Parameters:
@@ -281,13 +278,16 @@ glu () {
 
 # Setup `gitignore.io`
 function gi() { curl -sL https://www.gitignore.io/api/$@ ;}
-_gitignoreio_get_command_list() {
+
+function _gitignoreio_get_command_list() {
   curl -sL https://www.gitignore.io/api/list | tr "," "\n"
 }
-_gitignoreio () {
+
+function _gitignoreio () {
   compset -P '*,'
   compadd -S '' `_gitignoreio_get_command_list`
 }
+
 compdef _gitignoreio gi
 
 # Checkout a GH PR
@@ -343,3 +343,14 @@ function docker_purge() {
     docker system prune
 }
 
+# Setup `cheat`auto-complete
+function _cheat_get_list() {
+    ls ~/.dotfiles/cheatsheets | \
+        awk -F. '{print $1}' | \
+        tr '[:upper:]' '[:lower:]'
+}
+function _cheat() {
+    compset -P '*,'
+    compadd -S '' `_cheat_get_list`
+}
+compdef _cheat cheat

@@ -17,3 +17,4 @@ pyenv
 pyenv-virtualenv
 thefuck
 fd
+qlmarkdown
