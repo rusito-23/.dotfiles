@@ -10,5 +10,6 @@
   "screen-padding-right": 5,
   "window-margin-size": 10,
   "window-resize-step": 1,
-  "window-margins": true
+  "window-margins": true,
+  "display-current-layout": false
 }

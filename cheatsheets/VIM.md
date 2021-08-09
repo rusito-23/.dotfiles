@@ -1,32 +1,32 @@
 # Vim Cheat-sheet
 
-## Binding Shortcuts
+## Shortcuts
 
 | Mode | Shortcut | Description |
 | --- | --- | --- |
 | `N` | `f<char>` | Jump to next char |
 | `N` | `F<char>` | Jump to previous char |
-| `N` | `C-v` | Start visual block |
-| `V-B` | `C-A` | Auto-increment visual block |
-| `N` | `C-O` | Jump back to the previous location |
-| `N` | `C-I` | (same as Tab) to jump forward to the next location |
+| `N` | ⌃`v` | Start visual block |
+| `V-B` | ⌃`A` | Auto-increment visual block |
+| `N` | ⌃`O` | Jump back to the previous location |
+| `N` | ⌃`I` | (same as Tab) to jump forward to the next location |
 
-## `C` Shortcuts
-
-| Shortcut | Description |
-| --- | --- |
-| `<C-N>` | Toggle NerdTree |
-| `<C-T>` | Toggle TagBar |
-
-## `M` Shortcuts
+## ⌃ Shortcuts
 
 | Shortcut | Description |
 | --- | --- |
-| `<M-.>` | Create vertical split |
-| `<M-,>` | Create horizontal split |
-| `<M-(hjkl)>` | Move between splits |
+| ⌃`N` | Toggle NerdTree |
+| ⌃`T` | Toggle TagBar |
 
-## `<leader>` Shortcuts (_,_)
+## ⌥ Shortcuts
+
+| Shortcut | Description |
+| --- | --- |
+| ⌥`.` | Create vertical split |
+| ⌥`,` | Create horizontal split |
+| ⌥`(hjkl)` | Move between splits |
+
+## `<leader>` (`,`) Shortcuts
 
 | Shortcut | Description |
 | --- | --- |

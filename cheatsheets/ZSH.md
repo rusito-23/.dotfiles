@@ -4,22 +4,22 @@
 
 | Shortcut | Description |
 | --- | --- |
-| `C-A` | Jump to the beginning of the line |
-| `C-E` | Jump to the end of the line |
-| `C-U` | Clear line |
-| `C-R` | Search history |
+| ⌃`A` | Jump to the beginning of the line |
+| ⌃`E` | Jump to the end of the line |
+| ⌃`U` | Clear line |
+| ⌃`R` | Search history |
 
 ## `git` + `fzf` Shortcuts
 
 | Shortcut | Description |
 | --- | --- |
-| `C-G`/`C-H` | List commit hashes |
-| `C-G`/`C-O` | List branches |
-| `C-G`/`C-R` | List remotes |
-| `C-G`/`C-T` | List tags |
-| `C-G`/`C-F` | List files |
+| ⌃`G` - ⌃`H` | List commit hashes |
+| ⌃`G` - ⌃`O` | List branches |
+| ⌃`G` - ⌃`R` | List remotes |
+| ⌃`G` - ⌃`T` | List tags |
+| ⌃`G` - ⌃`F` | List files |
 
-## Previous commands manipulation
+## Command manipulation
 
 | Stuff | Description |
 | --- | --- |
