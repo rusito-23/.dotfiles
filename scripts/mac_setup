@@ -1,0 +1,53 @@
+#!/bin/sh
+# Set up macOS default preferences
+# Inspired by: https://gist.github.com/tylerwalts/9375263
+
+set -euo pipefail
+
+# Color definitions
+black='\033[0;30m'
+red='\033[0;31m'
+green='\033[0;32m'
+yellow='\033[0;33m'
+blue='\033[0;34m'
+purple='\033[0;35m'
+cyan='\033[0;36m'
+white='\033[0;37m'
+
+# Log utils
+function log_info() { echo "${cyan}$@${white}"; }
+function log_success() { echo "${green}$@${white}"; }
+
+# Finder: show file path
+defaults write com.apple.finder _FXShowPosixPathInTitle -bool YES
+
+# Finder: show status bar
+defaults write com.apple.finder ShowStatusBar -bool true
+
+# Automatically illuminate built-in MacBook keyboard in low light
+defaults write com.apple.BezelServices kDim -bool true
+
+# Dock: Automatically hide and show
+defaults write com.apple.dock autohide -bool true
+
+# Dock: Show only active apps
+defaults write com.apple.dock static-only -bool true
+
+# Dock: Update dock normal and magnified size
+defaults write com.apple.dock tilesize -integer 24
+defaults write com.apple.dock largesize -int 128
+
+# Increase sound quality for Bluetooth headphones/headsets
+defaults write com.apple.BluetoothAudioAgent "Apple Bitpool Min (editable)" -int 40
+
+# Hot corners
+# Bottom right screen corner → Start screen saver
+defaults write com.apple.dock wvous-br-corner -int 5
+defaults write com.apple.dock wvous-br-modifier -int 0
+
+# Restart affected apps
+killall Dock
+killall Finder
+
+# Show success
+log_success ">>> Finished macOS setup successfully! <<<"
