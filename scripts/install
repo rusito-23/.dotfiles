@@ -37,7 +37,7 @@ function log_success() { echo "${green}$@${white}"; }
 
 # Function to safely link files
 function safe_ln() {
-    mv $2 $2.bak.$(date +%s)"
+    mv $2 $2.bak.$(date +%s)
     ln -s $1 $2
 }
 
@@ -179,6 +179,3 @@ if [[ "$*" == *ZSH* ]] || [[ $# -eq 0 ]]; then
     log_info ">>> ZSH: Setup default shell <<<"
     chsh -s $(which zsh)
 fi
-
-# Success prompt!
-log_success ">>> ZSH: Setup success <<<"
