@@ -6,7 +6,9 @@
 | --- | --- |
 | ⌃`A` | Jump to the beginning of the line |
 | ⌃`E` | Jump to the end of the line |
-| ⌃`U` | Clear line |
+| ⌃`K` | Cut to the end of the line |
+| ⌃`U` | Cut the whole line |
+| ⌃`Y` | Paste the cut text |
 | ⌃`R` | Search history |
 
 ## `git` + `fzf` Shortcuts
