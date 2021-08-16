@@ -1,0 +1,36 @@
+#!/bin/sh
+# Yabai Config File
+# Taken & modified from:
+# https://github.com/Julian-Heng/yabai-config/blob/master/skhdrc
+
+
+# Use bsp layout as default
+yabai -m config layout                          bsp
+
+# Set all padding and gaps to 10pt
+yabai -m config top_padding                     10
+yabai -m config bottom_padding                  10
+yabai -m config left_padding                    10
+yabai -m config right_padding                   10
+yabai -m config window_gap                      10
+
+# floating windows are always on top
+yabai -m config window_topmost                  on
+
+# render all unfocused windows with 90% opacity
+yabai -m config window_opacity on
+yabai -m config active_window_opacity           1.0
+yabai -m config normal_window_opacity           0.9
+yabai -m config split_ratio                     0.50
+
+# set focus follows mouse mode and vice versa
+yabai -m config focus_follows_mouse             autoraise
+yabai -m config mouse_follows_focus             on
+
+# Set rules to ignore some specific apps
+yabai -m rule --add label="About This Mac" app="System Information" title="About This Mac" manage=off
+yabai -m rule --add label="System Preferences" app="^System Preferences$" title=".*" manage=off
+yabai -m rule --add label="Activity Monitor" app="^Activity Monitor$" manage=off
+yabai -m rule --add label="Calculator" app="^Calculator$" manage=off
+yabai -m rule --add label="Safari" app="^Safari$" title="^(General|(Tab|Password|Website|Extension)s|AutoFill|Se(arch|curity)|Privacy|Advance)$" manage=off
+yabai -m rule --add label="Software Update" title="Software Update" manage=off

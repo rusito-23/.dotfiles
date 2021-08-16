@@ -6,7 +6,7 @@
 #
 # Parameters:
 # - none: list available cheat-sheets
-# - amethyst
+# - <cheat-sheet> : display cheat sheet
 
 # Escape if any step fails
 set -euo pipefail

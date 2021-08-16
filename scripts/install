@@ -11,7 +11,7 @@
 # - OHMYZSH: install oh-my-zsh
 # - PLUGINS: install oh my zsh req plugins
 # - POWERLEVEL: install powerlevel 10k theme
-# - AMETHYST: install & set up amethyst tiling window manager
+# - YABAI: install & set up Yabai tiling window manager
 # - ALACRITTY: install & set up the alacritty terminal emulator
 # - ZSH: setup zsh as default shell
 
@@ -158,12 +158,22 @@ if [[ "$*" == *POWERLEVEL* ]] || [[ $# -eq 0 ]]; then
         $THEMES_DIR/powerlevel10k
 fi
 
-if [[ "$*" == *AMETHYST* ]] || [[ $# -eq 0 ]]; then
-    # Install amethyst
-    brew install --cask amethyst
-    # Setup config file
-    safe_ln ~/.dotfiles/amethyst.json ~/.amethyst
-    log_success ">>> AMETHYST: Setup success <<<"
+if [[ "$*" == *YABAI* ]] || [[ $# -eq 0 ]]; then
+    # Install yabai & skhdrc
+    brew install koekeishiya/formulae/yabai
+    brew install koekeishiya/formulae/skhd
+
+    # load yabai sa
+    sudo yabai --load-sa
+
+    # start all services
+    brew services start yabai
+    brew services start skhd
+
+    # Setup config files
+    safe_ln ~/.dotfiles/yabairc ~/.yabairc
+    safe_ln ~/.dotfiles/skhdrc ~/.skhdrc
+    log_success ">>> YABAI: Setup success <<<"
 fi
 
 if [[ "$*" == *ALACRITTY* ]] || [[ $# -eq 0 ]]; then

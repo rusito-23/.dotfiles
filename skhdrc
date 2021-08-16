@@ -1,0 +1,55 @@
+# SKHDRC Config
+# Taken & modified from
+# https://github.com/Julian-Heng/yabai-config
+
+# Navigation
+cmd + shift - h : yabai -m window --focus west
+cmd + shift - j : yabai -m window --focus south
+cmd + shift - k : yabai -m window --focus north
+cmd + shift - l : yabai -m window --focus east
+
+# Moving windows
+alt + shift - h : yabai -m window --warp west
+alt + shift - j : yabai -m window --warp south
+alt + shift - k : yabai -m window --warp north
+alt + shift - l : yabai -m window --warp east
+
+# Move focused container to workspace
+cmd + shift - p : yabai -m window --space prev; yabai -m space --focus prev
+cmd + shift - n : yabai -m window --space next; yabai -m space --focus next
+cmd + shift - 1 : yabai -m window --space 1; yabai -m space --focus 1
+cmd + shift - 2 : yabai -m window --space 2; yabai -m space --focus 2
+cmd + shift - 3 : yabai -m window --space 3; yabai -m space --focus 3
+cmd + shift - 4 : yabai -m window --space 4; yabai -m space --focus 4
+
+# Resize windows
+cmd + lctrl - h : yabai -m window --resize left:-50:0; \
+                  yabai -m window --resize right:-50:0
+cmd + lctrl - j : yabai -m window --resize bottom:0:50; \
+                  yabai -m window --resize top:0:50
+cmd + lctrl - k : yabai -m window --resize top:0:-50; \
+                  yabai -m window --resize bottom:0:-50
+cmd + lctrl - l : yabai -m window --resize right:50:0; \
+                  yabai -m window --resize left:50:0
+
+# Equalize size of windows
+cmd + lctrl - e : yabai -m space --balance
+
+# Rotate windows clockwise and anticlockwise
+alt - r         : yabai -m space --rotate 270
+shift + alt - r : yabai -m space --rotate 90
+
+# Rotate on X and Y Axis
+shift + alt - x : yabai -m space --mirror x-axis
+shift + alt - y : yabai -m space --mirror y-axis
+
+# Set insertion point for focused container
+shift + lctrl + alt - h : yabai -m window --insert west
+shift + lctrl + alt - j : yabai -m window --insert south
+shift + lctrl + alt - k : yabai -m window --insert north
+shift + lctrl + alt - l : yabai -m window --insert east
+
+# Float / Unfloat window
+cmd + shift - space : \
+    yabai -m window --toggle float; \
+    yabai -m window --toggle border
