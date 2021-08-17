@@ -53,3 +53,7 @@ shift + lctrl + alt - l : yabai -m window --insert east
 cmd + shift - space : \
     yabai -m window --toggle float; \
     yabai -m window --toggle border
+
+# Toggle between stack and bsp layouts in the current space
+cmd + shift - f : yabai -m space --layout stack
+cmd + shift - b : yabai -m space --layout bsp

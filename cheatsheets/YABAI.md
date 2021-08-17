@@ -17,3 +17,5 @@
 | ⌥ + ⇧ + `y` | Rotate y-axis |
 | ⇧ + `^` + ⌥ + `<hjkl>` | Set insertion point |
 | ⌘ + ⇧ + Space | Toggle float for current window |
+| ⌘ + ⇧ + `F` | Set stack layout for the current space |
+| ⌘ + ⇧ + `B` | Set bsp layout for the current space |
