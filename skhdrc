@@ -3,37 +3,39 @@
 # https://github.com/Julian-Heng/yabai-config
 
 # Navigation with bsp layout
-cmd + shift - h : yabai -m window --focus west
-cmd + shift - j : yabai -m window --focus south
-cmd + shift - k : yabai -m window --focus north
-cmd + shift - l : yabai -m window --focus east
+fn - h : yabai -m window --focus west
+fn - j : yabai -m window --focus south
+fn - k : yabai -m window --focus north
+fn - l : yabai -m window --focus east
 
 # Navigation with stack layout
-cmd + shift - p : yabai -m window --focus stack.prev
-cmd + shift - n : yabai -m window --focus stack.next
+fn - p : yabai -m window --focus stack.prev
+fn - n : yabai -m window --focus stack.next
 
 # Moving windows
-alt + shift - h : yabai -m window --warp west
-alt + shift - j : yabai -m window --warp south
-alt + shift - k : yabai -m window --warp north
-alt + shift - l : yabai -m window --warp east
+fn + shift - h : yabai -m window --warp west
+fn + shift - j : yabai -m window --warp south
+fn + shift - k : yabai -m window --warp north
+fn + shift - l : yabai -m window --warp east
 
 # Move focused window between spaces
-alt + shift - p : yabai -m window --space prev; yabai -m space --focus prev
-alt + shift - n : yabai -m window --space next; yabai -m space --focus next
+alt + shift - p : yabai -m window --space prev; \
+                  yabai -m space --focus prev
+alt + shift - n : yabai -m window --space next; \
+                  yabai -m space --focus next
 
 # Resize windows
-cmd + lctrl - h : yabai -m window --resize left:-50:0; \
-                  yabai -m window --resize right:-50:0
-cmd + lctrl - j : yabai -m window --resize bottom:0:50; \
-                  yabai -m window --resize top:0:50
-cmd + lctrl - k : yabai -m window --resize top:0:-50; \
-                  yabai -m window --resize bottom:0:-50
-cmd + lctrl - l : yabai -m window --resize right:50:0; \
+fn + lctrl - h : yabai -m window --resize left:-50:0; \
+                 yabai -m window --resize right:-50:0
+fn + lctrl - j : yabai -m window --resize bottom:0:50; \
+                 yabai -m window --resize top:0:50
+fn + lctrl - k : yabai -m window --resize top:0:-50; \
+                 yabai -m window --resize bottom:0:-50
+fn + lctrl - l : yabai -m window --resize right:50:0; \
                   yabai -m window --resize left:50:0
 
 # Equalize size of windows
-cmd + lctrl - e : yabai -m space --balance
+fn + lctrl - e : yabai -m space --balance
 
 # Rotate windows clockwise and anticlockwise
 alt - r         : yabai -m space --rotate 270
@@ -55,5 +57,5 @@ cmd + shift - space : \
     yabai -m window --toggle border
 
 # Toggle between stack and bsp layouts in the current space
-cmd + shift - f : yabai -m space --layout stack
-cmd + shift - b : yabai -m space --layout bsp
+fn + shift - f : yabai -m space --layout stack
+fn + shift - b : yabai -m space --layout bsp
