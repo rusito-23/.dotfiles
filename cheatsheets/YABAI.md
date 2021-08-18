@@ -8,9 +8,9 @@
 | `fn` + `<hjkl>` | Focus window in bsp layout |
 | `fn` + `<n,p>` | Focus window in stack layout |
 | `fn` + ⇧ + `<hjkl>` | Move window |
-| ⌥ + ⇧ + `<n,p>` | Move focused container between spaces |
 | `fn` + `^` + `<hjkl>` | Resize window |
 | `fn` + `^` + `e` | Balance sizes |
+| ⌥ + ⇧ + `<n,p>` | Move focused container between spaces |
 | ⌥ + `r` | Rotate clockwise |
 | ⌥ + ⇧ + `r` | Rotate anti-clockwise |
 | ⌥ + ⇧ + `x` | Rotate x-axis |

@@ -22,12 +22,6 @@ fn + shift - j : yabai -m window --warp south
 fn + shift - k : yabai -m window --warp north
 fn + shift - l : yabai -m window --warp east
 
-# Move focused window between spaces
-alt + shift - p : yabai -m window --space prev; \
-                  yabai -m space --focus prev
-alt + shift - n : yabai -m window --space next; \
-                  yabai -m space --focus next
-
 # Resize windows
 fn + lctrl - h : yabai -m window --resize left:-50:0; \
                  yabai -m window --resize right:-50:0
@@ -40,6 +34,12 @@ fn + lctrl - l : yabai -m window --resize right:50:0; \
 
 # Equalize size of windows
 fn + lctrl - e : yabai -m space --balance
+
+# Move focused window between spaces
+alt + shift - p : yabai -m window --space prev; \
+                  yabai -m space --focus prev
+alt + shift - n : yabai -m window --space next; \
+                  yabai -m space --focus next
 
 # Rotate windows clockwise and anticlockwise
 alt - r         : yabai -m space --rotate 270
