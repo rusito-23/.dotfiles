@@ -3,8 +3,8 @@
 # https://github.com/Julian-Heng/yabai-config
 
 # Restart yabai and skhd
-fn + shift - y : brew services restart yabai
-fn + shift - s : brew services restart skhd
+fn + lctrl - y : brew services restart yabai
+fn + lctrl - s : brew services restart skhd
 
 # Navigation with bsp layout
 fn - h : yabai -m window --focus west
@@ -60,6 +60,7 @@ cmd + shift - space : \
     yabai -m window --toggle float; \
     yabai -m window --toggle border
 
-# Toggle between stack and bsp layouts in the current space
-fn + shift - f : yabai -m space --layout stack
+# Toggle layouts in the current space
+fn + shift - f : yabai -m space --layout float
+fn + shift - s : yabai -m space --layout stack
 fn + shift - b : yabai -m space --layout bsp

@@ -17,5 +17,8 @@
 | ⌥ + ⇧ + `y` | Rotate y-axis |
 | ⇧ + `^` + ⌥ + `<hjkl>` | Set insertion point |
 | ⌘ + ⇧ + Space | Toggle float for current window |
-| `fn` + ⇧ + `F` | Set stack layout for the current space |
+| `fn` + ⇧ + `F` | Set float layout for the current space |
+| `fn` + ⇧ + `S` | Set stack layout for the current space |
 | `fn` + ⇧ + `B` | Set bsp layout for the current space |
+| `fn` + `^` + `Y` | Restart `yabai` |
+| `fn` + `^` + `S` | Restart `skhd` |
