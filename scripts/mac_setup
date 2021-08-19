@@ -18,6 +18,9 @@ white='\033[0;37m'
 function log_info() { echo "${cyan}$@${white}"; }
 function log_success() { echo "${green}$@${white}"; }
 
+# Automatically hide/show the menu bar
+defaults write NSGlobalDomain _HIHideMenuBar -bool true
+
 # Finder: show file path
 defaults write com.apple.finder _FXShowPosixPathInTitle -bool YES
 
@@ -27,8 +30,9 @@ defaults write com.apple.finder ShowStatusBar -bool true
 # Automatically illuminate built-in MacBook keyboard in low light
 defaults write com.apple.BezelServices kDim -bool true
 
-# Dock: Automatically hide and show
+# Dock: Automatically hide and show and set delay to 0
 defaults write com.apple.dock autohide -bool true
+defaults write com.apple.dock autohide-delay -int 0
 
 # Dock: Show only active apps
 defaults write com.apple.dock static-only -bool true
