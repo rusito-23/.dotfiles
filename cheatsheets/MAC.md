@@ -21,5 +21,6 @@
 
 | Shortcut | Description |
 | --- | --- |
+| ⌘ + ⇧ + `T` | Open new `alacritty` session |
 | ⌘ + Tab | Switch between apps |
 | ⌘ + \` | Switch between windows of the current app |

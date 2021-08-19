@@ -2,6 +2,9 @@
 # Taken & modified from
 # https://github.com/Julian-Heng/yabai-config
 
+# Create new alacritty session
+cmd + shift - t : alacritty
+
 # Restart yabai and skhd
 fn + lctrl - y : brew services restart yabai
 fn + lctrl - s : brew services restart skhd
