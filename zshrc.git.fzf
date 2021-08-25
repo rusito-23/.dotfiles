@@ -54,6 +54,5 @@ bind-git-helper() {
   done
 }
 
-bind-git-helper f o t r h
+bind-git-helper o t h
 unset -f bind-git-helper
-

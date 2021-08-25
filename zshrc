@@ -60,6 +60,9 @@ for s in $HOME/.dotfiles/ignored/*; do source $s; done
 # General opt config
 setopt noautoremoveslash
 
+# Custom bindings
+bindkey ˜ delete-char           # Auto-delete the ˜ char
+
 # Cycle through auto suggestions with up/down
 
 if [[ "${terminfo[kcuu1]}" != "" ]]; then

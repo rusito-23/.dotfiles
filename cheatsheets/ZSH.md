@@ -10,6 +10,7 @@
 | ⌃`U` | Cut the whole line |
 | ⌃`Y` | Paste the cut text |
 | ⌃`R` | Search history |
+| ⌃`T` | Search files in current folder |
 
 ## `git` + `fzf` Shortcuts
 
