@@ -24,3 +24,10 @@
 | ⌘ + ⇧ + `T` | Open new `alacritty` session |
 | ⌘ + Tab | Switch between apps |
 | ⌘ + \` | Switch between windows of the current app |
+
+## Focus Shortcuts
+
+| Shortcut | Description |
+| --- | --- |
+| `^` + `F2` | Focus on the top menu bar |
+| `^` + `F3` | Focus on the dock |
