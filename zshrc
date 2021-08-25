@@ -138,7 +138,7 @@ source ~/.dotfiles/zshrc.git.fzf
 # Add remote, fetch and checkout branch in a single command
 # Parameters: $1: remote $2: branch name
 gaco() {
-    [ $# -ne 2 ] && echo "Usage: gaco remote branch"; return 1
+    [ $# -ne 2 ] && (echo "Usage: gaco remote branch"; return 1)
     git remote set-branches --add $@
     git fetch $@
     git checkout $2
