@@ -6,19 +6,8 @@
 
 set -euo pipefail
 
-# Color definitions
-black='\033[0;30m'
-red='\033[0;31m'
-green='\033[0;32m'
-yellow='\033[0;33m'
-blue='\033[0;34m'
-purple='\033[0;35m'
-cyan='\033[0;36m'
-white='\033[0;37m'
-
-# Log utils
-function log_info() { echo "${cyan}$@${white}"; }
-function log_success() { echo "${green}$@${white}"; }
+# Load script utils
+source ~/.dotfiles/scripts/utils
 
 # Menu bar
 defaults write NSGlobalDomain _HIHideMenuBar -bool true         # Enable autohide
@@ -26,9 +15,7 @@ defaults write NSGlobalDomain _HIHideMenuBar -bool true         # Enable autohid
 # Finder
 defaults write com.apple.finder _FXShowPosixPathInTitle -bool YES               # Show file path
 defaults write com.apple.finder ShowStatusBar -bool true                        # Show status bar
-defaults wirte com.apple.finder ShowExternalHardDrivesOnDesktop -bool false     # Don't show stuff in my desktop
-defaults write org.m0k.transmission UseIncompleteDownloadFolder -bool true      # Use folder for incomplete downloads
-defaults write org.m0k.transmission IncompleteDownloadFolder -string "${HOME}/Downloads/Incomplete"
+defaults write com.apple.finder ShowExternalHardDrivesOnDesktop -bool false     # Don't show stuff in my desktop
 
 # Dock
 defaults write com.apple.dock autohide -bool true               # Enable autohide
@@ -43,9 +30,10 @@ defaults write com.apple.screencapture location -string "${HOME}/Documents/Scree
 defaults write com.apple.screencapture type -string "png"                               # Change default format
 
 # Automatically illuminate built-in MacBook keyboard in low light
-defaults write com.apple.BezelServices kDim -bool true
 
+defaults write com.apple.BezelServices kDim -bool true
 # Increase sound quality for Bluetooth headphones/headsets
+
 defaults write com.apple.BluetoothAudioAgent "Apple Bitpool Min (editable)" -int 40
 
 # Hot corners
