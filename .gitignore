@@ -2,4 +2,5 @@ DS_Store/
 ignored
 git-template/gitconfig.ignored
 dein/
+spellcheck.utf-8.add
 spellcheck.utf-8.add.spl
