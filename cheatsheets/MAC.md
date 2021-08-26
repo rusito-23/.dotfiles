@@ -6,6 +6,7 @@
 | --- | --- |
 | ⌘ + ⇧ + `G` | Search by full path |
 | ⌘ + ⇧ + `H` | Go to home |
+| ⌘ + ⇧ + `C` | Copy full file path |
 | ⌘ + Drag & Drop | Move file to a volume, removing the original |
 | ⌘ + Drag & Drop | Move file to a volume, removing the original |
 | ⌘ + ⌥ + `V` | Paste the copied file, removing the original |
@@ -27,7 +28,7 @@
 
 ## Focus Shortcuts
 
-| Shortcut | Description |
-| --- | --- |
-| `^` + `F2` | Focus on the top menu bar |
-| `^` + `F3` | Focus on the dock |
+| Default Shortcut | Custom Shortcut| Description |
+| --- | --- | --- |
+| `^` + `F2`| `Fn` + `M` | Focus on the top menu bar |
+| `^` + `F3`| `Fn` + `D` | Focus on the dock |

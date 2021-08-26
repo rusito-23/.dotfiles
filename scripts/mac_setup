@@ -1,6 +1,8 @@
 #!/bin/sh
 # Set up macOS default preferences
-# Inspired by: https://gist.github.com/tylerwalts/9375263
+# Inspired by:
+# https://gist.github.com/tylerwalts/9375263
+# https://gist.github.com/bradp/bea76b16d3325f5c47d4
 
 set -euo pipefail
 
@@ -18,36 +20,37 @@ white='\033[0;37m'
 function log_info() { echo "${cyan}$@${white}"; }
 function log_success() { echo "${green}$@${white}"; }
 
-# Automatically hide/show the menu bar
-defaults write NSGlobalDomain _HIHideMenuBar -bool true
+# Menu bar
+defaults write NSGlobalDomain _HIHideMenuBar -bool true         # Enable autohide
 
-# Finder: show file path
-defaults write com.apple.finder _FXShowPosixPathInTitle -bool YES
+# Finder
+defaults write com.apple.finder _FXShowPosixPathInTitle -bool YES               # Show file path
+defaults write com.apple.finder ShowStatusBar -bool true                        # Show status bar
+defaults wirte com.apple.finder ShowExternalHardDrivesOnDesktop -bool false     # Don't show stuff in my desktop
+defaults write org.m0k.transmission UseIncompleteDownloadFolder -bool true      # Use folder for incomplete downloads
+defaults write org.m0k.transmission IncompleteDownloadFolder -string "${HOME}/Downloads/Incomplete"
 
-# Finder: show status bar
-defaults write com.apple.finder ShowStatusBar -bool true
+# Dock
+defaults write com.apple.dock autohide -bool true               # Enable autohide
+defaults write com.apple.dock autohide-delay -int 0             # Disable autohide delay
+defaults write com.apple.dock static-only -bool true            # Show only active apps
+defaults write com.apple.dock tilesize -integer 24              # Set normal size
+defaults write com.apple.dock largesize -int 128                # Set magnified size
+defaults write com.apple.dock mru-spaces -bool false            # Disable auto arrangement
+
+# Screenshots
+defaults write com.apple.screencapture location -string "${HOME}/Documents/Screenshots" # Change default location
+defaults write com.apple.screencapture type -string "png"                               # Change default format
 
 # Automatically illuminate built-in MacBook keyboard in low light
 defaults write com.apple.BezelServices kDim -bool true
-
-# Dock: Automatically hide and show and set delay to 0
-defaults write com.apple.dock autohide -bool true
-defaults write com.apple.dock autohide-delay -int 0
-
-# Dock: Show only active apps
-defaults write com.apple.dock static-only -bool true
-
-# Dock: Update dock normal and magnified size
-defaults write com.apple.dock tilesize -integer 24
-defaults write com.apple.dock largesize -int 128
 
 # Increase sound quality for Bluetooth headphones/headsets
 defaults write com.apple.BluetoothAudioAgent "Apple Bitpool Min (editable)" -int 40
 
 # Hot corners
-# Bottom right screen corner → Start screen saver
-defaults write com.apple.dock wvous-br-corner -int 5
-defaults write com.apple.dock wvous-br-modifier -int 0
+defaults write com.apple.dock wvous-br-corner -int 5            # Bottom right → Start screen saver
+defaults write com.apple.dock wvous-br-modifier -int 0          # Bottom right modifier → None
 
 # Restart affected apps
 killall Dock
