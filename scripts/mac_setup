@@ -12,6 +12,7 @@ source ~/.dotfiles/scripts/utils
 # Menu bar
 defaults write NSGlobalDomain _HIHideMenuBar -bool true                 # Enable autohide
 defaults write com.apple.menuextra.battery ShowPercent -bool true       # Show battery percentage
+defaults write ~/Library/Preferences/ByHost/com.apple.controlcenter.plist BatteryShowPercentage -bool true
 
 # Finder
 defaults write com.apple.finder _FXShowPosixPathInTitle -bool true              # Show file path

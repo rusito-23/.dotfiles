@@ -70,5 +70,6 @@ fn + shift - b : yabai -m space --layout bsp
 
 # Apple Script Global Shortcuts
 fn - m : osascript ~/.dotfiles/applescripts/FocusMenuBar.applescript
+fn - i : osascript ~/.dotfiles/applescripts/FocusMenuBarIcons.applescript
 fn - d : osascript ~/.dotfiles/applescripts/FocusDock.applescript
 cmd + shift - c : osascript ~/.dotfiles/applescripts/CopyFilePath.applescript
