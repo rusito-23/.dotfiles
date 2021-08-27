@@ -49,6 +49,9 @@ if [[ "$*" == *PAM* ]] || [[ $# -eq 0 ]]; then
     sudo bash -c 'echo -e "auth  optional    pam_reattach.so\n$(cat /etc/pam.d/sudo)" > /etc/pam.d/sudo'
 fi
 
+# Set up the key re-mappings plist
+cp ~/.dotfiles/KeyRemappings.plist ~/Library/LaunchAgents/com.rusito23.KeyRemapping.plist
+
 # Restart affected apps
 killall Dock
 killall Finder
