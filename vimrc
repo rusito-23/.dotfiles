@@ -32,6 +32,11 @@ if dein#load_state('~/.dotfiles/dein')
   call dein#add('keith/swift.vim')
   call dein#add('ncm2/float-preview.nvim')
 
+  " lsp
+  call dein#add('neovim/nvim-lsp')
+  call dein#add('hrsh7th/vim-vsnip')
+  call dein#add('rafamadriz/friendly-snippets')
+
   " vim-airline
   call dein#add('vim-airline/vim-airline')
   call dein#add('vim-airline/vim-airline-themes')
@@ -239,7 +244,7 @@ set completeopt+=noinsert  " don't insert any text until user chooses a match
 set completeopt-=longest   " don't insert the longest common text
 set completeopt+=preview
 autocmd CompleteDone * if !pumvisible() | pclose | endif
-set belloff+=ctrlg  " if Vim beeps during completion
+set belloff+=ctrlg  " if nvim beeps during completion
 set completeopt-=preview   " prevent nvim from showing docs in V split
 
 """"""""""""""""""""""""""""""
@@ -247,3 +252,24 @@ set completeopt-=preview   " prevent nvim from showing docs in V split
 
 command PyScript r ~/.dotfiles/templates/pyscript.py
 command ShScript r ~/.dotfiles/templates/shscript.sh
+
+""""""""""""""""""""""""""""""
+" Set up LSP snippets
+
+" Edit snips settings
+set signcolumn=yes " TODO: Find out what does this stuff is
+let g:completion_enable_snippet = 'vim-vsnip'
+
+" Expand
+imap <expr> <C-j>   vsnip#expandable()  ? '<Plug>(vsnip-expand)'         : '<C-j>'
+smap <expr> <C-j>   vsnip#expandable()  ? '<Plug>(vsnip-expand)'         : '<C-j>'
+
+" Expand or jump
+imap <expr> <C-l>   vsnip#available(1)  ? '<Plug>(vsnip-expand-or-jump)' : '<C-l>'
+smap <expr> <C-l>   vsnip#available(1)  ? '<Plug>(vsnip-expand-or-jump)' : '<C-l>'
+
+" Jump forward or backward
+imap <expr> <Tab>   vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : '<Tab>'
+smap <expr> <Tab>   vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : '<Tab>'
+imap <expr> <S-Tab> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<S-Tab>'
+smap <expr> <S-Tab> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<S-Tab>'
