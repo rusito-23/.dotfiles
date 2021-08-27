@@ -10,10 +10,11 @@ set -euo pipefail
 source ~/.dotfiles/scripts/utils
 
 # Menu bar
-defaults write NSGlobalDomain _HIHideMenuBar -bool true         # Enable autohide
+defaults write NSGlobalDomain _HIHideMenuBar -bool true                 # Enable autohide
+defaults write com.apple.menuextra.battery ShowPercent -bool true       # Show battery percentage
 
 # Finder
-defaults write com.apple.finder _FXShowPosixPathInTitle -bool YES               # Show file path
+defaults write com.apple.finder _FXShowPosixPathInTitle -bool true              # Show file path
 defaults write com.apple.finder ShowStatusBar -bool true                        # Show status bar
 defaults write com.apple.finder ShowExternalHardDrivesOnDesktop -bool false     # Don't show stuff in my desktop
 
@@ -43,6 +44,8 @@ defaults write com.apple.dock wvous-br-modifier -int 0          # Bottom right m
 # Restart affected apps
 killall Dock
 killall Finder
+killall SystemUIServer
+killall cfprefsd
 
 # Show success
 log_success ">>> Finished macOS setup successfully! <<<"

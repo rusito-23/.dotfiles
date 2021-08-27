@@ -1,0 +1,7 @@
+qlmarkdown
+spectacle
+copyclip
+alacritty
+macdown
+kite
+gimp

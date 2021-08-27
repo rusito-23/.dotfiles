@@ -13,6 +13,7 @@
 # - POWERLEVEL: install powerlevel 10k theme
 # - YABAI: install & set up Yabai tiling window manager
 # - ALACRITTY: install & set up the alacritty terminal emulator
+# - ESPANSO: set up the espanso daemon
 # - ZSH: setup zsh as default shell
 
 # Load script utils
@@ -34,10 +35,16 @@ GH_URL=https://github.com
 # Install dependencies
 if [[ "$*" == *BREW* ]] || [[ $# -eq 0 ]]; then
     log_info ">>> BREW: Install dependencies <<<"
+    # Update brew
     brew update
+    # Install brew dependencies
     while read p; do
       brew install "$p"
-    done <~/.dotfiles/requirements/brew-requirements.txt
+    done <~/.dotfiles/requirements/brew-reqs.txt
+    # Install cask dependencies
+    while read p; do
+      brew install cask "$p"
+    done <~/.dotfiles/requirements/cask-reqs.txt
 fi
 
 #       NVIM      #
@@ -165,6 +172,17 @@ if [[ "$*" == *ALACRITTY* ]] || [[ $# -eq 0 ]]; then
     # Setup rc
     safe_ln ~/.dotfiles/alacritty.yml ~/.alacritty.yml
     log_success ">>> ALACRITTY: Setup success <<<"
+fi
+
+if [[ "$*" == *ESPANSO* ]] || [[ $# -eq 0 ]]; then
+    # Install
+    brew tap federico-terzi/espanso
+    brew install espanso
+    espanso register
+    # Setup rc
+    ln -s ~/.dotfiles/espansorc ~/Library/Preferences/espanso/user/espansorc.yml
+    # Reload changes
+    espanso restart
 fi
 
 if [[ "$*" == *ZSH* ]] || [[ $# -eq 0 ]]; then
