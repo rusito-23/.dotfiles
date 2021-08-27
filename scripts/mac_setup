@@ -42,6 +42,13 @@ defaults write com.apple.BluetoothAudioAgent "Apple Bitpool Min (editable)" -int
 defaults write com.apple.dock wvous-br-corner -int 5            # Bottom right → Start screen saver
 defaults write com.apple.dock wvous-br-modifier -int 0          # Bottom right modifier → None
 
+# Set up pam sudo reattach
+if [[ "$*" == *PAM* ]] || [[ $# -eq 0 ]]; then
+    brew install fabianishere/personal/pam_reattach         # Workaround to enable for tmux
+    sudo bash -c 'echo -e "auth  sufficient  pam_tid.so\n$(cat /etc/pam.d/sudo)" > /etc/pam.d/sudo'
+    sudo bash -c 'echo -e "auth  optional    pam_reattach.so\n$(cat /etc/pam.d/sudo)" > /etc/pam.d/sudo'
+fi
+
 # Restart affected apps
 killall Dock
 killall Finder
