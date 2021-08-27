@@ -61,6 +61,10 @@ matches:
   - name: "clipboard"
     type: "clipboard"
 
+# Insert markdown table
+- trigger: ":md-table"
+  replace: "|  |  |\n| --- | --- |\n|  |  |"
+
 # Outputs todays date (dd/mm/yy)
 - trigger: :date
   replace: "{{date}}"
