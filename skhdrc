@@ -38,11 +38,15 @@ fn + lctrl - l : yabai -m window --resize right:50:0; \
 # Equalize size of windows
 fn + lctrl - e : yabai -m space --balance
 
-# Move focused window between spaces
+# Manage windows between spaces
 alt + shift - p : yabai -m window --space prev; \
                   yabai -m space --focus prev
 alt + shift - n : yabai -m window --space next; \
                   yabai -m space --focus next
+
+# Manage spaces
+fn + shift - c : yabai -m space --create && yabai -m space --focus last
+fn + shift - d : yabai -m space --destroy
 
 # Rotate windows clockwise and anticlockwise
 alt - r         : yabai -m space --rotate 270
