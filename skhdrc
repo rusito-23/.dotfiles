@@ -45,7 +45,7 @@ alt + shift - n : yabai -m window --space next; \
                   yabai -m space --focus next
 
 # Manage spaces
-fn + shift - c : yabai -m space --create && yabai -m space --focus last
+fn + shift - c : osascript ~/.dotfiles/applescripts/CreateSpace.applescript
 fn + shift - d : yabai -m space --destroy
 
 # Rotate windows clockwise and anticlockwise

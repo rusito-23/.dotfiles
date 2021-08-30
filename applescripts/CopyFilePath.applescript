@@ -1,3 +1,4 @@
+ #!/usr/bin/osascript
 -- Copy File Path
 -- Copies the current file path into the system clipboard
 -- https://github.com/unforswearing/applescript
