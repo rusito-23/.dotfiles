@@ -24,6 +24,7 @@ if dein#load_state('~/.dotfiles/dein')
   call dein#add('junegunn/vim-peekaboo')
   call dein#add('severin-lemaignan/vim-minimap')
 
+
   " code completion
   call dein#add('Shougo/deoplete.nvim')
   call dein#add('zchee/deoplete-jedi')
@@ -31,11 +32,13 @@ if dein#load_state('~/.dotfiles/dein')
   call dein#add('dart-lang/dart-vim-plugin')
   call dein#add('keith/swift.vim')
   call dein#add('ncm2/float-preview.nvim')
+  call dein#add('deoplete-plugins/deoplete-lsp')
 
   " lsp
   call dein#add('neovim/nvim-lsp')
   call dein#add('hrsh7th/vim-vsnip')
   call dein#add('rafamadriz/friendly-snippets')
+  call dein#add('neovim/nvim-lspconfig')
 
   " vim-airline
   call dein#add('vim-airline/vim-airline')
@@ -170,6 +173,10 @@ nmap <C-t> :TagbarToggle<CR>
 
 " Enable `deoplete` on start up
 let g:deoplete#enable_at_startup = 1
+
+" Load deoplete with lsp
+let g:deoplete#lsp#handler_enabled = 1
+
 " Trigger `deoplete` with `TAB`
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 
@@ -270,10 +277,10 @@ call map(templates, 'fnamemodify(v:val, ":e")')
 call map(templates, 'SetUpTemplate(v:val)')
 
 """"""""""""""""""""""""""""""
-" Set up LSP snippets
+" Set up LSP Snippets
 
 " Edit snips settings
-set signcolumn=yes " TODO: Find out what does this stuff is
+set signcolumn=yes
 let g:completion_enable_snippet = 'vim-vsnip'
 
 " Expand
@@ -289,3 +296,13 @@ imap <expr> <Tab>   vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : '<Tab
 smap <expr> <Tab>   vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : '<Tab>'
 imap <expr> <S-Tab> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<S-Tab>'
 smap <expr> <S-Tab> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<S-Tab>'
+
+""""""""""""""""""""""""""""""
+" Set up LSP Configurations
+" Check https://github.com/neovim/nvim-lspconfig/blob/master/CONFIG.md
+" for installation instructions
+
+lua require'lspconfig'.pyright.setup{}
+lua require'lspconfig'.vimls.setup{}
+lua require'lspconfig'.gopls.setup{}
+lua require'lspconfig'.dockerls.setup{}
