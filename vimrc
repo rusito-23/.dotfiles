@@ -249,9 +249,25 @@ set completeopt-=preview   " prevent nvim from showing docs in V split
 
 """"""""""""""""""""""""""""""
 " Custom Templates
+" Every template (with unique extension) located in the ~/.dotfiles/template
+" folder will have the corresponding command available
+" Example:
+" ~/.dotfiles/templates/template.py --> :py
 
-command PyScript r ~/.dotfiles/templates/pyscript.py
-command ShScript r ~/.dotfiles/templates/shscript.sh
+" Load generic templates
+function! LoadTemplate(ext)
+    execute "r ~/.dotfiles/templates/template." . a:ext
+endfunction
+
+" Set up generic template loading command
+function! SetUpTemplate(ext)
+    execute "cnoreabbrev ".a:ext." :call LoadTemplate('".a:ext."')"
+endfunction
+
+" Create command for each available template
+let templates = globpath('~/.dotfiles/templates/', '*', 1, 1)
+call map(templates, 'fnamemodify(v:val, ":e")')
+call map(templates, 'SetUpTemplate(v:val)')
 
 """"""""""""""""""""""""""""""
 " Set up LSP snippets
