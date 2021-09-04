@@ -59,6 +59,7 @@ if dein#load_state('~/.dotfiles/dein')
   call dein#add('joshdick/onedark.vim')
   call dein#add('gilgigilgil/anderson.vim')
   call dein#add('wadackel/vim-dogrun')
+  call dein#add('arcticicestudio/nord-vim')
 
   " Git
   call dein#add('tpope/vim-fugitive')
@@ -123,7 +124,7 @@ let g:completion_enable_snippet = 'vim-vsnip'
 let g:kite_tab_complete=1
 
 " Airline status bar configuration
-let g:airline_theme='dark_minimal'
+let g:airline_theme='nord'
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#tabline#show_close_button = 0
@@ -189,7 +190,8 @@ hi SpellCap cterm=underline ctermfg=yellow
 hi SpellLocal cterm=underline ctermfg=yellow
 
 " Color scheme
-colorscheme dogrun
+set termguicolors
+colorscheme nord
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Functions
@@ -223,6 +225,12 @@ endfunction
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Commands
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Prevent some common typos
+command! W :w
+command! Wqa :wqa
+command! Q :q
+command! Qa :qa
 
 " Reload the config file
 command! Source :source ~/.dotfiles/vimrc | noh | set nospell
@@ -296,13 +304,19 @@ nnoremap <M-,> :sp<return><esc>
 nnoremap <leader>e :Files<CR>
 
 " Search lines in the current file with `fzf`
-nnoremap <leader>f :BLinesWithPreview<CR>
+nnoremap <leader>f :BLines<CR>
+
+" Search lines in the current file with preview with `fzf`
+nnoremap <leader>fp :BLinesWithPreview<CR>
 
 " Search lines in all files with `fzf`
 nnoremap <leader>F :LinesWithPreview<CR>
 
 " Search commands with `fzf`
 nnoremap <leader>c :Commands<CR>
+
+" Search windows with `fzf`
+nnoremap <leader>w :Windows<CR>
 
 " Expand or jump LSP snippets if possible
 inoremap <expr> <C-j>   vsnip#expandable()  ? '<Plug>(vsnip-expand)'         : '<C-j>'
