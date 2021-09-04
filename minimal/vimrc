@@ -1,0 +1,141 @@
+" Minimal vimrc
+" To be used in servers and places where you can't install much stuff
+" - no external dependencies
+" - minimal configurations
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Options
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+scriptencoding utf-8            " set script encoding
+set nocompatible                " The future is now old man
+set cursorline                  " Highlight the current line
+set clipboard+=unnamedplus      " Use the system clipboard
+set mouse=a                     " Enable mouse interaction
+set scrolloff=3                 " When scrolling, use an offset of three lines
+syntax on                       " Enable syntax
+set noshowmode                  " Remove default mode indicator
+set hlsearch incsearch          " Highlight matches and patterns
+set ignorecase smartcase        " Define search case matching
+set nu rnu                      " Use relative line numbers
+set foldmethod=syntax           " Enable folds using the syntax
+set foldlevel=0                 " Automatically enable folds
+set path +=**                   " Kind of a fuzzy finder
+set wildmenu                    " Display matching files on tab complete
+set wildmode=longest,list,full
+
+" Default tab configuration
+set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
+
+" Define the map leader
+let g:mapleader = ","
+
+" Configure Indentation
+filetype on
+filetype plugin on
+filetype indent on
+set autoindent
+
+" Configure completion options
+set completeopt+=menuone   " Show the pop up menu even when there is only 1 match
+set completeopt+=noinsert  " Don't insert any text until user chooses a match
+set completeopt+=noselect  " Don't select the first option automatically
+set completeopt-=longest   " Don't insert the longest common text
+set completeopt+=preview   " Show docs in V split
+set belloff+=ctrlg         " Don't beep during completion
+
+" File browsing configs
+let g:netrw_banner=0            " Disable annoying banner
+let g:netrw_browse_split=4      " Open in prior window
+let g:netrw_liststyle=3         " Tree view
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Auto-commands
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Use tabs for Go Lang files
+autocmd FileType go exec 'set noexpandtab shiftwidth=8'
+
+" Use 2 spaces for JSON, YAML, TOML files
+autocmd FileType yaml exec 'set shiftwidth=2'
+autocmd FileType toml exec 'set shiftwidth=2'
+autocmd FileType json exec 'set shiftwidth=2'
+
+" Set up column wrapping
+autocmd FileType gitcommit exec 'set colorcolumn=50'
+autocmd FileType python exec 'set colorcolumn=80'
+autocmd FileType swift exec 'set colorcolumn=120'
+
+" Remove trailing white spaces when a file is saved
+autocmd BufWritePre * call RemoveTrailingWhitespaces()
+
+" Close floating completion pop-up when a selection is made
+autocmd CompleteDone * if !pumvisible() | pclose | endif
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Colors
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Use one of the default color schemes
+colorscheme desert
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Functions
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Clear all trailing white spaces in the file
+function! RemoveTrailingWhitespaces()
+    let l:saved_position = winsaveview()
+    keeppatterns %s/\s\+$//e
+    call winrestview(l:saved_position)
+endfunction
+
+" Execute macro without dropping the visual range
+function! ExecuteMacroOverVisualRange()
+  echo "@".getcmdline()
+  execute ":'<,'>normal @".nr2char(getchar())
+endfunction
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Commands
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Prevent some common typos
+command! W :w
+command! Wqa :wqa
+command! Q :q
+command! Qa :qa
+
+" Capitalize the given selection
+command! -range Caps <line1>,<line2>s/\<./\u&/g | noh
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Mappings
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+" Close file without saving
+nnoremap XX :qa!<CR>
+
+" Navigate using the display lines
+nnoremap j gj
+nnoremap k gk
+
+" Clear highlights with <CR>
+nnoremap <CR> :noh<CR>
+
+" Execute the macro `q`
+nnoremap <Space> @q
+
+" Execute macro over visual range
+xnoremap @ :<C-u>call ExecuteMacroOverVisualRange()<CR>
+
+" Create vertical and horizontal panes
+nnoremap <M-.> :vsp<return><esc>
+nnoremap <M-,> :sp<return><esc>
+
+" Navigate completion menu with Tab
+inoremap <silent><expr><Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <silent><expr><S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+
+" Prevent new line inserted after selecting a completion
+inoremap <expr> <CR> pumvisible() ? "\<C-Y>" : "\<CR>"
