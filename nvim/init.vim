@@ -115,7 +115,7 @@ set belloff+=ctrlg         " Don't beep during completion
 
 " Enable and configure spell check
 set spell spelllang=en_us
-set spellfile=~/.dotfiles/spellcheck.utf-8.add
+set spellfile=~/.dotfiles/spell/spellcheck.utf-8.add
 
 " Enable `deoplete` on start up
 let g:deoplete#enable_at_startup = 1
@@ -152,7 +152,7 @@ let g:ctrlp_show_hidden = 1
 " Load Lua Configuration
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-luafile ~/.dotfiles/vimrc.lua
+luafile ~/.dotfiles/nvim/lsp.lua
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Auto-commands

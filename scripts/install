@@ -61,10 +61,10 @@ if [[ "$*" == *NVIM* ]] || [[ $# -eq 0 ]]; then
     rm dein_installer.sh
 
     # Setup ini file
-    log_info ">>> NVIM: Setup rc file <<<"
+    log_info ">>> NVIM: Setup config folder <<<"
     mkdir -p ~/.config/nvim
-    mv ~/.config/nvim/init.vim ~/.config/nvim/init.vim.old &> /dev/null
-    echo "source ~/.dotfiles/vimrc"  > ~/.config/nvim/init.vim
+    mv ~/.config/nvim ~/.config/nvim.old &> /dev/null
+    ln -s ~/.dotfiles/nvim ~/.config/nvim
 
     # Prompt success
     log_success ">>> NVIM: Setup success <<<"
