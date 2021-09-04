@@ -31,7 +31,6 @@
 | Shortcut | Description |
 | --- | --- |
 | `<leader>s` | Save file |
-| `<leader>cab` | Clear All Buffers |
 
 ## Other Shortcuts
 
@@ -40,20 +39,21 @@
 | `<q>` | Record macro |
 | `<Space>` | Run macro named `q` |
 
-## `fzf` Shortcuts
+## `telescope` Shortcuts
 
 | Shortcut | Description |
 | --- | --- |
-| `<leader>e` | Show files |
-| `<leader>f` | Show lines |
-| `<leader>pf` | Show lines with preview |
-| `<leader>F` | Show lines in all files |
-| `<leader>pF` | Show lines in all files with preview |
-| `<leader>c` | Show commands |
+| `<leader>e` | List files |
+| `<leader>f` | List lines |
+| `<leader>b` | List buffers |
+| `<leader>F` | Run live grep |
+| `<leader>H` | List help tags |
 
-## Template Commands
+### While searching on `telescope`
 
-| Command | Description |
+| Shortcut | Description |
 | --- | --- |
-| `PyScript` | Python script template |
-| `ShScript` | Shell script template |
+| ⌃`D` | Delete buffer |
+| ⌃`T` | Open in new tab |
+| ⌃`J` | Navigate down |
+| ⌃`K` | Navigate up |

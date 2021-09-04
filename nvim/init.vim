@@ -1,77 +1,11 @@
-" Vim Script Config File
-" Notes: Only works for `neovim`
+" init.vim
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Dein Plugin Manager Configuration
+" Load external files
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
-let g:python3_host_prog="~/.virtualenvs/nvim/bin/python"
-set runtimepath+=~/.dotfiles/dein/repos/github.com/Shougo/dein.vim
-set rtp+=/usr/local/opt/fzf
-
-if dein#load_state('~/.dotfiles/dein')
-  call dein#begin('~/.dotfiles/dein')
-  call dein#add('~/.dotfiles/dein/repos/github.com/Shougo/dein.vim')
-
-  " Navigation
-  call dein#add('preservim/nerdtree')
-  call dein#add('ryanoasis/vim-devicons')
-  call dein#add('majutsushi/tagbar')
-  call dein#add('christoomey/vim-tmux-navigator')
-  call dein#add('kien/ctrlp.vim')
-  call dein#add('kshenoy/vim-signature')
-  call dein#add('junegunn/fzf', { 'build': './install --all', 'merged': 0 })
-  call dein#add('junegunn/fzf.vim', { 'depends': 'fzf' })
-  call dein#add('junegunn/vim-peekaboo')
-  call dein#add('severin-lemaignan/vim-minimap')
-
-  " Code Completion
-  call dein#add('Shougo/deoplete.nvim')
-  call dein#add('ncm2/float-preview.nvim')
-  call dein#add('deoplete-plugins/deoplete-lsp')
-
-  " Specific Language Completions
-  call dein#add('zchee/deoplete-jedi')
-  call dein#add('davidhalter/jedi-vim')
-  call dein#add('dart-lang/dart-vim-plugin')
-  call dein#add('keith/swift.vim')
-
-  " LSP
-  call dein#add('neovim/nvim-lsp')
-  call dein#add('neovim/nvim-lspconfig')
-
-  " Snippets
-  call dein#add('rafamadriz/friendly-snippets')
-  call dein#add('hrsh7th/vim-vsnip')
-  call dein#add('hrsh7th/vim-vsnip-integ')
-
-  " vim-airline
-  call dein#add('vim-airline/vim-airline')
-  call dein#add('vim-airline/vim-airline-themes')
-
-  " Code Style
-  call dein#add('jiangmiao/auto-pairs')
-  call dein#add('scrooloose/nerdcommenter')
-  call dein#add('sbdchd/neoformat')
-  call dein#add('tpope/vim-surround')
-  call dein#add('MTDL9/vim-log-highlighting')
-  call dein#add('tpope/vim-abolish')
-
-  " Code Checker
-  call dein#add('neomake/neomake')
-
-  " Color Schemes
-  call dein#add('joshdick/onedark.vim')
-  call dein#add('gilgigilgil/anderson.vim')
-  call dein#add('wadackel/vim-dogrun')
-  call dein#add('arcticicestudio/nord-vim')
-
-  " Git
-  call dein#add('tpope/vim-fugitive')
-
-  call dein#end()
-  call dein#save_state()
-endif
+source ~/.dotfiles/nvim/plug.vim
+luafile ~/.dotfiles/nvim/after.lua
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Options
@@ -87,6 +21,8 @@ set hlsearch incsearch          " Highlight matches and patterns
 set ignorecase smartcase        " Define search case matching
 set nu rnu                      " Use relative line numbers
 set diffopt+=vertical           " Use vertical diff
+set foldmethod=syntax           " Enable folds using the syntax
+set foldlevel=0                 " Automatically enable folds
 
 " Default tab configuration
 set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
@@ -115,7 +51,7 @@ set belloff+=ctrlg         " Don't beep during completion
 
 " Enable and configure spell check
 set spell spelllang=en_us
-set spellfile=~/.dotfiles/spell/spellcheck.utf-8.add
+set spellfile=~/.dotfiles/nvim/spell/spellcheck.utf-8.add
 
 " Enable `deoplete` on start up
 let g:deoplete#enable_at_startup = 1
@@ -145,15 +81,6 @@ call neomake#configure#automake('nrwi', 500)
 " `vim-tmux-navigator` configuration
 let g:tmux_navigator_no_mappings = 1
 
-" Configure Ctrl-P to show hidden files
-let g:ctrlp_show_hidden = 1
-
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Load Lua Configuration
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-
-luafile ~/.dotfiles/nvim/lsp.lua
-
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Auto-commands
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -161,7 +88,7 @@ luafile ~/.dotfiles/nvim/lsp.lua
 " Use tabs for Go Lang files
 autocmd FileType go exec 'set noexpandtab shiftwidth=8'
 
-" Use 2 spaces for JSON, YAML and TOML files
+" Use 2 spaces for JSON, YAML, TOML files
 autocmd FileType yaml exec 'set shiftwidth=2'
 autocmd FileType toml exec 'set shiftwidth=2'
 autocmd FileType json exec 'set shiftwidth=2'
@@ -221,9 +148,9 @@ function! LoadTemplate(ext)
 endfunction
 
 " Create command with the file extension to load a template
-" Example: SetUpTemplate("py") will create the command :py
+" Example: SetUpTemplate("py") will create the command :Py
 function! SetUpTemplate(ext)
-    execute "cnoreabbrev ".a:ext." :call LoadTemplate('".a:ext."')"
+    execute "command! ".toupper(a:ext)." call LoadTemplate('".a:ext."')"
 endfunction
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -237,24 +164,14 @@ command! Q :q
 command! Qa :qa
 
 " Reload the config file
-command! Source :source ~/.dotfiles/vimrc | noh | set nospell
+command! Source :source ~/.config/nvim/init.vim | noh | set nospell
+
+" Install or update dein plugins
+command! DeinInstall :source ~/.config/nvim/init.vim | noh | set nospell | call dein#install()
+command! DeinUpdate :source ~/.config/nvim/init.vim | noh | set nospell | call dein#update()
 
 " Capitalize the given selection
 command! -range Caps <line1>,<line2>s/\<./\u&/g | noh
-
-" General code finder in current file mapping with preview
-" See: https://github.com/junegunn/fzf.vim/issues/374
-command! -bang -nargs=* BLinesWithPreview
-    \ call fzf#vim#grep(
-    \   'rg --with-filename --column --line-number --color=always --smart-case . '.fnameescape(expand('%')), 1,
-    \   fzf#vim#with_preview({'options': '--delimiter : --nth 4.. --no-sort'}, 'right:50%', '?'), 1)
-
-" General code finder in all files mapping with preview
-" See: https://github.com/junegunn/fzf.vim/issues/374
-command! -bang -nargs=* LinesWithPreview
-    \ call fzf#vim#grep(
-    \   'rg --with-filename --column --line-number --color=always --smart-case . ', 1,
-    \   fzf#vim#with_preview({'options': '--delimiter : --nth 4.. --no-sort'}, 'right:50%', '?'), 1)
 
 " Create extension command for each available template
 call map(globpath('~/.dotfiles/templates/', '*', 1, 1), 'SetUpTemplate(fnamemodify(v:val, ":e"))')
@@ -279,9 +196,6 @@ nnoremap <CR> :noh<CR>
 " Execute the macro `q`
 nnoremap <Space> @q
 
-" Clear all buffers
-nnoremap <leader>cab :w <bar> %bd <bar> e# <bar> bd# <CR><CR>
-
 " Execute macro over visual range
 xnoremap @ :<C-u>call ExecuteMacroOverVisualRange()<CR>
 
@@ -291,9 +205,6 @@ nnoremap <C-n> :NERDTreeToggle<CR>
 " Toggle Tagbar
 nnoremap <C-t> :TagbarToggle<CR>
 
-" Trigger `deoplete` -> TODO: Does this work?
-inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-
 " Navigate between panes
 " See: https://github.com/christoomey/vim-tmux-navigator
 nnoremap <silent> <M-h> :TmuxNavigateLeft<CR>
@@ -301,29 +212,9 @@ nnoremap <silent> <M-j> :TmuxNavigateDown<CR>
 nnoremap <silent> <M-k> :TmuxNavigateUp<CR>
 nnoremap <silent> <M-l> :TmuxNavigateRight<CR>
 
-" Create vertical pane
+" Create vertical and horizontal panes
 nnoremap <M-.> :vsp<return><esc>
-
-" Create horizontal pane
 nnoremap <M-,> :sp<return><esc>
-
-" Search files with `fzf`
-nnoremap <leader>e :Files<CR>
-
-" Search lines in the current file with `fzf`
-nnoremap <leader>f :BLines<CR>
-
-" Search lines in the current file with preview with `fzf`
-nnoremap <leader>fp :BLinesWithPreview<CR>
-
-" Search lines in all files with `fzf`
-nnoremap <leader>F :LinesWithPreview<CR>
-
-" Search commands with `fzf`
-nnoremap <leader>c :Commands<CR>
-
-" Search windows with `fzf`
-nnoremap <leader>w :Windows<CR>
 
 " Expand or jump LSP snippets if possible
 imap <expr> <C-j>   vsnip#expandable()  ? '<Plug>(vsnip-expand)'         : '<C-j>'
@@ -337,6 +228,22 @@ smap <expr> <Tab>   vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : '<Tab
 imap <expr> <S-Tab> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<S-Tab>'
 smap <expr> <S-Tab> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<S-Tab>'
 
-" Tab completion navigation
-inoremap <silent><expr><Tab> pumvisible() ? "\<C-N>" : "\<Tab>"
-inoremap <silent><expr><S-Tab> pumvisible() ? "\<C-P>" : "\<S-Tab>"
+" Navigate completion menu with Tab
+inoremap <silent><expr><Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <silent><expr><S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+
+" Prevent new line inserted after selecting a completion
+inoremap <expr> <CR> pumvisible() ? "\<C-Y>" : "\<CR>"
+
+" Mappings for Telescope command-line sugar.
+nnoremap <leader>f <cmd>Telescope current_buffer_fuzzy_find<CR><ESC>
+nnoremap <leader>e <cmd>Telescope find_files<CR><ESC>
+nnoremap <leader>F <cmd>Telescope live_grep<CR><ESC>
+nnoremap <leader>b <cmd>Telescope buffers<CR><ESC>
+nnoremap <leader>H <cmd>Telescope help_tags<CR><ESC>
+
+" Mappings for LSP saga
+nnoremap <silent> <C-j> <Cmd>Lspsaga diagnostic_jump_next<CR>
+nnoremap <silent>K <Cmd>Lspsaga hover_doc<CR>
+inoremap <silent> <C-k> <Cmd>Lspsaga signature_help<CR>
+nnoremap <silent> gh <Cmd>Lspsaga lsp_finder<CR>

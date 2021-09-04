@@ -51,15 +51,6 @@ fi
 # --------------- #
 
 if [[ "$*" == *NVIM* ]] || [[ $# -eq 0 ]]; then
-
-    # Install `dein`
-    log_info ">>> NVIM: Install dein <<<"
-    curl https://raw.githubusercontent.com/Shougo/dein.vim/master/bin/installer.sh \
-        > dein_installer.sh \
-        2> /dev/null
-    sh ./dein_installer.sh ~/.dotfiles/dein > /dev/null
-    rm dein_installer.sh
-
     # Setup ini file
     log_info ">>> NVIM: Setup config folder <<<"
     mkdir -p ~/.config/nvim
