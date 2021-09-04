@@ -27,18 +27,23 @@ if dein#load_state('~/.dotfiles/dein')
 
   " Code Completion
   call dein#add('Shougo/deoplete.nvim')
+  call dein#add('ncm2/float-preview.nvim')
+  call dein#add('deoplete-plugins/deoplete-lsp')
+
+  " Specific Language Completions
   call dein#add('zchee/deoplete-jedi')
   call dein#add('davidhalter/jedi-vim')
   call dein#add('dart-lang/dart-vim-plugin')
   call dein#add('keith/swift.vim')
-  call dein#add('ncm2/float-preview.nvim')
-  call dein#add('deoplete-plugins/deoplete-lsp')
 
   " LSP
   call dein#add('neovim/nvim-lsp')
-  call dein#add('hrsh7th/vim-vsnip')
-  call dein#add('rafamadriz/friendly-snippets')
   call dein#add('neovim/nvim-lspconfig')
+
+  " Snippets
+  call dein#add('rafamadriz/friendly-snippets')
+  call dein#add('hrsh7th/vim-vsnip')
+  call dein#add('hrsh7th/vim-vsnip-integ')
 
   " vim-airline
   call dein#add('vim-airline/vim-airline')
@@ -103,8 +108,9 @@ set listchars=tab:→\ ,space:·,nbsp:␣,trail:•,eol:↲,precedes:«,extends:
 " Configure completion options
 set completeopt+=menuone   " Show the pop up menu even when there is only 1 match
 set completeopt+=noinsert  " Don't insert any text until user chooses a match
+set completeopt+=noselect  " Don't select the first option automatically
 set completeopt-=longest   " Don't insert the longest common text
-set completeopt-=preview   " Don't show docs in V split
+set completeopt+=preview   " Show docs in V split
 set belloff+=ctrlg         " Don't beep during completion
 
 " Enable and configure spell check
@@ -116,9 +122,7 @@ let g:deoplete#enable_at_startup = 1
 
 " Enable `deoplete` LSP
 let g:deoplete#lsp#handler_enabled = 1
-
-" Set up LSP snippets using `vim-vsnip`
-let g:completion_enable_snippet = 'vim-vsnip'
+let g:deoplete#lsp#use_icons_for_candidates = 1
 
 " Enable `kite` plugin if available
 let g:kite_tab_complete=1
@@ -259,6 +263,9 @@ call map(globpath('~/.dotfiles/templates/', '*', 1, 1), 'SetUpTemplate(fnamemodi
 " Mappings
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+" Close file without saving
+nnoremap XX :qa!<CR>
+
 " Navigate using the display lines
 nnoremap j gj
 nnoremap k gk
@@ -319,13 +326,17 @@ nnoremap <leader>c :Commands<CR>
 nnoremap <leader>w :Windows<CR>
 
 " Expand or jump LSP snippets if possible
-inoremap <expr> <C-j>   vsnip#expandable()  ? '<Plug>(vsnip-expand)'         : '<C-j>'
-snoremap <expr> <C-j>   vsnip#expandable()  ? '<Plug>(vsnip-expand)'         : '<C-j>'
-inoremap <expr> <C-l>   vsnip#available(1)  ? '<Plug>(vsnip-expand-or-jump)' : '<C-l>'
-snoremap <expr> <C-l>   vsnip#available(1)  ? '<Plug>(vsnip-expand-or-jump)' : '<C-l>'
+imap <expr> <C-j>   vsnip#expandable()  ? '<Plug>(vsnip-expand)'         : '<C-j>'
+smap <expr> <C-j>   vsnip#expandable()  ? '<Plug>(vsnip-expand)'         : '<C-j>'
+imap <expr> <C-l>   vsnip#available(1)  ? '<Plug>(vsnip-expand-or-jump)' : '<C-l>'
+smap <expr> <C-l>   vsnip#available(1)  ? '<Plug>(vsnip-expand-or-jump)' : '<C-l>'
 
 " Jump forward or backward between LSP snippets if possible
-inoremap <expr> <Tab>   vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : '<Tab>'
-snoremap <expr> <Tab>   vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : '<Tab>'
-inoremap <expr> <S-Tab> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<S-Tab>'
-snoremap <expr> <S-Tab> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<S-Tab>'
+imap <expr> <Tab>   vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : '<Tab>'
+smap <expr> <Tab>   vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : '<Tab>'
+imap <expr> <S-Tab> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<S-Tab>'
+smap <expr> <S-Tab> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<S-Tab>'
+
+" Tab completion navigation
+inoremap <silent><expr><Tab> pumvisible() ? "\<C-N>" : "\<Tab>"
+inoremap <silent><expr><S-Tab> pumvisible() ? "\<C-P>" : "\<S-Tab>"
