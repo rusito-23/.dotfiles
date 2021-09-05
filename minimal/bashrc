@@ -71,4 +71,4 @@ git_dirty() {
   [[ "$status" != "" ]] && echo '*'
 }
 
-export PS1="${CYAN}\w${CLEAR}${GREEN}\$(git_branch)${GREEN}${RED}\$(git_dirty) ${CLEAR}> "
+export PS1="${CYAN}\w${CLEAR}${GREEN}\$(git_branch)${GREEN}${RED}\$(git_dirty) ${YELLOW}>${CLEAR} "
