@@ -5,7 +5,7 @@
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 source ~/.dotfiles/nvim/plug.vim
-luafile ~/.dotfiles/nvim/after.lua
+luafile ~/.dotfiles/nvim/config.lua
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Options
@@ -236,11 +236,11 @@ inoremap <silent><expr><S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 inoremap <expr> <CR> pumvisible() ? "\<C-Y>" : "\<CR>"
 
 " Mappings for Telescope command-line sugar.
-nnoremap <leader>f <cmd>Telescope current_buffer_fuzzy_find<CR><ESC>
-nnoremap <leader>e <cmd>Telescope find_files<CR><ESC>
-nnoremap <leader>F <cmd>Telescope live_grep<CR><ESC>
-nnoremap <leader>b <cmd>Telescope buffers<CR><ESC>
-nnoremap <leader>H <cmd>Telescope help_tags<CR><ESC>
+nnoremap <leader>f <cmd>Telescope current_buffer_fuzzy_find<CR>
+nnoremap <leader>e <cmd>Telescope find_files<CR>
+nnoremap <leader>F <cmd>Telescope live_grep<CR>
+nnoremap <leader>b <cmd>Telescope buffers<CR>
+nnoremap <leader>H <cmd>Telescope help_tags<CR>
 
 " Mappings for LSP saga
 nnoremap <silent> <C-j> <Cmd>Lspsaga diagnostic_jump_next<CR>

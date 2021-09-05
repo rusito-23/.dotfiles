@@ -82,6 +82,7 @@ fi
 
 alias src='source ~/.zshrc'     # Quick reload
 alias ls='ls -GFh'              # Default ls config
+alias ll='ls -lh'               # Long list command
 alias la='ls -a'                # Hidden files
 alias cd..='cd ../'             # Fix common typo
 alias ..='cd ../'               # Navigate with dots

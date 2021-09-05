@@ -1,7 +1,5 @@
 " Minimal vimrc
 " To be used in servers and places where you can't install much stuff
-" - no external dependencies
-" - minimal configurations
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Options
@@ -48,6 +46,9 @@ set belloff+=ctrlg         " Don't beep during completion
 let g:netrw_banner=0            " Disable annoying banner
 let g:netrw_browse_split=4      " Open in prior window
 let g:netrw_liststyle=3         " Tree view
+
+let &t_SI = "\e[6 q"            " Use bar cursor in insert mode
+let &t_EI = "\e[2 q"            " Use block cursor in normal mode
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Auto-commands

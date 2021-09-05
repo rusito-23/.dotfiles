@@ -1,5 +1,4 @@
 -- Vim Plugin Configuration in Lua
-
 -- Imports
 local lspconfig = require 'lspconfig'
 local protocol = require 'vim.lsp.protocol'
@@ -50,11 +49,18 @@ treesitter.setup {
 telescope.setup {
     defaults = {
         mappings = {
+            -- Move between selections with vim keys
+            -- in Normal mode
             n = {
-                -- Move between selections with vim keys
+                ["j"] = actions.move_selection_next,
+                ["k"] = actions.move_selection_previous,
+            },
+            -- Move between selections with C + vim keys
+            -- in Insert mode
+            i = {
                 ["<C-j>"] = actions.move_selection_next,
                 ["<C-k>"] = actions.move_selection_previous,
-            }
+            },
         }
     },
     pickers = {
