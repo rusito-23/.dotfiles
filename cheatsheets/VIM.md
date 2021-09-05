@@ -57,3 +57,22 @@
 | ⌃`T` | Open in new tab |
 | ⌃`J` | Navigate down |
 | ⌃`K` | Navigate up |
+
+## Folds Cheatsheet
+
+
+| Shortcut | Description |
+| --- | --- |
+| `zf#j` | Create a folder from the cursor down _#_ lines |
+| `zj` | Moves the cursor to the next fold |
+| `zk` | Moves the cursor to the previous fold |
+| `zo` | Opens a fold at the cursor |
+| `zO` | Opens all folds at the cursor |
+| `zm` | Increases the foldlevel by one |
+| `zM` | Closes all open folds |
+| `zr` | Decreases the foldlevel by one |
+| `zR` | Decreases the foldlevel to zero -- all folds will be open |
+| `zd` | Deletes the fold at the cursor |
+| `zE` | Deletes all folds |
+| `[z` | Move to start of open fold |
+| `]z` | Move to end of open fold |
