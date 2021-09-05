@@ -39,7 +39,7 @@ export VISUAL=vim
 export EDITOR="$VISUAL"
 
 # ------------------------------
-# Different options
+# Options
 
 shopt -s cdspell        # This will correct minor spelling errors in a cd command.
 shopt -s histappend     # Append to history rather than overwrite
@@ -52,5 +52,23 @@ bind 'set completion-ignore-case on'
 # ------------------------------
 # Minimal prompt
 
-export PS1="${CYAN}\u${CLEAR}@${PURPLE}\h ${GREEN}(${CLEAR}\w/${GREEN}) ${CLEAR}$ "
+# Display current branch
+git_branch() {
+    # List branches if possible
+    git branch 2>/dev/null |\
+        # Get the current branch
+        grep '^*' |\
+        # Remove the '*' char and all spaces
+        tr -d '* ' |\
+        # Surround with parentheses
+        # and add an extra space at the beginning
+        sed -e "s/\(.*\)/ \(\1\)/"
+}
 
+# Display '*' if the current repo has changes
+git_dirty() {
+  local status=$(git status --porcelain 2> /dev/null)
+  [[ "$status" != "" ]] && echo '*'
+}
+
+export PS1="${CYAN}\w${CLEAR}${GREEN}\$(git_branch)${GREEN}${RED}\$(git_dirty) ${CLEAR}> "

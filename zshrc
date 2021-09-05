@@ -1,5 +1,4 @@
 # zshrc
-# My ZSH config file
 
 # -----------------------
 # GENERAL CONFIGS
@@ -135,7 +134,7 @@ export RIPGREP_CONFIG_PATH="$HOME/.dotfiles/ripgreprc"
 export FZF_DEFAULT_OPTS='-i --height 50% --border --inline-info '
 
 # Load `git` + `fzf` additions
-source ~/.dotfiles/zshrc.git.fzf
+source ~/.dotfiles/fzf.git.zsh
 
 # `git` plugin custom extensions
 
