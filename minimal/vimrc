@@ -21,6 +21,7 @@ set foldlevel=0                 " Automatically enable folds
 set path +=**                   " Kind of a fuzzy finder
 set wildmenu                    " Display matching files on tab complete
 set wildmode=longest,list,full
+set laststatus=2                " Always show the status line
 
 " Default tab configuration
 set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
@@ -140,3 +141,19 @@ inoremap <silent><expr><S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
 " Prevent new line inserted after selecting a completion
 inoremap <expr> <CR> pumvisible() ? "\<C-Y>" : "\<CR>"
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Status line
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+set statusline=                                                 " Init
+set statusline+=\[%{toupper(mode())}\]                          " Mode indicator
+set statusline+=%(%m%)                                          " Modified [+] / [-] flag
+set statusline+=[%Y]
+set statusline+=\ %t
+set statusline+=%=                                              " Right align
+set statusline+=\                                               " Space
+set statusline+=[%1.5l:%1.5L]                                   " Line
+set statusline+=[:\%c]                                          " Column
+set statusline+=[%{&fileencoding?&fileencoding:&encoding}]      " File encoding
