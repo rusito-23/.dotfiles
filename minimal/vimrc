@@ -6,7 +6,6 @@
 scriptencoding utf-8                    " set script encoding
 set nocompatible                        " The future is now old man
 set cursorline                          " Highlight the current line
-set clipboard+=unnamedplus              " Use the system clipboard
 set mouse=a                             " Enable mouse interaction
 set scrolloff=3                         " When scrolling, use an offset of three lines
 set noshowmode                          " Remove default mode indicator
@@ -40,6 +39,11 @@ filetype plugin on                      " Enable plugins
 " Configure Indentation
 filetype indent on
 set autoindent smartindent
+
+" Special characters display configuration
+set list
+set showbreak=↪\
+set listchars=tab:→\ ,space:·,nbsp:␣,trail:•,eol:↲,precedes:«,extends:»
 
 " Configure completion options
 set completeopt+=menuone   " Show the pop up menu even when there is only 1 match
@@ -143,9 +147,8 @@ nnoremap XX :qa!<CR>
 nnoremap j gj
 nnoremap k gk
 
-" Clear highlights with <CR> or <ESC>
+" Clear highlights with <CR>
 nnoremap <CR> :noh<CR>
-nnoremap <ESC> :noh<CR>
 
 " Execute the macro `q`
 nnoremap <Space> @q
@@ -154,8 +157,8 @@ nnoremap <Space> @q
 xnoremap @ :<C-u>call ExecuteMacroOverVisualRange()<CR>
 
 " Create vertical and horizontal panes
-nnoremap <M-.> :vsp<return><esc>
-nnoremap <M-,> :sp<return><esc>
+nnoremap <M-.> :vsp<return><ESC>
+nnoremap <M-,> :sp<return><ESC>
 
 " Navigate completion menu with Tab
 inoremap <silent><expr><Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
@@ -166,7 +169,6 @@ inoremap <expr> <CR> pumvisible() ? "\<C-Y>" : "\<CR>"
 
 " Use * to search the current selection
 vnoremap <silent> * "zy/<C-R>=@z<CR><CR>
-
 
 " }}}
 
@@ -184,3 +186,4 @@ set statusline+=[:\%c]                                          " Column
 set statusline+=[%{&fileencoding?&fileencoding:&encoding}]      " File encoding
 
 " }}}
+

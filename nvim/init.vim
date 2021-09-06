@@ -214,9 +214,6 @@ nnoremap XX :qa!<CR>
 nnoremap j gj
 nnoremap k gk
 
-" Save the current file
-nnoremap <leader>s :update<CR>
-
 " Clear highlights with <CR> or <ESC>
 nnoremap <CR> :noh<CR>
 nnoremap <ESC> :noh<CR>
@@ -241,8 +238,8 @@ nnoremap <silent> <M-k> :TmuxNavigateUp<CR>
 nnoremap <silent> <M-l> :TmuxNavigateRight<CR>
 
 " Create vertical and horizontal panes
-nnoremap <M-.> :vsp<return><esc>
-nnoremap <M-,> :sp<return><esc>
+nnoremap <M-.> :vsp<return><ESC>
+nnoremap <M-,> :sp<return><ESC>
 
 " Expand or jump LSP snippets if possible
 imap <expr> <C-j>   vsnip#expandable()  ? '<Plug>(vsnip-expand)'         : '<C-j>'
