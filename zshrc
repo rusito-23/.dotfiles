@@ -176,10 +176,10 @@ glu () {
 }
 
 # Checkout a GH PR
-# Assuming that `upstream` contains the original repo remote
+# Parameters: $1: remote $2: PR ID
 function gcopr() {
-    git fetch upstream pull/$1/head:pr-$1 && \
-    git checkout pr-$1
+    git fetch $1 pull/$2/head:pr-$2 && \
+    git checkout pr-$2
 }
 
 # Use `gitignore.io` for default gitignore configurations
