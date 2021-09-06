@@ -9,6 +9,7 @@ luafile ~/.dotfiles/nvim/config.lua
 
 " {{{ Options
 
+set diffopt+=vertical           " Use vertical diff
 set cursorline                  " Highlight the current line
 set clipboard+=unnamedplus      " Use the system clipboard
 set mouse=a                     " Enable mouse interaction
@@ -18,7 +19,9 @@ set noshowmode                  " Remove default mode indicator
 set hlsearch incsearch          " Highlight matches and patterns
 set ignorecase smartcase        " Define search case matching
 set nu rnu                      " Use relative line numbers
-set diffopt+=vertical           " Use vertical diff
+set path +=**                   " Kind of a fuzzy finder
+set wildmenu                    " Display matching files on tab complete
+set wildmode=longest,list,full
 set foldmethod=indent           " Default fold method is using the syntax
 set foldlevel=0                 " Automatically enable folds
 set foldtext=FoldText()         " Show custom fold text
@@ -107,7 +110,7 @@ autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 " Close floating completion pop-up when a selection is made
 autocmd CompleteDone * if !pumvisible() | pclose | endif
 
-" Set up fold method for vimrc files
+" Set up fold method marker for specific files
 autocmd FileType vim exec 'set foldmethod=marker'
 autocmd FileType zsh exec 'set foldmethod=marker'
 autocmd FileType sh exec 'set foldmethod=marker'
@@ -164,6 +167,7 @@ function! FoldText()
     let line_text = substitute(line, '^.*{{{\+', '', 'g')
     let fillcharcount = &textwidth - len(line_text) - len(folded_line_num)
     return '+'. repeat('-', 4) . line_text . repeat('.', fillcharcount) . ' (' . folded_line_num . ' L)'
+    # dumb marker closer }}}
 endfunction
 
 " }}}

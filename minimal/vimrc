@@ -1,9 +1,7 @@
 " Minimal vimrc
 " To be used in servers and places where you can't install much stuff
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Options
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" {{{ Options
 
 scriptencoding utf-8            " set script encoding
 set nocompatible                " The future is now old man
@@ -16,12 +14,12 @@ set noshowmode                  " Remove default mode indicator
 set hlsearch incsearch          " Highlight matches and patterns
 set ignorecase smartcase        " Define search case matching
 set nu rnu                      " Use relative line numbers
-set foldmethod=syntax           " Enable folds using the syntax
-set foldlevel=0                 " Automatically enable folds
 set path +=**                   " Kind of a fuzzy finder
 set wildmenu                    " Display matching files on tab complete
 set wildmode=longest,list,full
-set laststatus=2                " Always show the status line
+set foldmethod=indent           " Default fold method is using the syntax
+set foldlevel=0                 " Automatically enable folds
+set foldtext=FoldText()         " Show custom fold text
 
 " Default tab configuration
 set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
@@ -51,9 +49,9 @@ let g:netrw_liststyle=3         " Tree view
 let &t_SI = "\e[6 q"            " Use bar cursor in insert mode
 let &t_EI = "\e[2 q"            " Use block cursor in normal mode
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Auto-commands
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" }}}
+
+" {{{ Auto-commands
 
 " Use tabs for Go Lang files
 autocmd FileType go exec 'set noexpandtab shiftwidth=8'
@@ -74,16 +72,22 @@ autocmd BufWritePre * call RemoveTrailingWhitespaces()
 " Close floating completion pop-up when a selection is made
 autocmd CompleteDone * if !pumvisible() | pclose | endif
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Colors
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Set up fold method marker for specific files
+autocmd FileType vim exec 'set foldmethod=marker'
+autocmd FileType zsh exec 'set foldmethod=marker'
+autocmd FileType sh exec 'set foldmethod=marker'
+autocmd FileType tmux exec 'set foldmethod=marker'
+
+" }}}
+
+" {{{ Colors
 
 " Use one of the default color schemes
 colorscheme desert
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Functions
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" }}}
+
+" {{{ Functions
 
 " Clear all trailing white spaces in the file
 function! RemoveTrailingWhitespaces()
@@ -98,9 +102,18 @@ function! ExecuteMacroOverVisualRange()
   execute ":'<,'>normal @".nr2char(getchar())
 endfunction
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Commands
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+function! FoldText()
+    let line = getline(v:foldstart)
+    let folded_line_num = v:foldend - v:foldstart
+    let line_text = substitute(line, '^.*{{{\+', '', 'g')
+    let fillcharcount = &textwidth - len(line_text) - len(folded_line_num)
+    return '+'. repeat('-', 4) . line_text . repeat('.', fillcharcount) . ' (' . folded_line_num . ' L)'
+    # dumb marker closer }}}
+endfunction
+
+" }}}
+
+" {{{ Commands
 
 " Prevent some common typos
 command! W :w
@@ -111,9 +124,9 @@ command! Qa :qa
 " Capitalize the given selection
 command! -range Caps <line1>,<line2>s/\<./\u&/g | noh
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Mappings
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" }}}
+
+" {{{ Mappings
 
 " Close file without saving
 nnoremap XX :qa!<CR>
@@ -142,10 +155,9 @@ inoremap <silent><expr><S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 " Prevent new line inserted after selecting a completion
 inoremap <expr> <CR> pumvisible() ? "\<C-Y>" : "\<CR>"
 
+" }}}
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Status line
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" {{{ Status line
 
 set statusline=                                                 " Init
 set statusline+=\[%{toupper(mode())}\]                          " Mode indicator
@@ -157,3 +169,5 @@ set statusline+=\                                               " Space
 set statusline+=[%1.5l:%1.5L]                                   " Line
 set statusline+=[:\%c]                                          " Column
 set statusline+=[%{&fileencoding?&fileencoding:&encoding}]      " File encoding
+
+" }}}
