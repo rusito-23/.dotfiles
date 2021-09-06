@@ -16,9 +16,17 @@ local opts = { capabilities = capabilities, init_options = { usePlaceholders = t
 
 -- Set up LSP configurations
 -- See: https://github.com/neovim/nvim-lspconfig/blob/master/CONFIG.md
+
+-- `npm install -g pyright`
 lspconfig.pyright.setup { opts }
+
+-- `npm install -g vim-language-server`
 lspconfig.vimls.setup { opts }
+
+-- `go get golang.org/x/tools/gopls@latest`
 lspconfig.gopls.setup { opts }
+
+-- `npm install -g dockerfile-language-server-nodejs`
 lspconfig.dockerls.setup { opts }
 
 -- Set up LSP Saga
