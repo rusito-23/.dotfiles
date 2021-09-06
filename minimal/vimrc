@@ -3,23 +3,29 @@
 
 " {{{ Options
 
-scriptencoding utf-8            " set script encoding
-set nocompatible                " The future is now old man
-set cursorline                  " Highlight the current line
-set clipboard+=unnamedplus      " Use the system clipboard
-set mouse=a                     " Enable mouse interaction
-set scrolloff=3                 " When scrolling, use an offset of three lines
-syntax on                       " Enable syntax
-set noshowmode                  " Remove default mode indicator
-set hlsearch incsearch          " Highlight matches and patterns
-set ignorecase smartcase        " Define search case matching
-set nu rnu                      " Use relative line numbers
-set path +=**                   " Kind of a fuzzy finder
-set wildmenu                    " Display matching files on tab complete
-set wildmode=longest,list,full
-set foldmethod=indent           " Default fold method is using the syntax
-set foldlevel=0                 " Automatically enable folds
-set foldtext=FoldText()         " Show custom fold text
+scriptencoding utf-8                    " set script encoding
+set nocompatible                        " The future is now old man
+set cursorline                          " Highlight the current line
+set clipboard+=unnamedplus              " Use the system clipboard
+set mouse=a                             " Enable mouse interaction
+set scrolloff=3                         " When scrolling, use an offset of three lines
+set noshowmode                          " Remove default mode indicator
+set hlsearch incsearch                  " Highlight matches and patterns
+set ignorecase smartcase incsearch      " Define search case matching
+set nu rnu                              " Use relative line numbers
+set path +=**                           " Kind of a fuzzy finder
+set foldmethod=indent                   " Default fold method is using the syntax
+set foldlevel=0                         " Automatically enable folds
+set foldtext=FoldText()                 " Show custom fold text
+set hid                                 " Buffers get hidden when abandoned
+set backspace=eol,start,indent          " Don't mess with my backspace
+set whichwrap+=<,>,h,l                  " Wrap around the characters when selecting
+set lazyredraw                          " Macro optimization
+set foldcolumn=1                        " Some left margin right here
+
+" Wild menu configuration
+set wildmenu                            " Display matching files on tab complete
+set wildmode=longest,list,full          " Wild menu configuration
 
 " Default tab configuration
 set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
@@ -27,11 +33,13 @@ set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
 " Define the map leader
 let g:mapleader = ","
 
+syntax on                               " Enable syntax
+filetype on                             " Enable file type matching
+filetype plugin on                      " Enable plugins
+
 " Configure Indentation
-filetype on
-filetype plugin on
 filetype indent on
-set autoindent
+set autoindent smartindent
 
 " Configure completion options
 set completeopt+=menuone   " Show the pop up menu even when there is only 1 match
@@ -135,8 +143,9 @@ nnoremap XX :qa!<CR>
 nnoremap j gj
 nnoremap k gk
 
-" Clear highlights with <CR>
+" Clear highlights with <CR> or <ESC>
 nnoremap <CR> :noh<CR>
+nnoremap <ESC> :noh<CR>
 
 " Execute the macro `q`
 nnoremap <Space> @q
@@ -154,6 +163,10 @@ inoremap <silent><expr><S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
 " Prevent new line inserted after selecting a completion
 inoremap <expr> <CR> pumvisible() ? "\<C-Y>" : "\<CR>"
+
+" Use * to search the current selection
+vnoremap <silent> * "zy/<C-R>=@z<CR><CR>
+
 
 " }}}
 

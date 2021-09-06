@@ -9,22 +9,30 @@ luafile ~/.dotfiles/nvim/config.lua
 
 " {{{ Options
 
-set diffopt+=vertical           " Use vertical diff
-set cursorline                  " Highlight the current line
-set clipboard+=unnamedplus      " Use the system clipboard
-set mouse=a                     " Enable mouse interaction
-set scrolloff=3                 " When scrolling, use an offset of three lines
-syntax on                       " Enable syntax
-set noshowmode                  " Remove default mode indicator
-set hlsearch incsearch          " Highlight matches and patterns
-set ignorecase smartcase        " Define search case matching
-set nu rnu                      " Use relative line numbers
-set path +=**                   " Kind of a fuzzy finder
-set wildmenu                    " Display matching files on tab complete
-set wildmode=longest,list,full
-set foldmethod=indent           " Default fold method is using the syntax
-set foldlevel=0                 " Automatically enable folds
-set foldtext=FoldText()         " Show custom fold text
+scriptencoding utf-8                    " set script encoding
+set nocompatible                        " The future is now old man
+set diffopt+=vertical                   " Use vertical diff
+set cursorline                          " Highlight the current line
+set clipboard+=unnamedplus              " Use the system clipboard
+set mouse=a                             " Enable mouse interaction
+set scrolloff=3                         " When scrolling, use an offset of three lines
+set noshowmode                          " Remove default mode indicator
+set hlsearch incsearch                  " Highlight matches and patterns
+set ignorecase smartcase incsearch      " Define search case matching
+set nu rnu                              " Use relative line numbers
+set path +=**                           " Kind of a fuzzy finder
+set foldmethod=indent                   " Default fold method is using the syntax
+set foldlevel=0                         " Automatically enable folds
+set foldtext=FoldText()                 " Show custom fold text
+set hid                                 " Buffers get hidden when abandoned
+set backspace=eol,start,indent          " Don't mess with my backspace
+set whichwrap+=<,>,h,l                  " Wrap around the characters when selecting
+set lazyredraw                          " Macro optimization
+set foldcolumn=1                        " Some left margin right here
+
+" Wild menu configuration
+set wildmenu                            " Display matching files on tab complete
+set wildmode=longest,list,full          " Wild menu configuration
 
 " Default tab configuration
 set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
@@ -32,11 +40,13 @@ set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
 " Define the map leader
 let g:mapleader = ","
 
+syntax on                               " Enable syntax
+filetype on                             " Enable file type matching
+filetype plugin on                      " Enable plugins
+
 " Configure Indentation
-filetype on
-filetype plugin on
 filetype indent on
-set autoindent
+set autoindent smartindent
 
 " Special characters display configuration
 set list
@@ -207,8 +217,9 @@ nnoremap k gk
 " Save the current file
 nnoremap <leader>s :update<CR>
 
-" Clear highlights with <CR>
+" Clear highlights with <CR> or <ESC>
 nnoremap <CR> :noh<CR>
+nnoremap <ESC> :noh<CR>
 
 " Execute the macro `q`
 nnoremap <Space> @q
@@ -258,6 +269,14 @@ nnoremap <leader>e <cmd>Telescope find_files<CR>
 nnoremap <leader>F <cmd>Telescope live_grep<CR>
 nnoremap <leader>b <cmd>Telescope buffers<CR>
 nnoremap <leader>H <cmd>Telescope help_tags<CR>
+
+" Search the current selection with Telescope
+vnoremap <leader>f "zy:Telescope current_buffer_fuzzy_find default_text=<C-R>z<CR>
+vnoremap <leader>e "zy:Telescope find_files default_text=<C-R>z<CR>
+vnoremap <leader>F "zy:Telescope live_grep default_text=<C-R>z<CR>
+
+" Use * to search the current selection
+vnoremap <silent> * "zy/<C-R>=@z<CR><CR>
 
 " Mappings for LSP saga
 nnoremap <silent> <C-j> <Cmd>Lspsaga diagnostic_jump_next<CR>
