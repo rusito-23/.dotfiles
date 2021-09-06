@@ -69,6 +69,7 @@ key_bindings:
   - { key: Right,     mods: Alt,       chars: "\x1bf"                       }
   - { key: Up,        mods: Alt,       chars: "\x1b[A"                      }
   - { key: Down,      mods: Alt,       chars: "\x1b[B"                      }
+  - { key: Space,     mods: Alt,       chars: " "                           }
 
 # -- Color config
 colors:

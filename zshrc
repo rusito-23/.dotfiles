@@ -1,7 +1,6 @@
 # zshrc
 
-# -----------------------
-# GENERAL CONFIGS
+# {{{ General Configuration
 
 # General configuration
 export TERM="xterm-256color"
@@ -76,8 +75,9 @@ if [[ "${terminfo[kcud1]}" != "" ]]; then
     bindkey "${terminfo[kcud1]}" down-line-or-beginning-search
 fi
 
-# -----------------------
-# ALIASES
+# }}}
+
+# {{{ Alias
 
 alias src='source ~/.zshrc'     # Quick reload
 alias ls='ls -GFh'              # Default ls config
@@ -119,8 +119,9 @@ alias py='ipython'                      # Start ipython session
 alias jn='jupyter notebook'             # Start jupyter notebook server
 alias jl='jupyter lab'                  # Start jupyter lab server
 
-# -----------------------
-# EXTRA TOOLS
+# }}}
+
+# {{{ Load plugins
 
 # Load `fasd`
 eval "$(fasd --init auto)"
@@ -135,6 +136,13 @@ export FZF_DEFAULT_OPTS='-i --height 50% --border --inline-info '
 
 # Load `git` + `fzf` additions
 source ~/.dotfiles/fzf.git.zsh
+
+# FUCK!
+eval $(thefuck --alias)
+
+# }}}
+
+# {{{ Functions
 
 # `git` plugin custom extensions
 
@@ -177,6 +185,18 @@ function gcopr() {
 # Use `gitignore.io` for default gitignore configurations
 function gi() { curl -sL https://www.gitignore.io/api/$@ ;}
 
+# Purge the entire docker stuff
+function docker_purge() {
+    docker rm -f $(docker ps -aq)
+    docker rmi -f $(docker images -aq)
+    docker volume rm $(docker volume ls -q)
+    docker system prune
+}
+
+# }}}
+
+# {{{ Custom Completions
+
 # Get the available gitignore.io types
 function _gitignoreio_get_command_list() {
   curl -sL https://www.gitignore.io/api/list | tr "," "\n"
@@ -188,6 +208,22 @@ function _gitignoreio () {
   compadd -S '' `_gitignoreio_get_command_list`
 }
 compdef _gitignoreio gi
+
+# Set up completion for the `cheat` command
+function _cheat_get_list() {
+    ls ~/.dotfiles/cheatsheets | \
+        awk -F. '{print $1}' | \
+        tr '[:upper:]' '[:lower:]'
+}
+function _cheat() {
+    compset -P '*,'
+    compadd -S '' `_cheat_get_list`
+}
+compdef _cheat cheat
+
+# }}}
+
+# {{{ Version Manager Configuration
 
 # Go Version Manager configuration
 (( ${+aliases[g]} )) && unalias g
@@ -209,25 +245,4 @@ if command -v pyenv 1>/dev/null 2>&1; then
     pyenv virtualenvwrapper
 fi
 
-# FUCK!
-eval $(thefuck --alias)
-
-# Purge the entire docker stuff
-function docker_purge() {
-    docker rm -f $(docker ps -aq)
-    docker rmi -f $(docker images -aq)
-    docker volume rm $(docker volume ls -q)
-    docker system prune
-}
-
-# Set up completion for the `cheat` command
-function _cheat_get_list() {
-    ls ~/.dotfiles/cheatsheets | \
-        awk -F. '{print $1}' | \
-        tr '[:upper:]' '[:lower:]'
-}
-function _cheat() {
-    compset -P '*,'
-    compadd -S '' `_cheat_get_list`
-}
-compdef _cheat cheat
+# }}}

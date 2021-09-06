@@ -1,7 +1,6 @@
 " vim: filetype=vifm :
 
-" ------------------------------------------------------------------------------
-" General configs
+" {{{ General configs
 
 set vicmd=vim
 set syscalls                    " vifm file operations
@@ -29,8 +28,9 @@ set incsearch
 " cool color scheme
 colorscheme zenburn
 
-" ------------------------------------------------------------------------------
-" cool statusline
+" }}}
+
+" {{{ cool statusline
 
 " colors
 highlight User1      ctermbg=232          ctermfg=186        cterm=none
@@ -57,17 +57,19 @@ execute 'set' 'statusline="'
     \ . $SEPARATOR
     \ . $MOD_DATE
     \ . $PERMS
-    \ . $USER 
+    \ . $USER
     \ .'"'
 
-" ------------------------------------------------------------------------------
-" Marks
+" }}}
+
+" {{{ Marks
 
 mark h ~/
 mark r ~/repos
 
-" ------------------------------------------------------------------------------
-" Commands
+" }}}
+
+" {{{ Commands
 
 command! diff nvim -d %f %F
 command! zip zip -r %f.zip %f
@@ -76,8 +78,9 @@ command! make !!make %a
 command! mkcd :mkdir %a | cd %a
 command! src :source ~/.config/vifm/vifmrc
 
-" ------------------------------------------------------------------------------
-" Previews and Viewers
+" }}}
+
+" {{{ Previews and Viewers
 
 " pdf
 filetype *.pdf
@@ -136,14 +139,16 @@ fileviewer *[^/]
 " default command
 filetype *[^/] nvim
 
-" ------------------------------------------------------------------------------
-" Sessions persistence
+" }}}
+
+" {{{ Sessions persistence
 
 set vifminfo=dhistory,savedirs,chistory,state,tui,shistory,
     \phistory,fhistory,dirstack,registers,bookmarks,bmarks
 
-" ------------------------------------------------------------------------------
-" Mappings
+" }}}
+
+" {{{ Mappings
 
 " toggle preview visibility
 nnoremap w :view<cr>
@@ -164,9 +169,12 @@ nnoremap ,n :!tmux new-window -c %d<cr>
 " new tmux win and open in nvim
 nnoremap ,o :!tmux new-window -c %d "nvim %c"<cr>
 
-""""""""""""""""""""""""""""""
-" fzf integration
+" }}}
+
+" {{{ fzf integration
 " https://wiki.vifm.info/index.php/How_to_integrate_fzf_for_fuzzy_finding
 
 command! FZFgoto :set noquickview | :execute 'goto' fnameescape(term('fzf --no-height 2>/dev/tty'))
 nnoremap ,e :FZFgoto<cr>
+
+" }}}

@@ -1,15 +1,13 @@
 " init.vim
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Load external files
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" {{{ Load external files
 
 source ~/.dotfiles/nvim/plug.vim
 luafile ~/.dotfiles/nvim/config.lua
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Options
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" }}}
+
+" {{{ Options
 
 set cursorline                  " Highlight the current line
 set clipboard+=unnamedplus      " Use the system clipboard
@@ -21,8 +19,9 @@ set hlsearch incsearch          " Highlight matches and patterns
 set ignorecase smartcase        " Define search case matching
 set nu rnu                      " Use relative line numbers
 set diffopt+=vertical           " Use vertical diff
-set foldmethod=syntax           " Enable folds using the syntax
+set foldmethod=indent           " Default fold method is using the syntax
 set foldlevel=0                 " Automatically enable folds
+set foldtext=FoldText()         " Show custom fold text
 
 " Default tab configuration
 set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
@@ -81,9 +80,9 @@ call neomake#configure#automake('nrwi', 500)
 " `vim-tmux-navigator` configuration
 let g:tmux_navigator_no_mappings = 1
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Auto-commands
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" }}}
+
+" {{{ Auto-commands
 
 " Use tabs for Go Lang files
 autocmd FileType go exec 'set noexpandtab shiftwidth=8'
@@ -108,9 +107,15 @@ autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 " Close floating completion pop-up when a selection is made
 autocmd CompleteDone * if !pumvisible() | pclose | endif
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Colors
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" Set up fold method for vimrc files
+autocmd FileType vim exec 'set foldmethod=marker'
+autocmd FileType zsh exec 'set foldmethod=marker'
+autocmd FileType sh exec 'set foldmethod=marker'
+autocmd FileType tmux exec 'set foldmethod=marker'
+
+" }}}
+
+" {{{ Colors
 
 " Spellchecker colors
 hi clear SpellBad
@@ -124,9 +129,9 @@ hi SpellLocal cterm=underline ctermfg=yellow
 set termguicolors
 colorscheme nord
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Functions
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" }}}
+
+" {{{ Functions
 
 " Clear all trailing white spaces in the file
 function! RemoveTrailingWhitespaces()
@@ -153,9 +158,17 @@ function! SetUpTemplate(ext)
     execute "command! ".toupper(a:ext)." call LoadTemplate('".a:ext."')"
 endfunction
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Commands
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+function! FoldText()
+    let line = getline(v:foldstart)
+    let folded_line_num = v:foldend - v:foldstart
+    let line_text = substitute(line, '^.*{{{\+', '', 'g')
+    let fillcharcount = &textwidth - len(line_text) - len(folded_line_num)
+    return '+'. repeat('-', 4) . line_text . repeat('.', fillcharcount) . ' (' . folded_line_num . ' L)'
+endfunction
+
+" }}}
+
+" {{{ Commands
 
 " Prevent some common typos
 command! W :w
@@ -176,9 +189,9 @@ command! -range Caps <line1>,<line2>s/\<./\u&/g | noh
 " Create extension command for each available template
 call map(globpath('~/.dotfiles/templates/', '*', 1, 1), 'SetUpTemplate(fnamemodify(v:val, ":e"))')
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Mappings
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" }}}
+
+" {{{ Mappings
 
 " Close file without saving
 nnoremap XX :qa!<CR>
@@ -247,3 +260,5 @@ nnoremap <silent> <C-j> <Cmd>Lspsaga diagnostic_jump_next<CR>
 nnoremap <silent>K <Cmd>Lspsaga hover_doc<CR>
 inoremap <silent> <C-k> <Cmd>Lspsaga signature_help<CR>
 nnoremap <silent> gh <Cmd>Lspsaga lsp_finder<CR>
+
+" }}}

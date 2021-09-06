@@ -4,22 +4,34 @@
 # https://gist.github.com/tylerwalts/9375263
 # https://gist.github.com/bradp/bea76b16d3325f5c47d4
 
+# {{{ Initial Set up
+
+# Escape on failure
 set -euo pipefail
 
 # Load script utils
 source ~/.dotfiles/scripts/utils
 
-# Menu bar
+# }}}
+
+# {{{ Menu bar
+
 defaults write NSGlobalDomain _HIHideMenuBar -bool true                 # Enable autohide
 defaults write com.apple.menuextra.battery ShowPercent -bool true       # Show battery percentage
 defaults write ~/Library/Preferences/ByHost/com.apple.controlcenter.plist BatteryShowPercentage -bool true
 
-# Finder
+# }}}
+
+# {{{ Finder
+
 defaults write com.apple.finder _FXShowPosixPathInTitle -bool true              # Show file path
 defaults write com.apple.finder ShowStatusBar -bool true                        # Show status bar
 defaults write com.apple.finder ShowExternalHardDrivesOnDesktop -bool false     # Don't show stuff in my desktop
 
-# Dock
+# }}}
+
+# {{{ Dock
+
 defaults write com.apple.dock autohide -bool true               # Enable autohide
 defaults write com.apple.dock autohide-delay -int 0             # Disable autohide delay
 defaults write com.apple.dock static-only -bool true            # Show only active apps
@@ -27,36 +39,57 @@ defaults write com.apple.dock tilesize -integer 24              # Set normal siz
 defaults write com.apple.dock largesize -int 128                # Set magnified size
 defaults write com.apple.dock mru-spaces -bool false            # Disable auto arrangement
 
-# Screenshots
+# }}}
+
+# {{{ Screenshots
+
 defaults write com.apple.screencapture location -string "${HOME}/Documents/Screenshots" # Change default location
 defaults write com.apple.screencapture type -string "png"                               # Change default format
 
-# Automatically illuminate built-in MacBook keyboard in low light
+# }}}
 
+# {{{ Automatically illuminate built-in MacBook keyboard in low light
 defaults write com.apple.BezelServices kDim -bool true
-# Increase sound quality for Bluetooth headphones/headsets
+# }}}
 
+# {{{ Increase sound quality for Bluetooth headphones/headsets
 defaults write com.apple.BluetoothAudioAgent "Apple Bitpool Min (editable)" -int 40
+# }}}
 
-# Hot corners
+# {{{ Hot corners
+
 defaults write com.apple.dock wvous-br-corner -int 5            # Bottom right → Start screen saver
 defaults write com.apple.dock wvous-br-modifier -int 0          # Bottom right modifier → None
 
-# Set up pam sudo reattach - optional
+# }}}
+
+# {{{ Set up pam sudo reattach - optional
+
 if [[ "$*" == *--with-pam-setup* ]]; then
     brew install fabianishere/personal/pam_reattach         # Workaround to enable for tmux
     sudo bash -c 'echo -e "auth  sufficient  pam_tid.so\n$(cat /etc/pam.d/sudo)" > /etc/pam.d/sudo'
     sudo bash -c 'echo -e "auth  optional    pam_reattach.so\n$(cat /etc/pam.d/sudo)" > /etc/pam.d/sudo'
 fi
 
-# Set up the key re-mappings plist
+# }}}
+
+# {{{ Set up the key re-mappings plist
+
 cp ~/.dotfiles/KeyRemappings.plist ~/Library/LaunchAgents/com.rusito23.KeyRemapping.plist
 
-# Restart affected apps
+# }}}
+
+# {{{ Restart affected apps
+
 killall Dock
 killall Finder
 killall SystemUIServer
 killall cfprefsd
 
-# Show success
+# }}}
+
+#  {{{Show success
+
 log_success ">>> Finished macOS setup successfully! <<<"
+
+# }}}

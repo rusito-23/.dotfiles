@@ -1,6 +1,6 @@
-#/bin/sh
+#!/bin/sh
 # Dotfiles Install Script
-# Parameters:
+# {{{ Parameters:
 # - none: install everything
 # - BREW: install some brew dependencies
 # - NVIM: set up `dein` and ini file
@@ -15,6 +15,9 @@
 # - ALACRITTY: install & set up the alacritty terminal emulator
 # - ESPANSO: set up the espanso daemon
 # - ZSH: setup zsh as default shell
+# }}}
+
+# {{{ Inits
 
 # Load script utils
 source ~/.dotfiles/scripts/utils
@@ -25,14 +28,12 @@ PLUGIN_DIR=$OH_MY_ZSH_DIR/custom/plugins
 THEMES_DIR=$OH_MY_ZSH_DIR/custom/themes
 GH_URL=https://github.com
 
-#   CHECK PARAMS  #
-# --------------- #
 [[ $# -eq 0 ]] && log_info ">>> No arguments supplied: Performing full instalation <<<"
 
-#       BREW      #
-# --------------- #
+# }}}
 
-# Install dependencies
+# {{{  Installl Brew Dependencies
+
 if [[ "$*" == *BREW* ]] || [[ $# -eq 0 ]]; then
     log_info ">>> BREW: Install dependencies <<<"
     # Update brew
@@ -47,8 +48,9 @@ if [[ "$*" == *BREW* ]] || [[ $# -eq 0 ]]; then
     done <~/.dotfiles/requirements/cask-reqs.txt
 fi
 
-#       NVIM      #
-# --------------- #
+# }}}
+
+# {{{ Set up nvim
 
 if [[ "$*" == *NVIM* ]] || [[ $# -eq 0 ]]; then
     # Setup ini file
@@ -62,8 +64,9 @@ if [[ "$*" == *NVIM* ]] || [[ $# -eq 0 ]]; then
     log_info "Remember to run dein#install() when running vim for the first time"
 fi
 
-#       TMUX      #
-# --------------- #
+# }}}
+
+# {{{ Set up Tmux
 
 if [[ "$*" == *TMUX* ]] || [[ $# -eq 0 ]]; then
     # Link config file
@@ -71,8 +74,9 @@ if [[ "$*" == *TMUX* ]] || [[ $# -eq 0 ]]; then
     log_success ">>> TMUX: Setup success <<<"
 fi
 
-#       VIFM      #
-# --------------- #
+# }}}
+
+# {{{ Set up Vifm
 
 if [[ "$*" == *VIFM* ]] || [[ $# -eq 0 ]]; then
 
@@ -88,9 +92,10 @@ if [[ "$*" == *VIFM* ]] || [[ $# -eq 0 ]]; then
     log_success ">>> VIFM: Setup success <<<"
 fi
 
-#       GIT       #
-# --------------- #
+# }}}
 
+
+# {{{ Set up Git
 
 if [[ "$*" == *GIT* ]] || [[ $# -eq 0 ]]; then
     # Link config file
@@ -98,8 +103,9 @@ if [[ "$*" == *GIT* ]] || [[ $# -eq 0 ]]; then
     log_success ">>> GIT: Setup success <<<"
 fi
 
-#       HTOP      #
-# --------------- #
+# }}}
+
+# {{{ Setup Htop
 
 if [[ "$*" == *HTOP* ]] || [[ $# -eq 0 ]]; then
     # Create config dir
@@ -110,9 +116,9 @@ if [[ "$*" == *HTOP* ]] || [[ $# -eq 0 ]]; then
     log_success ">>> HTOP: Setup success <<<"
 fi
 
-#       ZSH       #
-# --------------- #
+# }}}
 
+# {{{ Set up Zsh
 
 if [[ "$*" == *OHMYZSH* ]] || [[ $# -eq 0 ]]; then
     # Install Oh My Zsh
@@ -139,6 +145,10 @@ if [[ "$*" == *POWERLEVEL* ]] || [[ $# -eq 0 ]]; then
         $THEMES_DIR/powerlevel10k
 fi
 
+# }}}
+
+# {{{ Set up Yabai
+
 if [[ "$*" == *YABAI* ]] || [[ $# -eq 0 ]]; then
     # Install yabai & skhdrc
     brew install koekeishiya/formulae/yabai
@@ -157,6 +167,10 @@ if [[ "$*" == *YABAI* ]] || [[ $# -eq 0 ]]; then
     log_success ">>> YABAI: Setup success <<<"
 fi
 
+# }}}
+
+# {{{ Set up Alacritty
+
 if [[ "$*" == *ALACRITTY* ]] || [[ $# -eq 0 ]]; then
     # Install alacritty
     brew install alacritty
@@ -164,6 +178,10 @@ if [[ "$*" == *ALACRITTY* ]] || [[ $# -eq 0 ]]; then
     safe_ln ~/.dotfiles/alacritty.yml ~/.alacritty.yml
     log_success ">>> ALACRITTY: Setup success <<<"
 fi
+
+# }}}
+
+# {{{ Set up Espanso
 
 if [[ "$*" == *ESPANSO* ]] || [[ $# -eq 0 ]]; then
     # Install
@@ -176,8 +194,14 @@ if [[ "$*" == *ESPANSO* ]] || [[ $# -eq 0 ]]; then
     espanso restart
 fi
 
+# }}}
+
+# {{{ Set up Zsh as default shell
+
 if [[ "$*" == *ZSH* ]] || [[ $# -eq 0 ]]; then
     # Set Zsh as default shell
     log_info ">>> ZSH: Setup default shell <<<"
     chsh -s $(which zsh)
 fi
+
+# }}}
