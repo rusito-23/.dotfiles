@@ -5,7 +5,10 @@
 " ╚██╗ ██╔╝██║██║╚██╔╝██║██╔══██╗██║
 "  ╚████╔╝ ██║██║ ╚═╝ ██║██║  ██║╚██████╗
 "   ╚═══╝  ╚═╝╚═╝     ╚═╝╚═╝  ╚═╝ ╚═════╝
-" To be used in servers and places where you can't install much stuff
+"
+" Author: Igor Andruskiewitsch
+" License: MIT
+" Notes: To be used in servers and places where you can't install much stuff
 
 " {{{ Options
 

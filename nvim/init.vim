@@ -5,11 +5,15 @@
 " ██║██║╚██╗██║██║   ██║   ╚██╗ ██╔╝██║██║╚██╔╝██║
 " ██║██║ ╚████║██║   ██║██╗ ╚████╔╝ ██║██║ ╚═╝ ██║
 " ╚═╝╚═╝  ╚═══╝╚═╝   ╚═╝╚═╝  ╚═══╝  ╚═╝╚═╝     ╚═╝
-
+"
+" Author: Igor Andruskiewitsch
+" License: MIT
+" Notes: My Neovim Utils
 
 " {{{ Load external files
 
 source ~/.dotfiles/nvim/plug.vim
+source ~/.dotfiles/nvim/todo.vim
 luafile ~/.dotfiles/nvim/config.lua
 
 " }}}
