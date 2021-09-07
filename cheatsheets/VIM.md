@@ -17,6 +17,7 @@
 | --- | --- |
 | ⌃`N` | Toggle NerdTree |
 | ⌃`T` | Toggle TagBar |
+| ⌃`W` + `hjkl` | Navigate panes |
 
 ## ⌥ Shortcuts
 
@@ -32,7 +33,7 @@
 | --- | --- |
 | `<leader>s` | Save file |
 
-## Other Shortcuts
+## Macro Shortcuts
 
 | Shortcut | Description |
 | --- | --- |

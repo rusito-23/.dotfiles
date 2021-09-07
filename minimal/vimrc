@@ -21,6 +21,7 @@ set backspace=eol,start,indent          " Don't mess with my backspace
 set whichwrap+=<,>,h,l                  " Wrap around the characters when selecting
 set lazyredraw                          " Macro optimization
 set foldcolumn=1                        " Some left margin right here
+set splitbelow splitright               " Open below and on the right side
 
 " Wild menu configuration
 set wildmenu                            " Display matching files on tab complete
@@ -123,6 +124,12 @@ function! FoldText()
     # dumb marker closer }}}
 endfunction
 
+" Opens a small terminal at the bottom
+function! OpenTerminal()
+    term
+    resize 10
+endfunction
+
 " }}}
 
 " {{{ Commands
@@ -169,6 +176,9 @@ inoremap <expr> <CR> pumvisible() ? "\<C-Y>" : "\<CR>"
 
 " Use * to search the current selection
 vnoremap <silent> * "zy/<C-R>=@z<CR><CR>
+
+" Open a small terminal at the bottom
+nnoremap <silent> <leader>t  <cmd>call OpenTerminal()<CR>
 
 " }}}
 

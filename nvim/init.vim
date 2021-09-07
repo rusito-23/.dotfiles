@@ -29,6 +29,7 @@ set backspace=eol,start,indent          " Don't mess with my backspace
 set whichwrap+=<,>,h,l                  " Wrap around the characters when selecting
 set lazyredraw                          " Macro optimization
 set foldcolumn=1                        " Some left margin right here
+set splitbelow splitright               " Open below and on the right side
 
 " Wild menu configuration
 set wildmenu                            " Display matching files on tab complete
@@ -180,6 +181,13 @@ function! FoldText()
     # dumb marker closer }}}
 endfunction
 
+" Opens a small terminal at the bottom
+function! OpenTerminal()
+    split term://zsh
+    resize 10
+    normal! i
+endfunction
+
 " }}}
 
 " {{{ Commands
@@ -276,9 +284,12 @@ vnoremap <leader>F "zy:Telescope live_grep default_text=<C-R>z<CR>
 vnoremap <silent> * "zy/<C-R>=@z<CR><CR>
 
 " Mappings for LSP saga
-nnoremap <silent> <C-j> <Cmd>Lspsaga diagnostic_jump_next<CR>
-nnoremap <silent>K <Cmd>Lspsaga hover_doc<CR>
-inoremap <silent> <C-k> <Cmd>Lspsaga signature_help<CR>
-nnoremap <silent> gh <Cmd>Lspsaga lsp_finder<CR>
+nnoremap <silent> <C-j> <cmd>Lspsaga diagnostic_jump_next<CR>
+nnoremap <silent>K <cmd>Lspsaga hover_doc<CR>
+inoremap <silent> <C-k> <cmd>Lspsaga signature_help<CR>
+nnoremap <silent> gh <cmd>Lspsaga lsp_finder<CR>
+
+" Open a small terminal at the bottom
+nnoremap <silent> <leader>t  <cmd>call OpenTerminal()<CR>
 
 " }}}
