@@ -173,8 +173,11 @@ nnoremap ,p :!!shellpic --shell24 %c<cr>
 " new tmux window in cur dir
 nnoremap ,n :!tmux new-window -c %d<cr>
 
+" new vertical tmux pane and open in nvim
+nnoremap ,o :!tmux split-window -h -c %d "nvim %c"<cr>
+
 " new tmux win and open in nvim
-nnoremap ,o :!tmux new-window -c %d "nvim %c"<cr>
+nnoremap ,ow :!tmux new-window -c %d "nvim %c"<cr>
 
 " }}}
 
