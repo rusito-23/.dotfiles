@@ -55,7 +55,6 @@ fi
 if [[ "$*" == *NVIM* ]] || [[ $# -eq 0 ]]; then
     # Setup ini file
     log_info ">>> NVIM: Setup config folder <<<"
-    mkdir -p ~/.config/nvim
     mv ~/.config/nvim ~/.config/nvim.old &> /dev/null
     ln -s ~/.dotfiles/nvim ~/.config/nvim
 
