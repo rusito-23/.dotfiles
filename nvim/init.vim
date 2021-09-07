@@ -143,6 +143,11 @@ hi SpellLocal cterm=underline ctermfg=yellow
 set termguicolors
 colorscheme nord
 
+" Vim-Fugitive Special Colors
+hi DiffAdd gui=NONE guifg=green guibg=NONE
+hi DiffDelete gui=NONE guifg=red guibg=NONE
+hi DiffChange gui=NONE guifg=yellow guibg=NONE
+
 " }}}
 
 " {{{ Functions
