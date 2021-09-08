@@ -8,7 +8,7 @@
 "
 " Author: Igor Andruskiewitsch
 " License: MIT
-" Notes: My Neovim Utils
+" Notes: My Neovim Configuration File
 
 " {{{ Load external files
 
@@ -19,6 +19,8 @@ luafile ~/.dotfiles/nvim/config.lua
 " }}}
 
 " {{{ Options
+
+" {{{ General Options
 
 scriptencoding utf-8                    " set script encoding
 set nocompatible                        " The future is now old man
@@ -41,31 +43,43 @@ set whichwrap+=<,>,h,l                  " Wrap around the characters when select
 set lazyredraw                          " Macro optimization
 set foldcolumn=1                        " Some left margin right here
 set splitbelow splitright               " Open below and on the right side
-
-" Wild menu configuration
-set wildmenu                            " Display matching files on tab complete
-set wildmode=longest,list,full          " Wild menu configuration
-
-" Default tab configuration
-set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
-
-" Define the map leader
-let g:mapleader = ","
-
 syntax on                               " Enable syntax
 filetype on                             " Enable file type matching
 filetype plugin on                      " Enable plugins
+let g:mapleader = ","                   " Define map leader
 
-" Configure Indentation
+" }}}
+
+" {{{ Wild menu configuration
+
+set wildmenu                            " Display matching files on tab complete
+set wildmode=longest,list,full          " Wild menu configuration
+
+" }}}
+
+" {{{ Default tab configuration
+
+set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
+
+" }}}
+
+" {{{ Configure Indentation
+
 filetype indent on
 set autoindent smartindent
 
-" Special characters display configuration
+" }}}
+
+" {{{ Special characters display configuration
+
 set list
 set showbreak=↪\
 set listchars=tab:→\ ,space:·,nbsp:␣,trail:•,eol:↲,precedes:«,extends:»
 
-" Configure completion options
+" }}}
+
+" {{{ Completion options
+
 set completeopt+=menuone   " Show the pop up menu even when there is only 1 match
 set completeopt+=noinsert  " Don't insert any text until user chooses a match
 set completeopt+=noselect  " Don't select the first option automatically
@@ -73,37 +87,24 @@ set completeopt-=longest   " Don't insert the longest common text
 set completeopt+=preview   " Show docs in V split
 set belloff+=ctrlg         " Don't beep during completion
 
-" Enable and configure spell check
+" }}}
+
+" {{{ Configure spell check
+
 set spell spelllang=en_us
 set spellfile=~/.dotfiles/nvim/spell/spellcheck.utf-8.add
 
-" Enable `deoplete` on start up
-let g:deoplete#enable_at_startup = 1
+" }}}
 
-" Enable `deoplete` LSP
-let g:deoplete#lsp#handler_enabled = 1
-let g:deoplete#lsp#use_icons_for_candidates = 1
-
-" Enable `kite` plugin if available
-let g:kite_tab_complete=1
-
-" Airline status bar configuration
-let g:airline_theme='nord'
-let g:airline_powerline_fonts = 1
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#show_close_button = 0
-
-" `neoformat` configuration
-let g:neoformat_basic_format_align = 1
-let g:neoformat_basic_format_retab = 1
-let g:neoformat_basic_format_trim = 1
-
-" `neomake` configuration
-let g:neomake_python_enabled_makers = ['pycodestyle']
-call neomake#configure#automake('nrwi', 500)
+" {{{ Configure plugins
 
 " `vim-tmux-navigator` configuration
 let g:tmux_navigator_no_mappings = 1
+
+" Enable snippet completion
+let g:completion_enable_snippet = 'vim-vsnip'
+
+" }}}
 
 " }}}
 
@@ -138,6 +139,9 @@ autocmd FileType zsh exec 'set foldmethod=marker'
 autocmd FileType sh exec 'set foldmethod=marker'
 autocmd FileType tmux exec 'set foldmethod=marker'
 
+" Open the completion menu every time we type
+autocmd InsertCharPre * call OpenCompletion()
+
 " }}}
 
 " {{{ Colors
@@ -162,6 +166,15 @@ hi DiffChange gui=NONE guifg=yellow guibg=NONE
 " }}}
 
 " {{{ Functions
+
+" Opens the completion if possible
+" Taken from: https://stackoverflow.com/questions/35837990
+function! OpenCompletion()
+    let l:isLetter = ((v:char >= 'a' && v:char <= 'z') || (v:char >= 'A' && v:char <= 'Z'))
+    if !pumvisible() && l:isLetter
+        call feedkeys("\<C-p>", "n")
+    endif
+endfunction
 
 " Clear all trailing white spaces in the file
 function! RemoveTrailingWhitespaces()
@@ -307,5 +320,20 @@ nnoremap <silent> gh <cmd>Lspsaga lsp_finder<CR>
 
 " Open a small terminal at the bottom
 nnoremap <silent> <leader>t  <cmd>call OpenTerminal()<CR>
+
+" }}}
+
+" {{{ Status line
+
+set statusline=                                                 " Init
+set statusline+=\[%{toupper(mode())}\]                          " Mode indicator
+set statusline+=%(%m%)                                          " Modified [+] / [-] flag
+set statusline+=[%Y]
+set statusline+=\ %t
+set statusline+=%=                                              " Right align
+set statusline+=\                                               " Space
+set statusline+=[%1.5l:%1.5L]                                   " Line
+set statusline+=[:\%c]                                          " Column
+set statusline+=[%{&fileencoding?&fileencoding:&encoding}]      " File encoding
 
 " }}}

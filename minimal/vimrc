@@ -8,7 +8,9 @@
 "
 " Author: Igor Andruskiewitsch
 " License: MIT
-" Notes: To be used in servers and places where you can't install much stuff
+" Notes:
+" Basically a copy of my Neovim configuration, without plugins.
+" To be used in servers and places where you can't install much stuff
 
 " {{{ Options
 

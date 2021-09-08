@@ -6,28 +6,44 @@ local saga = require 'lspsaga'
 local treesitter = require 'nvim-treesitter'
 local telescope = require 'telescope'
 local actions = require 'telescope.actions'
+local completion = require 'completion'
 
 -- Capabilities
 local capabilities = protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 -- Common LSP options
-local opts = { capabilities = capabilities, init_options = { usePlaceholders = true } }
+local default_opts = {
+    capabilities = capabilities,
+    init_options = { usePlaceholders = true },
+}
 
 -- Set up LSP configurations
 -- See: https://github.com/neovim/nvim-lspconfig/blob/master/CONFIG.md
 
 -- `npm install -g pyright`
-lspconfig.pyright.setup { opts }
+lspconfig.pyright.setup {
+    default_opts,
+    on_attach = completion.on_attach
+}
 
 -- `npm install -g vim-language-server`
-lspconfig.vimls.setup { opts }
+lspconfig.vimls.setup {
+    default_opts,
+    on_attach = completion.on_attach
+}
 
 -- `go get golang.org/x/tools/gopls@latest`
-lspconfig.gopls.setup { opts }
+lspconfig.gopls.setup {
+    default_opts,
+    on_attach = completion.on_attach
+}
 
 -- `npm install -g dockerfile-language-server-nodejs`
-lspconfig.dockerls.setup { opts }
+lspconfig.dockerls.setup {
+    default_opts,
+    on_attach = completion.on_attach
+}
 
 -- Set up LSP Saga
 saga.init_lsp_saga {
