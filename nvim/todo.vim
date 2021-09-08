@@ -17,7 +17,7 @@
 
 " Skeletons
 
-let s:element_skeleton="- [ ] <element>"
+let s:element_skeleton="- [] <element>"
 let s:list_skeleton="# New List\n\n".s:element_skeleton
 
 " Patterns
@@ -75,7 +75,7 @@ endfunction
 " Toggle element completion
 
 function! ToDoToggleElement()
-    " Toggle off if there's an `x`
+    " Toggle OFF if it's ON
     if getline(line('.')) =~ s:element_on_pattern
         " Search for the first `x` in the line
         normal! 0fx
@@ -84,7 +84,7 @@ function! ToDoToggleElement()
         return
     endif
 
-    " Toggle on for any other case
+    " Toggle ON for any other case
     if getline(line('.')) =~ s:element_pattern
         " Go to the first `[` in the line
         normal! 0f[
