@@ -100,9 +100,21 @@ autocmd FileType zsh exec 'set foldmethod=marker'
 autocmd FileType sh exec 'set foldmethod=marker'
 autocmd FileType tmux exec 'set foldmethod=marker'
 
+" Open the completion menu every time we type
+autocmd InsertCharPre * call OpenCompletion()
+
 " }}}
 
 " {{{ Functions
+
+" Opens the completion if possible
+" Taken from: https://stackoverflow.com/questions/35837990
+function! OpenCompletion()
+    let l:isLetter = ((v:char >= 'a' && v:char <= 'z') || (v:char >= 'A' && v:char <= 'Z'))
+    if !pumvisible() && l:isLetter
+        call feedkeys("\<C-p>", "n")
+    endif
+endfunction
 
 " Clear all trailing white spaces in the file
 function! RemoveTrailingWhitespaces()
