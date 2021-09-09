@@ -16,7 +16,7 @@ set tabline=%!BuildTabLine()
 
 " {{{ Buffer builder
 
-function! BuildBuffer(bufnr)
+function! BuildBuffer(bufnr, tabsel)
     " Create empty buffer name
     let l:buffer_name = ''
 
@@ -47,7 +47,7 @@ function! BuildBuffer(bufnr)
     endif
 
     " Highlight current selected buffer
-    if a:bufnr == winbufnr(winnr())
+    if a:tabsel && a:bufnr == winbufnr(winnr())
         let l:buffer_name = '%#PrimaryBold#' . l:buffer_name . '%#Primary#'
     endif
 
@@ -59,7 +59,7 @@ endfunction
 
 " {{{ Tab line builder
 
-function! BuildTabLine()
+function! BuildTabLine() abort
     let l:tabline = ''
 
     " Loop through each tab page
@@ -79,7 +79,7 @@ function! BuildTabLine()
         let l:tabline .= l:tabnr
 
         " Parse all buffer names in the current tab
-        let l:buffer_names = map(tabpagebuflist(l:tabnr), 'BuildBuffer(v:val)')
+        let l:buffer_names = map(tabpagebuflist(l:tabnr), 'BuildBuffer(v:val, l:tabsel)')
         let l:buffer_names = join(l:buffer_names, '')
         let l:tabline .= ' ' . l:buffer_names . ' '
 
