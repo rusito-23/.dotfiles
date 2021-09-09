@@ -9,10 +9,46 @@
 " License: MIT
 " Notes:
 " My Neovim status line configuration
-" Uses Powerlevel Fonts to display the separators
+" Needs a Powerline Font to display the separators
 
-" Set status line builder
-" set statusline=%!BuildStatusLine()
+" {{{ Main Status Line Builder
+
+function BuildStatusLine(bufnr, active)
+    " Hide status line if there's any fugitive file in the current tab
+    for bufnr in tabpagebuflist(tabpagenr())
+        if bufname(bufnr) =~ 'fugitive'
+            set laststatus=0
+            return
+        endif
+    endfor
+
+    " Special Nerd Tree status line
+    if bufname(a:bufnr) =~ 'Nerd_tree'
+        if a:active
+            setlocal statusline=%!BuildActiveNerdTreeStatusLine()
+        else
+            setlocal statusline=%!BuildInactiveNerdTreeStatusLine()
+        endif
+        set laststatus=2
+        return
+    endif
+
+    " Special fugitive status line
+
+    " Build default status line
+    if a:active
+        setlocal statusline=%!BuildActiveStatusLine()
+    else
+        setlocal statusline=%!BuildInactiveStatusLine()
+    endif
+
+    " Show the status line by default
+    set laststatus=2
+endfunction
+
+" }}}
+
+" {{{ Active Status Line Builder
 
 " {{{ Mode Names
 
@@ -42,53 +78,80 @@ let mode_names = {
 
 " }}}
 
-" {{{ Active Status Line Builder
-
 function! BuildActiveStatusLine() abort
     let l:status_line = ''
-    let l:status_line .= '%#Primary#'                               " Use primary color
-    let l:status_line .= ' %{toupper(mode_names[mode()])} '         " The current mode
-    let l:status_line .= '%#PrimarySep#'                           " Separator
-    let l:status_line .= '%#Secondary#'                             " Use secondary color
-    let l:status_line .= ' %Y '                                     " File type
-    let l:status_line .= '%#Secondary#'                            " Separator
-    let l:status_line .= '%#Tertiary#'                              " Use secondary color
-    let l:status_line .= ' %<%F%m%r%h%w '                           " File path, modified, readonly, helpfile, preview
-    let l:status_line .= '%#Secondary#'                            " Separator
-    let l:status_line .= '%='                                       " Center
-    let l:status_line .= '%#Secondary#'                            " Separator
-    let l:status_line .= '%#Tertiary#'                              " Use tertiary color
-    let l:status_line .= ' C:%02v'                                  " Column
-    let l:status_line .= ' L:%02l/%02L '                            " Line number
-    let l:status_line .= '%#Secondary#'                            " Separator
-    let l:status_line .= '%#Tertiary#'                              " Use tertiary color
-    let l:status_line .= ' %3p%% '                                  " Doc percentage
-    let l:status_line .= '%#Secondary#'                            " Separator
-    let l:status_line .= ' %{"".(&fenc!=""?&fenc:&enc).""} '        " Encoding
-    let l:status_line .= '%#PrimarySep#'                           " Separator
-    let l:status_line .= '%#Primary#'                               " Use primary color
-    let l:status_line .= ' B%n '                                    " Buffer number
-    let l:status_line .= '%#Clear#'                                 " Clear colors
+    let l:status_line .= '%#Primary#'                         " Use primary color
+    let l:status_line .= ' %{toupper(mode_names[mode()])} '   " The current mode
+    let l:status_line .= '%#PrimarySep#'                     " Separator
+    let l:status_line .= '%#Secondary#'                       " Use secondary color
+    let l:status_line .= ' %Y '                               " File type
+    let l:status_line .= '%#Secondary#'                      " Separator
+    let l:status_line .= '%#Tertiary#'                        " Use secondary color
+    let l:status_line .= ' %<%F%m%r%h%w '                     " File info
+    let l:status_line .= '%#Secondary#'                      " Separator
+    let l:status_line .= '%='                                 " Center
+    let l:status_line .= '%#Secondary#'                      " Separator
+    let l:status_line .= '%#Tertiary#'                        " Use tertiary color
+    let l:status_line .= ' C:%02v'                            " Column
+    let l:status_line .= ' L:%02l/%02L '                      " Line number
+    let l:status_line .= '%#Secondary#'                      " Separator
+    let l:status_line .= '%#Tertiary#'                        " Use tertiary color
+    let l:status_line .= ' %3p%% '                            " Doc percentage
+    let l:status_line .= '%#Secondary#'                      " Separator
+    let l:status_line .= ' %{"".(&fenc!=""?&fenc:&enc).""} '  " Encoding
+    let l:status_line .= '%#PrimarySep#'                     " Separator
+    let l:status_line .= '%#Primary#'                         " Use primary color
+    let l:status_line .= ' B%n '                              " Buffer number
+    let l:status_line .= '%#Clear#'                           " Clear colors
     return l:status_line
 endfunction
 
 " }}}
 
-" {{{ Active Status Line Builder
+" {{{ Inactive Status Line Builder
 
 function! BuildInactiveStatusLine() abort
     let l:status_line = ''
-    let l:status_line .= '%#Secondary#'                             " Use secondary color
-    let l:status_line .= ' %Y '                                     " File type
-    let l:status_line .= '%#Secondary#'                            " Separator
-    let l:status_line .= '%#Tertiary#'                              " Use secondary color
-    let l:status_line .= ' %<%F%m%r%h%w '                           " File path, modified, readonly, helpfile, preview
-    let l:status_line .= '%#Secondary#'                            " Separator
-    let l:status_line .= '%='                                       " Center
-    let l:status_line .= '%#Secondary#'                             " Use secondary color
-    let l:status_line .= ''                                        " Separator
-    let l:status_line .= ' B%n '                                    " Buffer number
-    let l:status_line .= '%#Clear#'                                 " Clear colors
+    let l:status_line .= '%#Secondary#'    " Use secondary color
+    let l:status_line .= ' %Y '            " File type
+    let l:status_line .= '%#Secondary#'   " Separator
+    let l:status_line .= '%#Tertiary#'     " Use secondary color
+    let l:status_line .= ' %<%F%m%r%h%w '  " File info
+    let l:status_line .= '%#Secondary#'   " Separator
+    let l:status_line .= '%='              " Center
+    let l:status_line .= '%#Secondary#'    " Use secondary color
+    let l:status_line .= ''               " Separator
+    let l:status_line .= ' B%n '           " Buffer number
+    let l:status_line .= '%#Clear#'        " Clear colors
+    return l:status_line
+endfunction
+
+" }}}
+
+" {{{ Nerd Tree Status Line Builders
+
+function! BuildActiveNerdTreeStatusLine() abort
+    let l:status_line = ''
+    let l:status_line .= '%#Primary#'      " Use primary color
+    let l:status_line .= ' %Y '            " File type
+    let l:status_line .= '%#PrimarySep#'  " Separator
+    let l:status_line .= '%='              " Center
+    let l:status_line .= '%#PrimarySep#'  " Separator
+    let l:status_line .= '%#Primary#'      " Use main color
+    let l:status_line .= ' B%n '           " Buffer number
+    let l:status_line .= '%#Clear#'        " Clear colors
+    return l:status_line
+endfunction
+
+function! BuildInactiveNerdTreeStatusLine() abort
+    let l:status_line = ''
+    let l:status_line .= '%#Secondary#'  " Use secondary color
+    let l:status_line .= ' %Y '          " File type
+    let l:status_line .= ''             " Separator
+    let l:status_line .= '%='            " Center
+    let l:status_line .= ''             " Separator
+    let l:status_line .= ' B%n '         " Buffer number
+    let l:status_line .= '%#Clear#'      " Clear colors
     return l:status_line
 endfunction
 
@@ -96,10 +159,11 @@ endfunction
 
 " {{{ Auto-command Group
 
-augroup StatusLineHelper
+" Status line builder
+augroup BuildStatusLine
     autocmd!
-    autocmd BufEnter,WinEnter * setlocal statusline=%!BuildActiveStatusLine()
-    autocmd BufLeave,WinLeave * setlocal statusline=%!BuildInactiveStatusLine()
+    autocmd BufEnter,WinEnter * call BuildStatusLine(bufnr(), 1)
+    autocmd BufLeave,WinLeave * call BuildStatusLine(bufnr(), 0)
 augroup end
 
 " }}}

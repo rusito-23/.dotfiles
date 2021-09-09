@@ -26,19 +26,34 @@ function! BuildBuffer(bufnr, tabsel)
     endif
 
     " Don't show hidden buffers
-    if getbufvar(a:bufnr, "&bufhidden") != ''
+    if getbufvar(a:bufnr, "&bufhidden") != '' && bufname(a:bufnr) !~ 'fugitive'
         return l:buffer_name
     endif
 
     " Determine buffer name
     if getbufvar(a:bufnr, "&buftype") == 'help'
-        " If we're seeing a help pane
+        " If it's a help buffer
         let l:buffer_name .= '[H]'
+
+    elseif bufname(a:bufnr) =~ 'fugitive'
+        " If it's a fugitive file
+        if bufname(a:bufnr) =~ '\/\/2\/'
+            " The left side of the merge
+            let l:buffer_name .= '[MERGE BASE]'
+        elseif bufname(a:bufnr) =~ '\/\/3\/'
+            " The right side of the merge
+            let l:buffer_name .= '[MERGE TARGET]'
+        elseif bufname(a:bufnr) =~ '\/\/0\/'
+            " The left side of the diff
+            let l:buffer_name .= '[DIFF BASE]'
+        endif
+
     elseif getbufvar(a:bufnr, "&modifiable")
-        " If we're seeing a modifiable file,
+        " If it's a modifiable file,
         " check if we're seeing a newly created file
         let l:file_name = fnamemodify(bufname(a:bufnr), ':t')
         let l:buffer_name .= l:file_name != '' ? l:file_name : '[New]'
+
     endif
 
     " Add modified flag if needed
