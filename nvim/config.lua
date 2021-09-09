@@ -97,3 +97,15 @@ telescope.setup {
         }
     }
 }
+
+-- Disable completion for Telescope
+
+vim.g.completion_chain_complete_list = {
+	default = {
+		{ complete_items = { "lsp", "path", "buffers", "snippet" } },
+		{ mode = "<C-p>" },
+		{ mode = "<C-n>" },
+	},
+	TelescopePrompt = {},
+	frecency = {},
+}

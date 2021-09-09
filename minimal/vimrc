@@ -33,37 +33,54 @@ set whichwrap+=<,>,h,l                  " Wrap around the characters when select
 set lazyredraw                          " Macro optimization
 set foldcolumn=1                        " Some left margin right here
 set splitbelow splitright               " Open below and on the right side
+set showtabline=2                       " Always show tab line
+set laststatus=2                        " Always show the status line
+syntax on                               " Enable syntax
+filetype on                             " Enable file type matching
+filetype plugin on                      " Enable plugins
+let g:mapleader = ","                   " Define map leader
+
+" }}}
+
+" {{{ Wild menu configuration
 
 " Wild menu configuration
 set wildmenu                            " Display matching files on tab complete
 set wildmode=longest,list,full          " Wild menu configuration
 
-" Default tab configuration
+" }}}
+
+" {{{ Default tab configuration
+
 set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
 
-" Define the map leader
-let g:mapleader = ","
+" }}}
 
-syntax on                               " Enable syntax
-filetype on                             " Enable file type matching
-filetype plugin on                      " Enable plugins
+" {{{ Configure Indentation
 
-" Configure Indentation
 filetype indent on
 set autoindent smartindent
 
-" Special characters display configuration
+" }}}
+
+" {{{ Special characters display configuration
+
 set list
 set showbreak=↪\
 set listchars=tab:→\ ,space:·,nbsp:␣,trail:•,eol:↲,precedes:«,extends:»
 
-" Configure completion options
+" }}}
+
+" {{{ Completion options
+
 set completeopt+=menuone   " Show the pop up menu even when there is only 1 match
 set completeopt+=noinsert  " Don't insert any text until user chooses a match
 set completeopt+=noselect  " Don't select the first option automatically
 set completeopt-=longest   " Don't insert the longest common text
 set completeopt+=preview   " Show docs in V split
 set belloff+=ctrlg         " Don't beep during completion
+
+" }}}
 
 " File browsing configs
 let g:netrw_banner=0            " Disable annoying banner

@@ -14,6 +14,7 @@
 
 source ~/.dotfiles/nvim/plug.vim
 source ~/.dotfiles/nvim/todo.vim
+source ~/.dotfiles/nvim/status.vim
 luafile ~/.dotfiles/nvim/config.lua
 
 " }}}
@@ -43,6 +44,8 @@ set whichwrap+=<,>,h,l                  " Wrap around the characters when select
 set lazyredraw                          " Macro optimization
 set foldcolumn=1                        " Some left margin right here
 set splitbelow splitright               " Open below and on the right side
+set showtabline=2                       " Always show tab line
+set laststatus=2                        " Always show the status line
 syntax on                               " Enable syntax
 filetype on                             " Enable file type matching
 filetype plugin on                      " Enable plugins
@@ -139,9 +142,6 @@ autocmd FileType zsh exec 'set foldmethod=marker'
 autocmd FileType sh exec 'set foldmethod=marker'
 autocmd FileType tmux exec 'set foldmethod=marker'
 
-" Open the completion menu every time we type
-autocmd InsertCharPre * call OpenCompletion()
-
 " }}}
 
 " {{{ Colors
@@ -163,18 +163,16 @@ hi DiffAdd gui=NONE guifg=green guibg=NONE
 hi DiffDelete gui=NONE guifg=red guibg=NONE
 hi DiffChange gui=NONE guifg=yellow guibg=NONE
 
+" Status line colors
+hi statusline   ctermfg=black   ctermbg=cyan    guifg=black     guibg=#8fbfdc
+hi User1        ctermfg=cyan    ctermbg=239     guifg=#8fbfdc   guibg=#4e4e4e
+hi User2        ctermfg=007     ctermbg=239     guifg=#cdcdcd    guibg=#4e4e4e
+hi User3        ctermfg=cyan    ctermbg=239     guifg=#8fbfdc   guibg=#4e4e4e
+hi User4        ctermfg=007     ctermbg=239     guifg=#adadad    guibg=#4e4e4e
+
 " }}}
 
 " {{{ Functions
-
-" Opens the completion if possible
-" Taken from: https://stackoverflow.com/questions/35837990
-function! OpenCompletion()
-    let l:isLetter = ((v:char >= 'a' && v:char <= 'z') || (v:char >= 'A' && v:char <= 'Z'))
-    if !pumvisible() && l:isLetter
-        call feedkeys("\<C-p>", "n")
-    endif
-endfunction
 
 " Clear all trailing white spaces in the file
 function! RemoveTrailingWhitespaces()
@@ -230,10 +228,6 @@ command! Qa :qa
 " Reload the config file
 command! Source :source ~/.config/nvim/init.vim | noh | set nospell
 
-" Install or update dein plugins
-command! DeinInstall :source ~/.config/nvim/init.vim | noh | set nospell | call dein#install()
-command! DeinUpdate :source ~/.config/nvim/init.vim | noh | set nospell | call dein#update()
-
 " Capitalize the given selection
 command! -range Caps <line1>,<line2>s/\<./\u&/g | noh
 
@@ -251,9 +245,8 @@ nnoremap XX :qa!<CR>
 nnoremap j gj
 nnoremap k gk
 
-" Clear highlights with <CR> or <ESC>
+" Clear highlights with <CR>
 nnoremap <CR> :noh<CR>
-nnoremap <ESC> :noh<CR>
 
 " Execute the macro `q`
 nnoremap <Space> @q
@@ -263,9 +256,6 @@ xnoremap @ :<C-u>call ExecuteMacroOverVisualRange()<CR>
 
 " Toggle NERD Tree
 nnoremap <C-n> :NERDTreeToggle<CR>
-
-" Toggle Tagbar
-nnoremap <C-t> :TagbarToggle<CR>
 
 " Navigate between panes
 " See: https://github.com/christoomey/vim-tmux-navigator
@@ -320,20 +310,5 @@ nnoremap <silent> gh <cmd>Lspsaga lsp_finder<CR>
 
 " Open a small terminal at the bottom
 nnoremap <silent> <leader>t  <cmd>call OpenTerminal()<CR>
-
-" }}}
-
-" {{{ Status line
-
-set statusline=                                                 " Init
-set statusline+=\[%{toupper(mode())}\]                          " Mode indicator
-set statusline+=%(%m%)                                          " Modified [+] / [-] flag
-set statusline+=[%Y]
-set statusline+=\ %t
-set statusline+=%=                                              " Right align
-set statusline+=\                                               " Space
-set statusline+=[%1.5l:%1.5L]                                   " Line
-set statusline+=[:\%c]                                          " Column
-set statusline+=[%{&fileencoding?&fileencoding:&encoding}]      " File encoding
 
 " }}}

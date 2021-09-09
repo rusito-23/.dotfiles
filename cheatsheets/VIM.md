@@ -67,6 +67,7 @@
 | `zf#j` | Create a folder from the cursor down _#_ lines |
 | `zj` | Moves the cursor to the next fold |
 | `zk` | Moves the cursor to the previous fold |
+| `zo` | Close the current fold at the cursor |
 | `zo` | Opens a fold at the cursor |
 | `zO` | Opens all folds at the cursor |
 | `zm` | Increases the foldlevel by one |
