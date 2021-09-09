@@ -1,4 +1,3 @@
-
 " ██╗███╗   ██╗██╗████████╗██╗   ██╗██╗███╗   ███╗
 " ██║████╗  ██║██║╚══██╔══╝██║   ██║██║████╗ ████║
 " ██║██╔██╗ ██║██║   ██║   ██║   ██║██║██╔████╔██║
@@ -10,11 +9,22 @@
 " License: MIT
 " Notes: My Neovim Configuration File
 
+" {{{ Initial Options
+
+scriptencoding utf-8                    " set script encoding
+set nocompatible                        " The future is now old man
+syntax on                               " Enable syntax
+filetype on                             " Enable file type matching
+filetype plugin on                      " Enable plugins
+
+" }}}
+
 " {{{ Load external files
 
 source ~/.dotfiles/nvim/plug.vim
 source ~/.dotfiles/nvim/todo.vim
-source ~/.dotfiles/nvim/status.vim
+source ~/.dotfiles/nvim/statusline.vim
+source ~/.dotfiles/nvim/colors.vim
 luafile ~/.dotfiles/nvim/config.lua
 
 " }}}
@@ -23,8 +33,6 @@ luafile ~/.dotfiles/nvim/config.lua
 
 " {{{ General Options
 
-scriptencoding utf-8                    " set script encoding
-set nocompatible                        " The future is now old man
 set diffopt+=vertical                   " Use vertical diff
 set cursorline                          " Highlight the current line
 set clipboard+=unnamedplus              " Use the system clipboard
@@ -46,9 +54,6 @@ set foldcolumn=1                        " Some left margin right here
 set splitbelow splitright               " Open below and on the right side
 set showtabline=2                       " Always show tab line
 set laststatus=2                        " Always show the status line
-syntax on                               " Enable syntax
-filetype on                             " Enable file type matching
-filetype plugin on                      " Enable plugins
 let g:mapleader = ","                   " Define map leader
 
 " }}}
@@ -141,34 +146,6 @@ autocmd FileType vim exec 'set foldmethod=marker'
 autocmd FileType zsh exec 'set foldmethod=marker'
 autocmd FileType sh exec 'set foldmethod=marker'
 autocmd FileType tmux exec 'set foldmethod=marker'
-
-" }}}
-
-" {{{ Colors
-
-" Spellchecker colors
-hi clear SpellBad
-hi clear SpellCap
-hi clear SpellLocal
-hi SpellBad cterm=underline ctermfg=red
-hi SpellCap cterm=underline ctermfg=yellow
-hi SpellLocal cterm=underline ctermfg=yellow
-
-" Color scheme
-set termguicolors
-colorscheme nord
-
-" Vim-Fugitive Special Colors
-hi DiffAdd gui=NONE guifg=green guibg=NONE
-hi DiffDelete gui=NONE guifg=red guibg=NONE
-hi DiffChange gui=NONE guifg=yellow guibg=NONE
-
-" Status line colors
-hi statusline   ctermfg=black   ctermbg=cyan    guifg=black     guibg=#8fbfdc
-hi User1        ctermfg=cyan    ctermbg=239     guifg=#8fbfdc   guibg=#4e4e4e
-hi User2        ctermfg=007     ctermbg=239     guifg=#cdcdcd    guibg=#4e4e4e
-hi User3        ctermfg=cyan    ctermbg=239     guifg=#8fbfdc   guibg=#4e4e4e
-hi User4        ctermfg=007     ctermbg=239     guifg=#adadad    guibg=#4e4e4e
 
 " }}}
 

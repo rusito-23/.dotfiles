@@ -7,9 +7,7 @@
 "
 " Author: Igor Andruskiewitsch
 " License: MIT
-" Notes:
-" My Neovim status line
-" See: https://gist.github.com/meskarune/57b613907ebd1df67eb7bdb83c6e6641
+" Notes: My Neovim status line configuration
 
 " {{{ Mode Names
 

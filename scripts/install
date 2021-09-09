@@ -11,6 +11,7 @@
 # - OHMYZSH: install oh-my-zsh
 # - PLUGINS: install oh my zsh req plugins
 # - POWERLEVEL: install powerlevel 10k theme
+# - FZF: install and set up fzf
 # - YABAI: install & set up Yabai tiling window manager
 # - ALACRITTY: install & set up the alacritty terminal emulator
 # - ESPANSO: set up the espanso daemon
@@ -93,7 +94,6 @@ fi
 
 # }}}
 
-
 # {{{ Set up Git
 
 if [[ "$*" == *GIT* ]] || [[ $# -eq 0 ]]; then
@@ -142,6 +142,19 @@ if [[ "$*" == *POWERLEVEL* ]] || [[ $# -eq 0 ]]; then
     git clone --depth=1 \
         $GH_URL/romkatv/powerlevel10k.git \
         $THEMES_DIR/powerlevel10k
+fi
+
+# }}}
+
+# {{{ Set up Fzf
+
+if [[ "$*" == *FZF* ]] || [[ $# -eq 0 ]]; then
+    # Install Fzf
+    log_info ">>> Install Fzf <<<"
+    brew install fzf
+
+    # Install key bindings and completion
+    $(brew --prefix)/opt/fzf/install
 fi
 
 # }}}

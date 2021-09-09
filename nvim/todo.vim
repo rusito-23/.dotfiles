@@ -1,4 +1,3 @@
-
 " | |_ ___   __| | _____   _(_)_ __ ___
 " | __/ _ \ / _` |/ _ \ \ / / | '_ ` _ \
 " | || (_) | (_| | (_) \ V /| | | | | | |
@@ -9,6 +8,7 @@
 " Notes:
 "   General utils to write TODO lists.
 "   Handles files with `.todo` extension.
+"   Based on markdown
 " Features:
 " - Automatic markdown syntax
 " - Mappings to perform quick actions
