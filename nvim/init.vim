@@ -23,8 +23,9 @@ filetype plugin on                      " Enable plugins
 
 source ~/.dotfiles/nvim/plug.vim
 source ~/.dotfiles/nvim/todo.vim
-source ~/.dotfiles/nvim/statusline.vim
 source ~/.dotfiles/nvim/colors.vim
+source ~/.dotfiles/nvim/statusline.vim
+source ~/.dotfiles/nvim/tabline.vim
 luafile ~/.dotfiles/nvim/config.lua
 
 " }}}
