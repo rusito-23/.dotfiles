@@ -7,14 +7,16 @@
 "
 " Author: Igor Andruskiewitsch
 " License: MIT
-" Notes: My Neovim tab line configuration
+" Notes:
+" My Neovim tab line configuration
+" Uses Powerlevel Fonts to display the separators
 
-" Set tab line
-set tabline=%!TabLine()
+" Set tab line builder
+set tabline=%!BuildTabLine()
 
-" Buffer name handler
-" Handles the name that should display for the given buffer number
-function! ParseBufferName(bufnr)
+" {{{ Buffer builder
+
+function! BuildBuffer(bufnr)
     " Create empty buffer name
     let l:buffer_name = ''
 
@@ -46,16 +48,18 @@ function! ParseBufferName(bufnr)
 
     " Highlight current selected buffer
     if a:bufnr == winbufnr(winnr())
-        let l:buffer_name = '%#TabLineSelUnder#' . l:buffer_name . '%#TabLineSel#'
+        let l:buffer_name = '%#PrimaryBold#' . l:buffer_name . '%#Primary#'
     endif
 
     " Surround with spaces
     return l:buffer_name . ' '
 endfunction
 
-" Tab line handler
-" Builds the elements that will display in the tab line
-function! TabLine()
+" }}}
+
+" {{{ Tab line builder
+
+function! BuildTabLine()
     let l:tabline = ''
 
     " Loop through each tab page
@@ -67,7 +71,7 @@ function! TabLine()
         let l:tabsel = l:tabnr == tabpagenr()
 
         " Initialize highlight color and insert initial space
-        let l:tabline .= l:tabsel ? '%#TabLineSel#' : '%#TabLine#'
+        let l:tabline .= l:tabsel ? '%#Primary#' : '%#Secondary#'
         let l:tabline .= ' '
 
         " Set the tab page number (for mouse clicks) and display number
@@ -75,25 +79,28 @@ function! TabLine()
         let l:tabline .= l:tabnr
 
         " Parse all buffer names in the current tab
-        let l:buffer_names = map(tabpagebuflist(l:tabnr), 'ParseBufferName(v:val)')
+        let l:buffer_names = map(tabpagebuflist(l:tabnr), 'BuildBuffer(v:val)')
         let l:buffer_names = join(l:buffer_names, '')
         let l:tabline .= ' ' . l:buffer_names . ' '
 
         " Add separator
         if l:tabnr == tabpagenr()
             " If the current tab is selected
-            let l:tabline .= '%#TabLineSelSep#'
+            let l:tabline .= '%#PrimarySep#'
         elseif l:next_tabnr == tabpagenr()
             " If the next tab is selected
-            let l:tabline .= '%#TabLineSepAlt#'
+            let l:tabline .= '%#SecondarySep#'
         else
             " Any other case, use default separator
-            let l:tabline .= '%#TabLineSep#'
+            let l:tabline .= '%#PrimarySep#'
         endif
     endfor
 
     " Fill the rest of the tab line
-    let l:tabline .= '%#TabLineFill#%T'
+    let l:tabline .= '%#Tertiary#%T'
 
     return l:tabline
 endfunction
+
+" }}}
+"

@@ -30,11 +30,13 @@ hi User2          ctermfg=007     ctermbg=239     guifg=#cdcdcd   guibg=#4e4e4e
 hi User3          ctermfg=cyan    ctermbg=239     guifg=#8fbfdc   guibg=#4e4e4e
 hi User4          ctermfg=007     ctermbg=239     guifg=#adadad   guibg=#4e4e4e
 
-" Tab bar colors
-hi TabLineSel       ctermfg=black   ctermbg=cyan    guifg=black     guibg=#8fbfdc   gui=None
-hi TabLineSelUnder  ctermfg=black   ctermbg=cyan    guifg=black     guibg=#8fbfdc   gui=bold
-hi TabLine          ctermfg=cyan    ctermbg=239     guifg=#8fbfdc   guibg=#4e4e4e   gui=None
-hi TabLineSelSep    ctermfg=cyan    ctermbg=239     guifg=#8fbfdc   guibg=#4e4e4e   gui=None
-hi TabLineSep       ctermfg=cyan    ctermbg=239     guifg=#8fbfdc   guibg=#4e4e4e   gui=None
-hi TabLineSepAlt    ctermfg=239     ctermbg=cyan    guifg=#4e4e4e   guibg=#8fbfdc   gui=None
-hi TabLineFill      ctermfg=007     ctermbg=239     guifg=#cdcdcd   guibg=#4e4e4e   gui=None
+" Line Colors
+hi Primary        ctermfg=black  ctermbg=cyan  guifg=black    guibg=#8fbfdc  gui=None  cterm=None
+hi PrimaryBold    ctermfg=black  ctermbg=cyan  guifg=black    guibg=#8fbfdc  gui=Bold  cterm=Bold
+hi PrimarySep     ctermfg=cyan   ctermbg=239   guifg=#8fbfdc  guibg=#4e4e4e  gui=None  cterm=None
+hi Secondary      ctermfg=cyan   ctermbg=239   guifg=#8fbfdc  guibg=#4e4e4e  gui=None  cterm=None
+hi SecondaryBold  ctermfg=cyan   ctermbg=239   guifg=#8fbfdc  guibg=#4e4e4e  gui=Bold  cterm=Bold
+hi SecondarySep   ctermfg=239    ctermbg=cyan  guifg=#4e4e4e  guibg=#8fbfdc  gui=None  cterm=None
+hi Tertiary       ctermfg=007    ctermbg=239   guifg=#adadad  guibg=#4e4e4e  gui=None  cterm=None
+hi TertiaryBold   ctermfg=007    ctermbg=239   guifg=#adadad  guibg=#4e4e4e  gui=Bold  cterm=Bold
+hi TertiarySep    ctermfg=239    ctermbg=cyan  guifg=#4e4e4e  guibg=#8fbfdc  gui=None  cterm=None
