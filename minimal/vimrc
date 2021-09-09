@@ -109,33 +109,43 @@ hi User4        ctermfg=007     ctermbg=239     guifg=#adadad    guibg=#4e4e4e
 
 " {{{ Auto-commands
 
-" Use tabs for Go Lang files
-autocmd FileType go exec 'set noexpandtab shiftwidth=8'
+augroup CustomTabs
+    " Use tabs for Go Lang files
+    autocmd FileType go exec 'set noexpandtab shiftwidth=8'
 
-" Use 2 spaces for JSON, YAML, TOML files
-autocmd FileType yaml exec 'set shiftwidth=2'
-autocmd FileType toml exec 'set shiftwidth=2'
-autocmd FileType json exec 'set shiftwidth=2'
+    " Use 2 spaces for JSON, YAML, TOML files
+    autocmd FileType yaml exec 'set shiftwidth=2'
+    autocmd FileType toml exec 'set shiftwidth=2'
+    autocmd FileType json exec 'set shiftwidth=2'
+augroup end
 
 " Set up column wrapping
-autocmd FileType gitcommit exec 'set colorcolumn=50'
-autocmd FileType python exec 'set colorcolumn=80'
-autocmd FileType swift exec 'set colorcolumn=120'
+augroup ColumnWrapping
+    autocmd FileType gitcommit exec 'set colorcolumn=50'
+    autocmd FileType python exec 'set colorcolumn=80'
+    autocmd FileType swift exec 'set colorcolumn=120'
+augroup end
 
 " Remove trailing white spaces when a file is saved
-autocmd BufWritePre * call RemoveTrailingWhitespaces()
+augroup RemoveTrailingWhitespaces
+    autocmd BufWritePre * call RemoveTrailingWhitespaces()
+augroup end
 
-" Close floating completion pop-up when a selection is made
-autocmd CompleteDone * if !pumvisible() | pclose | endif
+augroup Completion
+    " Close floating completion pop-up when a selection is made
+    autocmd CompleteDone * if !pumvisible() | pclose | endif
+
+    " Open the completion menu every time we type
+    autocmd InsertCharPre * call OpenCompletion()
+augroup end
 
 " Set up fold method marker for specific files
-autocmd FileType vim exec 'set foldmethod=marker'
-autocmd FileType zsh exec 'set foldmethod=marker'
-autocmd FileType sh exec 'set foldmethod=marker'
-autocmd FileType tmux exec 'set foldmethod=marker'
-
-" Open the completion menu every time we type
-autocmd InsertCharPre * call OpenCompletion()
+augroup FoldMethods
+    autocmd FileType vim exec 'set foldmethod=marker'
+    autocmd FileType zsh exec 'set foldmethod=marker'
+    autocmd FileType sh exec 'set foldmethod=marker'
+    autocmd FileType tmux exec 'set foldmethod=marker'
+augroup end
 
 " }}}
 

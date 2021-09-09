@@ -119,34 +119,46 @@ let g:completion_enable_snippet = 'vim-vsnip'
 
 " {{{ Auto-commands
 
-" Use tabs for Go Lang files
-autocmd FileType go exec 'set noexpandtab shiftwidth=8'
+augroup CustomTabs
+    " Use tabs for Go Lang files
+    autocmd FileType go exec 'set noexpandtab shiftwidth=8'
 
-" Use 2 spaces for JSON, YAML, TOML files
-autocmd FileType yaml exec 'set shiftwidth=2'
-autocmd FileType toml exec 'set shiftwidth=2'
-autocmd FileType json exec 'set shiftwidth=2'
+    " Use 2 spaces for JSON, YAML, TOML files
+    autocmd FileType yaml exec 'set shiftwidth=2'
+    autocmd FileType toml exec 'set shiftwidth=2'
+    autocmd FileType json exec 'set shiftwidth=2'
+augroup end
 
 " Set up column wrapping
-autocmd FileType gitcommit exec 'set colorcolumn=50'
-autocmd FileType python exec 'set colorcolumn=80'
-autocmd FileType swift exec 'set colorcolumn=120'
+augroup ColumnWrapping
+    autocmd FileType gitcommit exec 'set colorcolumn=50'
+    autocmd FileType python exec 'set colorcolumn=80'
+    autocmd FileType swift exec 'set colorcolumn=120'
+augroup end
 
 " Remove trailing white spaces when a file is saved
-autocmd BufWritePre * call RemoveTrailingWhitespaces()
+augroup RemoveTrailingWhitespaces
+    autocmd BufWritePre * call RemoveTrailingWhitespaces()
+augroup end
 
 " Display NERD Tree when opening an empty buffer
-autocmd StdinReadPre * let s:std_in=1
-autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+augroup AutoNERDTree
+    autocmd StdinReadPre * let s:std_in=1
+    autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+augroup end
 
 " Close floating completion pop-up when a selection is made
-autocmd CompleteDone * if !pumvisible() | pclose | endif
+augroup CloseCompletion
+    autocmd CompleteDone * if !pumvisible() | pclose | endif
+augroup end
 
 " Set up fold method marker for specific files
-autocmd FileType vim exec 'set foldmethod=marker'
-autocmd FileType zsh exec 'set foldmethod=marker'
-autocmd FileType sh exec 'set foldmethod=marker'
-autocmd FileType tmux exec 'set foldmethod=marker'
+augroup FoldMethods
+    autocmd FileType vim exec 'set foldmethod=marker'
+    autocmd FileType zsh exec 'set foldmethod=marker'
+    autocmd FileType sh exec 'set foldmethod=marker'
+    autocmd FileType tmux exec 'set foldmethod=marker'
+augroup end
 
 " }}}
 
