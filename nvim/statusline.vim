@@ -14,41 +14,36 @@
 " {{{ Main Status Line Builder
 
 function BuildStatusLine(bufnr, active)
-    " Hide status line if there's any fugitive file in the current tab
-    for bufnr in tabpagebuflist(tabpagenr())
-        if bufname(bufnr) =~ 'fugitive'
-            set laststatus=0
-            return
-        endif
-    endfor
+    " Get buffer names
+    let l:bufname = bufname(a:bufnr)
 
-    " Special Nerd Tree status line
-    if bufname(a:bufnr) =~ 'Nerd_tree'
+    " Nerd Tree status line
+    if l:bufname =~ 'Nerd_tree'
         if a:active
-            setlocal statusline=%!BuildActiveNerdTreeStatusLine()
+            call BuildActiveNerdTreeStatusLine()
         else
-            setlocal statusline=%!BuildInactiveNerdTreeStatusLine()
+            call BuildInactiveNerdTreeStatusLine()
         endif
-        set laststatus=2
         return
     endif
 
-    " Special fugitive status line
-
-    " Build default status line
-    if a:active
-        setlocal statusline=%!BuildActiveStatusLine()
-    else
-        setlocal statusline=%!BuildInactiveStatusLine()
+    " Fugitive status line
+    if l:bufname =~ 'fugitive'
+        call BuildFugitiveStatusLine(l:bufname, a:active)
+        return
     endif
 
-    " Show the status line by default
-    set laststatus=2
+    " Default status line
+    if a:active
+        call BuildActiveStatusLine()
+    else
+        call BuildInactiveStatusLine()
+    endif
 endfunction
 
 " }}}
 
-" {{{ Active Status Line Builder
+" {{{ Default Status Line Builder
 
 " {{{ Mode Names
 
@@ -78,52 +73,55 @@ let mode_names = {
 
 " }}}
 
-function! BuildActiveStatusLine() abort
-    let l:status_line = ''
-    let l:status_line .= '%#Primary#'                         " Use primary color
-    let l:status_line .= ' %{toupper(mode_names[mode()])} '   " The current mode
-    let l:status_line .= '%#PrimarySep#'                     " Separator
-    let l:status_line .= '%#Secondary#'                       " Use secondary color
-    let l:status_line .= ' %Y '                               " File type
-    let l:status_line .= '%#Secondary#'                      " Separator
-    let l:status_line .= '%#Tertiary#'                        " Use secondary color
-    let l:status_line .= ' %<%F%m%r%h%w '                     " File info
-    let l:status_line .= '%#Secondary#'                      " Separator
-    let l:status_line .= '%='                                 " Center
-    let l:status_line .= '%#Secondary#'                      " Separator
-    let l:status_line .= '%#Tertiary#'                        " Use tertiary color
-    let l:status_line .= ' C:%02v'                            " Column
-    let l:status_line .= ' L:%02l/%02L '                      " Line number
-    let l:status_line .= '%#Secondary#'                      " Separator
-    let l:status_line .= '%#Tertiary#'                        " Use tertiary color
-    let l:status_line .= ' %3p%% '                            " Doc percentage
-    let l:status_line .= '%#Secondary#'                      " Separator
-    let l:status_line .= ' %{"".(&fenc!=""?&fenc:&enc).""} '  " Encoding
-    let l:status_line .= '%#PrimarySep#'                     " Separator
-    let l:status_line .= '%#Primary#'                         " Use primary color
-    let l:status_line .= ' B%n '                              " Buffer number
-    let l:status_line .= '%#Clear#'                           " Clear colors
-    return l:status_line
+" {{{
+
+function! GetEncoding() abort
+    return (&fenc != "" ? &fenc : &enc)
 endfunction
 
 " }}}
 
-" {{{ Inactive Status Line Builder
+function! BuildActiveStatusLine() abort
+    setlocal statusline=
+    setlocal statusline+=%#Primary#                         " Use primary color
+    setlocal statusline+=\ %{toupper(mode_names[mode()])}\  " The current mode
+    setlocal statusline+=%#PrimarySep#                     " Separator
+    setlocal statusline+=%#Secondary#                       " Use secondary color
+    setlocal statusline+=\ %Y\                              " File type
+    setlocal statusline+=%#Secondary#                      " Separator
+    setlocal statusline+=%#Tertiary#                        " Use secondary color
+    setlocal statusline+=\ %<%F%m%r%h%w\                    " File info
+    setlocal statusline+=%#Secondary#                      " Separator
+    setlocal statusline+=%=                                 " Center
+    setlocal statusline+=%#Secondary#                      " Separator
+    setlocal statusline+=%#Tertiary#                        " Use tertiary color
+    setlocal statusline+=\ C:%02v                           " Column
+    setlocal statusline+=\ L:%02l/%02L\                     " Line number
+    setlocal statusline+=%#Secondary#                      " Separator
+    setlocal statusline+=%#Tertiary#                        " Use tertiary color
+    setlocal statusline+=\ %3p%%\                           " Doc percentage
+    setlocal statusline+=%#Secondary#                      " Separator
+    setlocal statusline+=\ %\{GetEncoding()}\               " Encoding
+    setlocal statusline+=%#PrimarySep#                     " Separator
+    setlocal statusline+=%#Primary#                         " Use primary color
+    setlocal statusline+=\ B%n\                             " Buffer number
+    setlocal statusline+=%#Clear#                           " Clear colors
+endfunction
+
 
 function! BuildInactiveStatusLine() abort
-    let l:status_line = ''
-    let l:status_line .= '%#Secondary#'    " Use secondary color
-    let l:status_line .= ' %Y '            " File type
-    let l:status_line .= '%#Secondary#'   " Separator
-    let l:status_line .= '%#Tertiary#'     " Use secondary color
-    let l:status_line .= ' %<%F%m%r%h%w '  " File info
-    let l:status_line .= '%#Secondary#'   " Separator
-    let l:status_line .= '%='              " Center
-    let l:status_line .= '%#Secondary#'    " Use secondary color
-    let l:status_line .= ''               " Separator
-    let l:status_line .= ' B%n '           " Buffer number
-    let l:status_line .= '%#Clear#'        " Clear colors
-    return l:status_line
+    setlocal statusline=
+    setlocal statusline+=%#Secondary#     " Use secondary color
+    setlocal statusline+=\ %Y\            " File type
+    setlocal statusline+=%#Secondary#    " Separator
+    setlocal statusline+=%#Tertiary#      " Use secondary color
+    setlocal statusline+=\ %<%F%m%r%h%w\  " File info
+    setlocal statusline+=%#Secondary#    " Separator
+    setlocal statusline+=%=               " Center
+    setlocal statusline+=%#Secondary#     " Use secondary color
+    setlocal statusline+=                " Separator
+    setlocal statusline+=\ B%n\           " Buffer number
+    setlocal statusline+=%#Clear#         " Clear colors
 endfunction
 
 " }}}
@@ -131,35 +129,82 @@ endfunction
 " {{{ Nerd Tree Status Line Builders
 
 function! BuildActiveNerdTreeStatusLine() abort
-    let l:status_line = ''
-    let l:status_line .= '%#Primary#'      " Use primary color
-    let l:status_line .= ' %Y '            " File type
-    let l:status_line .= '%#PrimarySep#'  " Separator
-    let l:status_line .= '%='              " Center
-    let l:status_line .= '%#PrimarySep#'  " Separator
-    let l:status_line .= '%#Primary#'      " Use main color
-    let l:status_line .= ' B%n '           " Buffer number
-    let l:status_line .= '%#Clear#'        " Clear colors
-    return l:status_line
+    setlocal statusline=
+    setlocal statusline+=%#Primary#      " Use primary color
+    setlocal statusline+=\ %Y\           " File type
+    setlocal statusline+=%#PrimarySep#  " Separator
+    setlocal statusline+=%=              " Center
+    setlocal statusline+=%#PrimarySep#  " Separator
+    setlocal statusline+=%#Primary#      " Use main color
+    setlocal statusline+=\ B%n\          " Buffer number
+    setlocal statusline+=%#Clear#        " Clear colors
 endfunction
 
 function! BuildInactiveNerdTreeStatusLine() abort
-    let l:status_line = ''
-    let l:status_line .= '%#Secondary#'  " Use secondary color
-    let l:status_line .= ' %Y '          " File type
-    let l:status_line .= ''             " Separator
-    let l:status_line .= '%='            " Center
-    let l:status_line .= ''             " Separator
-    let l:status_line .= ' B%n '         " Buffer number
-    let l:status_line .= '%#Clear#'      " Clear colors
-    return l:status_line
+    setlocal statusline=
+    setlocal statusline+=%#Secondary#  " Use secondary color
+    setlocal statusline+=\ %Y\         " File type
+    setlocal statusline+=             " Separator
+    setlocal statusline+=%=            " Center
+    setlocal statusline+=             " Separator
+    setlocal statusline+=\ B%n\        " Buffer number
+    setlocal statusline+=%#Clear#      " Clear colors
+endfunction
+
+" }}}
+
+" {{{ Fugitive Status Line Builders
+
+function! BuildFugitiveStatusLine(bufname, active) abort
+    " Parse buffer description
+    let l:bufdesc = ''
+    if a:bufname =~ '\/\/2'
+        " The left side of the merge
+        let l:bufdesc .= '\ MERGE\ BASE\ '
+    elseif a:bufname =~ '\/\/3'
+        " The right side of the merge
+        let l:bufdesc .= '\ MERGE\ TARGET\ '
+    elseif a:bufname =~ '\/\/0'
+        " The left side of the diff
+        let l:bufdesc .= '\ DIFF\ BASE\ '
+    endif
+
+    " Build fugitive status line
+    if a:active
+        call BuildActiveFugitiveStatusLine(l:bufdesc)
+    else
+        call BuildInactiveFugitiveStatusLine(l:bufdesc)
+    endif
+endfunction
+
+function! BuildActiveFugitiveStatusLine(bufdesc) abort
+    setlocal statusline=
+    setlocal statusline+=%#Primary#      " Use primary color
+    exec 'setlocal statusline+='.a:bufdesc
+    setlocal statusline+=%#PrimarySep#  " Separator
+    setlocal statusline+=%=              " Center
+    setlocal statusline+=%#PrimarySep#  " Separator
+    setlocal statusline+=%#Primary#      " Use main color
+    setlocal statusline+=\ B%n\          " Buffer number
+    setlocal statusline+=%#Clear#        " Clear colors
+endfunction
+
+function! BuildInactiveFugitiveStatusLine(bufdesc) abort
+    setlocal statusline=
+    setlocal statusline+=%#Secondary#  " Use secondary color
+    exec 'setlocal statusline+='.a:bufdesc
+    setlocal statusline+=             " Separator
+    setlocal statusline+=%=            " Center
+    setlocal statusline+=             " Separator
+    setlocal statusline+=\ B%n\        " Buffer number
+    setlocal statusline+=%#Clear#      " Clear colors
 endfunction
 
 " }}}
 
 " {{{ Auto-command Group
 
-" Status line builder
+" Automatically Build the Status Line
 augroup BuildStatusLine
     autocmd!
     autocmd BufEnter,WinEnter * call BuildStatusLine(bufnr(), 1)
