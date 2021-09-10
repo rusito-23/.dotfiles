@@ -93,7 +93,7 @@ function! BuildFocusedStatusLine() abort
     setlocal statusline+=\ %Y\                              " File type
     setlocal statusline+=%#Secondary#                      " Separator
     setlocal statusline+=%#Tertiary#                        " Use secondary color
-    setlocal statusline+=\ %<%F%m%r%h%w\                    " File info
+    setlocal statusline+=\ %<%f%m%r%h%w\                    " File info
     setlocal statusline+=%#Secondary#                      " Separator
     setlocal statusline+=%=                                 " Center
     setlocal statusline+=%#Secondary#                      " Separator
@@ -117,7 +117,7 @@ function! BuildInertStatusLine() abort
     setlocal statusline+=\ %Y\            " File type
     setlocal statusline+=%#Secondary#    " Separator
     setlocal statusline+=%#Tertiary#      " Use secondary color
-    setlocal statusline+=\ %<%F%m%r%h%w\  " File info
+    setlocal statusline+=\ %<%f%m%r%h%w\  " File info
     setlocal statusline+=%#Secondary#    " Separator
     setlocal statusline+=%=               " Center
     setlocal statusline+=%#Secondary#     " Use secondary color

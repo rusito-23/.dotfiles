@@ -55,6 +55,8 @@ set foldcolumn=1                        " Some left margin right here
 set splitbelow splitright               " Open below and on the right side
 set showtabline=2                       " Always show tab line
 set laststatus=2                        " Always show the status line
+set notitle noicon                      " Never show title or icon
+
 let g:mapleader = ","                   " Define map leader
 
 " }}}
@@ -66,14 +68,9 @@ set wildmode=longest,list,full          " Wild menu configuration
 
 " }}}
 
-" {{{ Default tab configuration
-
-set tabstop=8 softtabstop=0 expandtab shiftwidth=4 smarttab
-
-" }}}
-
 " {{{ Configure Indentation
 
+set tabstop=8 softtabstop=4 expandtab shiftwidth=4 smarttab
 filetype indent on
 set autoindent smartindent
 
@@ -82,8 +79,8 @@ set autoindent smartindent
 " {{{ Special characters display configuration
 
 set list
-set showbreak=↪\
-set listchars=tab:→\ ,space:·,nbsp:␣,trail:•,eol:↲,precedes:«,extends:»
+let &showbreak='↪ '
+let &listchars='tab:→ ,space:·,nbsp:␣,trail:•,eol:↲,precedes:«,extends:»'
 
 " }}}
 

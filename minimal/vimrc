@@ -10,6 +10,7 @@
 " License: MIT
 " Notes:
 " Basically a copy of my Neovim configuration, without plugins.
+" Adds some extra configurations to emulate some of the plugins config.
 " To be used in servers and places where you can't install much stuff
 
 " {{{ Options
@@ -35,6 +36,8 @@ set foldcolumn=1                        " Some left margin right here
 set splitbelow splitright               " Open below and on the right side
 set showtabline=2                       " Always show tab line
 set laststatus=2                        " Always show the status line
+set notitle noicon                      " Never show title or icon
+
 syntax on                               " Enable syntax
 filetype on                             " Enable file type matching
 filetype plugin on                      " Enable plugins
@@ -64,8 +67,9 @@ set autoindent smartindent
 " {{{ Special characters display configuration
 
 set list
-set showbreak=↪\
-set listchars=tab:→\ ,space:·,nbsp:␣,trail:•,eol:↲,precedes:«,extends:»
+set fillchars+=vert:\·
+let &showbreak='↪ '
+let &listchars='tab:→ ,space:·,nbsp:␣,trail:•,eol:↲,precedes:«,extends:»'
 
 " }}}
 
@@ -81,9 +85,14 @@ set belloff+=ctrlg         " Don't beep during completion
 " }}}
 
 " {{{ File browsing configs
+
 let g:netrw_banner=0            " Disable annoying banner
 let g:netrw_browse_split=4      " Open in prior window
 let g:netrw_liststyle=3         " Tree view
+
+" }}}
+
+" {{{ Cursor configs
 
 let &t_SI = "\e[6 q"            " Use bar cursor in insert mode
 let &t_EI = "\e[2 q"            " Use block cursor in normal mode
@@ -99,11 +108,26 @@ set termguicolors
 colorscheme desert
 
 " Status line colors
-hi statusline   ctermfg=black   ctermbg=cyan    guifg=black     guibg=#8fbfdc
-hi User1        ctermfg=cyan    ctermbg=239     guifg=#8fbfdc   guibg=#4e4e4e
-hi User2        ctermfg=007     ctermbg=239     guifg=#cdcdcd    guibg=#4e4e4e
-hi User3        ctermfg=cyan    ctermbg=239     guifg=#8fbfdc   guibg=#4e4e4e
-hi User4        ctermfg=007     ctermbg=239     guifg=#adadad    guibg=#4e4e4e
+hi statusline    ctermfg=black  ctermbg=cyan  guifg=black    guibg=#8fbfdc  gui=Bold  cterm=Bold
+hi statuslinenc  ctermfg=cyan   ctermbg=239   guifg=#8fbfdc  guibg=#4e4e4e  gui=Bold  cterm=Bold
+hi User1         ctermfg=cyan   ctermbg=239   guifg=#8fbfdc  guibg=#4e4e4e  gui=None  cterm=None
+hi User2         ctermfg=007    ctermbg=239   guifg=#cdcdcd  guibg=#4e4e4e  gui=None  cterm=None
+hi User3         ctermfg=cyan   ctermbg=239   guifg=#8fbfdc  guibg=#4e4e4e  gui=None  cterm=None
+hi User4         ctermfg=007    ctermbg=239   guifg=#adadad  guibg=#4e4e4e  gui=None  cterm=None
+hi Clear         ctermfg=None   ctermbg=None  guifg=None     guibg=None     gui=None  cterm=None
+
+" Tab line colors
+hi TabLineFill  ctermfg=cyan   ctermbg=239   guifg=#8fbfdc  guibg=#4e4e4e  gui=None  cterm=None
+hi TabLine      ctermfg=cyan   ctermbg=239   guifg=#8fbfdc  guibg=#4e4e4e  gui=None  cterm=None
+hi TabLineSel   ctermfg=black  ctermbg=cyan  guifg=black    guibg=#8fbfdc  gui=Bold  cterm=Bold
+hi Title        ctermfg=black  ctermbg=None  guifg=black    guibg=None     gui=None  cterm=None
+
+" Special characters colors
+hi specialkey term=standout ctermfg=darkgray guifg=darkgray
+hi nontext    term=standout ctermfg=darkgray guifg=darkgray
+
+" Don't highlight vertical splits
+hi VertSplit cterm=NONE
 
 " }}}
 
@@ -242,15 +266,46 @@ nnoremap <silent> <leader>t  <cmd>call OpenTerminal()<CR>
 
 " {{{ Status line
 
-set statusline=                                                 " Init
-set statusline+=\[%{toupper(mode())}\]                          " Mode indicator
-set statusline+=%(%m%)                                          " Modified [+] / [-] flag
-set statusline+=[%Y]
-set statusline+=\ %t
-set statusline+=%=                                              " Right align
-set statusline+=\                                               " Space
-set statusline+=[%1.5l:%1.5L]                                   " Line
-set statusline+=[:\%c]                                          " Column
-set statusline+=[%{&fileencoding?&fileencoding:&encoding}]      " File encoding
+" {{{ Mode Names
+
+let mode_names = {
+    \"n":        "NORMAL",
+    \"no":       "N·OP",
+    \"v":        "VISUAL",
+    \"V":        "V·LINE",
+    \"\<C-v>":   "V·BLOCK",
+    \"s":        "SELECT",
+    \"S":        "S·LINE",
+    \"\<C-s>":   "S·BLOCK",
+    \"i":        "INSERT",
+    \"ic":       "INSERT",
+    \"ix":       "INSERT",
+    \"R":        "REPLACE",
+    \"Rv":       "V·REPLACE",
+    \"c":        "COMMAND",
+    \"cv":       "VIM EX",
+    \"ce":       "EX",
+    \"r":        "PROMPT",
+    \"rm":       "MORE",
+    \"r?":       "CONFIRM",
+    \"!":        "SHELL",
+    \"t":        "TERMINAL",
+\}
+
+" }}}
+
+set statusline=
+set statusline+=\ %{toupper(mode_names[mode()])}\       " The current mode
+set statusline+=%1*                                     " Use color 1
+set statusline+=\ %Y\                                   " File type
+set statusline+=%2*                                     " Use color 1
+set statusline+=\ %<%t%m%r%h%w\                         " File info
+set statusline+=%=                                      " Right align
+set statusline+=%1*                                     " Use color 1
+set statusline+=\ C:%02v                                " Column
+set statusline+=\ L:%02l/%02L\                          " Line number
+set statusline+=%0*                                     " Use color 1
+set statusline+=\ B%n\                                  " Buffer number
+set statusline+=%#Clear#                                " Clear colors
 
 " }}}
