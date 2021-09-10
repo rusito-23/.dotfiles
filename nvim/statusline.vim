@@ -8,37 +8,32 @@
 " Author: Igor Andruskiewitsch
 " License: MIT
 " Notes:
-" My Neovim status line configuration
-" Needs a Powerline Font to display the separators
+"    My Neovim status line configuration
+"    Needs a Power line Font to display the separators
+"    Supports these plugins:
+"    Nerd Tree: Basic status line with buffer number
+"    Fugitive: Basic status line indicating the description
 
 " {{{ Main Status Line Builder
 
-function BuildStatusLine(bufnr, active)
-    " Get buffer names
+function BuildStatusLine(bufnr, focused)
+    " Get buffer name
     let l:bufname = bufname(a:bufnr)
 
     " Nerd Tree status line
     if l:bufname =~ 'Nerd_tree'
-        if a:active
-            call BuildActiveNerdTreeStatusLine()
-        else
-            call BuildInactiveNerdTreeStatusLine()
-        endif
+        call BuildNerdTreeStatusLine(a:focused)
         return
     endif
 
     " Fugitive status line
     if l:bufname =~ 'fugitive'
-        call BuildFugitiveStatusLine(l:bufname, a:active)
+        call BuildFugitiveStatusLine(l:bufname, a:focused)
         return
     endif
 
     " Default status line
-    if a:active
-        call BuildActiveStatusLine()
-    else
-        call BuildInactiveStatusLine()
-    endif
+    call BuildDefaultStatusLine(a:focused)
 endfunction
 
 " }}}
@@ -81,7 +76,15 @@ endfunction
 
 " }}}
 
-function! BuildActiveStatusLine() abort
+function! BuildDefaultStatusLine(focused) abort
+    if a:focused
+        call BuildFocusedStatusLine()
+    else
+        call BuildInertStatusLine()
+    endif
+endfunction
+
+function! BuildFocusedStatusLine() abort
     setlocal statusline=
     setlocal statusline+=%#Primary#                         " Use primary color
     setlocal statusline+=\ %{toupper(mode_names[mode()])}\  " The current mode
@@ -108,8 +111,7 @@ function! BuildActiveStatusLine() abort
     setlocal statusline+=%#Clear#                           " Clear colors
 endfunction
 
-
-function! BuildInactiveStatusLine() abort
+function! BuildInertStatusLine() abort
     setlocal statusline=
     setlocal statusline+=%#Secondary#     " Use secondary color
     setlocal statusline+=\ %Y\            " File type
@@ -126,9 +128,17 @@ endfunction
 
 " }}}
 
-" {{{ Nerd Tree Status Line Builders
+" {{{ Nerd Tree Status Line Builder
 
-function! BuildActiveNerdTreeStatusLine() abort
+function! BuildNerdTreeStatusLine(focused) abort
+    if a:focused
+        call BuildFocusedNerdTreeStatusLine()
+    else
+        call BuildInertNerdTreeStatusLine()
+    endif
+endfunction
+
+function! BuildFocusedNerdTreeStatusLine() abort
     setlocal statusline=
     setlocal statusline+=%#Primary#      " Use primary color
     setlocal statusline+=\ %Y\           " File type
@@ -140,7 +150,7 @@ function! BuildActiveNerdTreeStatusLine() abort
     setlocal statusline+=%#Clear#        " Clear colors
 endfunction
 
-function! BuildInactiveNerdTreeStatusLine() abort
+function! BuildInertNerdTreeStatusLine() abort
     setlocal statusline=
     setlocal statusline+=%#Secondary#  " Use secondary color
     setlocal statusline+=\ %Y\         " File type
@@ -155,7 +165,7 @@ endfunction
 
 " {{{ Fugitive Status Line Builders
 
-function! BuildFugitiveStatusLine(bufname, active) abort
+function! BuildFugitiveStatusLine(bufname, focused) abort
     " Parse buffer description
     let l:bufdesc = ''
     if a:bufname =~ '\/\/2'
@@ -170,14 +180,14 @@ function! BuildFugitiveStatusLine(bufname, active) abort
     endif
 
     " Build fugitive status line
-    if a:active
-        call BuildActiveFugitiveStatusLine(l:bufdesc)
+    if a:focused
+        call BuildFocusedFugitiveStatusLine(l:bufdesc)
     else
-        call BuildInactiveFugitiveStatusLine(l:bufdesc)
+        call BuildInertFugitiveStatusLine(l:bufdesc)
     endif
 endfunction
 
-function! BuildActiveFugitiveStatusLine(bufdesc) abort
+function! BuildFocusedFugitiveStatusLine(bufdesc) abort
     setlocal statusline=
     setlocal statusline+=%#Primary#      " Use primary color
     exec 'setlocal statusline+='.a:bufdesc
@@ -189,7 +199,7 @@ function! BuildActiveFugitiveStatusLine(bufdesc) abort
     setlocal statusline+=%#Clear#        " Clear colors
 endfunction
 
-function! BuildInactiveFugitiveStatusLine(bufdesc) abort
+function! BuildInertFugitiveStatusLine(bufdesc) abort
     setlocal statusline=
     setlocal statusline+=%#Secondary#  " Use secondary color
     exec 'setlocal statusline+='.a:bufdesc
@@ -204,7 +214,7 @@ endfunction
 
 " {{{ Auto-command Group
 
-" Automatically Build the Status Line
+" Build the Status Line based on buffer movements
 augroup BuildStatusLine
     autocmd!
     autocmd BufEnter,WinEnter * call BuildStatusLine(bufnr(), 1)

@@ -18,13 +18,15 @@ hi SpellLocal   cterm=underline   ctermfg=yellow
 set termguicolors
 colorscheme nord
 
-" Vim-Fugitive Special Colors
+" Git Colors
+" Used when using vim as diff or merge tool
 hi DiffAdd     ctermfg=White  ctermbg=Green    guifg=White  guibg=Green    gui=None       cterm=None
 hi DiffDelete  ctermfg=White  ctermbg=DarkRed  guifg=White  guibg=DarkRed  gui=Bold       cterm=Bold
 hi DiffChange  ctermfg=White  ctermbg=Gray     guifg=White  guibg=Gray     gui=None       cterm=None
 hi DiffText    ctermfg=White  ctermbg=Green    guifg=White  guibg=Green    gui=Underline  cterm=Underline
 
 " Line Colors
+" Used for the tab and status lines
 hi Primary        ctermfg=black  ctermbg=cyan  guifg=black    guibg=#8fbfdc  gui=None  cterm=None
 hi PrimaryBold    ctermfg=black  ctermbg=cyan  guifg=black    guibg=#8fbfdc  gui=Bold  cterm=Bold
 hi PrimarySep     ctermfg=cyan   ctermbg=239   guifg=#8fbfdc  guibg=#4e4e4e  gui=None  cterm=None
