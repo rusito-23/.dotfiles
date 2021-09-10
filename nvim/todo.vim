@@ -1,7 +1,9 @@
-" | |_ ___   __| | _____   _(_)_ __ ___
-" | __/ _ \ / _` |/ _ \ \ / / | '_ ` _ \
-" | || (_) | (_| | (_) \ V /| | | | | | |
-"  \__\___/ \__,_|\___(_)_/ |_|_| |_| |_|
+" ████████╗ ██████╗ ██████╗  ██████╗   ██╗   ██╗██╗███╗   ███╗
+" ╚══██╔══╝██╔═══██╗██╔══██╗██╔═══██╗  ██║   ██║██║████╗ ████║
+"    ██║   ██║   ██║██║  ██║██║   ██║  ██║   ██║██║██╔████╔██║
+"    ██║   ██║   ██║██║  ██║██║   ██║  ╚██╗ ██╔╝██║██║╚██╔╝██║
+"    ██║   ╚██████╔╝██████╔╝╚██████╔╝██╗╚████╔╝ ██║██║ ╚═╝ ██║
+"    ╚═╝    ╚═════╝ ╚═════╝  ╚═════╝ ╚═╝ ╚═══╝  ╚═╝╚═╝     ╚═╝
 "
 " Author: Igor Andruskiewitsch
 " License: MIT
@@ -13,11 +15,15 @@
 " - Automatic markdown syntax
 " - Mappings to perform quick actions
 
-" {{{ Local Variables
+" {{{ Variables
+
+" Global variables
+
+let g:todo_element="- [] <element>"
 
 " Skeletons
 
-let s:element_skeleton="- [] <element>"
+let s:element_skeleton=g:todo_element
 let s:list_skeleton="# New List\n\n".s:element_skeleton
 
 " Patterns
@@ -54,9 +60,14 @@ function! ToDoCreateList()
     normal! wvee
 endfunction
 
+" Check if there's an element in the current line
+function! ToDoIsElement()
+    return getline(line('.')) =~ s:element_pattern
+endfunction
+
 " Add a new element
 function! ToDoAddElement()
-    " Don't add if there's nothing
+    " Don't add if there's no element in the current line
     if getline(line('.')) !~ s:element_pattern
         return
     endif
@@ -103,7 +114,9 @@ endfunction
 " {{{ Auto-commands
 
 " Initial set up when opening files
-autocmd BufNewFile,BufRead *.todo call ToDoSetUp()
+augroup ToDoSetUp
+    autocmd BufNewFile,BufRead *.todo call ToDoSetUp()
+augroup end
 
 " }}}
 
@@ -134,6 +147,9 @@ function! ToDoSetUpBindings()
 
     " Toggle element in the current line
     nnoremap <silent> <Space> <cmd> ToggleElement<CR>
+
+    " Automatically add element
+    inoremap <silent><expr> <CR> ToDoIsElement() ? "\<CR>".g:todo_element : "\<CR>"
 endfunction
 
 " }}}
