@@ -46,14 +46,11 @@
     editor = nvim
 
 [merge]
-    tool = nvim 
+    tool = nvim
     conflictstyle = diff3
 
 [mergetool "nvim"]
     cmd = nvim -f -c \"Gvdiffsplit!\" \"$MERGED\"
 
 [diff]
-    tool = nvim 
-
-[difftool "nvim"]
-    cmd = nvim -f -c \"Gvdiffsplit!\" \"$MERGED\"
+    tool = nvimdiff
