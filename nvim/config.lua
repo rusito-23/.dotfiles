@@ -56,6 +56,12 @@ lspconfig.dockerls.setup {
     on_attach = completion.on_attach
 }
 
+-- `cargo install --git https://github.com/latex-lsp/texlab.git --locked`
+lspconfig.texlab.setup{
+    default_opts,
+    on_attach = completion.on_attach
+}
+
 -- Set up LSP Saga
 saga.init_lsp_saga {
     error_sign = '',

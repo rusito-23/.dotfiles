@@ -262,6 +262,9 @@ vnoremap <silent> * "zy/<C-R>=@z<CR><CR>
 " Open a small terminal at the bottom
 nnoremap <silent> <leader>t  <cmd>call OpenTerminal()<CR>
 
+" Never select the line break
+vnoremap $ $h
+
 " }}}
 
 " {{{ Status line

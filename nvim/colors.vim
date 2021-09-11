@@ -37,3 +37,12 @@ hi Tertiary       ctermfg=007    ctermbg=239   guifg=#adadad  guibg=#4e4e4e  gui
 hi TertiaryBold   ctermfg=007    ctermbg=239   guifg=#adadad  guibg=#4e4e4e  gui=Bold  cterm=Bold
 hi TertiarySep    ctermfg=239    ctermbg=cyan  guifg=#4e4e4e  guibg=#8fbfdc  gui=None  cterm=None
 hi Clear          ctermfg=None   ctermbg=None  guifg=None     guibg=None     gui=None  cterm=None
+
+" Clear Tex Highlights
+augroup ClearTextHighlights
+    autocmd FileType tex
+                \ hi clear texItalBoldStyle |
+                \ hi clear texItalStyle |
+                \ hi clear texBoldStyle |
+                \ hi clear texEmphStyle
+augroup end

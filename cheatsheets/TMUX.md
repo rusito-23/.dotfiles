@@ -7,6 +7,7 @@
 | ⌥ + `.` | Create vertical pane | ⌃`B`, `%` |
 | ⌥ + `,` | Create horizontal pane | ⌃`B`, `"` |
 | ⌥ + `(hjkl)` | Navigate between panes | ⌃`B`, `arrows` |
+| ⌃`B`, `(hjkl)` | Resize panes | |
 
 ##  Window Management
 

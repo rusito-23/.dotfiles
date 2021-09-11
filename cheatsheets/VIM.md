@@ -32,6 +32,8 @@
 | Shortcut | Description |
 | --- | --- |
 | `<leader>s` | Save file |
+| `<leader>w` | Activate window mode (⌃`W`) |
+| `<leader>t` | Open terminal |
 
 ## Macro Shortcuts
 
@@ -44,10 +46,10 @@
 
 | Shortcut | Description |
 | --- | --- |
-| `<leader>e` | List files |
-| `<leader>f` | List lines |
-| `<leader>b` | List buffers |
-| `<leader>F` | Run live grep |
+| `<leader>e` | Find file |
+| `<leader>f` | Find in current file |
+| `<leader>b` | Find buffers |
+| `<leader>F` | Live grep |
 | `<leader>H` | List help tags |
 
 ### While searching on `telescope`

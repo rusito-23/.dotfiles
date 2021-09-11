@@ -118,19 +118,19 @@ let g:completion_enable_snippet = 'vim-vsnip'
 
 augroup CustomTabs
     " Use tabs for Go Lang files
-    autocmd FileType go exec 'set noexpandtab shiftwidth=8'
+    autocmd FileType go set noexpandtab shiftwidth=8
 
     " Use 2 spaces for JSON, YAML, TOML files
-    autocmd FileType yaml exec 'set shiftwidth=2'
-    autocmd FileType toml exec 'set shiftwidth=2'
-    autocmd FileType json exec 'set shiftwidth=2'
+    autocmd FileType yaml set shiftwidth=2
+    autocmd FileType toml set shiftwidth=2
+    autocmd FileType json set shiftwidth=2
 augroup end
 
 " Set up column wrapping
 augroup ColumnWrapping
-    autocmd FileType gitcommit exec 'set colorcolumn=50'
-    autocmd FileType python exec 'set colorcolumn=80'
-    autocmd FileType swift exec 'set colorcolumn=120'
+    autocmd FileType gitcommit set colorcolumn=50
+    autocmd FileType python set colorcolumn=80
+    autocmd FileType swift set colorcolumn=120
 augroup end
 
 " Remove trailing white spaces when a file is saved
@@ -151,10 +151,15 @@ augroup end
 
 " Set up fold method marker for specific files
 augroup FoldMethods
-    autocmd FileType vim exec 'set foldmethod=marker'
-    autocmd FileType zsh exec 'set foldmethod=marker'
-    autocmd FileType sh exec 'set foldmethod=marker'
-    autocmd FileType tmux exec 'set foldmethod=marker'
+    autocmd FileType vim set foldmethod=marker
+    autocmd FileType zsh set foldmethod=marker
+    autocmd FileType sh set foldmethod=marker
+    autocmd FileType tmux set foldmethod=marker
+augroup end
+
+" Configure Term
+augroup ConfigureTerm
+    autocmd TermOpen * setlocal nospell nonumber norelativenumber nocursorline
 augroup end
 
 " }}}
@@ -202,6 +207,17 @@ function! OpenTerminal()
     normal! i
 endfunction
 
+" Get the current syntax group under the cursor
+" See: https://stackoverflow.com/a/58244921/8189455
+function! SynStack ()
+    for i1 in synstack(line("."), col("."))
+        let i2 = synIDtrans(i1)
+        let n1 = synIDattr(i1, "name")
+        let n2 = synIDattr(i2, "name")
+        echo n1 "->" n2
+    endfor
+endfunction
+
 " }}}
 
 " {{{ Commands
@@ -243,6 +259,9 @@ xnoremap @ :<C-u>call ExecuteMacroOverVisualRange()<CR>
 
 " Toggle NERD Tree
 nnoremap <C-n> :NERDTreeToggle<CR>
+
+" Activate window mode more quickly
+nnoremap <leader>w <C-w>
 
 " Navigate between panes
 " See: https://github.com/christoomey/vim-tmux-navigator
@@ -297,5 +316,11 @@ nnoremap <silent> gh <cmd>Lspsaga lsp_finder<CR>
 
 " Open a small terminal at the bottom
 nnoremap <silent> <leader>t  <cmd>call OpenTerminal()<CR>
+
+" Back to normal mode using <Esc> in the terminal
+tnoremap <Esc> <C-\><C-n>
+
+" Never select the line break
+vnoremap $ $h
 
 " }}}

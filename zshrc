@@ -251,4 +251,7 @@ if command -v pyenv 1>/dev/null 2>&1; then
     pyenv virtualenvwrapper
 fi
 
+# Set up Rust
+[ -f $HOME/.cargo/env ] && source $HOME/.cargo/env
+
 # }}}
