@@ -5,7 +5,6 @@
 # - BREW: install some brew dependencies
 # - NVIM: set up `dein` and ini file
 # - TMUX: set up tmuxrc file
-# - VIFM: set up vifmrc file
 # - GIT: set up git default config
 # - HTOP: set up default htop file
 # - OHMYZSH: install oh-my-zsh
@@ -72,24 +71,6 @@ if [[ "$*" == *TMUX* ]] || [[ $# -eq 0 ]]; then
     # Link config file
     safe_ln ~/.dotfiles/tmux.conf ~/.tmux.conf
     log_success ">>> TMUX: Setup success <<<"
-fi
-
-# }}}
-
-# {{{ Set up Vifm
-
-if [[ "$*" == *VIFM* ]] || [[ $# -eq 0 ]]; then
-
-    # Create dirs
-    mkdir -p ~/.config/vifm
-    mkdir -p ~/.config/vifm/colors
-
-    # Setup config file
-    echo "source ~/.dotfiles/vifmrc.vim"  > ~/.config/vifm/vifmrc
-    cp ~/..dotfiles/zenburn.vifm ~/.config/vifm/colors/zenburn.vifm
-
-    # Success prompt
-    log_success ">>> VIFM: Setup success <<<"
 fi
 
 # }}}
