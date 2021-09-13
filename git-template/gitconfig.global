@@ -53,4 +53,7 @@
     cmd = nvim -f -c \"Gvdiffsplit!\" \"$MERGED\"
 
 [diff]
-    tool = nvimdiff
+    tool = nvim
+
+[difftool "nvim"]
+    cmd = nvim -d \"$LOCAL\" \"$REMOTE\"
