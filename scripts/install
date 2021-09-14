@@ -11,6 +11,7 @@
 # - PLUGINS: install oh my zsh req plugins
 # - POWERLEVEL: install powerlevel 10k theme
 # - FZF: install and set up fzf
+# - RANGER: install and set up the Ranger terminal file manager
 # - YABAI: install & set up Yabai tiling window manager
 # - ALACRITTY: install & set up the alacritty terminal emulator
 # - ESPANSO: set up the espanso daemon
@@ -136,6 +137,20 @@ if [[ "$*" == *FZF* ]] || [[ $# -eq 0 ]]; then
 
     # Install key bindings and completion
     $(brew --prefix)/opt/fzf/install
+fi
+
+# }}}
+
+# {{{ Set up Ranger
+
+if [[ "$*" == *RANGER* ]] || [[ $# -eq 0 ]]; then
+    # Install Ranger
+    log_info ">>> Install Ranger <<<"
+    brew install ranger
+
+    # Install config file
+    mkdir -p ~/.config/ranger
+    safe_ln ~/.dotfiles/ranger ~/.config/ranger
 fi
 
 # }}}
