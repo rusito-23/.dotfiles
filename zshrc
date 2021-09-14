@@ -114,7 +114,7 @@ unalias gcb                             # I don't care what this does, I want to
 unalias gpu                             # This git plugin alias pushes to the upstream (it's f* dangerous)
 
 alias gcb='git_current_branch'          # Display current branch
-alias gdt='git difftool'                # Diff tool
+alias gdt='git difftool -y'             # Diff tool
 alias gmt='git mergetool'               # Merge tool
 
 alias vew='virtualenvwrapper'           # Quick virtualenvwrapper

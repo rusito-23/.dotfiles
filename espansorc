@@ -48,7 +48,7 @@ matches:
 
 # Inserts markdown collapsable section
 - trigger: :md-details
-  replace: "\n<details>\n\t<summary>$|$</summary>\n\t<p></p>\n</details>"
+  replace: "\n<details>\n    <summary>$|$</summary>\n    \n</details>"
 
 # Inserts markdown summary section
 - trigger: :md-summary
