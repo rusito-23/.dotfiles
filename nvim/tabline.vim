@@ -12,11 +12,11 @@
 " Uses Powerlevel Fonts to display the separators
 
 " Set tab line builder
-set tabline=%!BuildTabLine()
+set tabline=%!tabline#build()
 
 " {{{ Buffer builder
 
-function! BuildBuffer(bufnr, tabsel)
+function! tabline#build_bufname(bufnr, tabsel)
     " Create empty buffer name
     let l:buffer_name = ''
 
@@ -74,7 +74,7 @@ endfunction
 
 " {{{ Tab line builder
 
-function! BuildTabLine() abort
+function! tabline#build() abort
     let l:tabline = ''
 
     " Loop through each tab page
@@ -94,7 +94,7 @@ function! BuildTabLine() abort
         let l:tabline .= l:tabnr
 
         " Parse all buffer names in the current tab
-        let l:buffer_names = map(tabpagebuflist(l:tabnr), 'BuildBuffer(v:val, l:tabsel)')
+        let l:buffer_names = map(tabpagebuflist(l:tabnr), 'tabline#build_bufname(v:val, l:tabsel)')
         let l:buffer_names = join(l:buffer_names, '')
         let l:tabline .= ' ' . l:buffer_names . ' '
 

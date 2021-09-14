@@ -16,24 +16,24 @@
 
 " {{{ Main Status Line Builder
 
-function BuildStatusLine(bufnr, focused)
+function statusline#build(bufnr, focused)
     " Get buffer name
     let l:bufname = bufname(a:bufnr)
 
     " Nerd Tree status line
     if l:bufname =~ 'Nerd_tree'
-        call BuildNerdTreeStatusLine(a:focused)
+        call statusline#build_nerdtree(a:focused)
         return
     endif
 
     " Fugitive status line
     if l:bufname =~ 'fugitive'
-        call BuildFugitiveStatusLine(l:bufname, a:focused)
+        call statusline#build_fugitive(l:bufname, a:focused)
         return
     endif
 
     " Default status line
-    call BuildDefaultStatusLine(a:focused)
+    call statusline#build_default(a:focused)
 endfunction
 
 " }}}
@@ -70,21 +70,21 @@ let mode_names = {
 
 " {{{
 
-function! GetEncoding() abort
+function! statusline#get_encoding() abort
     return (&fenc != "" ? &fenc : &enc)
 endfunction
 
 " }}}
 
-function! BuildDefaultStatusLine(focused) abort
+function! statusline#build_default(focused) abort
     if a:focused
-        call BuildFocusedStatusLine()
+        call statusline#build_default_focused()
     else
-        call BuildInertStatusLine()
+        call statusline#build_default_defocused()
     endif
 endfunction
 
-function! BuildFocusedStatusLine() abort
+function! statusline#build_default_focused() abort
     setlocal statusline=
     setlocal statusline+=%#Primary#                         " Use primary color
     setlocal statusline+=\ %{toupper(mode_names[mode()])}\  " The current mode
@@ -104,14 +104,14 @@ function! BuildFocusedStatusLine() abort
     setlocal statusline+=%#Tertiary#                        " Use tertiary color
     setlocal statusline+=\ %3p%%\                           " Doc percentage
     setlocal statusline+=%#Secondary#                      " Separator
-    setlocal statusline+=\ %\{GetEncoding()}\               " Encoding
+    setlocal statusline+=\ %\{statusline#get_encoding()}\               " Encoding
     setlocal statusline+=%#PrimarySep#                     " Separator
     setlocal statusline+=%#Primary#                         " Use primary color
     setlocal statusline+=\ B%n\                             " Buffer number
     setlocal statusline+=%#Clear#                           " Clear colors
 endfunction
 
-function! BuildInertStatusLine() abort
+function! statusline#build_default_defocused() abort
     setlocal statusline=
     setlocal statusline+=%#Secondary#     " Use secondary color
     setlocal statusline+=\ %Y\            " File type
@@ -130,15 +130,15 @@ endfunction
 
 " {{{ Nerd Tree Status Line Builder
 
-function! BuildNerdTreeStatusLine(focused) abort
+function! statusline#build_nerdtree(focused) abort
     if a:focused
-        call BuildFocusedNerdTreeStatusLine()
+        call statusline#build_nerdtree_focused()
     else
-        call BuildInertNerdTreeStatusLine()
+        call statusline#build_nerdtree_defocused()
     endif
 endfunction
 
-function! BuildFocusedNerdTreeStatusLine() abort
+function! statusline#build_nerdtree_focused() abort
     setlocal statusline=
     setlocal statusline+=%#Primary#      " Use primary color
     setlocal statusline+=\ %Y\           " File type
@@ -150,7 +150,7 @@ function! BuildFocusedNerdTreeStatusLine() abort
     setlocal statusline+=%#Clear#        " Clear colors
 endfunction
 
-function! BuildInertNerdTreeStatusLine() abort
+function! statusline#build_nerdtree_defocused() abort
     setlocal statusline=
     setlocal statusline+=%#Secondary#  " Use secondary color
     setlocal statusline+=\ %Y\         " File type
@@ -165,7 +165,7 @@ endfunction
 
 " {{{ Fugitive Status Line Builders
 
-function! BuildFugitiveStatusLine(bufname, focused) abort
+function! statusline#build_fugitive(bufname, focused) abort
     " Parse buffer description
     let l:bufdesc = ''
     if a:bufname =~ '\/\/2'
@@ -181,13 +181,13 @@ function! BuildFugitiveStatusLine(bufname, focused) abort
 
     " Build fugitive status line
     if a:focused
-        call BuildFocusedFugitiveStatusLine(l:bufdesc)
+        call statusline#build_fugitive_focused(l:bufdesc)
     else
-        call BuildInertFugitiveStatusLine(l:bufdesc)
+        call statusline#build_fugitive_defocused(l:bufdesc)
     endif
 endfunction
 
-function! BuildFocusedFugitiveStatusLine(bufdesc) abort
+function! statusline#build_fugitive_focused(bufdesc) abort
     setlocal statusline=
     setlocal statusline+=%#Primary#      " Use primary color
     exec 'setlocal statusline+='.a:bufdesc
@@ -199,7 +199,7 @@ function! BuildFocusedFugitiveStatusLine(bufdesc) abort
     setlocal statusline+=%#Clear#        " Clear colors
 endfunction
 
-function! BuildInertFugitiveStatusLine(bufdesc) abort
+function! statusline#build_fugitive_defocused(bufdesc) abort
     setlocal statusline=
     setlocal statusline+=%#Secondary#  " Use secondary color
     exec 'setlocal statusline+='.a:bufdesc
@@ -217,8 +217,8 @@ endfunction
 " Build the Status Line based on buffer movements
 augroup BuildStatusLine
     autocmd!
-    autocmd BufEnter,WinEnter * call BuildStatusLine(bufnr(), 1)
-    autocmd BufLeave,WinLeave * call BuildStatusLine(bufnr(), 0)
+    autocmd BufEnter,WinEnter * call statusline#build(bufnr(), 1)
+    autocmd BufLeave,WinLeave * call statusline#build(bufnr(), 0)
 augroup end
 
 " }}}

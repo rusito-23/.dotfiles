@@ -36,19 +36,19 @@ let s:element_pattern=".*-.*\[( )+\].*$"
 " {{{ Functions
 
 " To be called whenever a new `.todo` file is opened
-function! ToDoSetUp()
+function! todo#SetUp()
     " Use markdown syntax
     set filetype=markdown
 
     " Set up commands
-    call ToDoSetUpCommands()
+    call todo#SetUpCommands()
 
     " Set up bindings
-    call ToDoSetUpBindings()
+    call todo#SetUpBindings()
 endfunction
 
 " Create a new List
-function! ToDoCreateList()
+function! todo#CreateList()
     " Insert snippet
     exec "normal! o".s:list_skeleton
 
@@ -61,12 +61,12 @@ function! ToDoCreateList()
 endfunction
 
 " Check if there's an element in the current line
-function! ToDoIsElement()
+function! todo#IsElement()
     return getline(line('.')) =~ s:element_pattern
 endfunction
 
 " Add a new element
-function! ToDoAddElement()
+function! todo#AddElement()
     " Don't add if there's no element in the current line
     if getline(line('.')) !~ s:element_pattern
         return
@@ -85,7 +85,7 @@ endfunction
 
 " Toggle element completion
 
-function! ToDoToggleElement()
+function! todo#ToggleElement()
     " Toggle OFF if it's ON
     if getline(line('.')) =~ s:element_on_pattern
         " Search for the first `x` in the line
@@ -114,30 +114,30 @@ endfunction
 " {{{ Auto-commands
 
 " Initial set up when opening files
-augroup ToDoSetUp
-    autocmd BufNewFile,BufRead *.todo call ToDoSetUp()
+augroup todo#SetUp
+    autocmd BufNewFile,BufRead *.todo call todo#SetUp()
 augroup end
 
 " }}}
 
 " {{{ Commands
 
-function! ToDoSetUpCommands()
+function! todo#SetUpCommands()
     " Create list command
-    command CreateList call ToDoCreateList()
+    command CreateList call todo#CreateList()
 
     " Add element command
-    command AddElement call ToDoAddElement()
+    command AddElement call todo#AddElement()
 
     " Toggle element command
-    command ToggleElement call ToDoToggleElement()
+    command ToggleElement call todo#ToggleElement()
 endfunction
 
 " }}}
 
 " {{{ Bindings
 
-function! ToDoSetUpBindings()
+function! todo#SetUpBindings()
 
     " Create new list
     nnoremap <silent> ,c <cmd> CreateList<CR>
@@ -149,7 +149,7 @@ function! ToDoSetUpBindings()
     nnoremap <silent> <Space> <cmd> ToggleElement<CR>
 
     " Automatically add element
-    inoremap <silent><expr> <CR> ToDoIsElement() ? "\<CR>".g:todo_element : "\<CR>"
+    inoremap <silent><expr> <CR> todo#IsElement() ? "\<CR>".g:todo_element : "\<CR>"
 endfunction
 
 " }}}
