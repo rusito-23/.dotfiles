@@ -1,0 +1,21 @@
+#!/bin/sh
+# Copy given file into system clipboard
+set -euo pipefail
+
+# Get utils
+source ~/.dotfiles/scripts/utils
+
+# Show help if needed
+if [[ $# -eq 0 ]]; then
+    log_info "Usage: copy <file>"
+    exit 1
+fi
+
+# Get file path
+file_path=$(pwd)/$1
+
+# Create apple script
+apple_script="tell app \"Finder\" to set the clipboard to ( POSIX file \"${file_path}\" )"
+
+# Run script
+echo ${apple_script} | osascript -i
