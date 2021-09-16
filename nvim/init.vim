@@ -43,7 +43,6 @@ set noshowmode                          " Remove default mode indicator
 set hlsearch incsearch                  " Highlight matches and patterns
 set ignorecase smartcase incsearch      " Define search case matching
 set nu rnu                              " Use relative line numbers
-set path +=**                           " Kind of a fuzzy finder
 set foldmethod=indent                   " Default fold method is using the syntax
 set foldlevel=0                         " Automatically enable folds
 set foldtext=FoldText()                 " Show custom fold text
@@ -63,8 +62,8 @@ let g:mapleader = ","                   " Define map leader
 
 " {{{ Wild menu configuration
 
-set wildmenu                            " Display matching files on tab complete
-set wildmode=longest,list,full          " Wild menu configuration
+set wildmode=full       " Wild mode pop up configuration
+set path +=**           " Kind of a fuzzy finder
 
 " }}}
 
@@ -289,6 +288,10 @@ smap <expr> <S-Tab> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<S-T
 " Navigate completion menu with Tab
 inoremap <silent><expr><Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <silent><expr><S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+
+" Switch between completion sources
+imap <c-j> <Plug>(completion_next_source)
+imap <c-k> <Plug>(completion_prev_source)
 
 " Prevent new line inserted after selecting a completion
 inoremap <expr> <CR> pumvisible() ? "\<C-Y>" : "\<CR>"

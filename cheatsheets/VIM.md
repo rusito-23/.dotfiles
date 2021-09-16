@@ -18,6 +18,8 @@
 | ⌃`N` | Toggle NerdTree |
 | ⌃`T` | Toggle TagBar |
 | ⌃`W` + `hjkl` | Navigate panes |
+| ⌃`W` + ^`F` | Omni file completion |
+| ⌃`P` | Regular completion |
 
 ## ⌥ Shortcuts
 
