@@ -575,3 +575,10 @@ typeset -g POWERLEVEL9K_CONFIG_FILE=${${(%):-%x}:a}
 
 # }}}
 
+# {{{ Fix Prompt when resizing
+
+typeset -g POWERLEVEL9K_TRANSIENT_PROMPT=off
+function p10k-on-pre-prompt() {}
+function p10k-on-post-prompt() {}
+
+# }}}
