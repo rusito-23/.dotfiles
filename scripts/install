@@ -18,7 +18,7 @@
 # - ZSH: setup zsh as default shell
 # }}}
 
-# {{{ Inits
+# {{{ Initial Definitions
 
 # Load script utils
 source ~/.dotfiles/scripts/utils
@@ -33,10 +33,10 @@ GH_URL=https://github.com
 
 # }}}
 
-# {{{  Installl Brew Dependencies
+# {{{ Install Brew Dependencies
 
 if [[ "$*" == *BREW* ]] || [[ $# -eq 0 ]]; then
-    log_info ">>> BREW: Install dependencies <<<"
+    log_info ">>> BREW: Installing dependencies <<<"
     # Update brew
     brew update
     # Install brew dependencies
@@ -51,27 +51,20 @@ fi
 
 # }}}
 
-# {{{ Set up nvim
+# {{{ Set up Neovim
 
 if [[ "$*" == *NVIM* ]] || [[ $# -eq 0 ]]; then
-    # Setup ini file
-    log_info ">>> NVIM: Setup config folder <<<"
-    mv ~/.config/nvim ~/.config/nvim.old &> /dev/null
-    ln -s ~/.dotfiles/nvim ~/.config/nvim
-
-    # Prompt success
-    log_success ">>> NVIM: Setup success <<<"
-    log_info "Remember to run dein#install() when running vim for the first time"
+    safe_ln ~/.dotfiles/nvim ~/.config/nvim
+    log_success ">>> NVIM: Success <<<"
 fi
 
 # }}}
 
-# {{{ Set up Tmux
+# {{{ Set up TMUX
 
 if [[ "$*" == *TMUX* ]] || [[ $# -eq 0 ]]; then
-    # Link config file
     safe_ln ~/.dotfiles/tmux.conf ~/.tmux.conf
-    log_success ">>> TMUX: Setup success <<<"
+    log_success ">>> TMUX: Success <<<"
 fi
 
 # }}}
@@ -79,22 +72,17 @@ fi
 # {{{ Set up Git
 
 if [[ "$*" == *GIT* ]] || [[ $# -eq 0 ]]; then
-    # Link config file
     safe_ln ~/.dotfiles/git-template/gitconfig.global ~/.gitconfig
-    log_success ">>> GIT: Setup success <<<"
+    log_success ">>> GIT: Success <<<"
 fi
 
 # }}}
 
-# {{{ Setup Htop
+# {{{ Set up htop
 
 if [[ "$*" == *HTOP* ]] || [[ $# -eq 0 ]]; then
-    # Create config dir
-    mkdir -p ~/.config/htop
-
-    # Link config file
-    safe_ln ~/.dotfiles/htoprc ~/.config/htop/htoprc
-    log_success ">>> HTOP: Setup success <<<"
+    safe_ln ~/.dotfiles/htop/htoprc ~/.config/htop/htoprc
+    log_success ">>> HTOP: Success <<<"
 fi
 
 # }}}
@@ -102,28 +90,25 @@ fi
 # {{{ Set up Zsh
 
 if [[ "$*" == *OHMYZSH* ]] || [[ $# -eq 0 ]]; then
-    # Install Oh My Zsh
-    log_info ">>> ZSH: Install Oh-my-zsh <<<"
     wget $GH_URL/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | zsh
     safe_ln ~/.dotfiles/zshrc ~/.zshrc
+    log_success ">>> ZSH: Success <<<"
 fi
 
 if [[ "$*" == *PLUGINS* ]] || [[ $# -eq 0 ]]; then
-    # Install extra plugins
-    log_info ">>> ZSH: Install Oh-my-zsh plugins <<<"
     while read plugin; do
       gh_path=$(echo $plugin | cut -d ' ' -f 1)
       dst_path=$(echo $plugin | cut -d ' ' -f 2)
       git clone --depth=1 $GH_URL/$gh_path $PLUGIN_DIR/$dst_path
     done <~/.dotfiles/requirements/zsh-plugins.txt
+    log_success ">>> ZSH: Plugins: Success  <<<"
 fi
 
 if [[ "$*" == *POWERLEVEL* ]] || [[ $# -eq 0 ]]; then
-    # Install PowerLevel10K
-    log_info ">>> ZSH: Install Oh-my-zsh PowerLevel10K <<<"
     git clone --depth=1 \
         $GH_URL/romkatv/powerlevel10k.git \
         $THEMES_DIR/powerlevel10k
+    log_success ">>> ZSH: PowerLevel10K: Success <<<"
 fi
 
 # }}}
@@ -131,12 +116,9 @@ fi
 # {{{ Set up Fzf
 
 if [[ "$*" == *FZF* ]] || [[ $# -eq 0 ]]; then
-    # Install Fzf
-    log_info ">>> Install Fzf <<<"
     brew install fzf
-
-    # Install key bindings and completion
     $(brew --prefix)/opt/fzf/install
+    log_success ">>> FZF: Success <<<"
 fi
 
 # }}}
@@ -145,12 +127,13 @@ fi
 
 if [[ "$*" == *RANGER* ]] || [[ $# -eq 0 ]]; then
     # Install Ranger
-    log_info ">>> Install Ranger <<<"
     brew install ranger
 
     # Install config file
     mkdir -p ~/.config/ranger
     safe_ln ~/.dotfiles/ranger ~/.config/ranger
+
+    log_success ">>> Ranger: Success <<<"
 fi
 
 # }}}
@@ -172,7 +155,8 @@ if [[ "$*" == *YABAI* ]] || [[ $# -eq 0 ]]; then
     # Setup config files
     safe_ln ~/.dotfiles/yabairc ~/.yabairc
     safe_ln ~/.dotfiles/skhdrc ~/.skhdrc
-    log_success ">>> YABAI: Setup success <<<"
+
+    log_success ">>> YABAI: Success <<<"
 fi
 
 # }}}
@@ -180,11 +164,9 @@ fi
 # {{{ Set up Alacritty
 
 if [[ "$*" == *ALACRITTY* ]] || [[ $# -eq 0 ]]; then
-    # Install alacritty
     brew install alacritty
-    # Setup rc
     safe_ln ~/.dotfiles/alacritty.yml ~/.alacritty.yml
-    log_success ">>> ALACRITTY: Setup success <<<"
+    log_success ">>> ALACRITTY: Success <<<"
 fi
 
 # }}}
@@ -200,6 +182,8 @@ if [[ "$*" == *ESPANSO* ]] || [[ $# -eq 0 ]]; then
     ln -s ~/.dotfiles/espansorc ~/Library/Preferences/espanso/user/espansorc.yml
     # Reload changes
     espanso restart
+
+    log_success ">>> Espanso: Success <<<"
 fi
 
 # }}}
@@ -207,9 +191,8 @@ fi
 # {{{ Set up Zsh as default shell
 
 if [[ "$*" == *ZSH* ]] || [[ $# -eq 0 ]]; then
-    # Set Zsh as default shell
-    log_info ">>> ZSH: Setup default shell <<<"
     chsh -s $(which zsh)
+    log_success ">>> ZSH is now the default shell <<<"
 fi
 
 # }}}
