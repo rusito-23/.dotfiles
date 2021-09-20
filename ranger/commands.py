@@ -14,6 +14,7 @@ NULL_ERR="2> /dev/null"
 MATCH="\( -path '*/\.*' -o -fstype 'dev' -o -fstype 'proc' \)"
 FIND="find -L {} {} -prune -o {} -print"
 FZF="fzf --height 100% +m"
+FZF_TMUX="fzf-tmux --height 100% +m"
 
 # -- COMMANDS
 
@@ -76,3 +77,36 @@ class rg(ranger.api.commands.Command):
         # Navigate to selected path
         sel_path = os.path.abspath(f"{abs_path}{rel_path}")
         self.fm.select_file(sel_path)
+
+class z(ranger.api.commands.Command):
+    """
+    :z
+
+    Jump to directory using fasd
+    """
+
+    def execute(self):
+        args = self.rest(1).split()
+        if args:
+            directories = self._get_directories(*args)
+            if directories:
+                self.fm.cd(directories[0])
+            else:
+                self.fm.notify("No results from fasd", bad=True)
+
+    def tab(self, tabnum):
+        start, current = self.start(1), self.rest(1)
+        for path in self._get_directories(*current.split()):
+            yield start + path
+
+    @staticmethod
+    def _get_directories(*args):
+        import subprocess
+        output = subprocess.check_output(
+            ["fasd", "-dl"] + list(args),
+            universal_newlines=True
+        )
+
+        dirs = output.strip().split("\n")
+        dirs.sort(reverse=True)  # Listed in ascending frequency
+        return dirs
