@@ -2,6 +2,19 @@
 
 ## Taken from [this cool Gist](https://gist.github.com/heroheman/aba73e47443340c35526755ef79647eb)
 
+## Custom
+
+Shortcut | Description
+--- | ---
+`,p` | Quick image preview
+`,f` | Search current directory with fzf
+`,ql` | Trigger Quick Look
+`,h` | Horizontal tmux pane
+`,v` | Vertical tmux pane
+`yy` | Use system clipboard to copy a file
+`:z` | Navigate using `fasd`
+
+
 ## General
 Shortcut | Description
 ---|---
