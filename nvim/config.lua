@@ -62,6 +62,12 @@ lspconfig.texlab.setup{
     on_attach = completion.on_attach
 }
 
+-- `brew install rust-analyzer`
+lspconfig.rust_analyzer.setup{
+    default_opts,
+    on_attach = completion.on_attach
+}
+
 -- Set up LSP Saga
 saga.init_lsp_saga {
     error_sign = '',

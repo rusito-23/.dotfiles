@@ -63,8 +63,16 @@
 | ⌃`J` | Navigate down |
 | ⌃`K` | Navigate up |
 
-## Folds Cheatsheet
+## LSP saga shortcuts
 
+| Shortcut | Description |
+| --- | --- |
+| `nnoremap <C-j>` | Jump to next diagnostic |
+| `nnoremap K` | Hover documentation |
+| `inoremap <C-k>` | Get signature help |
+| `nnoremap gh` | Lsp Finder |
+
+## Folds Cheatsheet
 
 | Shortcut | Description |
 | --- | --- |
