@@ -7,7 +7,7 @@
 | `N` | `f<char>` | Jump to next char |
 | `N` | `F<char>` | Jump to previous char |
 | `N` | ⌃`v` | Start visual block |
-| `V-B` | ⌃`A` | Auto-increment visual block |
+| `V-B` | `g`, ⌃`A` | Auto-increment visual block |
 | `N` | ⌃`O` | Jump back to the previous location |
 | `N` | ⌃`I` | (same as Tab) to jump forward to the next location |
 
