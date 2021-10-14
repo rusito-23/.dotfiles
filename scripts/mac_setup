@@ -79,6 +79,13 @@ cp ~/.dotfiles/KeyRemappings.plist ~/Library/LaunchAgents/com.rusito23.KeyRemapp
 
 # }}}
 
+# {{{ Set up screenshots
+
+mkdir -p ~/Documents/Screenshots
+defaults write com.apple.screencapture location ~/Documents/Screenshots
+
+# }}}
+
 # {{{ Restart affected apps
 
 killall Dock
@@ -93,3 +100,4 @@ killall cfprefsd
 log_success ">>> Finished macOS setup successfully! <<<"
 
 # }}}
+
