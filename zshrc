@@ -112,10 +112,12 @@ alias xargs='xargs -I%'                                 # Use `%` as default `xa
 
 unalias gcb                             # I don't care what this does, I want to use it myself
 unalias gpu                             # This git plugin alias pushes to the upstream (it's f* dangerous)
+unalias gss                             # I want to set my own `gss` alias to ignore submodules
 
-alias gcb='git_current_branch'          # Display current branch
-alias gdt='git difftool -y'             # Diff tool
-alias gmt='git mergetool'               # Merge tool
+alias gcb='git_current_branch'                # Display current branch
+alias gdt='git difftool -y'                   # Diff tool
+alias gmt='git mergetool'                     # Merge tool
+alias gss='git status --ignore-submodules -s' # Quick git status
 
 alias vew='virtualenvwrapper'           # Quick virtualenvwrapper
 alias mkve='mkvirtualenv'               # Create new virtual env
