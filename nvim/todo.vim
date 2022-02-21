@@ -65,6 +65,11 @@ function! todo#IsElement()
     return getline(line('.')) =~ s:element_pattern
 endfunction
 
+" Check if we're at the end of an element
+function! todo#AtEndOfElement()
+    return todo#IsElement() && col(".") == col("$")
+endfunction
+
 " Add a new element
 function! todo#AddElement()
     " Don't add if there's no element in the current line
@@ -149,7 +154,7 @@ function! todo#SetUpBindings()
     nnoremap <silent> <Space> <cmd> ToggleElement<CR>
 
     " Automatically add element
-    inoremap <silent><expr> <CR> todo#IsElement() ? "\<CR>".g:todo_element : "\<CR>"
+    inoremap <silent><expr> <CR> todo#AtEndOfElement() ? "\<C-O>:call todo#AddElement()\<CR>" : "\<CR>"
 endfunction
 
 " }}}
