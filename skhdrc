@@ -2,9 +2,6 @@
 # Taken & modified from
 # https://github.com/Julian-Heng/yabai-config
 
-# Create new alacritty session
-cmd + shift - t : alacritty
-
 # Navigation with bsp layout
 fn - h : yabai -m window --focus west
 fn - j : yabai -m window --focus south
