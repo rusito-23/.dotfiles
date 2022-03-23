@@ -299,6 +299,7 @@ inoremap <expr> <CR> pumvisible() ? "\<C-Y>" : "\<CR>"
 " Mappings for Telescope command-line sugar.
 nnoremap <leader>f <cmd>Telescope current_buffer_fuzzy_find<CR>
 nnoremap <leader>e <cmd>Telescope find_files<CR>
+nnoremap <leader>h <cmd>Telescope find_files hidden=true<cr>
 nnoremap <leader>F <cmd>Telescope live_grep<CR>
 nnoremap <leader>b <cmd>Telescope buffers<CR>
 nnoremap <leader>H <cmd>Telescope help_tags<CR>
@@ -306,7 +307,9 @@ nnoremap <leader>H <cmd>Telescope help_tags<CR>
 " Search the current selection with Telescope
 vnoremap <leader>f "zy:Telescope current_buffer_fuzzy_find default_text=<C-R>z<CR>
 vnoremap <leader>e "zy:Telescope find_files default_text=<C-R>z<CR>
+vnoremap <leader>h "zy:Telescope find_files hidden=true default_text=<C-R>z<CR>>
 vnoremap <leader>F "zy:Telescope live_grep default_text=<C-R>z<CR>
+
 
 " Use * to search the current selection
 vnoremap <silent> * "zy/<C-R>=@z<CR><CR>

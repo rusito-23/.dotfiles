@@ -11,6 +11,11 @@ ios:*.{swift,h,m,mm}*
 --type-add
 ds:*.{py,yaml}*
 
+# test type
+--type-add
+test:*{test,Test,tests,Tests,testCase,TestCase}*
+
+
 # global exclude git folder
 --glob=!git/*
 

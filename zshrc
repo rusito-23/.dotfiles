@@ -18,6 +18,7 @@ export PATH=$HOME/.local/bin:$PATH
 export PATH=$HOME/bin:$PATH
 export PATH=$HOME/.dotfiles/bin:$PATH
 export PATH=/usr/local/bin:$PATH
+export PATH=$PATH:$HOME/.rvm/bin
 
 # Set zsh theme
 ZSH_THEME="powerlevel10k/powerlevel10k"
@@ -56,7 +57,7 @@ source $ZSH/oh-my-zsh.sh
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=8'
 
 # Display welcome message
-[[ -o login ]] && echo "ПРИВЕТ СУКА БЛЯТЬ"
+# [[ -o login ]] && echo "ПРИВЕТ СУКА БЛЯТЬ"
 
 # Load ignored files
 for s in $HOME/.dotfiles/ignored/*; do source $s; done
@@ -256,5 +257,8 @@ fi
 
 # Set up Rust
 [ -f $HOME/.cargo/env ] && source $HOME/.cargo/env
+
+# Set up Ruby
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
 
 # }}}
