@@ -10,8 +10,5 @@ killall Xcode
 # Remove derived data
 rm -rf $XCODE_PATH/DerivedData/*
 
-# Remove Carthage caches
+# Remove Carthage and Swift Package Manager caches
 rm -rf $CACHE_PATH/{org.swift.swiftpm,org.carthage.CarthageKit,carthage}
-
-# Open either Xcode workspace or project
-xed .
