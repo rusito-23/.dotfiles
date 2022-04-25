@@ -53,6 +53,13 @@ ZSH_TMUX_AUTOCONNECT=false
 # Load oh-my-zsh
 source $ZSH/oh-my-zsh.sh
 
+# {{{ Instant prompt
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+# }}}
+
+
 # Auto suggestions plugin configuration
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=8'
 
