@@ -2,34 +2,45 @@
 # Taken & modified from
 # https://github.com/Julian-Heng/yabai-config
 
+# Remap right control with arrows to work as option
+# This is because of the f** Keychron layout that I freacking hate
+rctrl - left    : skhd -k "alt - left"
+rctrl - right   : skhd -k "alt - right"
+rctrl - up      : skhd -k "alt - up"
+rctrl - down    : skhd -k "alt - down"
+rctrl + shift - left    : skhd -k "alt + shift - left"
+rctrl + shift - right   : skhd -k "alt + shift - right"
+rctrl + shift - up      : skhd -k "alt + shift - up"
+rctrl + shift - down    : skhd -k "alt + shift - down"
+
 # Navigation with bsp layout
-fn - h : yabai -m window --focus west
-fn - j : yabai -m window --focus south
-fn - k : yabai -m window --focus north
-fn - l : yabai -m window --focus east
+lctrl + alt - h : yabai -m window --focus west
+lctrl + alt - j : yabai -m window --focus south
+lctrl + alt - k : yabai -m window --focus north
+lctrl + alt - l : yabai -m window --focus east
 
 # Navigation with stack layout
-fn - p : yabai -m window --focus stack.prev
-fn - n : yabai -m window --focus stack.next
+lctrl - p : yabai -m window --focus stack.prev
+lctrl - n : yabai -m window --focus stack.next
 
 # Moving windows
-fn + shift - h : yabai -m window --warp west
-fn + shift - j : yabai -m window --warp south
-fn + shift - k : yabai -m window --warp north
-fn + shift - l : yabai -m window --warp east
+lctrl + lshift - h : yabai -m window --warp west
+lctrl + lshift - j : yabai -m window --warp south
+lctrl + lshift - k : yabai -m window --warp north
+lctrl + lshift - l : yabai -m window --warp east
 
 # Resize windows
-fn + lctrl - h : yabai -m window --resize left:-50:0; \
-                 yabai -m window --resize right:-50:0
-fn + lctrl - j : yabai -m window --resize bottom:0:50; \
-                 yabai -m window --resize top:0:50
-fn + lctrl - k : yabai -m window --resize top:0:-50; \
-                 yabai -m window --resize bottom:0:-50
-fn + lctrl - l : yabai -m window --resize right:50:0; \
-                  yabai -m window --resize left:50:0
+lctrl + cmd - h : yabai -m window --resize left:-50:0; \
+                     yabai -m window --resize right:-50:0
+lctrl + cmd - j : yabai -m window --resize bottom:0:50; \
+                     yabai -m window --resize top:0:50
+lctrl + cmd - k : yabai -m window --resize top:0:-50; \
+                     yabai -m window --resize bottom:0:-50
+lctrl + cmd - l : yabai -m window --resize right:50:0; \
+                    yabai -m window --resize left:50:0
 
 # Equalize size of windows
-fn + lctrl - e : yabai -m space --balance
+rshift + lctrl - e : yabai -m space --balance
 
 # Manage windows between spaces
 alt + shift - p : yabai -m window --space prev; \
@@ -38,8 +49,8 @@ alt + shift - n : yabai -m window --space next; \
                   yabai -m space --focus next
 
 # Manage spaces
-fn + shift - c : osascript ~/.dotfiles/applescripts/CreateSpace.applescript
-fn + shift - d : osascript ~/.dotfiles/applescripts/CloseLastSpace.applescript
+rctrl + shift - c : osascript ~/.dotfiles/applescripts/CreateSpace.applescript
+rctrl + shift - d : osascript ~/.dotfiles/applescripts/CloseLastSpace.applescript
 
 # Rotate windows clockwise and anticlockwise
 alt - r         : yabai -m space --rotate 270
@@ -61,12 +72,15 @@ cmd + shift - space : \
     yabai -m window --toggle border
 
 # Toggle layouts in the current space
-fn + shift - f : yabai -m space --layout float
-fn + shift - s : yabai -m space --layout stack
-fn + shift - b : yabai -m space --layout bsp
+ctrl + shift - f : yabai -m space --layout float
+ctrl + shift - s : yabai -m space --layout stack
+ctrl + shift - b : yabai -m space --layout bsp
 
 # Apple Script Global Shortcuts
-fn - m : osascript ~/.dotfiles/applescripts/FocusMenuBar.applescript
-fn - i : osascript ~/.dotfiles/applescripts/FocusMenuBarIcons.applescript
-fn - d : osascript ~/.dotfiles/applescripts/FocusDock.applescript
+ctrl - home : osascript ~/.dotfiles/applescripts/FocusMenuBar.applescript
+ctrl - end : osascript ~/.dotfiles/applescripts/FocusMenuBarIcons.applescript
+ctrl - pagedown : osascript ~/.dotfiles/applescripts/FocusDock.applescript
+ctrl + shift - end : osascript -l JavaScript ~/.dotfiles/applescripts/ToggleCapsLock.applescript false
+ctrl + shift - home : osascript -l JavaScript ~/.dotfiles/applescripts/ToggleCapsLock.applescript true
 cmd + shift - c : osascript ~/.dotfiles/applescripts/CopyFilePath.applescript
+

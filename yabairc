@@ -25,7 +25,7 @@ yabai -m config split_ratio                     0.50
 
 # set focus follows mouse mode and vice versa
 yabai -m config focus_follows_mouse             off
-yabai -m config mouse_follows_focus             off
+yabai -m config mouse_follows_focus             on
 
 # Set rules to ignore some specific apps
 yabai -m rule --add label="About This Mac" app="System Information" title="About This Mac" manage=off
