@@ -26,10 +26,12 @@ let g:todo_element="- [] <element>"
 let s:element_skeleton=g:todo_element
 let s:list_skeleton="# New List\n\n".s:element_skeleton
 
-" Patterns
+" Element Patterns
 
-let s:element_on_pattern=".*-.*\[x\].*$"
-let s:element_pattern=".*-.*\[( )+\].*$"
+let s:element_pattern='\s*-\s*\[.*\].*'
+let s:element_todo_pattern='\s*-\s*\[\s*\].*'
+let s:element_wip_pattern='\s*-\s*\[\.].*'
+let s:element_done_pattern='\s*-\s*\[x\].*'
 
 " }}}
 
@@ -82,34 +84,34 @@ function! todo#AddElement()
 
     " Go to the beginning of the line
     normal! 0
-    " Search for the first `<`
+    " Select between angle brackets `<>`
     normal! f<
-    " Select to the matching `>`
     normal! v%
 endfunction
 
-" Toggle element completion
+" Toggle element
+
+" The state gets defined by the character between squared brackets:
+" `todo` -> []
+" `wip` -> [.]
+" `done` -> [x]
 
 function! todo#ToggleElement()
-    " Toggle OFF if it's ON
-    if getline(line('.')) =~ s:element_on_pattern
-        " Search for the first `x` in the line
-        normal! 0fx
-        " Delete the `x` and go to the end of the line
-        normal! x$
+    " Mark as `wip`
+    if getline(line('.')) =~ s:element_todo_pattern
+        s/\[\s*\]/[.]/
         return
     endif
 
-    " Toggle ON for any other case
-    if getline(line('.')) =~ s:element_pattern
-        " Go to the first `[` in the line
-        normal! 0f[
-        " Delete until the matching `]`
-        normal! vf]x
-        " Insert `[x]`
-        normal! i[x]
-        " Go to the end of the line
-        normal! $
+    " Mark as `done`
+    if getline(line('.')) =~ s:element_wip_pattern
+        s/\[.\]/[x]/
+        return
+    endif
+
+    " Mark as `todo`
+    if getline(line('.')) =~ s:element_done_pattern
+        s/\[x\]/[]/
         return
     endif
 endfunction
