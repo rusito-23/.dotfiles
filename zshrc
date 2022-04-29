@@ -160,7 +160,7 @@ eval $(thefuck --alias)
 
 # {{{ Functions
 
-# `git` plugin custom extensions
+# {{{ git plugin custom extensions
 
 # Add remote, fetch and checkout branch in a single command
 # Parameters: $1: remote $2: branch name
@@ -201,6 +201,10 @@ function gcopr() {
 # Use `gitignore.io` for default gitignore configurations
 function gi() { curl -sL https://www.gitignore.io/api/$@ ;}
 
+# }}}
+
+# {{{ Docker functions
+
 # Purge the entire docker stuff
 function docker_purge() {
     docker rm -f $(docker ps -aq)
@@ -208,6 +212,19 @@ function docker_purge() {
     docker volume rm $(docker volume ls -q)
     docker system prune
 }
+
+# }}}
+
+# {{{ xcrun functions
+
+simsearch() {
+    xcrun simctl \
+        list devices -j |\
+        jq -f ~/.jq/simsearch.jq \
+        --arg sim_name "$@"
+}
+
+# }}}
 
 # }}}
 

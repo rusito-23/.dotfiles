@@ -11,6 +11,7 @@
 # - PLUGINS: install oh my zsh req plugins
 # - POWERLEVEL: install powerlevel 10k theme
 # - FZF: install and set up fzf
+# - JQ: install and set up jq utils and functions
 # - RANGER: install and set up the Ranger terminal file manager
 # - YABAI: install & set up Yabai tiling window manager
 # - ALACRITTY: install & set up the alacritty terminal emulator
@@ -122,6 +123,17 @@ if [[ "$*" == *FZF* ]] || [[ $# -eq 0 ]]; then
 fi
 
 # }}}
+
+# {{{ Set up jq
+
+if [[ "$*" == *JQ* ]] || [[ $# -eq 0 ]]; then
+    brew install jq
+    ln -s ~/.dotfiles/jq ~/.jq
+    log_success ">>> JQ: Success <<<"
+fi
+
+# }}}
+
 
 # {{{ Set up Ranger
 
