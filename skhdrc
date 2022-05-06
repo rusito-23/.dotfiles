@@ -2,6 +2,9 @@
 # Taken & modified from
 # https://github.com/Julian-Heng/yabai-config
 
+# Quick restart
+ctrl + alt + cmd - r : launchctl kickstart -k "gui/${UID}/homebrew.mxcl.yabai"
+
 # Remap right control with arrows to work as option
 # This is because of the f** Keychron layout that I freacking hate
 rctrl - left    : skhd -k "alt - left"

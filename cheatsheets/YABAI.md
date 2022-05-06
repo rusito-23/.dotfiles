@@ -1,5 +1,10 @@
 # Yabai Cheatsheet
 
+# Quick restart
+
+```
+ctrl + alt + cmd - r : launchctl kickstart -k "gui/${UID}/homebrew.mxcl.yabai"
+```
 
 # Navigation with bsp layout
 
