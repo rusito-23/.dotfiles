@@ -11,11 +11,24 @@ is_in_git_repo() {
 
 # }}}
 
-# {{{ Search branches using `^G-^O`
+# {{{ Search local branches using `^G-^O`
 
 fzf_go() {
   is_in_git_repo || return
-  git branch -a --color=always | grep -v '/HEAD\s' | sort |
+  git branch --color=always | grep -v '/HEAD\s' | sort |
+  fzf --ansi --multi --tac --preview-window right:50% \
+    --preview 'git log --oneline --graph --date=short --color=always --pretty="format:%C(auto)%cd %h%d %s" $(sed s/^..// <<< {} | cut -d" " -f1) | head -'$LINES |
+  sed 's/^..//' | cut -d' ' -f1 |
+  sed 's#^remotes/##'
+}
+
+# }}}
+
+# {{{ Search remote branches using `^G-^R`
+
+fzf_gr() {
+  is_in_git_repo || return
+  git branch -r --color=always | grep -v '/HEAD\s' | sort |
   fzf --ansi --multi --tac --preview-window right:50% \
     --preview 'git log --oneline --graph --date=short --color=always --pretty="format:%C(auto)%cd %h%d %s" $(sed s/^..// <<< {} | cut -d" " -f1) | head -'$LINES |
   sed 's/^..//' | cut -d' ' -f1 |
@@ -66,7 +79,7 @@ bind-git-helper() {
   done
 }
 
-bind-git-helper o t h
+bind-git-helper o r t h
 unset -f bind-git-helper
 
 # }}}
