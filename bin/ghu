@@ -1,0 +1,169 @@
+#!/bin/sh
+
+# GitHub Utils
+#
+# A list of simple utils to interact with GitHub from the terminal.
+# Complements the `gh` official CLI tool with custom functions and stuff.
+
+# {{{ General Setup
+
+# Exit the script if any step fails
+set -euo pipefail
+
+# }}}
+
+# {{{ Text Methods
+
+_header() {
+    echo $@
+    echo
+}
+
+_title() {
+    echo "$(tput bold)$@$(tput sgr0)"
+}
+
+_item() {
+    echo "\t$@"
+}
+
+# }}}
+
+# {{{ URL Command
+
+url() {
+    # Get arguments
+    arg=${1:-origin}
+
+    # Print info
+    if [ "$arg" = "info" ]; then
+        _item "url: Displays the current repo URL"
+        return
+    fi
+
+    # Print help
+    if [ "$arg" = "help" ]; then
+        _header "Display the current repo URL - ready to be opened in the browser!"
+        _title "PARAMETERS"
+        _item "-r: The preferred remote (Optional) - default: 'origin'"
+        return
+    fi
+
+    # Get the remote URL defined in the git config
+    remote_url=$(git config --get remote.$arg.url)
+
+    # Remove the '.git' suffix
+    remote_url=$(echo $remote_url | sed "s/\(.*\)\.git$/\1/g")
+
+    # Convert the URL if needed
+    if [[ "$remote_url" =~ ^git* ]]; then
+        # Convert from SSH to HTTPS
+        browser_url=$(echo $remote_url | sed "s/git@\(.*\):/https:\/\/\1\//g")
+        echo $browser_url
+    elif [[ "$remote_url" =~ ^https* ]]; then
+        # Show the raw URL
+        echo $remote_url
+    else
+        # Invalid URL
+        echo "Invalid remote: $remote_url"
+    fi
+}
+
+# }}}
+
+# {{{ Browser Command
+
+browser() {
+    # Get arguments
+    action=${1:-help}
+
+    # Display quick info
+    if [[ $action = "info" ]]; then
+        _item "browser: Opens multiple stuff in the browser"
+        return
+    fi
+
+    # Display help
+    if [[ $action = "help" ]]; then
+        _header "Opens multiple stuff in the browser"
+        _title "Options"
+        _item "commit <commit_hash>: Opens the given commit in GitHub."
+        _item "branch <branch>: Opens the given branch in GitHub (current one by default)."
+        return
+    fi
+
+    # Open commit
+    if [ $action = "commit" ]; then
+        if [ "$#" -ne 2 ]; then
+            echo "$1: expected commit hash as parameter!"
+            exit 3
+        fi
+        open "$(url)/commit/$2"
+        return
+    fi
+
+    # Open branch
+    if [ $action = "branch" ]; then
+        current_branch=`git symbolic-ref HEAD | cut -d/ -f3-`
+        branch=${2:-${current_branch}}
+        open "$(url)/tree/${branch}"
+    fi
+}
+
+# }}}
+
+# {{{ Help
+
+help() {
+    # Help info
+    if [[ ${1:-"none"} = "info" ]]; then
+        _item "help: Displays this message"
+        return
+    fi
+
+    # Summary
+    _header "GitHub Utils that complement the official 'gh' CLI tool."
+
+    # Usage
+    _title "USAGE"
+    _item "ghu <command> [parameters]"
+    echo
+
+    # Commands
+    _title "COMMANDS"
+    for command in $(compgen -A function); do
+        # Ignore private functions (the ones that start with an underscore)
+        if [[ $command = _* ]]; then continue; fi
+
+        # Print command and its info
+        $command info
+    done
+    echo
+
+    # Learn More
+    _title "LEARN MORE"
+    _item "use 'gh <command> help' for more information about a command."
+
+    exit
+}
+
+
+# }}}
+
+# {{{ Main
+
+# If there are no commands, print help
+if [ "$#" -lt 1 ]; then
+    help
+fi
+
+
+# Run given command
+if [ "$(type -t $1)" = function ]; then
+    "$@"
+else
+    echo "$0: Invalid command provided: $1"
+    exit 3
+fi
+
+# }}}
