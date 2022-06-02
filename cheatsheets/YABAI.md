@@ -34,14 +34,10 @@ lctrl + lshift - l : yabai -m window --warp east
 # Resize windows
 
 ```
-lctrl + cmd - h : yabai -m window --resize left:-50:0; \
-                     yabai -m window --resize right:-50:0
-lctrl + cmd - j : yabai -m window --resize bottom:0:50; \
-                     yabai -m window --resize top:0:50
-lctrl + cmd - k : yabai -m window --resize top:0:-50; \
-                     yabai -m window --resize bottom:0:-50
-lctrl + cmd - l : yabai -m window --resize right:50:0; \
-                    yabai -m window --resize left:50:0
+lctrl + cmd - h : yabai -m window --resize left:-50:0 && yabai -m window --resize right:-50:0
+lctrl + cmd - j : yabai -m window --resize bottom:0:50 && yabai -m window --resize top:0:50
+lctrl + cmd - k : yabai -m window --resize top:0:-50 && yabai -m window --resize bottom:0:-50
+lctrl + cmd - l : yabai -m window --resize right:50:0 && yabai -m window --resize left:50:0
 ```
 
 # Equalize size of windows
@@ -53,17 +49,21 @@ rshift + lctrl - e : yabai -m space --balance
 # Manage windows between spaces
 
 ```
-alt + shift - p : yabai -m window --space prev; \
-                  yabai -m space --focus prev
-alt + shift - n : yabai -m window --space next; \
-                  yabai -m space --focus next
+alt + shift - p : yabai -m window --space prev && yabai -m space --focus prev
+alt + shift - n : yabai -m window --space next && yabai -m space --focus next
 ```
 
 # Manage spaces
 
 ```
-rctrl + shift - c : osascript ~/.dotfiles/applescripts/CreateSpace.applescript
-rctrl + shift - d : osascript ~/.dotfiles/applescripts/CloseLastSpace.applescript
+alt + shift - c : osascript ~/.dotfiles/applescripts/CreateSpace.applescript
+alt + shift - d : osascript ~/.dotfiles/applescripts/CloseLastSpace.applescript
+```
+
+# Manage displays
+
+```
+alt + shift - w: yabai -m display --focus prev || yabai -m display --focus next
 ```
 
 # Rotate windows clockwise and anticlockwise
