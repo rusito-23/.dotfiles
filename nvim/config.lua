@@ -124,11 +124,26 @@ telescope.setup {
 -- Disable completion for Telescope
 
 vim.g.completion_chain_complete_list = {
-	default = {
-		{ complete_items = { "lsp", "path", "buffers", "snippet" } },
-		{ mode = "<C-p>" },
-		{ mode = "<C-n>" },
-	},
-	TelescopePrompt = {},
-	frecency = {},
+    default = {
+        { complete_items = { "lsp", "path", "buffers", "snippet" } },
+        { mode = "<C-p>" },
+        { mode = "<C-n>" },
+    },
+    TelescopePrompt = {},
+    frecency = {},
 }
+
+--- Diagnostics config
+
+vim.diagnostic.config({virtual_text = false})
+
+function _G.toggle_virtual_text_on()
+    vim.diagnostic.config({virtual_text = true})
+end
+
+function _G.toggle_virtual_text_off()
+    vim.diagnostic.config({virtual_text = false})
+end
+
+vim.api.nvim_buf_set_keymap(0, 'n', '<C-d>', ':call v:lua.toggle_virtual_text_on()<CR>', {silent=true, noremap=true})
+vim.api.nvim_buf_set_keymap(0, 'n', '<C-f>', ':call v:lua.toggle_virtual_text_off()<CR>', {silent=true, noremap=true})
