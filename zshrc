@@ -35,6 +35,7 @@ plugins=(
     docker
     docker-compose
     calc
+    kubectl
 )
 
 # Set editor & pager configuration
@@ -93,7 +94,16 @@ fi
 
 # {{{ Alias
 
+# General purpose
+
 alias src='source ~/.zshrc'     # Quick reload
+alias sudoer='sudo -s /bin/zsh'                         # Become sudo with zsh
+alias imcat='shellpic --shell24'                        # Use shellpic to display image previews
+alias ql='qlmanage -p > /dev/null 2> /dev/null'         # Open file with macOS Quick-Look
+alias xargs='xargs -I%'                                 # Use `%` as default `xargs` placeholder
+
+# Navigation
+
 alias ls='ls -GFh'              # Default ls config
 alias ll='ls -lh'               # Long list command
 alias la='ls -a'                # Hidden files
@@ -101,22 +111,24 @@ alias cd..='cd ../'             # Fix common typo
 alias ..='cd ../'               # Navigate with dots
 alias ...='cd ../../'           # Navigate with dots
 
+# Tmux
+
 alias unsetmux='OLD_TMUX=$TMUX;TMUX=""'         # Enable nested tmux sessions
 alias resetmux='TMUX=$OLD_TMUX'                 # Disable nested tmux sessions
 
 alias fr='fzf-tmux -r 60'               # Start fzf in a right tmux pane
 alias fl='fzf-tmux -l 60'               # Start fzf in a left tmux pane
 
-alias sudoer='sudo -s /bin/zsh'                         # Become sudo with zsh
+# Edition
+
 alias mdedit='open -a MacDown'                          # Edit markdown
 alias vi='nvim'                                         # Always use `vi`
 alias vim='nvim'                                        # Always use `vi`
 alias nvim_rmswap='rm ~/.local/share/nvim/swap/*.swp'   # Remove all swp files
 alias cat='bat'                                         # Use `bat` as default
 alias diff='nvim -d '                                   # Use nvim to diff stuff
-alias imcat='shellpic --shell24'                        # Use shellpic to display image previews
-alias ql='qlmanage -p > /dev/null 2> /dev/null'         # Open file with macOS Quick-Look
-alias xargs='xargs -I%'                                 # Use `%` as default `xargs` placeholder
+
+# Git
 
 unalias gcb                             # I don't care what this does, I want to use it myself
 unalias gpu                             # This git plugin alias pushes to the upstream (it's f* dangerous)
@@ -125,6 +137,8 @@ alias gcb='git_current_branch'                # Display current branch
 alias gdt='git difftool -y'                   # Diff tool
 alias gmt='git mergetool'                     # Merge tool
 alias gs='git status --ignore-submodules -s'  # Quick git status
+
+# Python
 
 alias vew='virtualenvwrapper'           # Quick virtualenvwrapper
 alias mkve='mkvirtualenv'               # Create new virtual env
@@ -151,6 +165,9 @@ export FZF_DEFAULT_OPTS='-i --height 50% --border --inline-info '
 
 # Load `git` + `fzf` additions
 source ~/.dotfiles/fzf.git.zsh
+
+# Load back-end tools
+source ~/.dotfiles/back.tools.zsh
 
 # FUCK!
 eval $(thefuck --alias)
