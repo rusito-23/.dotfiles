@@ -300,6 +300,7 @@ inoremap <expr> <CR> pumvisible() ? "\<C-Y>" : "\<CR>"
 nnoremap <leader>f <cmd>Telescope current_buffer_fuzzy_find<CR>
 nnoremap <leader>e <cmd>Telescope find_files<CR>
 nnoremap <leader>h <cmd>Telescope find_files hidden=true<cr>
+nnoremap <leader>i <cmd>Telescope find_files no_ignore=true<cr>
 nnoremap <leader>F <cmd>Telescope live_grep<CR>
 nnoremap <leader>b <cmd>Telescope buffers<CR>
 nnoremap <leader>H <cmd>Telescope help_tags<CR>

@@ -53,6 +53,7 @@ key_bindings:
   - { key: F,         mods: Command,   chars: "\x06"                        }
   - { key: G,         mods: Command,   chars: "\x07"                        }
   - { key: H,         mods: Command,   chars: "\x08"                        }
+  - { key: K,         mods: Command,   chars: "\x0B"                        }
   - { key: O,         mods: Command,   chars: "\x0F"                        }
   - { key: P,         mods: Command,   chars: "\x10"                        }
   - { key: R,         mods: Command,   chars: "\x12"                        }

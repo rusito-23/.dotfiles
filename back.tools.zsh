@@ -4,7 +4,7 @@
 
 # Search pods using ^k^o
 fzf-kpods() {
-    kubectl get pods | tail -n +2 | fzf
+    kubectl get pods | tail -n +2 | awk '{ print $1 }' | fzf
 }
 
 join-lines() {
