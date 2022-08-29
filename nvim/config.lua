@@ -137,13 +137,6 @@ vim.g.completion_chain_complete_list = {
 
 vim.diagnostic.config({virtual_text = false})
 
-function _G.toggle_virtual_text_on()
-    vim.diagnostic.config({virtual_text = true})
-end
-
-function _G.toggle_virtual_text_off()
-    vim.diagnostic.config({virtual_text = false})
-end
-
-vim.api.nvim_buf_set_keymap(0, 'n', '<C-d>', ':call v:lua.toggle_virtual_text_on()<CR>', {silent=true, noremap=true})
-vim.api.nvim_buf_set_keymap(0, 'n', '<C-f>', ':call v:lua.toggle_virtual_text_off()<CR>', {silent=true, noremap=true})
+-- Show line diagnostics automatically in hover window
+vim.o.updatetime = 250
+vim.cmd [[autocmd CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false})]]

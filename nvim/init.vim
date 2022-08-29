@@ -311,6 +311,8 @@ vnoremap <leader>e "zy:Telescope find_files default_text=<C-R>z<CR>
 vnoremap <leader>h "zy:Telescope find_files hidden=true default_text=<C-R>z<CR>>
 vnoremap <leader>F "zy:Telescope live_grep default_text=<C-R>z<CR>
 
+" Use <leader>r to quickly replace a selection
+xnoremap <leader>r y<Esc>:%s/<C-R>"//gc<Left><Left>
 
 " Use * to search the current selection
 vnoremap <silent> * "zy/<C-R>=@z<CR><CR>
