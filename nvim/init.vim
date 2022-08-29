@@ -143,11 +143,6 @@ augroup AutoNERDTree
     autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 augroup end
 
-" Close floating completion pop-up when a selection is made
-augroup CloseCompletion
-    autocmd CompleteDone * if !pumvisible() | pclose | endif
-augroup end
-
 " Set up fold method marker for specific files
 augroup FoldMethods
     autocmd FileType vim set foldmethod=marker
@@ -160,6 +155,9 @@ augroup end
 augroup ConfigureTerm
     autocmd TermOpen * setlocal nospell nonumber norelativenumber nocursorline
 augroup end
+
+" Display diagnostics automatically on cursor hold
+"autocmd CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false})
 
 " }}}
 
@@ -284,17 +282,6 @@ imap <expr> <Tab>   vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : '<Tab
 smap <expr> <Tab>   vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : '<Tab>'
 imap <expr> <S-Tab> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<S-Tab>'
 smap <expr> <S-Tab> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<S-Tab>'
-
-" Navigate completion menu with Tab
-inoremap <silent><expr><Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <silent><expr><S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
-
-" Switch between completion sources
-imap <c-j> <Plug>(completion_next_source)
-imap <c-k> <Plug>(completion_prev_source)
-
-" Prevent new line inserted after selecting a completion
-inoremap <expr> <CR> pumvisible() ? "\<C-Y>" : "\<CR>"
 
 " Mappings for Telescope command-line sugar.
 nnoremap <leader>f <cmd>Telescope current_buffer_fuzzy_find<CR>
