@@ -4,11 +4,11 @@
 XCODE_PATH=${1:-$HOME/Library/Developer/Xcode}
 CACHE_PATH=${2:-$HOME/Library/Caches}
 
-# Quit Xcode
+echo "Quitting Xcode"
 killall Xcode
 
-# Remove derived data
+echo "Removing Derived Data"
 rm -rf $XCODE_PATH/DerivedData/*
 
-# Remove Carthage and Swift Package Manager caches
+echo "Removing Carthage and Swift Package Manager caches"
 rm -rf $CACHE_PATH/{org.swift.swiftpm,org.carthage.CarthageKit,carthage}
