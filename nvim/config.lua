@@ -134,10 +134,8 @@ local on_tab = function(fallback)
     local col = vim.fn.col('.') - 1
     if cmp.visible() then
         cmp.select_next_item(select_opts)
-    elseif col == 0 or vim.fn.getline('.'):sub(col, col):match('%s') then
-        fallback()
     else
-        cmp.complete()
+        fallback()
     end
 end
 
@@ -173,7 +171,7 @@ cmp.setup({
 vim.diagnostic.config({virtual_text = false})
 vim.o.updatetime = 250
 
--- Lua Defined Autocommands
+-- LSP Auto-commands
 
 vim.api.nvim_create_autocmd('User', {
   pattern = 'LspAttached',
@@ -183,23 +181,13 @@ vim.api.nvim_create_autocmd('User', {
       local opts = {buffer = true}
       vim.keymap.set(mode, lhs, rhs, opts)
     end
-    -- Show information on the symbol under the cursor
-    bufmap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<cr>')
-    -- Go to Definition
-    bufmap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<cr>')
-    -- List references
-    bufmap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<cr>')
-    -- Show function arguments
-    bufmap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<cr>')
-    -- Rename symbol
-    bufmap('n', '<F2>', '<cmd>lua vim.lsp.buf.rename()<cr>')
-    -- List "code actions" available
-    bufmap('n', '<F4>', '<cmd>lua vim.lsp.buf.code_action()<cr>')
-    bufmap('x', '<F4>', '<cmd>lua vim.lsp.buf.range_code_action()<cr>')
-    -- Show diagnostics
-    bufmap('n', 'gl', '<cmd>lua vim.diagnostic.open_float()<cr>')
-    -- Jump between diagnostics
-    bufmap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<cr>')
-    bufmap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<cr>')
+    bufmap('n', 'K', '<cmd>lua vim.lsp.buf.hover()<cr>')                -- Show information
+    bufmap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<cr>')          -- Go to Definition
+    bufmap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<cr>')          -- List references
+    bufmap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<cr>')   -- Show arguments
+    bufmap('n', '<F2>', '<cmd>lua vim.lsp.buf.rename()<cr>')            -- Rename symbol
+    bufmap('n', 'gl', '<cmd>lua vim.diagnostic.open_float()<cr>')       -- Show diagnostics
+    bufmap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<cr>')        -- Next diagnostic
+    bufmap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<cr>')        -- Previous diagnostic
   end
 })
