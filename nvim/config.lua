@@ -185,7 +185,7 @@ vim.api.nvim_create_autocmd('User', {
     bufmap('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<cr>')          -- Go to Definition
     bufmap('n', 'gr', '<cmd>lua vim.lsp.buf.references()<cr>')          -- List references
     bufmap('n', '<C-k>', '<cmd>lua vim.lsp.buf.signature_help()<cr>')   -- Show arguments
-    bufmap('n', '<F2>', '<cmd>lua vim.lsp.buf.rename()<cr>')            -- Rename symbol
+    bufmap('n', 'rr', '<cmd>lua vim.lsp.buf.rename()<cr>')              -- Rename symbol
     bufmap('n', 'gl', '<cmd>lua vim.diagnostic.open_float()<cr>')       -- Show diagnostics
     bufmap('n', '[d', '<cmd>lua vim.diagnostic.goto_prev()<cr>')        -- Next diagnostic
     bufmap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<cr>')        -- Previous diagnostic
