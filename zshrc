@@ -149,6 +149,9 @@ alias py='ipython'                      # Start ipython session
 alias jn='jupyter notebook'             # Start jupyter notebook server
 alias jl='jupyter lab'                  # Start jupyter lab server
 
+# Kubernetes
+alias kcscn="kcsc --current --namespace" # I don't wanna write -n <namespace> every time
+
 # }}}
 
 # {{{ Load plugins
