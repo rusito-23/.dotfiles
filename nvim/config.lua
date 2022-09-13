@@ -121,15 +121,6 @@ telescope.setup {
 
 -- Completion configuration
 
--- vim.g.completion_chain_complete_list = {
---     default = {
---         { complete_items = { "lsp", "path", "buffers", "snippet" } },
---         { mode = 'omni' },
---     },
---     TelescopePrompt = {},
---     frecency = {},
--- }
-
 local on_tab = function(fallback)
     local col = vim.fn.col('.') - 1
     if cmp.visible() then

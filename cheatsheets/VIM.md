@@ -63,14 +63,18 @@
 | ⌃`J` | Navigate down |
 | ⌃`K` | Navigate up |
 
-## LSP saga shortcuts
+## LSP Shortcuts
 
 | Shortcut | Description |
 | --- | --- |
-| `nnoremap <C-j>` | Jump to next diagnostic |
-| `nnoremap K` | Hover documentation |
-| `inoremap <C-k>` | Get signature help |
-| `nnoremap gh` | Lsp Finder |
+| K | Show information |
+| gd | Go to Definition |
+| gr | List references |
+| <C-k> | Show arguments |
+| rr | Rename symbol |
+| gl | Show diagnostics |
+| [d | Next diagnostic |
+| ]d | Previous diagnostic |
 
 ## Folds Cheatsheet
 
