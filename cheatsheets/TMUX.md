@@ -5,6 +5,7 @@
 Shortcut | Description
 <prefix> + `<` | Top actions
 <prefix> + `>` | Bottom actions
+<prefiz> + `[` | Scroll mode
 
 ## Pane Management
 
