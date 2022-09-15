@@ -3,8 +3,10 @@
 ## General Commands
 
 Shortcut | Description
-<prefix> + `<` | Top actions
-<prefix> + `>` | Bottom actions
+<prefix> + `<` | Pane actions
+<prefix> + `>` | Window actions
+<prefix> + `,` | Rename Window
+<prefix> + `.` | Move Window
 <prefiz> + `[` | Scroll mode
 
 ## Pane Management
