@@ -1,5 +1,11 @@
 # Tmux Cheat-Sheets
 
+## General Commands
+
+Shortcut | Description
+<prefix> + `<` | Top actions
+<prefix> + `>` | Bottom actions
+
 ## Pane Management
 
 | Custom Shortcut | Description | Default |
