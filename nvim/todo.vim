@@ -74,11 +74,6 @@ endfunction
 
 " Add a new element
 function! todo#AddElement()
-    " Don't add if there's no element in the current line
-    if getline(line('.')) !~ s:element_pattern
-        return
-    endif
-
     " Insert snippet
     exec "normal! o".s:element_skeleton
 
@@ -149,8 +144,8 @@ function! todo#SetUpBindings()
     " Create new list
     nnoremap <silent> ,c <cmd> CreateList<CR>
 
-    " Add element to the list in the next line
-    nnoremap <silent> ,a <cmd> AddElement<CR>
+    " Create new element
+    nnoremap <silent> ,n <cmd> AddElement<CR>
 
     " Toggle element in the current line
     nnoremap <silent> <Space> <cmd> ToggleElement<CR>
