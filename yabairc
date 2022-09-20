@@ -35,3 +35,5 @@ yabai -m rule --add label="Archive Utility" app="^Archive Utility$" manage=off
 yabai -m rule --add label="Calculator" app="^Calculator$" manage=off
 yabai -m rule --add label="Safari" app="^Safari$" title="^(General|(Tab|Password|Website|Extension)s|AutoFill|Se(arch|curity)|Privacy|Advance)$" manage=off
 yabai -m rule --add label="Software Update" title="Software Update" manage=off
+yabai -m rule --add label="Music" title="Music" manage=off
+yabai -m rule --add label="Mini Player" title="Music" manage=off

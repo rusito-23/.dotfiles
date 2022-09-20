@@ -20,6 +20,8 @@
 | ⌃`W` + `hjkl` | Navigate panes |
 | ⌃`W` + ^`F` | Omni file completion |
 | ⌃`P` | Regular completion |
+| ⌃`D` | Scroll down really fast |
+| ⌃`U` | Scroll up really fast |
 
 ## ⌥ Shortcuts
 
