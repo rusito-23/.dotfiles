@@ -38,6 +38,8 @@
 | `<leader>s` | Save file |
 | `<leader>w` | Activate window mode (⌃`W`) |
 | `<leader>t` | Open terminal |
+| `<leader>cc` | Comment line |
+| `<leader>cu` | Uncomment line |
 
 ## Macro Shortcuts
 
