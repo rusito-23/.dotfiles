@@ -1,0 +1,11 @@
+#!/bin/sh
+# Docker Minimal Setup
+# Ever exec'd into a docker image just to find
+# that you don't have access to your freaking tools?
+# Well that ends now, with this spectacular (and probably slow and inefficient)
+# script to copy the minimal local config to Docker! Yeah!
+
+docker cp ~/minimal/bashrc $@:/etc/bash.bashrc
+docker cp ~/minimal/vimrc $@:/etc/vim/vimrc
+
+# FIXME: This is probably going to break with different base images, but yeah

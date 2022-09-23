@@ -110,17 +110,17 @@ colorscheme desert
 " Status line colors
 hi statusline    ctermfg=black  ctermbg=cyan  guifg=black    guibg=#8fbfdc  gui=Bold  cterm=Bold
 hi statuslinenc  ctermfg=cyan   ctermbg=239   guifg=#8fbfdc  guibg=#4e4e4e  gui=Bold  cterm=Bold
-hi User1         ctermfg=cyan   ctermbg=239   guifg=#8fbfdc  guibg=#4e4e4e  gui=None  cterm=None
-hi User2         ctermfg=007    ctermbg=239   guifg=#cdcdcd  guibg=#4e4e4e  gui=None  cterm=None
-hi User3         ctermfg=cyan   ctermbg=239   guifg=#8fbfdc  guibg=#4e4e4e  gui=None  cterm=None
-hi User4         ctermfg=007    ctermbg=239   guifg=#adadad  guibg=#4e4e4e  gui=None  cterm=None
-hi Clear         ctermfg=None   ctermbg=None  guifg=None     guibg=None     gui=None  cterm=None
+hi User1         ctermfg=cyan   ctermbg=239   guifg=#8fbfdc  guibg=#4e4e4e  gui=NONE  cterm=NONE
+hi User2         ctermfg=007    ctermbg=239   guifg=#cdcdcd  guibg=#4e4e4e  gui=NONE  cterm=NONE
+hi User3         ctermfg=cyan   ctermbg=239   guifg=#8fbfdc  guibg=#4e4e4e  gui=NONE  cterm=NONE
+hi User4         ctermfg=007    ctermbg=239   guifg=#adadad  guibg=#4e4e4e  gui=NONE  cterm=NONE
+hi Clear         ctermfg=NONE   ctermbg=NONE  guifg=NONE     guibg=NONE     gui=NONE  cterm=NONE
 
 " Tab line colors
-hi TabLineFill  ctermfg=cyan   ctermbg=239   guifg=#8fbfdc  guibg=#4e4e4e  gui=None  cterm=None
-hi TabLine      ctermfg=cyan   ctermbg=239   guifg=#8fbfdc  guibg=#4e4e4e  gui=None  cterm=None
+hi TabLineFill  ctermfg=cyan   ctermbg=239   guifg=#8fbfdc  guibg=#4e4e4e  gui=NONE  cterm=NONE
+hi TabLine      ctermfg=cyan   ctermbg=239   guifg=#8fbfdc  guibg=#4e4e4e  gui=NONE  cterm=NONE
 hi TabLineSel   ctermfg=black  ctermbg=cyan  guifg=black    guibg=#8fbfdc  gui=Bold  cterm=Bold
-hi Title        ctermfg=black  ctermbg=None  guifg=black    guibg=None     gui=None  cterm=None
+hi Title        ctermfg=black  ctermbg=NONE  guifg=black    guibg=NONE     gui=NONE  cterm=NONE
 
 " Special characters colors
 hi specialkey term=standout ctermfg=darkgray guifg=darkgray
