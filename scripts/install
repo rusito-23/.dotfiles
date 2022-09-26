@@ -192,6 +192,7 @@ if [[ "$*" == *ESPANSO* ]] || [[ $# -eq 0 ]]; then
     espanso register
     # Setup rc
     ln -s ~/.dotfiles/espansorc ~/Library/Preferences/espanso/user/espansorc.yml
+    ln -s ~/.dotfiles/ignored/espansorc ~/Library/Preferences/espanso/user/ignored-espansorc.yml
     # Reload changes
     espanso restart
 
