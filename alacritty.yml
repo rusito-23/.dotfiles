@@ -64,8 +64,6 @@ key_bindings:
   - { key: K,         mods: Alt,       chars: "\x1bk"                       }
   - { key: J,         mods: Alt,       chars: "\x1bj"                       }
   - { key: H,         mods: Alt,       chars: "\x1bh"                       }
-  - { key: C,         mods: Alt,       chars: "\x1bc"                       }
-  - { key: N,         mods: Alt,       chars: "\x1bn"                       }
   - { key: Left,      mods: Alt,       chars: "\x1bb"                       }
   - { key: Right,     mods: Alt,       chars: "\x1bf"                       }
   - { key: Up,        mods: Alt,       chars: "\x1b[A"                      }
