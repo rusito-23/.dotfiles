@@ -20,11 +20,11 @@ Shortcut | Description
 
 ##  Window Management
 
-| Custom Shortcut | Description | Default |
-| --- | --- | --- |
-| ⌥ + `c` | Create window | ⌃`B`, `c` |
-| ⌥ + `p` | Previous window | ⌃`B`, `p` |
-| ⌥ + `n` | Next window | ⌃`B`, `n` |
+| Description | Default |
+| --- | --- |
+| Create window | <prefix> + `c` |
+| Next window | <prefix> + `p` |
+| Previous window | <prefix> + `n` |
 
 ## Custom commands
 
