@@ -52,7 +52,7 @@ Plug 'arcticicestudio/nord-vim'
 " LSP
 Plug 'neovim/nvim-lsp'
 Plug 'neovim/nvim-lspconfig'
-Plug 'glepnir/lspsaga.nvim'
+Plug 'tami5/lspsaga.nvim'
 
 " Completion
 Plug 'hrsh7th/cmp-nvim-lsp'

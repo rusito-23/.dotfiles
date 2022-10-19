@@ -22,7 +22,7 @@ local cmp = require 'cmp'
 
 -- Capabilities
 local default_capabilities = protocol.make_client_capabilities()
-local capabilities = cmp_nvim_lsp.update_capabilities(default_capabilities)
+local capabilities = cmp_nvim_lsp.default_capabilities(default_capabilities)
 capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 -- Default On Attach
