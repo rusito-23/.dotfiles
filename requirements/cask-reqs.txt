@@ -6,4 +6,4 @@ macdown
 kite
 gimp
 notion
-alt-tabs
+alt-tab
