@@ -98,3 +98,9 @@
 | `zE` | Deletes all folds |
 | `[z` | Move to start of open fold |
 | `]z` | Move to end of open fold |
+
+## Useful commands
+
+| Command | Description |
+| --- | --- |
+| `:tab split` | Open current file on current line in new tab |
