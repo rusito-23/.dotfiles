@@ -119,10 +119,13 @@ augroup CustomTabs
     " Use tabs for Go Lang files
     autocmd FileType go set noexpandtab tabstop=4 shiftwidth=8
 
-    " Use 2 spaces for JSON, YAML, TOML files
+    " Use 2 spaces for some files
+    autocmd FileType css  set shiftwidth=2
     autocmd FileType yaml set shiftwidth=2
     autocmd FileType toml set shiftwidth=2
     autocmd FileType json set shiftwidth=2
+    autocmd FileType javascript set shiftwidth=2
+    autocmd FileType javascriptreact  set shiftwidth=2
 
     " Use tabs with 4 spaces for eBay files
     autocmd BufRead,BufNewFile */ios_core/*/*.swift setlocal noexpandtab tabstop=4 shiftwidth=4

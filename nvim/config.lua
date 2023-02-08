@@ -46,7 +46,7 @@ lspconfig.util.default_config = vim.tbl_deep_extend(
 )
 
 -- Set up LSP configurations
--- See: https://github.com/neovim/nvim-lspconfig/blob/master/CONFIG.md
+-- See: https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
 
 -- `npm install -g pyright`
 lspconfig.pyright.setup {}
@@ -65,6 +65,12 @@ lspconfig.texlab.setup{}
 
 -- `brew install rust-analyzer`
 lspconfig.rust_analyzer.setup{}
+
+-- `npm i -g vscode-langservers-extracted`
+lspconfig.eslint.setup{}
+
+-- `npm i -g emmet-ls`
+lspconfig.emmet_ls.setup{}
 
 -- Set up LSP Saga
 saga.init_lsp_saga {
