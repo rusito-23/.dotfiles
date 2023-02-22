@@ -10,6 +10,8 @@
 | `V-B` | `g`, ⌃`A` | Auto-increment visual block |
 | `N` | ⌃`O` | Jump back to the previous location |
 | `N` | ⌃`I` | (same as Tab) to jump forward to the next location |
+| `N` | `J` | Join lines (with space) |
+| `N` | `gJ` | Join lines (without space) |
 
 ## ⌃ Shortcuts
 
