@@ -36,6 +36,7 @@ plugins=(
     docker-compose
     calc
     kubectl
+    poetry
 )
 
 # Set editor & pager configuration
@@ -159,6 +160,8 @@ alias kcscn="kcsc --current --namespace" # I don't wanna write -n <namespace> ev
 
 # Load `fasd`
 eval "$(fasd --init auto)"
+
+# Load completions
 autoload -U compinit && compinit -U
 
 # Set `ripgrep` config file
