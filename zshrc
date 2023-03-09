@@ -290,9 +290,9 @@ export PATH="$GOPATH/bin:$PATH";
 [[ -s "$HOME/.gvm/scripts/gvm" ]] && source "$HOME/.gvm/scripts/gvm"
 
 # Setup virtualenv home
-export VIRTUALENVWRAPPER_PYTHON=$HOME/.pyenv/shims/python
-export WORKON_HOME=$HOME/.virtualenvs
+export VIRTUALENVWRAPPER_PYTHON=$HOME/.pyenv/versions/3.8.0/bin/python
 export PYENV_VIRTUALENVWRAPPER_PREFER_PYVENV="true"
+export WORKON_HOME=$HOME/.virtualenvs
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 
