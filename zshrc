@@ -30,6 +30,7 @@ plugins=(
     zsh-syntax-highlighting
     zsh-autosuggestions
     virtualenv
+    virtualenvwrapper
     tmux
     tmux-cssh
     docker
@@ -104,6 +105,7 @@ alias ql='qlmanage -p > /dev/null 2> /dev/null'         # Open file with macOS Q
 alias xargs='xargs -I%'                                 # Use `%` as default `xargs` placeholder
 alias t='tmux'                                          # With great power comes great responsibility
 alias now='date +%d.%m.%y-%H:%M:%S'                     # The current date and time, use wisely!
+alias mk='make'                                         # Just me being really lazy so what
 
 # Navigation
 
