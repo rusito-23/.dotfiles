@@ -27,7 +27,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 plugins=(
     sudo
     git
-    fast-syntax-highlighting
+    zsh-syntax-highlighting
     zsh-autosuggestions
     virtualenv
     tmux

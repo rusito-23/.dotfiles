@@ -157,9 +157,6 @@ if [[ "$*" == *YABAI* ]] || [[ $# -eq 0 ]]; then
     brew install koekeishiya/formulae/yabai
     brew install koekeishiya/formulae/skhd
 
-    # load yabai sa
-    sudo yabai --load-sa
-
     # start all services
     brew services start yabai
     brew services start skhd

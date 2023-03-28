@@ -21,3 +21,5 @@ qlmarkdown
 cask
 speedtest-cli
 tree
+thefuck
+neovim
