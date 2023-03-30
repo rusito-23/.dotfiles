@@ -1,0 +1,14 @@
+#!/bin/sh
+# Find and replace by a given list of files.
+# Usage: replace foo bar /path
+set -euo pipefail
+
+query="$1"
+target="$2"
+shift;shift
+args=$@
+
+# Find the files that match the query
+# and perform an in-place replacement over the files.
+rg -w -l --color never "$query" $args |\
+    xargs -I% sed -i '' -e "s/$query/$target/g" "%"
