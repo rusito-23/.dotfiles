@@ -117,12 +117,18 @@ let g:completion_enable_snippet = 'vim-vsnip'
 
 augroup CustomTabs
     " Use tabs for Go Lang files
-    autocmd FileType go set noexpandtab shiftwidth=8
+    autocmd FileType go set noexpandtab tabstop=4 shiftwidth=8
 
     " Use 2 spaces for JSON, YAML, TOML files
     autocmd FileType yaml set shiftwidth=2
     autocmd FileType toml set shiftwidth=2
     autocmd FileType json set shiftwidth=2
+
+    " Use tabs with 4 spaces for eBay files
+    autocmd BufRead,BufNewFile */ios_core/*/*.swift setlocal noexpandtab tabstop=4 shiftwidth=4
+    autocmd BufRead,BufNewFile */ios_core/*/*.h     setlocal noexpandtab tabstop=4 shiftwidth=4
+    autocmd BufRead,BufNewFile */ios_core/*/*.m     setlocal noexpandtab tabstop=4 shiftwidth=4
+    autocmd BufRead,BufNewFile */ios_core/*/*.json  setlocal noexpandtab tabstop=4 shiftwidth=4
 augroup end
 
 " Set up column wrapping
