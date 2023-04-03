@@ -61,6 +61,16 @@ fzf_gh() {
 
 # }}}
 
+# {{{ Search status files using `^G-^F`
+
+fzf_gf() {
+    is_in_git_repo || return
+    git status --short |
+        fzf --ansi --no-sort --bind 'enter:execute(echo {2})+abort'
+}
+
+# }}}
+
 # {{{ Set up key bindings
 
 join-lines() {
@@ -79,7 +89,7 @@ bind-git-helper() {
   done
 }
 
-bind-git-helper o r t h
+bind-git-helper o r t h f
 unset -f bind-git-helper
 
 # }}}
