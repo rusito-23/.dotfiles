@@ -15,6 +15,9 @@ ds:*.{py,yaml}*
 --type-add
 test:*{test,Test,tests,Tests,testCase,TestCase}*
 
+# mock type
+--type-add
+mock:*{mock,Mock,stub,Stub}*
 
 # global exclude git folder
 --glob=!git/*
