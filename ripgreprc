@@ -3,23 +3,27 @@
 --max-columns=230
 --max-columns-preview
 
-# iOS type
+# iOS source files
 --type-add
-ios:*.{swift,h,m,mm}*
+ios:*.{swift,h,m,mm}
 
-# ds type
+# Data science source files
 --type-add
-ds:*.{py,yaml}*
+ds:*.{py,yaml}
 
-# test type
+# Test related files
 --type-add
-test:*{test,Test,tests,Tests,testCase,TestCase}*
+test:*{test,Test,tests,Tests}*
 
-# mock type
+# Mock related files
 --type-add
 mock:*{mock,Mock,stub,Stub}*
 
-# global exclude git folder
+# Mock and test related files
+--type-add
+ut:*{test,Test,tests,Tests,mock,Mock,stub,Stub}*
+
+# Global exclude git folder
 --glob=!git/*
 
 # Because who cares about case!?
