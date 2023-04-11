@@ -102,6 +102,7 @@ alias imcat='shellpic --shell24'                        # Use shellpic to displa
 alias ql='qlmanage -p > /dev/null 2> /dev/null'         # Open file with macOS Quick-Look
 alias xargs='xargs -I%'                                 # Use `%` as default `xargs` placeholder
 alias t='tmux'                                          # With great power comes great responsibility
+alias now='date +%d.%m.%y-%H:%M:%S'                     # The current date and time, use wisely!
 
 # Navigation
 
