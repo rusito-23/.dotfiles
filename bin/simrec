@@ -24,8 +24,8 @@ import json
 
 
 XCRUN = '/usr/bin/xcrun'
-FFMPEG = '/usr/local/bin/ffmpeg'
-OPTIM = '/usr/local/bin/convert'
+FFMPEG = '/opt/homebrew/bin/ffmpeg'
+OPTIM = '/opt/homebrew/bin/convert'
 RM = 'rm'
 
 
