@@ -104,3 +104,4 @@
 | Command | Description |
 | --- | --- |
 | `:tab split` | Open current file on current line in new tab |
+| `:noautocmd` | Run stuff without auto commands |
