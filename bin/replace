@@ -10,5 +10,5 @@ args=$@
 
 # Find the files that match the query
 # and perform an in-place replacement over the files.
-rg -w -l --color never "$query" $args |\
+rg -l --color never "$query" $args |\
     xargs -I% sed -i '' -e "s/$query/$target/g" "%"

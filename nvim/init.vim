@@ -128,7 +128,6 @@ augroup CustomTabs
     autocmd BufRead,BufNewFile */ios_core/*/*.swift setlocal noexpandtab tabstop=4 shiftwidth=4
     autocmd BufRead,BufNewFile */ios_core/*/*.h     setlocal noexpandtab tabstop=4 shiftwidth=4
     autocmd BufRead,BufNewFile */ios_core/*/*.m     setlocal noexpandtab tabstop=4 shiftwidth=4
-    autocmd BufRead,BufNewFile */ios_core/*/*.json  setlocal noexpandtab tabstop=4 shiftwidth=4
 augroup end
 
 " Set up column wrapping
