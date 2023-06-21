@@ -23,6 +23,10 @@ mock:*{mock,Mock,stub,Stub}*
 --type-add
 ut:*{test,Test,tests,Tests,mock,Mock,stub,Stub}*
 
+# Markdown files
+--type-add
+md:*.md
+
 # Global exclude git folder
 --glob=!git/*
 
