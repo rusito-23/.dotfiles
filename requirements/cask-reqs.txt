@@ -8,3 +8,4 @@ gimp
 notion
 alt-tab
 docker
+caffeine
