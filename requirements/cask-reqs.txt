@@ -9,3 +9,4 @@ notion
 alt-tab
 docker
 caffeine
+logi-options-plus
