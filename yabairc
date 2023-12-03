@@ -30,6 +30,7 @@ yabai -m config mouse_follows_focus             on
 # Set rules to ignore some specific apps
 yabai -m rule --add label="About This Mac" app="System Information" title="About This Mac" manage=off
 yabai -m rule --add label="System Preferences" app="^System Preferences$" title=".*" manage=off
+yabai -m rule --add label="Copy" app="^Finder$" title="Copy" manage=off
 yabai -m rule --add label="Activity Monitor" app="^Activity Monitor$" manage=off
 yabai -m rule --add label="Archive Utility" app="^Archive Utility$" manage=off
 yabai -m rule --add label="Calculator" app="^Calculator$" manage=off
