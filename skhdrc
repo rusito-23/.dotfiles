@@ -7,14 +7,17 @@ ctrl + alt + cmd - r : launchctl kickstart -k "gui/${UID}/homebrew.mxcl.yabai"
 
 # Remap right control with arrows to work as option
 # This is because of the f** Keychron layout that I freacking hate
-rctrl - left    : skhd -k "alt - left"
-rctrl - right   : skhd -k "alt - right"
-rctrl - up      : skhd -k "alt - up"
-rctrl - down    : skhd -k "alt - down"
-rctrl + shift - left    : skhd -k "alt + shift - left"
-rctrl + shift - right   : skhd -k "alt + shift - right"
-rctrl + shift - up      : skhd -k "alt + shift - up"
-rctrl + shift - down    : skhd -k "alt + shift - down"
+# Nevermind, I'm leaving this commented because I'm hoping to get used
+# to the Opt+Arrows selection. It might not be that bad after all.
+# Side note: started using Opt+Arrows because I upgraded to Sonoma and yabai/skhd won't work.
+# rctrl - left    : skhd -k "alt - left"
+# rctrl - right   : skhd -k "alt - right"
+# rctrl - up      : skhd -k "alt - up"
+# rctrl - down    : skhd -k "alt - down"
+# rctrl + shift - left    : skhd -k "alt + shift - left"
+# rctrl + shift - right   : skhd -k "alt + shift - right"
+# rctrl + shift - up      : skhd -k "alt + shift - up"
+# rctrl + shift - down    : skhd -k "alt + shift - down"
 
 # Navigation with bsp layout
 lctrl + alt - h : yabai -m window --focus west
