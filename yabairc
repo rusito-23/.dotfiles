@@ -38,3 +38,4 @@ yabai -m rule --add label="Safari" app="^Safari$" title="^(General|(Tab|Password
 yabai -m rule --add label="Software Update" title="Software Update" manage=off
 yabai -m rule --add label="Music" title="Music" manage=off
 yabai -m rule --add label="Mini Player" title="Mini Player" manage=off
+yabai -m rule --add label=".*" app=".*Copilot.*" title=".*" manage=off
