@@ -1,5 +1,5 @@
 qlmarkdown
-spectacle
+rectangle
 copyclip
 alacritty
 macdown
