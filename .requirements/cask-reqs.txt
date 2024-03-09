@@ -7,3 +7,9 @@ alt-tab
 docker
 caffeine
 logi-options-plus
+postman
+google-chrome
+calibre
+quik
+deluge
+discord
