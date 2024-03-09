@@ -1,5 +1,6 @@
+nvim
+maccy
 wget
-fasd
 peco
 tig
 bat
@@ -14,7 +15,10 @@ vifm
 w3m
 trash
 pyenv
+virtualenv
 pyenv-virtualenv
+virtualenvwrapper
+pyenv-virtualenvwrapper
 thefuck
 fd
 qlmarkdown
@@ -25,3 +29,5 @@ thefuck
 neovim
 docker-compose
 jq
+ranger
+fzf

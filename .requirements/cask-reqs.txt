@@ -1,11 +1,8 @@
 qlmarkdown
 rectangle
-copyclip
 alacritty
 macdown
 kite
-gimp
-notion
 alt-tab
 docker
 caffeine

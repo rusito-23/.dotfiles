@@ -15,10 +15,9 @@ ZSH_DISABLE_COMPFIX="true"
 
 # Set up paths
 export PATH=$HOME/.local/bin:$PATH
-export PATH=$HOME/bin:$PATH
-export PATH=$HOME/.dotfiles/bin:$PATH
+export PATH=$HOME/.rvm/bin:$PATH
+export PATH=/opt/homebrew/bin:/opt/homebrew/sbin:$PATH
 export PATH=/usr/local/bin:$PATH
-export PATH=$PATH:$HOME/.rvm/bin
 
 # Set zsh theme
 ZSH_THEME="powerlevel10k/powerlevel10k"
@@ -47,7 +46,7 @@ export PAGER=less
 export LESS=-FRX
 
 # Load powerlevel configuration
-source $HOME/.dotfiles/powerlevelrc
+source $HOME/.powerlevelrc
 
 # Tmux configuration
 ZSH_TMUX_AUTOSTART=true
@@ -70,7 +69,7 @@ ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=8'
 # [[ -o login ]] && echo "ПРИВЕТ СУКА БЛЯТЬ"
 
 # Load ignored files
-for s in $HOME/.dotfiles/ignored/*.sh; do source $s; done
+for s in $HOME/.ignored/*.sh; do source $s; done
 
 # General opt config
 setopt noautoremoveslash
@@ -143,6 +142,8 @@ alias gdt='git difftool -y'                   # Diff tool
 alias gmt='git mergetool'                     # Merge tool
 alias gs='git status --ignore-submodules -s'  # Quick git status
 
+alias .git='git --git-dir=$HOME/.dotfiles --work-tree=$HOME' # Bare dotfiles git
+
 # Python
 
 alias vew='virtualenvwrapper'           # Quick virtualenvwrapper
@@ -167,17 +168,17 @@ eval "$(fasd --init auto)"
 autoload -U compinit && compinit -U
 
 # Set `ripgrep` config file
-export RIPGREP_CONFIG_PATH="$HOME/.dotfiles/ripgreprc"
+export RIPGREP_CONFIG_PATH="$HOME/.ripgreprc"
 
 # Load `fzf` and define default options
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export FZF_DEFAULT_OPTS='-i --height 50% --border --inline-info '
 
 # Load `git` + `fzf` additions
-source ~/.dotfiles/fzf.git.zsh
+source ~/.fzf.git.zsh
 
 # Load back-end tools
-source ~/.dotfiles/back.tools.zsh
+source ~/.back.tools.zsh
 
 # FUCK!
 eval $(thefuck --alias)
@@ -270,7 +271,7 @@ compdef _gitignoreio gi
 
 # Set up completion for the `cheat` command
 function _cheat_get_list() {
-    ls ~/.dotfiles/cheatsheets | \
+    ls ~/.cheatsheets | \
         awk -F. '{print $1}' | \
         tr '[:upper:]' '[:lower:]'
 }

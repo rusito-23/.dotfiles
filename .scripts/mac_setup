@@ -10,7 +10,7 @@
 set -euo pipefail
 
 # Load script utils
-source ~/.dotfiles/scripts/utils
+source ~/.scripts/utils
 
 # }}}
 
@@ -70,12 +70,6 @@ if [[ "$*" == *--with-pam-setup* ]]; then
     sudo bash -c 'echo -e "auth  sufficient  pam_tid.so\n$(cat /etc/pam.d/sudo)" > /etc/pam.d/sudo'
     sudo bash -c 'echo -e "auth  optional    pam_reattach.so\n$(cat /etc/pam.d/sudo)" > /etc/pam.d/sudo'
 fi
-
-# }}}
-
-# {{{ Set up the key re-mappings plist
-
-cp ~/.dotfiles/KeyRemappings.plist ~/Library/LaunchAgents/com.rusito23.KeyRemapping.plist
 
 # }}}
 

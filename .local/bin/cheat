@@ -12,15 +12,15 @@
 set -euo pipefail
 
 # Load script utils
-source ~/.dotfiles/scripts/utils
+source ~/.scripts/utils
 
 # Define folder path
-CHEAT_SHEET_FOLDER=~/.dotfiles/cheatsheets
+CHEAT_SHEET_FOLDER=~/.cheatsheets
 
 # List available cheat-sheets if there are no parameters
 if [[ $# -eq 0 ]]; then
     echo "Available cheat-sheets:"
-    ls ~/.dotfiles/cheatsheets | \
+    ls $CHEAT_SHEET_FOLDER | \
         awk -F. '{print $1}' | \
         tr '[:upper:]' '[:lower:]'
     exit 0

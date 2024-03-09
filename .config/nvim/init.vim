@@ -21,12 +21,12 @@ filetype plugin on                      " Enable plugins
 
 " {{{ Load external files
 
-source ~/.dotfiles/nvim/plug.vim
-source ~/.dotfiles/nvim/todo.vim
-source ~/.dotfiles/nvim/colors.vim
-source ~/.dotfiles/nvim/statusline.vim
-source ~/.dotfiles/nvim/tabline.vim
-luafile ~/.dotfiles/nvim/config.lua
+source ~/.config/nvim/plug.vim
+source ~/.config/nvim/todo.vim
+source ~/.config/nvim/colors.vim
+source ~/.config/nvim/statusline.vim
+source ~/.config/nvim/tabline.vim
+luafile ~/.config/nvim/config.lua
 
 " }}}
 
@@ -97,7 +97,7 @@ set belloff+=ctrlg         " Don't beep during completion
 " {{{ Configure spell check
 
 set spell spelllang=en_us
-set spellfile=~/.dotfiles/nvim/spell/spellcheck.utf-8.add
+set spellfile=~/.config/nvim/spell/spellcheck.utf-8.add
 
 " }}}
 
@@ -185,9 +185,9 @@ function! ExecuteMacroOverVisualRange()
 endfunction
 
 " Load templates into the current buffer
-" Example: LoadTemplate("py") will load ~/.dotfiles/templates/skeleton.py
+" Example: LoadTemplate("py") will load ~/.templates/skeleton.py
 function! LoadTemplate(ext)
-    execute "r ~/.dotfiles/templates/skeleton." . a:ext
+    execute "r ~/.templates/skeleton." . a:ext
 endfunction
 
 " Create command with the file extension to load a template
@@ -240,7 +240,7 @@ command! Source :source ~/.config/nvim/init.vim | noh | set nospell
 command! -range Caps <line1>,<line2>s/\<./\u&/g | noh
 
 " Create extension command for each available template
-call map(globpath('~/.dotfiles/templates/', '*', 1, 1), 'SetUpTemplate(fnamemodify(v:val, ":e"))')
+call map(globpath('~/.templates/', '*', 1, 1), 'SetUpTemplate(fnamemodify(v:val, ":e"))')
 
 " }}}
 

@@ -1,16 +1,16 @@
 [include]
-    path = ~/.dotfiles/git-template/gitconfig.ignored
+    path = ~/.gitconfig.ignored
 
 [core]
     whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
-    excludesfile = ~/.dotfiles/git-template/gitignore.global
+    excludesfile = ~/.git-template/gitignore.global
 
 [init]
     defaultBranch = main
-    templateDir = ~/.dotfiles/git-template
+    templateDir = ~/.git-template
 
 [commit]
-    template = ~/.dotfiles/git-template/commit.template
+    template = ~/.git-template/commit.template
 
 [alias]
     assume-changed = update-index --no-assume-unchanged
