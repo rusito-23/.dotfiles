@@ -31,3 +31,4 @@ docker-compose
 jq
 ranger
 fzf
+mint
