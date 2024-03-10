@@ -142,7 +142,7 @@ alias gdt='git difftool -y'                   # Diff tool
 alias gmt='git mergetool'                     # Merge tool
 alias gs='git status --ignore-submodules -s'  # Quick git status
 
-alias .git='git --git-dir=$HOME/.dotfiles --work-tree=$HOME' # Bare dotfiles git
+alias dot='git --git-dir=$HOME/.dotfiles --work-tree=$HOME' # Bare dotfiles git
 
 # Python
 
