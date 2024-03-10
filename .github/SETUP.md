@@ -68,15 +68,13 @@ brew install fzf
 $(brew --prefix)/opt/fzf/install
 ```
 
-## Yabai
+## SKHD
 
 ```
-brew install koekeishiya/formulae/yabai
 brew install koekeishiya/formulae/skhd
 ```
 
 ```
-yabai --start-service
 skhd --start-service
 ```
 
