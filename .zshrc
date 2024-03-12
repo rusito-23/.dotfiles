@@ -69,7 +69,7 @@ ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=8'
 # [[ -o login ]] && echo "ПРИВЕТ СУКА БЛЯТЬ"
 
 # Load local ignored files
-for s in $HOME/.local/*.sh; do source $s; done
+for s in $HOME/.local/*.sh(.)(N); source $s
 
 # General opt config
 setopt noautoremoveslash
@@ -148,7 +148,7 @@ alias dot='git --git-dir=$HOME/.dotfiles.git --work-tree=$HOME'
 alias dss='dot status --short'
 alias da='dot add'
 alias dcmsg='dot commit -m'
-alias dpp='dot push origin main'
+alias ddp='dot push origin main'
 
 # Python
 
