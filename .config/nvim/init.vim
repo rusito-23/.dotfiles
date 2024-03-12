@@ -187,7 +187,7 @@ endfunction
 " Load templates into the current buffer
 " Example: LoadTemplate("py") will load ~/.templates/skeleton.py
 function! LoadTemplate(ext)
-    execute "r ~/.templates/skeleton." . a:ext
+    execute "r ~/.dotfiles/templates/skeleton." . a:ext
 endfunction
 
 " Create command with the file extension to load a template

@@ -68,8 +68,8 @@ ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=8'
 # Display welcome message
 # [[ -o login ]] && echo "ПРИВЕТ СУКА БЛЯТЬ"
 
-# Load ignored files
-for s in $HOME/.ignored/*.sh; do source $s; done
+# Load local ignored files
+for s in $HOME/.local/*.sh; do source $s; done
 
 # General opt config
 setopt noautoremoveslash
@@ -177,14 +177,14 @@ autoload -U compinit && compinit -U
 export RIPGREP_CONFIG_PATH="$HOME/.ripgreprc"
 
 # Load `fzf` and define default options
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+[ -f ~/.dotfiles/fzf.zsh ] && source ~/.dotfiles/fzf.zsh
 export FZF_DEFAULT_OPTS='-i --height 50% --border --inline-info '
 
 # Load `git` + `fzf` additions
-source ~/.fzf.git.zsh
+source ~/.dotfiles/fzf.git.zsh
 
 # Load back-end tools
-source ~/.back.tools.zsh
+source ~/.dotfiles/back.tools.zsh
 
 # FUCK!
 eval $(thefuck --alias)

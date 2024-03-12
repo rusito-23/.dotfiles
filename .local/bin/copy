@@ -3,7 +3,7 @@
 set -euo pipefail
 
 # Get utils
-source ~/.scripts/utils
+source ~/.dotfiles/scripts/utils
 
 # Show help if needed
 if [[ $# -eq 0 ]]; then
