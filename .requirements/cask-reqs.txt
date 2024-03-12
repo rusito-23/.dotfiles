@@ -13,3 +13,4 @@ calibre
 quik
 deluge
 discord
+fliqlo

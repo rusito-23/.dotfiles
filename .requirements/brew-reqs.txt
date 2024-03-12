@@ -32,3 +32,4 @@ jq
 ranger
 fzf
 mint
+cookiecutter

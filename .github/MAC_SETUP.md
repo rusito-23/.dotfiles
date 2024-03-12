@@ -27,6 +27,12 @@ defaults write com.apple.dock largesize -int 128                # Set magnified 
 defaults write com.apple.dock mru-spaces -bool false            # Disable auto arrangement
 ```
 
+## Window Manager
+
+```
+defaults write com.apple.WindowManager EnableStandardClickToShowDesktop 0
+```
+
 ## Sound Quality
 
 ```
