@@ -10,8 +10,13 @@
 
 # General configuration
 export TERM="xterm-256color"
+
+# Basic ZSH configuration
 export ZSH=$HOME/.oh-my-zsh
 ZSH_DISABLE_COMPFIX="true"
+
+# Change the location of zcompdump files
+export ZSH_COMPDUMP=$ZSH/cache/.zcompdump-$HOST
 
 # Set up paths
 export PATH=$HOME/.local/bin:$PATH
