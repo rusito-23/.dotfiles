@@ -7,15 +7,8 @@ if ! type "brew" > /dev/null; then
     /bin/bash -c "$(curl -fsSL $HOMEBREW_URL/install/HEAD/install.sh)"
 fi
 
- # Install brew dependencies
-while read p; do
-  brew install "$p"
-done <~/.dotfiles/requirements/brew-reqs.txt
-
-# Install cask dependencies
-while read p; do
-  brew install cask "$p"
-done <~/.dotfiles/requirements/cask-reqs.txt
+# Install brew dependencies
+brew bundle --file=~/.dotfiles/requirements/Brewfile
 
 # Install Oh My Zsh
 wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | zsh
@@ -33,17 +26,10 @@ git clone --depth=1 \
     ~/.oh-my-zsh/custom/plugins/powerlevel10k
 
 # Install FZF
-brew install fzf && \
-    $(brew --prefix)/opt/fzf/install
+$(brew --prefix)/opt/fzf/install
 
 # Install Espanso
-brew tap federico-terzi/espanso
-brew install espanso
 espanso register
-
-# Install Fonts
-brew tap homebrew/cask-fonts
-brew install --cask font-hack-nerd-font
 
 # Use ZSH by default
 chsh -s $(which zsh)
