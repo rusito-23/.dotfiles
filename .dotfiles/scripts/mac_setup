@@ -2,7 +2,7 @@
 # Set up macOS defaults
 
 # Menu bar
-defaults write NSGlobalDomain _HIHideMenuBar -bool true                 # Enable autohide
+defaults write NSGlobalDomain _HIHideMenuBar -bool false                 # Enable autohide
 defaults write com.apple.menuextra.battery ShowPercent -bool true       # Show battery percentage
 defaults write ~/Library/Preferences/ByHost/com.apple.controlcenter.plist BatteryShowPercentage -bool true
 

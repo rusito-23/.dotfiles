@@ -11,6 +11,6 @@ postman
 google-chrome
 calibre
 quik
-deluge
+folx
 discord
 fliqlo
