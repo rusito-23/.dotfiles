@@ -9,8 +9,4 @@ caffeine
 logi-options-plus
 postman
 google-chrome
-calibre
-quik
-folx
-discord
 fliqlo

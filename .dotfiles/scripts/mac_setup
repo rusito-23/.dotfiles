@@ -25,11 +25,6 @@ defaults write com.apple.WindowManager EnableStandardClickToShowDesktop 0
 # Sound Quality
 defaults write com.apple.BluetoothAudioAgent "Apple Bitpool Min (editable)" -int 40
 
-# PAM Sudo Reattach (Optional)
-brew install fabianishere/personal/pam_reattach         # Workaround to enable for tmux
-sudo bash -c 'echo -e "auth  sufficient  pam_tid.so\n$(cat /etc/pam.d/sudo)" > /etc/pam.d/sudo'
-sudo bash -c 'echo -e "auth  optional    pam_reattach.so\n$(cat /etc/pam.d/sudo)" > /etc/pam.d/sudo'
-
 # Screenshots
 mkdir -p ~/Documents/Screenshots
 defaults write com.apple.screencapture location ~/Documents/Screenshots
