@@ -5,53 +5,50 @@
 tap "federico-terzi/espanso"
 tap "homebrew/cask-fonts"
 
-# `brew install`
+# Editor
+brew "neovim"
+brew "bat"
+brew "trash"
 
-brew "nvim"
-brew "maccy"
-brew "wget"
+# Navigation
+brew "vifm"
+brew "tree"
+
+# Search and filter
+brew "fzf"
+brew "ripgrep"
 brew "peco"
 brew "tig"
-brew "bat"
-brew "vifm"
-brew "ripgrep"
-brew "fzf"
-brew "imagemagick"
+brew "fd"
+brew "jq"
+
+# Common Tools
+brew "wget"
 brew "htop"
-brew "ffmpeg"
+brew "speedtest-cli"
+brew "thefuck"
+brew "mint"
+brew "cookiecutter"
+
+# Image Tools
+brew "imagemagick"
 brew "gifsicle"
-brew "vifm"
-brew "w3m"
-brew "trash"
+brew "ffmpeg"
+
+# Python
 brew "pyenv"
 brew "virtualenv"
 brew "pyenv-virtualenv"
 brew "virtualenvwrapper"
 brew "pyenv-virtualenvwrapper"
-brew "thefuck"
-brew "fd"
-brew "qlmarkdown"
-brew "cask"
-brew "speedtest-cli"
-brew "tree"
-brew "thefuck"
-brew "neovim"
-brew "docker-compose"
-brew "jq"
-brew "ranger"
-brew "fzf"
-brew "mint"
-brew "cookiecutter"
-brew "espanso"
-brew "fzf"
 
 # `brew install --cask`
-
+cask "maccy"
+cask "qlmarkdown"
 cask "qlmarkdown"
 cask "rectangle"
 cask "alacritty"
 cask "macdown"
-cask "kite"
 cask "alt-tab"
 cask "docker"
 cask "caffeine"
@@ -64,5 +61,6 @@ cask "folx"
 cask "discord"
 cask "fliqlo"
 cask "vlc"
+brew "espanso"
 
-cask "font-hack-nerd-font"
+#cask "font-hack-nerd-font"
