@@ -1,0 +1,22 @@
+# Brew Optional Dependencies
+
+# Taps
+
+tap "federico-terzi/espanso"
+
+# Editor
+brew "mactex-no-gui"
+
+# Casks
+cask "macdown"
+cask "docker"
+cask "postman"
+cask "google-chrome"
+cask "calibre"
+cask "quik"
+cask "folx"
+cask "discord"
+cask "fliqlo"
+cask "vlc"
+brew "espanso"
+

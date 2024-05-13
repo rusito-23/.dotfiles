@@ -2,14 +2,12 @@
 
 # Taps
 
-tap "federico-terzi/espanso"
 tap "homebrew/cask-fonts"
 
 # Editor
 brew "neovim"
 brew "bat"
 brew "trash"
-brew "mactex-no-gui"
 
 # Navigation
 brew "vifm"
@@ -46,22 +44,9 @@ brew "pyenv-virtualenvwrapper"
 # `brew install --cask`
 cask "maccy"
 cask "qlmarkdown"
-cask "qlmarkdown"
 cask "rectangle"
 cask "alacritty"
-cask "macdown"
 cask "alt-tab"
-cask "docker"
 cask "caffeine"
 cask "logi-options-plus"
-cask "postman"
-cask "google-chrome"
-cask "calibre"
-cask "quik"
-cask "folx"
-cask "discord"
-cask "fliqlo"
-cask "vlc"
-brew "espanso"
-
-#cask "font-hack-nerd-font"
+cask "font-hack-nerd-font"
