@@ -34,6 +34,7 @@ if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('--device', default='booted')
     parser.add_argument('--model', default=None)
+    parser.add_argument('--no-convert', action='store_true')
     parser.add_argument('--xscale', default='320')
     parser.add_argument('output', help='output file name')
     args = parser.parse_args()
@@ -86,6 +87,10 @@ I'll add the extensions for you :)
     except KeyboardInterrupt:
         # end recording
         record.send_signal(signal.SIGINT)
+
+        # check if we want to convert
+        if args.no_convert:
+            exit(0)
 
         # convert to gif
         convert = subprocess.Popen([
