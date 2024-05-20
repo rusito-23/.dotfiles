@@ -7,6 +7,9 @@ tap "federico-terzi/espanso"
 # Editor
 brew "mactex-no-gui"
 
+# System-Wide Autocomplete
+brew "espanso"
+
 # Casks
 cask "macdown"
 cask "docker"
@@ -18,5 +21,4 @@ cask "folx"
 cask "discord"
 cask "fliqlo"
 cask "vlc"
-brew "espanso"
-
+cask "proxyman"
