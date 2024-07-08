@@ -6,7 +6,7 @@
     excludesfile = ~/.git-template/gitignore.global
 
 [init]
-    defaultBranch = main
+    defaultBranch = develop
     templateDir = ~/.git-template
 
 [commit]

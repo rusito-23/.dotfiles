@@ -8,6 +8,7 @@ tap "homebrew/cask-fonts"
 brew "neovim"
 brew "bat"
 brew "trash"
+brew "csvlens"
 
 # Navigation
 brew "vifm"
