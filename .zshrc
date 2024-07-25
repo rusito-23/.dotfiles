@@ -168,6 +168,10 @@ alias jl='jupyter lab'                  # Start jupyter lab server
 # Kubernetes
 alias kcscn="kcsc --current --namespace" # I don't wanna write -n <namespace> every time
 
+# Network Utils
+alias ipv4="curl 'https://api.ipify.org'"
+alias ipv6="curl 'https://api6.ipify.org'"
+
 # }}}
 
 # {{{ Load plugins

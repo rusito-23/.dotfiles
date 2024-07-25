@@ -16,10 +16,7 @@ hi SpellLocal   cterm=underline   ctermfg=yellow
 
 " Color scheme
 set termguicolors
-let g:onedark_config = {
-    \ 'style': 'warm',
-\}
-colorscheme onedark
+colorscheme nord
 
 " Git Colors
 " Used when using vim as diff or merge tool
