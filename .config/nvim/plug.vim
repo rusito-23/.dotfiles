@@ -48,6 +48,7 @@ Plug 'keith/swift.vim'
 
 " Color schemes
 Plug 'arcticicestudio/nord-vim'
+Plug 'navarasu/onedark.nvim'
 
 " LSP
 Plug 'neovim/nvim-lsp'
