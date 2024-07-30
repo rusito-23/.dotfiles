@@ -19,6 +19,7 @@ ZSH_DISABLE_COMPFIX="true"
 export ZSH_COMPDUMP=$ZSH/cache/.zcompdump-$HOST
 
 # Set up paths
+export PATH=$HOME/.mint/bin:$PATH
 export PATH=$HOME/.local/bin:$PATH
 export PATH=$HOME/.rvm/bin:$PATH
 export PATH=/opt/homebrew/bin:/opt/homebrew/sbin:$PATH
