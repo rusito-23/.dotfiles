@@ -1,0 +1,19 @@
+#!/bin/bash
+# Reduce the file size of a PDF.
+# Usage: compress_pdf input.pdf output.pdf
+set -euo pipefail
+
+source="$1"
+target="$2"
+
+# Use ghost-script to compress the PDF file
+gs \
+    -sDEVICE=pdfwrite \
+    -dNOPAUSE \
+    -dQUIET \
+    -dBATCH \
+    -dPDFSETTINGS=/screen \
+    -dCompatibilityLevel=1.4 \
+    -sOutputFile="$target" \
+    "$source"
+
