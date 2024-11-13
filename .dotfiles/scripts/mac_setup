@@ -4,7 +4,7 @@
 # Menu bar
 defaults write NSGlobalDomain _HIHideMenuBar -bool false                 # Enable autohide
 defaults write com.apple.menuextra.battery ShowPercent -bool true       # Show battery percentage
-defaults write ~/Library/Preferences/ByHost/com.apple.controlcenter.plist BatteryShowPercentage -bool true
+defaults write com.apple.controlcenter BatteryShowPercentage -bool true
 
 # Finder
 defaults write com.apple.finder _FXShowPosixPathInTitle -bool true              # Show file path
@@ -21,6 +21,7 @@ defaults write com.apple.dock mru-spaces -bool false            # Disable auto a
 
 # Window Manager
 defaults write com.apple.WindowManager EnableStandardClickToShowDesktop 0
+defaults write -g NSWindowShouldDragOnGesture YES   # Allow CMD+Ctrl to move window
 
 # Sound Quality
 defaults write com.apple.BluetoothAudioAgent "Apple Bitpool Min (editable)" -int 40

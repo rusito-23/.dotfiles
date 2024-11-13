@@ -15,6 +15,11 @@ export TERM="xterm-256color"
 export ZSH=$HOME/.oh-my-zsh
 ZSH_DISABLE_COMPFIX="true"
 
+# Word Selection Configuration
+export WORDCHARS='*_-.[]~;!$%^(){}<>'
+autoload -Uz select-word-style
+select-word-style normal
+
 # Change the location of zcompdump files
 export ZSH_COMPDUMP=$ZSH/cache/.zcompdump-$HOST
 
@@ -319,7 +324,7 @@ export PATH="$PYENV_ROOT/bin:$PATH"
 if command -v pyenv 1>/dev/null 2>&1; then
     eval "$(pyenv init -)"
     eval "$(pyenv init --path)"
-    pyenv virtualenvwrapper
+    # pyenv virtualenvwrapper
 fi
 
 # Set up Rust

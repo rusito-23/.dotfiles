@@ -42,6 +42,9 @@ brew "pyenv-virtualenv"
 brew "virtualenvwrapper"
 brew "pyenv-virtualenvwrapper"
 
+# iOS
+brew "xcodesorg/made/xcodes"
+
 # `brew install --cask`
 cask "maccy"
 cask "qlmarkdown"

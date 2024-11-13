@@ -25,7 +25,6 @@ import json
 
 XCRUN = '/usr/bin/xcrun'
 FFMPEG = '/opt/homebrew/bin/ffmpeg'
-OPTIM = '/opt/homebrew/bin/convert'
 RM = 'rm'
 
 
@@ -97,8 +96,6 @@ I'll add the extensions for you :)
             FFMPEG,
             '-i',
             f'{args.output}.mov',
-            '-pix_fmt',
-            'rgb24',
             '-vf',
             f'scale={args.xscale}:-1',
             '-r',
@@ -106,16 +103,6 @@ I'll add the extensions for you :)
             f'{args.output}.gif'
         ])
         convert.wait()
-
-        # optimize
-        optim = subprocess.Popen([
-            OPTIM,
-            '-layers',
-            'Optimize',
-            f'{args.output}.gif',
-            f'{args.output}.gif'
-        ])
-        optim.wait()
 
         # remove video
         rm = subprocess.Popen([RM, f'{args.output}.mov'])
