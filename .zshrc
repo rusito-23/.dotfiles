@@ -80,7 +80,7 @@ ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=8'
 # [[ -o login ]] && echo "ПРИВЕТ СУКА БЛЯТЬ"
 
 # Load local ignored files
-for s in $HOME/.local/*.sh(N); source $s
+for s in $HOME/.local/source/*.sh(N); source $s
 
 # General opt config
 setopt noautoremoveslash
