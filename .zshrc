@@ -9,32 +9,17 @@
 
 # {{{ General Configuration
 
-# General configuration
-export TERM="xterm-256color"
-
-# Basic ZSH configuration
 export ZSH=$HOME/.oh-my-zsh
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=8'
+ZSH_COMPDUMP=$ZSH/cache/.zcompdump-$HOST
 ZSH_DISABLE_COMPFIX="true"
+ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # Word Selection Configuration
 export WORDCHARS='*_-.[]~;!$%^(){}<>'
 autoload -Uz select-word-style
 select-word-style normal
 
-# Change the location of zcompdump files
-export ZSH_COMPDUMP=$ZSH/cache/.zcompdump-$HOST
-
-# Set up paths
-export PATH=$HOME/.mint/bin:$PATH
-export PATH=$HOME/.local/bin:$PATH
-export PATH=$HOME/.rvm/bin:$PATH
-export PATH=/opt/homebrew/bin:/opt/homebrew/sbin:$PATH
-export PATH=/usr/local/bin:$PATH
-
-# Set zsh theme
-ZSH_THEME="powerlevel10k/powerlevel10k"
-
-# Set plugins
 plugins=(
     sudo
     git
@@ -51,45 +36,17 @@ plugins=(
     poetry
 )
 
-# Set editor & pager configuration
-export VISUAL=nvim
-export EDITOR=nvim
-export PAGER=less
-export LESS=-FRX
-
-# Load powerlevel configuration
 source $HOME/.powerlevelrc
-
-# Tmux configuration
-ZSH_TMUX_AUTOSTART=true
-ZSH_TMUX_AUTOCONNECT=false
-
-# Load oh-my-zsh
 source $ZSH/oh-my-zsh.sh
 
-# {{{ Instant prompt
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-# }}}
+INSTANT_PROMPT="${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+if [[ -r INSTANT_PROMPT ]]; then source INSTANT_PROMPT fi
 
-
-# Auto suggestions plugin configuration
-ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=8'
-
-# Display welcome message
-# [[ -o login ]] && echo "ПРИВЕТ СУКА БЛЯТЬ"
-
-# Load local ignored files
-for s in $HOME/.local/source/*.sh(N); source $s
-
-# General opt config
+# General options
 setopt noautoremoveslash
-
-# Custom bindings
 bindkey ˜ delete-char           # Auto-delete the ˜ char
 
-# Cycle through auto suggestions with up/down
+# {{{ Cycle through auto suggestions with up/down
 
 if [[ "${terminfo[kcuu1]}" != "" ]]; then
     autoload -U up-line-or-beginning-search
@@ -102,6 +59,8 @@ if [[ "${terminfo[kcud1]}" != "" ]]; then
     zle -N down-line-or-beginning-search
     bindkey "${terminfo[kcud1]}" down-line-or-beginning-search
 fi
+
+# }}}
 
 # }}}
 
@@ -181,44 +140,31 @@ alias ipv6="curl 'https://api6.ipify.org'"
 
 # }}}
 
-# {{{ Load plugins
+# {{{ Plugin Configuration
 
-# Load `fasd`
-eval "$(fasd --init auto)"
-
-# Load completions
+# Completions
 autoload -U compinit && compinit -U
 
-# Set `ripgrep` config file
+# Ripgrep Configuration
 export RIPGREP_CONFIG_PATH="$HOME/.ripgreprc"
 
-# Load `fzf` and define default options
+# Fzf Configuration
 [ -f ~/.dotfiles/fzf.zsh ] && source ~/.dotfiles/fzf.zsh
 export FZF_DEFAULT_OPTS='-i --height 50% --border --inline-info '
 
 # Load `git` + `fzf` additions
 source ~/.dotfiles/fzf.git.zsh
-
-# Load back-end tools
 source ~/.dotfiles/back.tools.zsh
 
-# FUCK!
+# Plugin evaluations
 eval $(thefuck --alias)
+eval $(mise activate zsh)
 
 # }}}
 
 # {{{ Functions
 
 # {{{ git plugin custom extensions
-
-# Add remote, fetch and checkout branch in a single command
-# Parameters: $1: remote $2: branch name
-gaco() {
-    [ $# -ne 2 ] && (echo "Usage: gaco remote branch"; return 1)
-    git remote set-branches --add $@
-    git fetch $@
-    git checkout $2
-}
 
 # Use lease when force-pushing
 ggpf () {
@@ -230,48 +176,8 @@ ggpf () {
     fi
 }
 
-# Pull from the upstream remote
-glu () {
-    if [[ "$#" != 0 ]] && [[ "$#" != 1 ]]; then
-        git pull upstream "${*}"
-    else
-        [[ "$#" == 0 ]] && local b="$(git_current_branch)"
-        git pull upstream "${b:=$1}"
-    fi
-}
-
-# Checkout a GH PR
-# Parameters: $1: remote $2: PR ID
-function gcopr() {
-    git fetch $1 pull/$2/head:pr-$2 && \
-    git checkout pr-$2
-}
-
 # Use `gitignore.io` for default gitignore configurations
 function gi() { curl -sL https://www.gitignore.io/api/$@ ;}
-
-# }}}
-
-# {{{ Docker functions
-
-# Purge the entire docker stuff
-function docker_purge() {
-    docker rm -f $(docker ps -aq)
-    docker rmi -f $(docker images -aq)
-    docker volume rm $(docker volume ls -q)
-    docker system prune
-}
-
-# }}}
-
-# {{{ xcrun functions
-
-simsearch() {
-    xcrun simctl \
-        list devices -j |\
-        jq -f ~/.jq/simsearch.jq \
-        --arg sim_name "$@"
-}
 
 # }}}
 
@@ -302,36 +208,5 @@ function _cheat() {
     compadd -S '' `_cheat_get_list`
 }
 compdef _cheat cheat
-
-# }}}
-
-# {{{ Version Manager Configuration
-
-# Go Version Manager configuration
-(( ${+aliases[g]} )) && unalias g
-export GOPATH="$HOME/go";
-export GOROOT="$HOME/.go";
-export PATH="$GOPATH/bin:$PATH";
-[[ -s "$HOME/.gvm/scripts/gvm" ]] && source "$HOME/.gvm/scripts/gvm"
-
-# Setup virtualenv home
-export VIRTUALENVWRAPPER_PYTHON=$HOME/.pyenv/versions/3.8.0/bin/python
-export PYENV_VIRTUALENVWRAPPER_PREFER_PYVENV="true"
-export WORKON_HOME=$HOME/.virtualenvs
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
-
-# pyenv init
-if command -v pyenv 1>/dev/null 2>&1; then
-    eval "$(pyenv init -)"
-    eval "$(pyenv init --path)"
-    # pyenv virtualenvwrapper
-fi
-
-# Set up Rust
-[ -f $HOME/.cargo/env ] && source $HOME/.cargo/env
-
-# Set up Ruby
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
 
 # }}}
