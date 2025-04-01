@@ -14,11 +14,21 @@ ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=8'
 ZSH_COMPDUMP=$ZSH/cache/.zcompdump-$HOST
 ZSH_DISABLE_COMPFIX="true"
 ZSH_THEME="powerlevel10k/powerlevel10k"
+setopt noautoremoveslash                    # Keep the trailing slash
+bindkey ˜ delete-char                       # Auto-delete the ˜ char
+touch $HOME/.hushlogin                      # Disable login message
 
-# Word Selection Configuration
+# }}}
+
+# {{{ Word Selection Configuration
+
 export WORDCHARS='*_-.[]~;!$%^(){}<>'
 autoload -Uz select-word-style
 select-word-style normal
+
+# }}}
+
+# {{{ Plugins
 
 plugins=(
     sudo
@@ -36,15 +46,22 @@ plugins=(
     poetry
 )
 
+# }}}
+
+# {{{ Oh My Zsh
+
 source $HOME/.powerlevelrc
 source $ZSH/oh-my-zsh.sh
 
-INSTANT_PROMPT="${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-if [[ -r INSTANT_PROMPT ]]; then source INSTANT_PROMPT fi
+# }}}
 
-# General options
-setopt noautoremoveslash
-bindkey ˜ delete-char           # Auto-delete the ˜ char
+# {{{ Instant Prompt
+
+if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
+  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+fi
+
+# }}}
 
 # {{{ Cycle through auto suggestions with up/down
 
@@ -59,8 +76,6 @@ if [[ "${terminfo[kcud1]}" != "" ]]; then
     zle -N down-line-or-beginning-search
     bindkey "${terminfo[kcud1]}" down-line-or-beginning-search
 fi
-
-# }}}
 
 # }}}
 
@@ -157,8 +172,9 @@ source ~/.dotfiles/fzf.git.zsh
 source ~/.dotfiles/back.tools.zsh
 
 # Plugin evaluations
-eval $(thefuck --alias)
-eval $(mise activate zsh)
+eval "$(thefuck --alias)"
+eval "$(mise activate zsh)"
+eval "$(fasd --init auto)"
 
 # }}}
 
@@ -208,5 +224,11 @@ function _cheat() {
     compadd -S '' `_cheat_get_list`
 }
 compdef _cheat cheat
+
+# }}}
+
+# {{{ Local Configuration
+
+for s in $HOME/.local/source/*.sh(N); source $s
 
 # }}}

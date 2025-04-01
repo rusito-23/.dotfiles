@@ -33,10 +33,3 @@ export PATH=/usr/local/bin:$PATH
 [[ -o login ]] && echo "ПРИВЕТ СУКА БЛЯТЬ"
 
 # }}}
-
-# {{{ Local Configuration
-
-for s in $HOME/.local/source/*.sh(N); source $s
-
-# }}}
-
