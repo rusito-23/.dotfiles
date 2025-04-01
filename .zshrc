@@ -5,6 +5,7 @@
 #  ███╔╝  ╚════██║██╔══██║██╔══██╗██║
 # ███████╗███████║██║  ██║██║  ██║╚██████╗
 # ╚══════╝╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝
+# Configuration for interactive sessions.
 
 # {{{ General Configuration
 

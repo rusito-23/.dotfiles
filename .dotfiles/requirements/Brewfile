@@ -29,6 +29,7 @@ brew "speedtest-cli"
 brew "thefuck"
 brew "mint"
 brew "cookiecutter"
+brew "mise"
 
 # Image Tools
 brew "imagemagick"
