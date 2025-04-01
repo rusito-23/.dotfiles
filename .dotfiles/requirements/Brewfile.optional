@@ -1,14 +1,7 @@
 # Brew Optional Dependencies
 
-# Taps
-
-tap "federico-terzi/espanso"
-
 # Editor
 brew "mactex-no-gui"
-
-# System-Wide Autocomplete
-brew "espanso"
 
 # Casks
 cask "macdown"

@@ -28,8 +28,5 @@ git clone --depth=1 \
 # Install FZF
 $(brew --prefix)/opt/fzf/install
 
-# Install Espanso
-espanso register
-
 # Use ZSH by default
 chsh -s $(which zsh)

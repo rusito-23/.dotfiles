@@ -184,18 +184,6 @@ function! ExecuteMacroOverVisualRange()
   execute ":'<,'>normal @".nr2char(getchar())
 endfunction
 
-" Load templates into the current buffer
-" Example: LoadTemplate("py") will load ~/.templates/skeleton.py
-function! LoadTemplate(ext)
-    execute "r ~/.dotfiles/templates/skeleton." . a:ext
-endfunction
-
-" Create command with the file extension to load a template
-" Example: SetUpTemplate("py") will create the command :Py
-function! SetUpTemplate(ext)
-    execute "command! ".toupper(a:ext)." call LoadTemplate('".a:ext."')"
-endfunction
-
 function! FoldText()
     let line = getline(v:foldstart)
     let folded_line_num = v:foldend - v:foldstart
