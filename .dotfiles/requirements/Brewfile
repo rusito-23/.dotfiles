@@ -9,6 +9,8 @@ brew "neovim"
 brew "bat"
 brew "trash"
 brew "csvlens"
+brew "cookiecutter"
+brew "thefuck"
 
 # Navigation
 brew "vifm"
@@ -22,26 +24,19 @@ brew "tig"
 brew "fd"
 brew "jq"
 
-# Common Tools
+# Network Tools
 brew "wget"
 brew "htop"
 brew "speedtest-cli"
-brew "thefuck"
-brew "mint"
-brew "cookiecutter"
+
+# Version Managers
 brew "mise"
+brew "zplug"
 
 # Image Tools
 brew "imagemagick"
 brew "gifsicle"
 brew "ffmpeg"
-
-# Python
-brew "pyenv"
-brew "virtualenv"
-brew "pyenv-virtualenv"
-brew "virtualenvwrapper"
-brew "pyenv-virtualenvwrapper"
 
 # iOS
 brew "xcodesorg/made/xcodes"
@@ -50,7 +45,7 @@ brew "xcodesorg/made/xcodes"
 cask "maccy"
 cask "qlmarkdown"
 cask "rectangle"
-cask "alacritty"
+cask "kitty"
 cask "alt-tab"
 cask "caffeine"
 cask "logi-options-plus"
