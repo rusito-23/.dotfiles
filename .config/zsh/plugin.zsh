@@ -19,7 +19,7 @@ eval "$(mise activate zsh)"
 eval "$(fasd --init auto)"
 
 # Plugin Configuration
-export RIPGREP_CONFIG_PATH=~/config/zsh/ripgreprc
+export RIPGREP_CONFIG_PATH=~/.config/zsh/ripgreprc
 export FZF_DEFAULT_OPTS='-i --height 50% --border --inline-info '
 
 # Install plugins if there are plugins that have not been installed

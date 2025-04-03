@@ -1,6 +1,9 @@
 #!/bin/sh
 # Set up Dotfiles
 
+# Ensure we're in the Home folder
+cd
+
 # Install Homebrew if needed
 if ! type "brew" > /dev/null; then
     HOMEBREW_URL=https://raw.githubusercontent.com/Homebrew
@@ -8,7 +11,7 @@ if ! type "brew" > /dev/null; then
 fi
 
 # Install brew dependencies
-brew bundle --file=~/.dotfiles/requirements/Brewfile
+brew bundle --file=~/.config/setup/requirements/Brewfile
 
 # Install Oh My Zsh
 wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | zsh
