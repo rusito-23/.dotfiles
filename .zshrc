@@ -2,10 +2,10 @@
 
 source ~/.config/zsh/init.zsh
 source ~/.config/zsh/plugin.zsh
+source ~/.oh-my-zsh/oh-my-zsh.sh
 source ~/.config/zsh/alias.zsh
 source ~/.config/zsh/powerlevel.zsh
 source ~/.config/zsh/functions.zsh
-source ~/.oh-my-zsh/oh-my-zsh.sh
 
 source ~/.config/zsh/fzf.git.zsh
 source ~/.config/zsh/fzf.tools.zsh
