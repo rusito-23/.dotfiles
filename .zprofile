@@ -19,17 +19,16 @@ export LESS=-FRX
 
 # {{{ Path Setup
 
-export PATH=$HOME/.mint/bin:$PATH
 export PATH=$HOME/.local/bin:$PATH
-export PATH=$HOME/.rvm/bin:$PATH
 export PATH=/opt/homebrew/bin:/opt/homebrew/sbin:$PATH
 export PATH=/usr/local/bin:$PATH
+export PATH=/opt/homebrew/opt/fzf/bin:$PATH
 
 # }}}
 
 # {{{ Welcome
 
 # Display welcome message
-[[ -o login ]] && echo "ПРИВЕТ СУКА БЛЯТЬ"
+[[ -o login ]] && echo "ПРИВЕТ СУКА БЛЯТЬ \n"
 
 # }}}

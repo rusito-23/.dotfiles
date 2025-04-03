@@ -227,9 +227,6 @@ command! Source :source ~/.config/nvim/init.vim | noh | set nospell
 " Capitalize the given selection
 command! -range Caps <line1>,<line2>s/\<./\u&/g | noh
 
-" Create extension command for each available template
-call map(globpath('~/.templates/', '*', 1, 1), 'SetUpTemplate(fnamemodify(v:val, ":e"))')
-
 " }}}
 
 " {{{ Mappings

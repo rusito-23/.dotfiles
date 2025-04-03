@@ -13,18 +13,6 @@ brew bundle --file=~/.dotfiles/requirements/Brewfile
 # Install Oh My Zsh
 wget https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | zsh
 
-# Install Oh My Zsh Plugins
-while read plugin; do
-  gh_path=$(echo $plugin | cut -d ' ' -f 1)
-  dst_path=$(echo $plugin | cut -d ' ' -f 2)
-  git clone --depth=1 https://github.com/$gh_path ~/.oh-my-zsh/custom/plugins/$dst_path
-done <~/.dotfiles/requirements/zsh-plugins.txt
-
-# Install Powerlevel10k
-git clone --depth=1 \
-    https://github.com/romkatv/powerlevel10k.git \
-    ~/.oh-my-zsh/custom/plugins/powerlevel10k
-
 # Install FZF
 $(brew --prefix)/opt/fzf/install
 
