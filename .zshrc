@@ -1,6 +1,7 @@
 # Load Zsh configs for interactive sessions.
 
 source ~/.config/zsh/init.zsh
+source ~/.config/zsh/keymaps.zsh
 source ~/.config/zsh/plugin.zsh
 source ~/.oh-my-zsh/oh-my-zsh.sh
 source ~/.config/zsh/alias.zsh
