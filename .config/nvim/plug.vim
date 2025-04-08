@@ -51,6 +51,8 @@ Plug 'arcticicestudio/nord-vim'
 Plug 'navarasu/onedark.nvim'
 
 " LSP
+Plug 'williamboman/mason.nvim'
+Plug 'williamboman/mason-lspconfig.nvim'
 Plug 'neovim/nvim-lsp'
 Plug 'neovim/nvim-lspconfig'
 Plug 'tami5/lspsaga.nvim'

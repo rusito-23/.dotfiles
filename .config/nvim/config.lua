@@ -19,6 +19,8 @@ local telescope = require 'telescope'
 local actions = require 'telescope.actions'
 local cmp_nvim_lsp = require 'cmp_nvim_lsp'
 local cmp = require 'cmp'
+local mason = require 'mason'
+local mason_lspconfig = require 'mason-lspconfig'
 
 -- Capabilities
 local default_capabilities = protocol.make_client_capabilities()
@@ -46,33 +48,21 @@ lspconfig.util.default_config = vim.tbl_deep_extend(
 )
 
 -- Set up LSP configurations
--- See: https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md
 
--- `npm install -g pyright`
+mason.setup()
+mason_lspconfig.setup()
+
 lspconfig.pyright.setup {}
-
--- `npm install -g vim-language-server`
 lspconfig.vimls.setup {}
-
--- `go get golang.org/x/tools/gopls@latest`
 lspconfig.gopls.setup {}
-
--- `npm install -g dockerfile-language-server-nodejs`
 lspconfig.dockerls.setup {}
-
--- `cargo install --git https://github.com/latex-lsp/texlab.git --locked`
 lspconfig.texlab.setup{}
-
--- `brew install rust-analyzer`
 lspconfig.rust_analyzer.setup{}
-
--- `npm i -g vscode-langservers-extracted`
 lspconfig.eslint.setup{}
-
--- `npm i -g emmet-ls`
 lspconfig.emmet_ls.setup{}
 
 -- Set up LSP Saga
+
 saga.init_lsp_saga {
     error_sign = '',
     warn_sign = '',
