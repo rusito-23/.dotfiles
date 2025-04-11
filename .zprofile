@@ -29,6 +29,6 @@ export PATH=/opt/homebrew/opt/fzf/bin:$PATH
 # {{{ Welcome
 
 # Display welcome message
-[[ -o login ]] && echo "ПРИВЕТ СУКА БЛЯТЬ \n"
+[[ -o login ]] && echo "ДОБРО ПОЖАЛОВАТЬ, МАЛЕНЬКИЙ РУССКИЙ ДВАДЦАТЬ ТРИ!\n"
 
 # }}}
