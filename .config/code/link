@@ -1,0 +1,30 @@
+#!/bin/sh
+# Links the code configuration files.
+
+# The path to the application support folder.
+APP_SUPPORT=$HOME/Library/Application\ Support
+CODE_CONFIG=$HOME/.config/code
+
+# Safe Link
+safe_link() {
+    [[ -f "$1" ]] && rm "$1"
+    ln -s "$2" "$1"
+}
+
+safe_dir_link() {
+    [[ -d "$1" ]] && rm -rf "$1"
+    ln -s "$2" "$1"
+}
+
+# Link both Code and Cursor, if possible.
+declare -a EDITORS=("Code" "Cursor")
+for editor in "${EDITORS[@]}"; do
+
+    # Check if the config directory exists.
+    USER_DIR=$APP_SUPPORT/$editor/User
+    if [[ -d "$USER_DIR" && ! -L "$USER_DIR" ]]; then
+        safe_link "$USER_DIR/settings.json" "$CODE_CONFIG/settings.json"
+        safe_link "$USER_DIR/keybindings.json" "$CODE_CONFIG/keybindings.json"
+        safe_dir_link "$USER_DIR/snippets" "$CODE_CONFIG/snippets"
+    fi
+done

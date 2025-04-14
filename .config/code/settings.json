@@ -1,0 +1,10 @@
+{
+    "editor.tabSize": 2,
+    "files.trimTrailingWhitespace": true,
+    "workbench.colorTheme": "One Dark Pro",
+    "editor.fontSize": 14,
+    "editor.renderWhitespace": "all",
+    "editor.fontFamily": "Consolas, 'Menlo', monospace",
+    "editor.fontVariations": false,
+    "editor.fontWeight": "normal"
+}
