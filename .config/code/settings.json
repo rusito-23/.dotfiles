@@ -7,5 +7,7 @@
     "editor.fontSize": 14,
     "editor.lineHeight": 22,
     "editor.letterSpacing": 0.5,
-    "editor.fontLigatures": true
+    "editor.fontLigatures": true,
+    "terminal.integrated.fontFamily": "Hack Nerd Font",
+    "terminal.integrated.fontSize": 13
 }
