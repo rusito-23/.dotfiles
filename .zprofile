@@ -22,7 +22,44 @@ export PATH=/opt/homebrew/opt/fzf/bin:$PATH
 
 # {{{ Welcome
 
-# Display welcome message
-[[ -o login ]] && echo "ДОБРО ПОЖАЛОВАТЬ, РУСИТО 23!\n"
+ascii_image='
+ДОБРО ПОЖАЛОВАТЬ, РУСИТО 23!
+          .########.
+       #####.    .#####
+     ###.  .## .##.  .##+
+    ##. .##### .#####
+   ##. ### .## .#+  +#+
+  +## ##+  .## .##  ###
+  ##+ ######## .#+-##.
+  ### ##.  .## .##  .##
+   ##. ### .## .##  ##+
+   .##. .  .## .#####
+     ###.   ## .##.  .##-
+       ####+      +####
+          .+#######.
+'
+
+# Get terminal dimensions
+rows=$(tput lines)
+cols=$(tput cols)
+
+# Count lines and max width of the ASCII art
+image_lines=$(echo "$ascii_image" | wc -l)
+image_width=$(echo "$ascii_image" | awk '{ if (length > max) max = length } END { print max }')
+
+# Calculate starting position
+start_row=0
+start_col=$(( (cols - image_width) / 2 ))
+
+# Clear screen
+clear
+
+# Move cursor and print line-by-line
+row=$start_row
+while IFS= read -r line; do
+    tput cup $row $start_col
+    echo "$line"
+    row=$((row + 1))
+done <<< "$ascii_image"
 
 # }}}
