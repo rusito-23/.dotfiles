@@ -17,5 +17,6 @@
     },
     "[typescript]": {
         "editor.defaultFormatter": "rvest.vs-code-prettier-eslint"
-    }
+    },
+    "redhat.telemetry.enabled": false
 }
