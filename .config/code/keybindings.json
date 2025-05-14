@@ -6,5 +6,9 @@
     {
       "key": "cmd+l",
       "command": "-aichat.newchataction"
+    },
+    {
+      "key": "cmd+shift+l",
+      "command": "aichat.newchataction"
     }
 ]
