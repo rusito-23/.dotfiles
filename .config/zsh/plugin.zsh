@@ -8,6 +8,8 @@ zplug "plugins/docker", from:oh-my-zsh
 zplug "plugins/kubectl", from:oh-my-zsh
 zplug "plugins/poetry", from:oh-my-zsh
 
+zplug "gradle/gradle-completion"
+
 zplug "zsh-users/zsh-autosuggestions"
 zplug "zsh-users/zsh-syntax-highlighting", defer:2
 
