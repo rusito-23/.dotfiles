@@ -18,5 +18,6 @@
     "[typescript]": {
         "editor.defaultFormatter": "rvest.vs-code-prettier-eslint"
     },
-    "redhat.telemetry.enabled": false
+    "redhat.telemetry.enabled": false,
+    "cursor.composer.shouldAllowCustomModes": true
 }
