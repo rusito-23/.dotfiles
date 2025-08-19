@@ -3,15 +3,29 @@
 # Editor
 brew "mactex-no-gui"
 
+# Network Tools
+brew "speedtest-cli"    # Speed Test
+
+# Version Managers
+brew "xcodesorg/made/xcodes"    # Xcode Version Manager
+
+# Image Tools
+brew "imagemagick"  # General image editor
+brew "gifsicle"     # Gif editor
+brew "ffmpeg"       # Video editor
+
 # Casks
-cask "macdown"
 cask "docker"
 cask "postman"
-cask "google-chrome"
-cask "calibre"
-cask "quik"
-cask "folx"
-cask "discord"
-cask "fliqlo"
-cask "vlc"
 cask "proxyman"
+cask "google-chrome"
+cask "macdown"              # Markdown Editor
+cask "calibre"              # e-book manager
+cask "quik"                 # Go Pro Editor
+cask "folx"                 # Torrent
+cask "discord"              # Discord
+cask "fliqlo"               # Screen saver
+cask "vlc"                  # Media Player
+cask "maccy"                # Clipboard manager
+cask "alt-tab"              # Window Switcher
+cask "logi-options-plus"    # Mouse options

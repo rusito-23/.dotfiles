@@ -1,8 +1,7 @@
 # Brew Dependencies
 
 # Taps
-
-tap "homebrew/cask-fonts"
+tap "homebrew/cask-fonts"   # Font collection
 
 # Editor
 brew "neovim"
@@ -13,40 +12,28 @@ brew "cookiecutter"
 brew "thefuck"
 
 # Navigation
-brew "vifm"
-brew "tree"
+brew "vifm"     # ViFileManager
+brew "tree"     # Visualize Dir
 
 # Search and filter
-brew "fzf"
-brew "ripgrep"
-brew "peco"
-brew "tig"
-brew "fd"
-brew "jq"
+brew "fzf"      # Fuzzy search
+brew "ripgrep"  # Improved Grep
+brew "peco"     # Interactive filtering
+brew "tig"      # Git interaction helper
+brew "fd"       # Improved find
+brew "jq"       # JSON Processor
 
 # Network Tools
-brew "wget"
-brew "htop"
-brew "speedtest-cli"
+brew "wget"     # Get
+brew "htop"     # Human Top
 
 # Version Managers
-brew "mise"
-brew "zplug"
-
-# Image Tools
-brew "imagemagick"
-brew "gifsicle"
-brew "ffmpeg"
-
-# iOS
-brew "xcodesorg/made/xcodes"
+brew "mise"     # Mise-en-place
+brew "zplug"    # ZSH Plugin Manager
 
 # `brew install --cask`
-cask "maccy"
-cask "qlmarkdown"
-cask "rectangle"
-cask "kitty"
-cask "alt-tab"
-cask "caffeine"
-cask "logi-options-plus"
-cask "font-hack-nerd-font"
+cask "qlmarkdown"           # Markdown QuickLook
+cask "rectangle"            # Window Manager
+cask "kitty"                # Terminal
+cask "caffeine"             # Don't sleep
+cask "font-hack-nerd-font"  # My font

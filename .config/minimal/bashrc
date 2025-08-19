@@ -1,0 +1,79 @@
+
+# ██████╗  █████╗ ███████╗██╗  ██╗██████╗  ██████╗
+# ██╔══██╗██╔══██╗██╔════╝██║  ██║██╔══██╗██╔════╝
+# ██████╔╝███████║███████╗███████║██████╔╝██║
+# ██╔══██╗██╔══██║╚════██║██╔══██║██╔══██╗██║
+# ██████╔╝██║  ██║███████║██║  ██║██║  ██║╚██████╗
+# ╚═════╝ ╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝
+# To be used in servers and places where you can't install much stuff
+
+# Enable completion
+[[ -r /etc/bash_completion ]] && source /etc/bash_completion
+
+# ------------------------------
+# Color definitions
+
+BLACK='\[\033[0;30m\]'
+RED='\[\033[0;31m\]'
+GREEN='\[\033[0;32m\]'
+YELLOW='\[\033[0;33m\]'
+BLUE='\[\033[0;34m\]'
+PURPLE='\[\033[0;35m\]'
+CYAN='\[\033[0;36m\]'
+WHITE='\[\033[0;37m\]'
+CLEAR='\[\033[0;39m\]'
+
+# ------------------------------
+# Aliases
+
+alias src='source ~/.bashrc'    # Quick reload
+alias ls='ls -GFh'              # Default ls config
+alias ll='ls -lh'               # Long list command
+alias la='ls -a'                # Hidden files
+alias cd..='cd ../'             # Fix common typo
+alias ..='cd ../'               # Navigate with dots
+alias ...='cd ../../'           # Navigate with dots
+alias xargs='xargs -I%'         # Use `%` as default `xargs` placeholder
+
+# ------------------------------
+# Editor and pager configuration
+
+export PAGER=less
+export LESS='-RainMw'
+export VISUAL=vim
+export EDITOR="$VISUAL"
+
+# ------------------------------
+# Options
+
+shopt -s cdspell        # This will correct minor spelling errors in a cd command.
+shopt -s histappend     # Append to history rather than overwrite
+shopt -s checkwinsize   # Check window after each command
+shopt -s dotglob        # files beginning with . to be returned in the results of path-name expansion.
+
+# Enable case insensitive completion
+bind 'set completion-ignore-case on'
+
+# ------------------------------
+# Minimal prompt
+
+# Display current branch
+git_branch() {
+    # List branches if possible
+    git branch 2>/dev/null |\
+        # Get the current branch
+        grep '^*' |\
+        # Remove the '*' char and all spaces
+        tr -d '* ' |\
+        # Surround with parentheses
+        # and add an extra space at the beginning
+        sed -e "s/\(.*\)/ \(\1\)/"
+}
+
+# Display '*' if the current repo has changes
+git_dirty() {
+  local status=$(git status --porcelain 2> /dev/null)
+  [[ "$status" != "" ]] && echo '*'
+}
+
+export PS1="${CYAN}\w${CLEAR}${GREEN}\$(git_branch)${GREEN}${RED}\$(git_dirty) ${YELLOW}>${CLEAR} "
