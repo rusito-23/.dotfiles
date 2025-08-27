@@ -3,6 +3,9 @@
 # Auto-delete the ˜ char
 bindkey ˜ delete-char
 
+# Disable vi mode
+bindkey -e
+
 # Word selection configuration
 export WORDCHARS='*_-.[]~;!$%^(){}<>'       # Defines word delimiters
 autoload -Uz select-word-style

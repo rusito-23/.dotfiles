@@ -13,16 +13,14 @@ export LESS=-FRX
 
 # {{{ Path Setup
 
+
 export PATH=$HOME/.local/bin:$PATH
-export PATH=/opt/homebrew/bin:/opt/homebrew/sbin:$PATH
 export PATH=/usr/local/bin:$PATH
-export PATH=/opt/homebrew/opt/fzf/bin:$PATH
 
-# }}}
-
-# {{{ Welcome
-
-echo 'ДОБРО ПОЖАЛОВАТЬ, РУСИТО 23!
-'
+BREW_PREFIX=/opt/homebrew
+export PATH=$PATH:$BREW_PREFIX/bin
+export PATH=$PATH:$BREW_PREFIX/sbin
+export PATH=$PATH:$BREW_PREFIX/opt
+export PATH=$PATH:$BREW_PREFIX/opt/fzf/bin
 
 # }}}
