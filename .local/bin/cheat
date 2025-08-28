@@ -1,0 +1,42 @@
+#!/bin/sh
+# Cheat-sheets Quick Look
+# Utile to check my cheat-sheets quickly
+# Shows the markdown files using Apple's Quick-Look,
+# check: https://github.com/toland/qlmarkdown
+#
+# Parameters:
+# - none: list available cheat-sheets
+# - <cheat-sheet> : display cheat sheet
+
+# Escape if any step fails
+set -euo pipefail
+
+# Load script utils
+source ~/.dotfiles/scripts/utils
+
+# Define folder path
+CHEAT_SHEET_FOLDER=~/.dotfiles/cheatsheets
+
+# List available cheat-sheets if there are no parameters
+if [[ $# -eq 0 ]]; then
+    echo "Available cheat-sheets:"
+    ls $CHEAT_SHEET_FOLDER | \
+        awk -F. '{print $1}' | \
+        tr '[:upper:]' '[:lower:]'
+    exit 0
+fi
+
+# Define cheat sheet
+CHEAT_SHEET_NAME=$(echo $1 | tr '[:lower:]' '[:upper:]')
+CHEAT_SHEET_PATH=$CHEAT_SHEET_FOLDER/$CHEAT_SHEET_NAME.md
+
+# If the cheat-sheet doesn't exit, show error
+if ! [[ -f $CHEAT_SHEET_PATH ]]; then
+    echo "${red}ERROR: cheat-sheet ${CHEAT_SHEET_NAME} not found!${white}"
+    echo "Available cheat-sheets:"
+    ls $CHEAT_SHEET_FOLDER
+    exit 1
+fi
+
+# Trigger cheat-sheet quick look
+qlmanage -p > /dev/null 2> /dev/null $CHEAT_SHEET_PATH

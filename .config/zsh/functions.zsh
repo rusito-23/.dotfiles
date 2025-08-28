@@ -32,3 +32,18 @@ function _gitignoreio () {
 compdef _gitignoreio gi
 
 # }}}
+
+# {{{ cheat
+
+function _cheat_get_list() {
+    ls ~/.cheatsheets | \
+        awk -F. '{print $1}' | \
+        tr '[:upper:]' '[:lower:]'
+}
+function _cheat() {
+    compset -P '*,'
+    compadd -S '' `_cheat_get_list`
+}
+compdef _cheat cheat
+
+# }}}
