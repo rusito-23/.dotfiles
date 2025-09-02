@@ -112,6 +112,49 @@ browser() {
 
 # }}}
 
+# {{{ Watch Command
+
+watch() {
+    # Get arguments
+    arg=${1:-help}
+
+    # Display quick info
+    if [[ $arg = "info" ]]; then
+        _item "watch: Watches for the given run"
+        return
+    fi
+
+    # Display help
+    if [[ $arg = "help" ]]; then
+        _header "Watches for the given run"
+        _title "Options"
+        _item "watch <run_id>: Notifies when the given run finishes."
+        return
+    fi
+
+    # Wait for completion
+    gh run watch $arg
+
+    # Determine final outcome
+    local conclusion
+    conclusion=$(gh run view "$arg" \
+        --json conclusion \
+        --jq .conclusion 2>/dev/null |\
+        tr '[:upper:]' '[:lower:]')
+
+    if [[ "$conclusion" == "success" ]]; then
+        osascript -e "display notification \"Run $arg: SUCCESS\" with title \"GitHub Run\""
+        say "Run succeeded" >/dev/null 2>&1 &
+        return 0
+    else
+        osascript -e "display notification \"Run $arg: FAILED\" with title \"GitHub Run\""
+        say "Run failed" >/dev/null 2>&1 &
+        return 1
+    fi
+}
+
+# }}}
+
 # {{{ Help
 
 help() {
