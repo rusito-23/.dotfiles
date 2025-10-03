@@ -40,3 +40,9 @@ Pods
 node_modules
 ## python ##
 venv
+
+# AI Specific files
+.ai
+.github/copilot
+.github/copilot-instructions.md
+.claude

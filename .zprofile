@@ -24,3 +24,9 @@ export PATH=$PATH:$BREW_PREFIX/opt
 export PATH=$PATH:$BREW_PREFIX/opt/fzf/bin
 
 # }}}
+
+# {{{ Visual Studio Integration
+
+[[ "$TERM_PROGRAM" == "vscode" ]] && . "$(code --locate-shell-integration-path zsh)"
+
+# }}}
