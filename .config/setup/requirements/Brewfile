@@ -36,4 +36,5 @@ cask "qlmarkdown"           # Markdown QuickLook
 cask "rectangle"            # Window Manager
 cask "kitty"                # Terminal
 cask "caffeine"             # Don't sleep
-cask "font-hack-nerd-font"  # My font
+cask "font-hack-nerd-font"  # My favourite font
+cask "obsidian"             # Markdown Notes
