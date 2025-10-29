@@ -31,6 +31,8 @@ brew "htop"     # Human Top
 brew "mise"     # Mise-en-place
 brew "zplug"    # ZSH Plugin Manager
 
+brew "direnv"   # Dir Environment
+
 # `brew install --cask`
 cask "qlmarkdown"           # Markdown QuickLook
 cask "rectangle"            # Window Manager
