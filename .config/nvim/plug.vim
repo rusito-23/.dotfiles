@@ -73,4 +73,7 @@ Plug 'hrsh7th/cmp-vsnip'
 " Tree-sitter
 Plug 'nvim-treesitter/nvim-treesitter'
 
+" AI
+Plug 'github/copilot.vim'
+
 call plug#end()
