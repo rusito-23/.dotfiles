@@ -1,21 +1,35 @@
-#!/bin/sh
-# Copy given file into system clipboard
+#!/usr/bin/env bash
+# Copy a file reference into the macOS clipboard
 set -euo pipefail
 
-# Get utils
-source ~/.config/setup/utils
+# Optional: utils (don't fail if missing)
+[ -f "$HOME/.config/setup/utils" ] && source "$HOME/.config/setup/utils"
 
-# Show help if needed
-if [[ $# -eq 0 ]]; then
-    log_info "Usage: copy <file>"
-    exit 1
+usage() {
+  echo "Usage: copy <file-path>" >&2
+  exit 1
+}
+
+# Require exactly one argument
+[ $# -eq 1 ] || usage
+
+# Expand leading ~ manually (bash won't expand inside quotes)
+arg="$1"
+case "$arg" in
+  "~"|"~/"*) arg="${arg/#\~/$HOME}";;
+esac
+
+# Resolve to an absolute path (portable fallback if realpath isn't available)
+if command -v realpath >/dev/null 2>&1; then
+  file_path="$(realpath "$arg")"
+else
+  dir="$(cd "$(dirname -- "$arg")" && pwd -P)"
+  base="$(basename -- "$arg")"
+  file_path="$dir/$base"
 fi
 
-# Get file path
-file_path=$(pwd)/$1
+# Check existence
+[ -e "$file_path" ] || { echo "No such file: $file_path" >&2; exit 1; }
 
-# Create apple script
-apple_script="tell app \"Finder\" to set the clipboard to ( POSIX file \"${file_path}\" )"
-
-# Run script
-echo ${apple_script} | osascript -i
+# Put a *file reference* on the clipboard (not file contents)
+osascript -e 'set the clipboard to (POSIX file "'"$file_path"'")'
