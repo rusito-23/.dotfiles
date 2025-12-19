@@ -76,4 +76,7 @@ Plug 'nvim-treesitter/nvim-treesitter'
 " AI
 Plug 'github/copilot.vim'
 
+" Previews
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && npx --yes yarn install' }
+
 call plug#end()
