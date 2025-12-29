@@ -1,5 +1,5 @@
 # Plugin Configuration
-export ZPLUG_HOME=$(brew --prefix)/opt/zplug
+export ZPLUG_HOME=/opt/homebrew/opt/zplug
 source $ZPLUG_HOME/init.zsh
 
 zplug "plugins/sudo", from:oh-my-zsh
