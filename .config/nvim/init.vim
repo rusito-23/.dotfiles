@@ -55,6 +55,7 @@ set splitbelow splitright               " Open below and on the right side
 set showtabline=2                       " Always show tab line
 set laststatus=2                        " Always show the status line
 set notitle noicon                      " Never show title or icon
+set autoread                            " Auto read files when changed outside
 
 let g:mapleader = ","                   " Define map leader
 
