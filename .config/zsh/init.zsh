@@ -25,5 +25,5 @@ setopt hist_reduce_blanks      # Trim extra spaces before saving
 setopt noautoremoveslash       # Keep the trailing slash
 
 # Load Completions
-autoload -U compinit && compinit -U
+autoload -U compinit && compinit -C
 
