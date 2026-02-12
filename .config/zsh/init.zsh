@@ -24,6 +24,15 @@ setopt hist_save_no_dups       # Don't save duplicate commands
 setopt hist_reduce_blanks      # Trim extra spaces before saving
 setopt noautoremoveslash       # Keep the trailing slash
 
-# Load Completions
-autoload -U compinit && compinit -C
+# Load Completions (only rebuild cache once per day)
+autoload -Uz compinit
+setopt EXTENDEDGLOB
+for dump in ~/.zcompdump(#qN.m+1); do
+  compinit
+  if [[ -s "$dump" && (! -s "$dump.zwc" || "$dump" -nt "$dump.zwc") ]]; then
+    zcompile "$dump"
+  fi
+done
+unsetopt EXTENDEDGLOB
+compinit -C
 

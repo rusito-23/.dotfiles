@@ -2,18 +2,31 @@
 ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 source "${ZINIT_HOME}/zinit.zsh"
 
-# Load OMZ plugins
-zinit snippet OMZP::sudo
+# Load critical OMZ plugins immediately
 zinit snippet OMZP::git
+
+# Defer non-critical OMZ plugins (turbo mode - load 1 second after prompt)
+zinit ice wait'1' lucid
+zinit snippet OMZP::sudo
+
+zinit ice wait'1' lucid
 zinit snippet OMZP::docker
+
+zinit ice wait'1' lucid
 zinit snippet OMZP::kubectl
+
+zinit ice wait'1' lucid
 zinit snippet OMZP::poetry
 
-# Load completions
+# Defer completions
+zinit ice wait'1' lucid
 zinit light gradle/gradle-completion
 
-# Load zsh plugins (with turbo mode for speed)
+# Load autosuggestions immediately (needed for UX)
 zinit light zsh-users/zsh-autosuggestions
+
+# Defer syntax highlighting (can load after prompt)
+zinit ice wait'0' lucid atinit'zpcompinit; zpcdreplay'
 zinit light zsh-users/zsh-syntax-highlighting
 
 # Load theme

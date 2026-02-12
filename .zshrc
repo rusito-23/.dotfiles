@@ -10,7 +10,14 @@ source ~/.config/zsh/functions.zsh
 source ~/.config/zsh/fzf.git.zsh
 source ~/.config/zsh/fzf.tools.zsh
 
-source /opt/homebrew/opt/fzf/shell/completion.zsh
-source /opt/homebrew/opt/fzf/shell/key-bindings.zsh
+# Defer FZF loading to background for faster startup
+() {
+  if [[ -f /opt/homebrew/opt/fzf/shell/completion.zsh ]]; then
+    source /opt/homebrew/opt/fzf/shell/completion.zsh
+  fi
+  if [[ -f /opt/homebrew/opt/fzf/shell/key-bindings.zsh ]]; then
+    source /opt/homebrew/opt/fzf/shell/key-bindings.zsh
+  fi
+} &!
 
 for s in ~/.config/zsh/ignored/*.sh(N); source $s
