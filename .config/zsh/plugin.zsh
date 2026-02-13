@@ -3,6 +3,7 @@ ZINIT_HOME="${XDG_DATA_HOME:-${HOME}/.local/share}/zinit/zinit.git"
 source "${ZINIT_HOME}/zinit.zsh"
 
 # Load critical OMZ plugins immediately
+zinit snippet OMZL::git.zsh
 zinit snippet OMZP::git
 
 # Defer non-critical OMZ plugins (turbo mode - load 1 second after prompt)
