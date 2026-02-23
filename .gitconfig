@@ -1,3 +1,5 @@
 [include]
     path = ~/.config/git/config
     path = ~/.config/git/config.ignored
+[user]
+    branchprefix = rusito

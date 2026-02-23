@@ -38,7 +38,14 @@ alias dot='git --git-dir=$HOME/.dotfiles.git --work-tree=$HOME'
 alias dss='dot status --short'
 alias da='dot add'
 alias dcmsg='dot commit -m'
-alias ddp='dot push origin main'
+alias ddp='dot push origin $(dot rev-parse --abbrev-ref HEAD)'
+
+# Bare Claude Config
+alias ccfg='git --git-dir=$HOME/.claude-config.git --work-tree=$HOME'
+alias ccss='ccfg status --short'
+alias cca='ccfg add'
+alias cccmsg='ccfg commit -m'
+alias ccdp='ccfg push origin $(ccfg rev-parse --abbrev-ref HEAD)'
 
 # Python
 alias py='ipython'                      # Start ipython session
