@@ -2,6 +2,7 @@
 
 # Taps
 tap "homebrew/cask-fonts"   # Font collection
+tap "getsentry/xcodebuildmcp"
 
 # Editor
 brew "neovim"
@@ -30,8 +31,11 @@ brew "htop"     # Human Top
 # Version Managers
 brew "mise"     # Mise-en-place
 brew "zplug"    # ZSH Plugin Manager
-
 brew "direnv"   # Dir Environment
+
+# AI
+brew "xcodebuildmcp"    # Xcode Build MCP
+brew "aigc"             # AI Commit Message
 
 # `brew install --cask`
 cask "qlmarkdown"           # Markdown QuickLook
