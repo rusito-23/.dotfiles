@@ -91,18 +91,30 @@ I'll add the extensions for you :)
         if args.no_convert:
             exit(0)
 
-        # convert to gif
+        # generate optimized palette
+        palette = f'{args.output}_palette.png'
+        palettegen = subprocess.Popen([
+            FFMPEG,
+            '-i', f'{args.output}.mov',
+            '-vf', f'scale={args.xscale}:-1:flags=lanczos,palettegen=stats_mode=diff',
+            palette
+        ])
+        palettegen.wait()
+
+        # convert to gif using palette
         convert = subprocess.Popen([
             FFMPEG,
-            '-i',
-            f'{args.output}.mov',
-            '-vf',
-            f'scale={args.xscale}:-1',
-            '-r',
-            '10',
+            '-i', f'{args.output}.mov',
+            '-i', palette,
+            '-lavfi', f'scale={args.xscale}:-1:flags=lanczos[x];[x][1:v]paletteuse=dither=bayer:bayer_scale=5:diff_mode=rectangle',
+            '-r', '10',
             f'{args.output}.gif'
         ])
         convert.wait()
+
+        # remove palette
+        rm_palette = subprocess.Popen([RM, palette])
+        rm_palette.wait()
 
         # remove video
         rm = subprocess.Popen([RM, f'{args.output}.mov'])

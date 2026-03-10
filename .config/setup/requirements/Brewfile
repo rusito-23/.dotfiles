@@ -3,6 +3,7 @@
 # Taps
 tap "homebrew/cask-fonts"   # Font collection
 tap "getsentry/xcodebuildmcp"
+tap "cameroncooke/axe/axe"
 
 # Editor
 brew "neovim"
@@ -36,6 +37,7 @@ brew "direnv"   # Dir Environment
 # AI
 brew "xcodebuildmcp"    # Xcode Build MCP
 brew "aigc"             # AI Commit Message
+brew "axe"              # Simulator
 
 # `brew install --cask`
 cask "qlmarkdown"           # Markdown QuickLook
