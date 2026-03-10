@@ -5,6 +5,10 @@ source "${ZINIT_HOME}/zinit.zsh"
 # Load critical OMZ plugins immediately
 zinit snippet OMZL::git.zsh
 zinit snippet OMZP::git
+zinit snippet OMZL::functions.zsh
+zinit snippet OMZL::directories.zsh
+zinit snippet OMZL::history.zsh
+zinit snippet OMZL::completion.zsh
 
 # Defer non-critical OMZ plugins (turbo mode - load 1 second after prompt)
 zinit ice wait'1' lucid
