@@ -22,3 +22,19 @@ if [[ "${terminfo[kcud1]}" != "" ]]; then
     zle -N down-line-or-beginning-search
     bindkey "${terminfo[kcud1]}" down-line-or-beginning-search
 fi
+
+# Bind Ctrl-K to launch Claude in continue mode
+_launch_cc() {
+  BUFFER="claude --continue"
+  zle accept-line
+}
+zle -N _launch_cc
+bindkey '^K' _launch_cc
+
+# Bind Ctrl-F to foreground the most recent background job
+_launch_fg() {
+  BUFFER="fg"
+  zle accept-line
+}
+zle -N _launch_fg
+bindkey '^F' _launch_fg
