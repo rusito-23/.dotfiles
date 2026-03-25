@@ -153,6 +153,27 @@ cmp.setup({
     }
 })
 
+-- Snacks
+
+require('snacks').setup({
+    bigfile = { enabled = true },
+    dashboard = { enabled = true },
+    explorer = { enabled = true },
+    indent = { enabled = true },
+    input = { enabled = true },
+    notifier = { enabled = true },
+    picker = { enabled = true },
+    quickfile = { enabled = true },
+    scope = { enabled = true },
+    scroll = { enabled = true },
+    statuscolumn = { enabled = true },
+    words = { enabled = true },
+})
+
+-- Claude Code
+
+require('claudecode').setup({})
+
 --- Diagnostics config
 
 vim.diagnostic.config({virtual_text = false})
