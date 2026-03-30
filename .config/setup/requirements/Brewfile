@@ -24,6 +24,7 @@ brew "peco"     # Interactive filtering
 brew "tig"      # Git interaction helper
 brew "fd"       # Improved find
 brew "jq"       # JSON Processor
+brew "rtk"      # AI CLI Proxy
 
 # Network Tools
 brew "wget"     # Get

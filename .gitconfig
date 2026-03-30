@@ -3,3 +3,8 @@
     path = ~/.config/git/config.ignored
 [user]
     branchprefix = rusito
+[filter "lfs"]
+	required = true
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge --skip %f
+	process = git-lfs filter-process --skip
