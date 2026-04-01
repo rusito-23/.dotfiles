@@ -46,3 +46,6 @@ venv
 .github/copilot
 .github/copilot-instructions.md
 .claude
+
+# Ignore Worktrees
+wt/
