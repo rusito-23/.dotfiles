@@ -1,0 +1,49 @@
+#!/bin/sh
+# Raspberry Pi / Minimal Server Setup
+# Standalone: does not require this repo to be cloned locally, fetches
+# minimal/{zshrc,vimrc} directly from GitHub.
+
+set -e
+
+RAW_BASE="https://raw.githubusercontent.com/rusito-23/.dotfiles/main"
+
+log() { printf '\033[0;36m%s\033[0m\n' "$1"; }
+
+log "Installing packages via apt..."
+sudo apt update
+sudo apt install -y zsh git curl fzf bat
+
+log "Installing Oh My Zsh..."
+if [ ! -d "$HOME/.oh-my-zsh" ]; then
+    git clone --depth=1 https://github.com/ohmyzsh/ohmyzsh.git "$HOME/.oh-my-zsh"
+else
+    log "Oh My Zsh already installed, skipping"
+fi
+
+ZSH_CUSTOM="${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}"
+
+log "Installing zsh-autosuggestions and zsh-syntax-highlighting..."
+[ -d "$ZSH_CUSTOM/plugins/zsh-autosuggestions" ] || \
+    git clone --depth=1 https://github.com/zsh-users/zsh-autosuggestions "$ZSH_CUSTOM/plugins/zsh-autosuggestions"
+[ -d "$ZSH_CUSTOM/plugins/zsh-syntax-highlighting" ] || \
+    git clone --depth=1 https://github.com/zsh-users/zsh-syntax-highlighting "$ZSH_CUSTOM/plugins/zsh-syntax-highlighting"
+
+log "Fetching minimal configs..."
+mkdir -p ~/.config/minimal
+curl -fsSL "$RAW_BASE/.config/minimal/zshrc" -o ~/.config/minimal/zshrc
+curl -fsSL "$RAW_BASE/.config/minimal/vimrc" -o ~/.config/minimal/vimrc
+
+log "Linking configs..."
+link_config() {
+    if [ -e "$2" ] || [ -L "$2" ]; then
+        mv "$2" "$2.bak.$(date +%s)"
+    fi
+    ln -s "$1" "$2"
+}
+link_config ~/.config/minimal/zshrc ~/.zshrc
+link_config ~/.config/minimal/vimrc ~/.vimrc
+
+log "Switching default shell to zsh..."
+chsh -s "$(which zsh)"
+
+log "Done! Restart your shell or run: exec zsh"
