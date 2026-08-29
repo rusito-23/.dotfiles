@@ -1,10 +1,45 @@
-[include]
-    path = ~/.config/git/config
-    path = ~/.config/git/config.ignored
-[user]
-    branchprefix = rusito
-[filter "lfs"]
-	required = true
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge --skip %f
-	process = git-lfs filter-process --skip
+[core]
+    whitespace = fix,-indent-with-non-tab,trailing-space,cr-at-eol
+    editor = nvim
+
+[init]
+    defaultBranch = develop
+
+[pull]
+    rebase = true
+
+[push]
+    default = matching
+
+[color]
+    ui = auto
+
+[color "branch"]
+    current = yellow bold
+    local = green bold
+    remote = cyan bold
+
+[color "diff"]
+    meta = yellow bold
+    frag = magenta bold
+    old = red bold
+    new = green bold
+    whitespace = red reverse
+
+[color "status"]
+    added = green bold
+    changed = yellow bold
+    untracked = red bold
+
+[merge]
+    tool = nvim
+    conflictstyle = diff3
+
+[mergetool "nvim"]
+    cmd = nvim -f -c "Gvdiffsplit!" "$MERGED"
+
+[diff]
+    tool = nvim
+
+[difftool "nvim"]
+    cmd = nvim -d "$LOCAL" "$REMOTE"
