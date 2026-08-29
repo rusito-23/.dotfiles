@@ -1,22 +1,12 @@
-# dotfiles :nerd_face:
+# dotfiles :nerd_face: (pi branch)
+
+Minimal config for Raspberry Pi / servers. Full macOS setup lives on `main`.
 
 ```shell
-git clone --bare git@github.com:rusito-23/.dotfiles.git .dotfiles.git
-```
-
-```shell
+git clone --bare -b pi git@github.com:rusito-23/.dotfiles.git ~/.dotfiles.git
 alias dot='git --git-dir=$HOME/.dotfiles.git --work-tree=$HOME'
-```
-
-```shell
 dot config --local status.showUntrackedFiles no
+dot checkout pi
 ```
 
-## Setup
-
-| Script | Use on | Bare repo |
-| --- | --- | --- |
-| `.config/setup/setup` | macOS, full machine | Yes |
-| `.config/setup/mac_setup` | macOS, full machine | No |
-| `.config/setup/pi_setup` | Raspberry Pi / servers | No |
-| `.config/setup/docker_minimal_setup <container>` | Docker containers | Yes, on host |
+Then run `.config/setup/pi_setup`.

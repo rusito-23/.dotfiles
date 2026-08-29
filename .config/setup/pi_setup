@@ -1,7 +1,6 @@
 #!/bin/sh
 # Raspberry Pi / Minimal Server Setup
-# Bare-clones the `pi` branch, which carries minimal .zshrc/.vimrc/.gitconfig
-# at the same top-level paths the full setup uses on macOS.
+# Run after cloning this branch (see .github/README.md).
 
 set -e
 
@@ -25,24 +24,6 @@ log "Installing zsh-autosuggestions and zsh-syntax-highlighting..."
     git clone --depth=1 https://github.com/zsh-users/zsh-autosuggestions "$ZSH_CUSTOM/plugins/zsh-autosuggestions"
 [ -d "$ZSH_CUSTOM/plugins/zsh-syntax-highlighting" ] || \
     git clone --depth=1 https://github.com/zsh-users/zsh-syntax-highlighting "$ZSH_CUSTOM/plugins/zsh-syntax-highlighting"
-
-log "Cloning dotfiles (pi branch)..."
-[ -d "$HOME/.dotfiles.git" ] || \
-    git clone --bare -b pi git@github.com:rusito-23/.dotfiles.git "$HOME/.dotfiles.git"
-dot() { git --git-dir="$HOME/.dotfiles.git" --work-tree="$HOME" "$@"; }
-dot config --local status.showUntrackedFiles no
-
-log "Checking out dotfiles (backing up any conflicting files)..."
-mkdir -p "$HOME/.dotfiles-backup"
-if ! dot checkout pi 2>/tmp/dot_checkout_err; then
-    grep -E '^\s+\.' /tmp/dot_checkout_err | while IFS= read -r f; do
-        f=$(echo "$f" | xargs)
-        mkdir -p "$HOME/.dotfiles-backup/$(dirname "$f")"
-        mv "$HOME/$f" "$HOME/.dotfiles-backup/$f"
-    done
-    dot checkout pi
-fi
-rm -f /tmp/dot_checkout_err
 
 log "Switching default shell to zsh..."
 chsh -s "$(which zsh)"
