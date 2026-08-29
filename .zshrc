@@ -60,6 +60,7 @@ alias gs='git status --ignore-submodules -s'
 # General aliases
 
 alias src='source ~/.zshrc'
+alias dot='git --git-dir=$HOME/.dotfiles.git --work-tree=$HOME'
 alias ls='ls -GFh'
 alias ll='ls -lh'
 alias la='ls -a'
