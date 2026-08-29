@@ -85,3 +85,8 @@ fi
 [[ -f /usr/share/doc/fzf/examples/key-bindings.zsh ]] && source /usr/share/doc/fzf/examples/key-bindings.zsh
 [[ -f /usr/share/doc/fzf/examples/completion.zsh ]] && source /usr/share/doc/fzf/examples/completion.zsh
 export FZF_DEFAULT_OPTS='-i --height 50% --border --inline-info'
+
+# ------------------------------
+# Local, untracked overrides
+
+for s in ~/.config/zsh/ignored/*.sh(N); source $s
