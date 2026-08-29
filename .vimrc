@@ -105,7 +105,11 @@ let &t_EI = "\e[2 q"            " Use block cursor in normal mode
 
 " Set colorscheme
 set termguicolors
-colorscheme desert
+try
+    colorscheme habamax
+catch
+    colorscheme desert
+endtry
 
 " Status line colors
 hi statusline    ctermfg=black  ctermbg=cyan  guifg=black    guibg=#8fbfdc  gui=Bold  cterm=Bold
