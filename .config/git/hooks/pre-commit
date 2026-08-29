@@ -1,0 +1,32 @@
+#!/bin/sh
+
+# Load script utils
+source ~/.config/setup/utils
+
+# Define colors
+WARNING="\t${yellow}WARNING  😧  ${white}"
+ERROR="\t${red}ERROR  💩  ${white}"
+GOOD="\t${green}GOOD  🤟  ${white}"
+
+echo "${cyan}PRE-COMMIT HOOK  🚀${white}"
+
+# Swiftlint
+# swiftlint --strict &> /dev/null || echo "${WARNING} Swiftlint errors found!"
+
+# TODO Search
+TODO="${purple}TODO's${white}"
+if (git-diff-index -p -M --cached HEAD -- | grep '^+' | grep --color=auto TODO) then
+  echo "${WARNING}Solve your ${TODO} and try again."
+  exit 1
+fi
+echo "${GOOD}No ${TODO} in sight."
+
+# FIXME Search
+FIXME="${purple}FIXME's${white}"
+if (git-diff-index -p -M --cached HEAD -- | grep '^+' | grep --color=auto FIXME) then
+  echo "${ERROR}Solve your ${FIXME} and try again."
+  exit 1
+fi
+echo "${GOOD}No ${FIXME} in sight."
+
+exit 0
