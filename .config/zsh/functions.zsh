@@ -47,3 +47,24 @@ function _cheat() {
 compdef _cheat cheat
 
 # }}}
+
+# {{{ ssh
+
+# Show the target host in the kitty tab while connected.
+# Heuristic: takes the first non-flag argument, so `ssh -p 2222 host` is
+# misread as host="2222" - fine for the common `ssh host`/`ssh user@host` case.
+ssh() {
+    local host
+    for arg in "$@"; do
+        [[ "$arg" == -* ]] && continue
+        host="${arg#*@}"
+        break
+    done
+    [[ -n "$host" ]] && kitty @ set-tab-title "ssh:$host" &> /dev/null
+    command ssh "$@"
+    local status=$?
+    [[ -n "$host" ]] && kitty @ set-tab-title "" &> /dev/null
+    return $status
+}
+
+# }}}

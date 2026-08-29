@@ -30,6 +30,8 @@ TERMINAL_ICON = "\uf120 "
 HOURGLASS_ICON = "\uf254"
 FLASH_ICON = "\uf0e7"
 BELL_ICON = "\uf0f3"
+SSH_ICON = "\uf233"
+SSH_TITLE_PREFIX = "ssh:"
 
 """ Cells """
 
@@ -108,11 +110,20 @@ def _get_cwd(tab):
     return f"{items[0]}/../{items[-1]}" if len(items) > 3 else cwd
 
 
+def _get_ssh_host(tab):
+    title = tab.title or ""
+    if title.startswith(SSH_TITLE_PREFIX):
+        return title[len(SSH_TITLE_PREFIX):]
+    return None
+
+
 """ Cell Factory """
 
 
 def _make_tab_cell(screen, tab, index, is_last, next_tab):
-    title = " ".join([_get_icons(tab), _get_cwd(tab)])
+    ssh_host = _get_ssh_host(tab)
+    location = f"{SSH_ICON} {ssh_host}" if ssh_host else _get_cwd(tab)
+    title = " ".join([_get_icons(tab), location])
     return TabCell(index, title, tab.is_active, is_last, next_tab)
 
 
